@@ -1,0 +1,59 @@
+<form class="alert m-alert m-alert--default">
+						<div class="m-portlet__body">
+							<h3>Import Data Calon</h3>
+							<hr>	
+							<div class="m-accordion__item m-accordion__item--danger">
+								<div class="m-accordion__item-head collapsed" srole="tab" id="m_accordion_5_item_1_head" data-toggle="collapse" href="#m_accordion_5_item_1_body" aria-expanded="  false">
+									<span class="m-accordion__item-icon">
+										<i class="fa flaticon-user-ok"></i>
+									</span>
+									<span class="m-accordion__item-title">
+										Panduan Import Data
+									</span>
+									<span class="m-accordion__item-mode"></span>
+								</div>
+								<div class="m-accordion__item-body collapse" id="m_accordion_5_item_1_body" class=" " role="tabpanel" aria-labelledby="m_accordion_5_item_1_head" data-parent="#m_accordion_5">
+									<div class="m-accordion__item-content">
+										<img src="{{ url('assets/app/media/img/panduan_import.jpg') }}" alt=""/>
+									</div>
+								</div>
+							</div>
+							<br>
+							<div class="row">
+								<div class="col-md-7">
+									<label for="exampleInputEmail1">
+										<!-- Import Data Calon -->
+									</label>
+
+									<div class="custom-file">
+										<input type="file" class="custom-file-input" id="customFile">
+										<label class="custom-file-label" for="customFile">
+											Pilih Berkas
+										</label>
+									</div>									
+								</div>									
+							</div>
+							<div class="row">
+								<div class="col-md-5">
+									<button type="reset" class="btn btn-primary">
+										Submit
+									</button>
+									<button type="reset" class="btn btn-secondary">
+										Cancel
+									</button>
+								</div>	
+							</div>
+						</div>
+						<div class="m-portlet__foot m-portlet__foot--fit">
+							<div class="m-form__actions">
+								<button type="reset" class="btn btn-primary">
+									Submit
+								</button>
+								<button type="reset" class="btn btn-secondary">
+									Cancel
+								</button>
+							</div>
+						</div>
+					</div>
+
+				</form>
