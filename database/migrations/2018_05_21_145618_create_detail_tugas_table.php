@@ -15,6 +15,7 @@ class CreateDetailTugasTable extends Migration
     {
         Schema::create('detail_tugas', function (Blueprint $table) {
             $table->increments('id');
+//            TODO: ganti nilai_tugas
             $table->integer('nilai');
             $table->integer('id_tugas')->unsigned();
             $table->integer('id_calon_anggota')->unsigned();

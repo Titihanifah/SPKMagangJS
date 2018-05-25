@@ -15,6 +15,7 @@ class CreateDetailPenilaiansTable extends Migration
     {
         Schema::create('detail_penilaians', function (Blueprint $table) {
             $table->increments('id');
+//            TODO: ganti nilai_penilaian
             $table->integer('nilai')->unsigned();
             $table->integer('id_penilaian')->unsigned();
             $table->integer('id_kriteria')->unsigned();

@@ -17,7 +17,7 @@ class CreateKegiatansTable extends Migration
             $table->increments('id');
             $table->string('nama_kegiatan');
             $table->string('tempat');
-            $table->date('tanggal kegiatan');
+            $table->date('tanggal_kegiatan');
             $table->time('waktu');
             $table->integer('id_departemen')->unsigned();
             $table->foreign('id_departemen')

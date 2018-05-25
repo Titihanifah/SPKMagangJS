@@ -16,7 +16,10 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+//            TODO: nanti di hilangin emailnya
             $table->string('email')->unique();
+//            TODO: tanyakan kenapa smallInteger
+            $table->smallInteger('role')->default(0); // 0 kadept , 1 BKK
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

@@ -17,6 +17,8 @@ class CreateRekomendasisTable extends Migration
             $table->increments('id');
             $table->integer('id_calon_anggota')->unsigned();
             $table->integer('id_departemen')->unsigned();
+            // keterangan mengapa calon anggota tsb direkomendasikan
+            // mungkin karena memiliki kemampuan yang dibutuhkan oleh departemen tertentu
             $table->string('keterangan');
             $table->foreign('id_calon_anggota')
                 ->references('id')->on('calon_anggotas')

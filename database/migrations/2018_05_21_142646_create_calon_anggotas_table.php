@@ -16,13 +16,16 @@ class CreateCalonAnggotasTable extends Migration
         Schema::create('calon_anggotas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nama_calon_anggota');
+//            TODO: ini menggunakan string apa text ya? apa bedanya string dg text
             $table->string('hardskill');
             $table->string('softskill');
+            // pemberian tanda khusus untuk anggota yang memiliki kemampuan khusus supaya nilainya berada di atas
             $table->boolean('white_card_dept_1')->nullable();
             $table->boolean('white_card_dept_2')->nullable();
             // $table->enum('status', ['proses', 'diterima', 'cantalope']);
+//            TODO: mending 1 0 atau laki-laki perempuan
             $table->enum('jenis_kelamin',['perempuan','laki-laki']);
-            $table->string('departemen_final');
+            $table->string('departemen_final')->nullable();
             $table->integer('id_periode')->unsigned();
             $table->foreign('id_periode')
                 ->references('id')->on('periodes')
