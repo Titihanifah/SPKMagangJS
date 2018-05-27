@@ -18,7 +18,7 @@ class CreatePresensisTable extends Migration
             $table->integer('id_calon_anggota')->unsigned();
             $table->integer('id_kegiatan')->unsigned();
 //            TODO: hadir tidak hadir atau 0 1(boolean)
-            $table->enum('kehadiran',['hadir','tidak hadir']);
+            $table->enum('kehadiran',['hadir','tidak_hadir']);
             $table->foreign('id_calon_anggota')
                 ->references('id')->on('calon_anggotas')
                 ->onDelete('cascade');

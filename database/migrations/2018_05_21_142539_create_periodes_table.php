@@ -18,7 +18,7 @@ class CreatePeriodesTable extends Migration
             $table->year('tahun');
             $table->string('periode');
 //            TODO: kapan menggunakan boolean kapan menggunakan enum
-            $table->enum('status', ['aktif', 'tidak aktif']);
+            $table->enum('status', ['aktif', 'tidak_aktif']);
             $table->timestamps();
         });
     }

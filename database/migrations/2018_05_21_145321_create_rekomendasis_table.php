@@ -13,6 +13,7 @@ class CreateRekomendasisTable extends Migration
      */
     public function up()
     {
+        // TODO: kayaknya ini tabelnya tidak diperlukan atau bisa jadi diperlukan untuk rekomendasi sementara
         Schema::create('rekomendasis', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_calon_anggota')->unsigned();
