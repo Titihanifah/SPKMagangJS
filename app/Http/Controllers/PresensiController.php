@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\CalonAnggota;
+use App\Kegiatan;
+use App\Presensi;
 use Illuminate\Http\Request;
 
 class PresensiController extends Controller
@@ -13,8 +16,10 @@ class PresensiController extends Controller
      */
     public function index()
     {
-        //
-        return view('kadept.presensi.index', ['name' => 'presensi']);
+        //TODO: bagaimana join dengan kegiatan sehingga tabel presensi kolomnya bisa dinamis sesuai dengan nama dan jumlah kegiatan
+
+        $presensi   = Presensi::all();
+        return view('kadept.presensi.index')->with('presensi',$presensi);
     }
      /**
      * Display a listing of the resource.
@@ -24,7 +29,9 @@ class PresensiController extends Controller
     public function rekap()
     {
         //
-        return view('kadept.presensi.rekapPresensi');
+        $kegiatan = Kegiatan::all();
+        $calonAnggota = CalonAnggota::all();
+        return view('kadept.presensi.rekapPresensi')->with('kegiatan',$kegiatan)->with('calonAnggota', $calonAnggota);
     }
     /**
     * numpang controller ya :D

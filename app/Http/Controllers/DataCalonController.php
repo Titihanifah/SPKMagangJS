@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\CalonAnggota;
 use Illuminate\Http\Request;
 
 class DataCalonController extends Controller
@@ -13,8 +14,9 @@ class DataCalonController extends Controller
      */
     public function index()
     {
-        //
-        return view('kadept.datacalon.index', ['name' => 'datacalon']);
+//        TODO: filter berdasarkan departemen ya... :)
+        $calonAnggota = CalonAnggota::all();
+        return view('kadept.datacalon.index')->with('calonAnggota',$calonAnggota);
     }
     
 

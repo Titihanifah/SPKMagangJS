@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\CalonAnggota;
 use Illuminate\Http\Request;
 
 class AdminDataCalonController extends Controller
@@ -13,8 +14,10 @@ class AdminDataCalonController extends Controller
      */
     public function index()
     {
+        //TODO: join dengan tabel detail_calon_anggotas
         //
-        return view('bkk.datacalon.index');
+        $calonAanggota = CalonAnggota::all();
+        return view('bkk.datacalon.index')->with('calonAnggota', $calonAanggota);
     }
 
     /**

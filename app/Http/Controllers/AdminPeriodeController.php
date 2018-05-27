@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Periode;
 use Illuminate\Http\Request;
 
 class AdminPeriodeController extends Controller
@@ -14,7 +15,8 @@ class AdminPeriodeController extends Controller
     public function index()
     {
         //
-        return view('bkk.periode.index');
+        $periode = Periode::all();
+        return view('bkk.periode.index')->with('periode',$periode);
     }
 
     /**

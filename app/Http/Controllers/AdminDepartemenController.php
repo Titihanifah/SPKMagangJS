@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Departemen;
 use Illuminate\Http\Request;
 
 class AdminDepartemenController extends Controller
@@ -14,7 +15,9 @@ class AdminDepartemenController extends Controller
     public function index()
     {
         //
-        return view('bkk.departemen.index');
+        $departemen = Departemen::all();
+        return view('bkk.departemen.index')->with('departemen', $departemen);
+
     }
 
     /**

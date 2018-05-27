@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Kegiatan;
 use Illuminate\Http\Request;
+
+
+
+
 
 class KegiatanController extends Controller
 {
@@ -14,7 +19,8 @@ class KegiatanController extends Controller
     public function index()
     {
         //
-        return view('kadept.kegiatan.index', ['name' => 'kegiatan']);
+        $kegiatan = Kegiatan::all();
+        return view('kadept.kegiatan.index')->with('kegiatan',$kegiatan);
     }
 
     /**
@@ -35,7 +41,29 @@ class KegiatanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // create new object Employee
+        // TODO: use validator?
+        $this->validate($request, [
+            'nama_kegiatan' => 'required',
+            'tempat' => 'required',
+            'tanggal_kegiatan' => 'required',
+            //TODO: kan ada id departemen cara nyambunginnya gimana? apakah perlu ditulis disini juga
+
+
+        ]);
+
+        $kegiatan = new Tugas;
+        // fill the object
+        $kegiatan->nama_kegiatan = $request->nama_kegiatan;
+        $kegiatan->tempat = $request->tempat;
+        $kegiatan->tanggal_kegiatan = $request->tanggal_kegiatan;
+
+        //save object to database
+        $kegiatan->save();
+        //message success
+        Session::flash('message', 'Sukses menambah data kegiatan!');
+        //TODO: routingnya belum
+        return redirect(route('kadept.kegiatan')); // Set redirect ketika berhasil
     }
 
     /**
@@ -70,6 +98,14 @@ class KegiatanController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $kegiatan= Kegiatan::find($id);
+        $kegiatan->nama_kegiatan = $request->nama_kegiatan;
+//        $kegiatan->waktu = $request->waktu;
+//        $kegiatan->tempat = $request->tempat;
+//        $kegiatan->tanggal_kegiatan = $request->tanggal_kegiatan;
+        $kegiatan->save();
+        Session::flash('message', 'Success add data employee!');
+        return redirect('kadept/kegiatan'); // Set redirect ketika berhasil
     }
 
     /**

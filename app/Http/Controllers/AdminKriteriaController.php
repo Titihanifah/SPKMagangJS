@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Kriteria;
 use Illuminate\Http\Request;
 
 class AdminKriteriaController extends Controller
@@ -14,7 +15,8 @@ class AdminKriteriaController extends Controller
     public function index()
     {
         //
-        return view('bkk.kriteria.index');
+        $kriteria = Kriteria::all();
+        return view('bkk.kriteria.index')->with('kriteria',$kriteria);
     }
 
     /**

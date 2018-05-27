@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\CalonAnggota;
+use App\Tugas;
+
 use Illuminate\Http\Request;
 
 class TugasController extends Controller
@@ -14,7 +17,8 @@ class TugasController extends Controller
     public function index()
     {
         //
-        return view('kadept.tugas.index', ['name' => 'tugas']);
+        $tugas = Tugas::all();
+        return view('kadept.tugas.index')->with('tugas',$tugas);
     }
 
     /**
@@ -24,7 +28,11 @@ class TugasController extends Controller
     */
     public function penilaianTugas()
     {
-        return view('kadept.tugas.penilaianTugas');   
+        $tugas = Tugas::all();
+        $calonAnggota = CalonAnggota::all();
+        return view('kadept.tugas.penilaianTugas')->with('tugas',$tugas)->with('calonAnggota',$calonAnggota);
+
+
     }
     /**
      * Show the form for creating a new resource.
@@ -44,7 +52,30 @@ class TugasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        // create new object Employee
+        // TODO: use validator?
+        $this->validate($request, [
+            'nama_tugas' => 'required',
+            'deskripsi' => 'required',
+            'deadline' => 'required',
+            //TODO: kan ada id departemen cara nyambunginnya gimana? apakah perlu ditulis disini juga
+
+
+        ]);
+
+        $tugas = new Tugas;
+        // fill the object
+        $tugas->nama_tugas = $request->nama_tugas;
+        $tugas->deskripsi = $request->deskripsi;
+        $tugas->deadline = $request->deadline;
+
+        //save object to database
+        $tugas->save();
+        //message success
+        Session::flash('message', 'Sukses menambah data tugas!');
+        //TODO: routingnya belum
+        return redirect(route('kadept.tugas')); // Set redirect ketika berhasil
     }
 
     /**
