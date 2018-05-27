@@ -218,59 +218,51 @@ License: You must have a valid license purchased only from themeforest(the above
 								<a  href="{{ url('/admin/datacalon')}}" class="m-menu__link m-menu__toggle">
 									<i class="m-menu__link-icon flaticon-users"></i>
 									<span class="m-menu__link-text">
-										Data Calon
-									</span>									
-								</a>								
+										Data Calon Admin
+									</span>
+								</a>
 							</li>
-							<!-- <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
-								<a  href="{{ url('/kegiatan')}}" class="m-menu__link m-menu__toggle">
-									<i class="m-menu__link-icon flaticon-list-3"></i>
-									<span class="m-menu__link-text">
-										Kegiatan
-									</span>									
-								</a>								
-							</li> -->
 							<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
 								<a  href="{{ url('/admin/kriteria')}}" class="m-menu__link m-menu__toggle">
 									<i class="m-menu__link-icon flaticon-confetti"></i>
 									<span class="m-menu__link-text">
 										Kriteria
-									</span>									
-								</a>								
+									</span>
+								</a>
 							</li>
 							<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
 								<a  href="{{ url('/admin/departemen')}}" class="m-menu__link m-menu__toggle">
 									<i class="m-menu__link-icon flaticon-map "></i>
 									<span class="m-menu__link-text">
 										Departemen
-									</span>									
-								</a>								
+									</span>
+								</a>
 							</li>
 							<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
 								<a  href="{{ url('/panduan')}}" class="m-menu__link m-menu__toggle">
 									<i class="m-menu__link-icon flaticon-user-settings "></i>
 									<span class="m-menu__link-text">
 										Data Akun
-									</span>									
-								</a>								
+									</span>
+								</a>
 							</li>
 							<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
 								<a  href="{{ url('/admin/periode') }}" class="m-menu__link m-menu__toggle">
 									<i class="m-menu__link-icon flaticon-time-3 "></i>
 									<span class="m-menu__link-text">
 										Periode
-									</span>									
-								</a>								
+									</span>
+								</a>
 							</li>
 							<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
 								<a  href="{{ url('/panduan')}}" class="m-menu__link m-menu__toggle">
 									<i class="m-menu__link-icon fa fa-wpforms"></i>
 									<span class="m-menu__link-text">
 										Panduan
-									</span>									
-								</a>								
+									</span>
+								</a>
 							</li>
-							<!-- end -->							
+							<!-- end -->
 						</ul>
 					</div>
 					<!-- END: Aside Menu -->
@@ -286,7 +278,7 @@ License: You must have a valid license purchased only from themeforest(the above
     	<!--begin::Base Scripts -->
 		<script src="{{ url('assets/vendors/base/vendors.bundle.js') }}" type="text/javascript"></script>
 		<script src="{{ url('assets/demo/default/base/scripts.bundle.js') }}" type="text/javascript"></script>
-		<script src="{{ url('assets/demo/default/custom/components/datatables/base/data-local.js') }}" type="text/javascript"></script>
+{{--		<script src="{{ url('assets/demo/default/custom/components/datatables/base/data-local.js') }}" type="text/javascript"></script>--}}
 
 		@yield('js')
 	</body>

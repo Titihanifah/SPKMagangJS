@@ -28,9 +28,7 @@
 			<div class="m-portlet__head">
 				<div class="m-portlet__head-caption">
 					<div class="m-portlet__head-title">
-						<h3 class="m-portlet__head-text">
-							Kegiatan
-						</h3>
+						<h3 class="m-portlet__head-text">Kegiatan</h3>
 					</div>
 				</div>
 			</div>
@@ -41,7 +39,7 @@
 						<div class="col-xl-12 order-2 order-xl-1">
 							<div class="form-group m-form__group row align-items-center">
 								<div class="col-md-4">
-									<button class="btn m-btn--square  btn-outline-primary" data-toggle="modal" data-target="#m_tambah_kegiatan">Tambah</button>
+									<button class="btn m-btn--square  btn-outline-primary" data-toggle="modal" data-target="#m_tambah_kegiatan" data-target-id="{{$kegiatan->id}}">Tambah</button>
 								</div>
 								<div class="col-md-5">
 									
@@ -65,82 +63,34 @@
 				<table class="m-datatable" id="html_table" width="100%">
 					<thead>
 						<tr>
-							<th title="Field #1" width="10%">
-								No
-							</th>
-							<th title="Field #2">
-								Nama Kegiatan
-							</th>
-							<th title="Field #3">
-								Waktu
-							</th>
-							<th title="Field #4">
-								Tempat
-							</th>
-							<th title="Field #5">
-								Jumlah Hadir
-							</th>
-							<th title="Field #6">
-								Aksi
-							</th>
+							<th title="Field #1" width="10%">No</th>
+							<th title="Field #2">Nama Kegiatan</th>
+							<th title="Field #3">Waktu</th>
+							<th title="Field #5">Jumlah Hadir</th>
+							<th title="Field #6">Aksi</th>
 						</tr>
 					</thead>
 					<tbody>
+					@foreach($kegiatan as $value)
 						<tr>
-							<td width="10%">
-								1
-							</td>
-							<td>
-								First Gathering
-							</td>
-							<td>
-								Kamis, 20 Juni 2018
-							</td>
-							<td>
-								Ruang Utama Maskam UGM
-							</td>
-							<td>
-								50
-							</td>
+							<td>{{ $value->id }}</td>
+							<td>{{ $value->nama_kegiatan }}</td>
+							{{--// TODO : tanyakan detail kegiatan apa saja...--}}
+							{{--// TODO : format waktu bagaimana--}}
+							<td>{{ $value->waktu }}</td>
+							{{--TODO: diambil dari presensi--}}
+							<td>50</td>
 							<td>
 								<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-primary m-btn--gradient-to-primary"><i class="m-menu__link-icon flaticon-eye"></i></button> -->
 								<a href="#" class="btn btn-outline-primary m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-eye"></i></a>
 								<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-warning m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-edit-1"></i></button> -->
-								<a href="#" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only" data-toggle="modal" data-target="#m_modal_1"><i class="m-menu__link-icon flaticon-edit-1"></i></a>
+								<a href="#" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only" data-toggle="modal" data-target="#m_edit_kegiatan"><i class="m-menu__link-icon flaticon-edit-1"></i></a>
 								<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-danger m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-delete-1"></i></button> -->
 								<a href="#" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>
 									
 							</td>
 						</tr>
-						<tr>
-							<td width="10%">
-								2
-							</td>
-							<td>
-								First Gathering
-							</td>
-							<td>
-								Kamis, 20 Juni 2018
-							</td>
-							<td>
-								Ruang Utama Maskam UGM
-							</td>
-							<td>
-								50
-							</td>
-							<td>
-								<div class="m-demo" data-code-preview="true" data-code-html="true" data-code-js="false">
-									
-								<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-primary m-btn--gradient-to-primary"><i class="m-menu__link-icon flaticon-eye"></i></button> -->
-								<a href="#" class="btn btn-outline-primary m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-eye"></i></a>
-								<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-warning m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-edit-1"></i></button> -->
-								<a href="#" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-edit-1"></i></a>
-								<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-danger m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-delete-1"></i></button> -->
-								<a href="#" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>
-									
-								</div>
-							</td>
-						</tr>										
+					@endforeach
 					</tbody>
 				</table>
 				<!--end: Datatable -->
@@ -149,6 +99,7 @@
 	</div>
 </div>
 
+{{--MODAL--}}
 <div class="modal fade" id="m_modal_1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
@@ -200,6 +151,7 @@
 	</div>
 </div>
 
+
 <div class="modal fade" id="m_tambah_kegiatan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
@@ -214,11 +166,13 @@
 				</button>
 			</div>
 			<div class="modal-body">
+{{--				{!! Form::model($kegiatan, array('route' => array('kegiatan.update', $kegiatan->id), 'method' => 'PUT', 'enctype' => 'multipart/form-data')) !!}--}}
 				<div class="form-group m-form__group">
 					<label for="">
 						Nama Kegiatan
 					</label>
-					<input type="email" class="form-control m-input m-input--air" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nama Kegiatan">					
+					{{--<input type="email" class="form-control m-input m-input--air" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nama Kegiatan">--}}
+{{--					{{ Form::text('nama_kegiatan', null, array('class' => 'form-control m-input m-input--air')) }}--}}
 				</div>
 				<div class="form-group m-form__group">
 					<label for="">
@@ -238,6 +192,7 @@
 					</label>
 					<input type="email" class="form-control m-input m-input--air" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Jumlah Peserta yang hadir" disabled="">					
 				</div>
+				{{--{!! Form::close() !!}--}}
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-danger" data-dismiss="modal">
@@ -251,6 +206,59 @@
 	</div>
 </div>
 
+<div class="modal fade" id="m_edit_kegiatan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">
+					Edit Data Kegiatan
+				</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">
+						&times;
+					</span>
+				</button>
+			</div>
+			<div class="modal-body">
+{{--				{!! Form::model($kegiatan, array('route' => array('kegiatan.update', $kegiatan->id), 'method' => 'PUT', 'enctype' => 'multipart/form-data')) !!}--}}
+				<div class="form-group m-form__group">
+					<label for="">
+						Nama Kegiatan
+					</label>
+					{{--<input type="email" class="form-control m-input m-input--air" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nama Kegiatan">--}}
+{{--					{{ Form::text('nama_kegiatan', null, array('class' => 'form-control m-input m-input--air')) }}--}}
+				</div>
+				<div class="form-group m-form__group">
+					<label for="">
+						Waktu Kegiatan
+					</label>
+					<input type="email" class="form-control m-input m-input--air" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Waktu Kegiatan">
+				</div>
+				<div class="form-group m-form__group">
+					<label for="">
+						Tempat Kegiatan
+					</label>
+					<input type="email" class="form-control m-input m-input--air" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tempat Kegiatan">
+				</div>
+				<div class="form-group m-form__group">
+					<label for="">
+						Jumlah Peserta yang hadir
+					</label>
+					<input type="email" class="form-control m-input m-input--air" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Jumlah Peserta yang hadir" disabled="">
+				</div>
+{{--				{!! Form::close() !!}--}}
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-dismiss="modal">
+					Close
+				</button>
+				<button type="button" class="btn btn-primary">
+					Simpan
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
 @endsection
 
 @section('js')

@@ -1,4 +1,4 @@
-@extends('layouts.bkk')
+@extends('layouts.kadept')
 @section('content')
 
 <div class="m-grid__item m-grid__item--fluid m-wrapper">
@@ -63,40 +63,32 @@
 				<table class="m-datatable" id="html_table" width="100%">
 					<thead>
 						<tr>
-							<th title="Field #1" width="10%">
+							<th>
 								No
 							</th>
-							<th title="Field #2">
+							<th>
 								Tahun Periode
 							</th>
-							<th title="Field #3">
+							<th>
 								Periode Tahun Hijriah
 							</th>
-							<th title="Field #4">
+							<th>
 								Status
 							</th>
-							<th title="Field #6">
+							<th>
 								Aksi
 							</th>
 						</tr>
 					</thead>
 					<tbody>
+					@foreach($periode as $key)
 						<tr>
-							<td width="10%">
-								1
-							</td>
+							<td>{{ $key->id }}</td>
+							<td>{{ $key->tahun }}</td>
+							<td>{{ $key->periode }}</td>
+							<td>{{ $key->status }}</td>
 							<td>
-								2018
-							</td>
-							<td>
-								1439 H
-							</td>
-							<td>
-								Aktif
-							</td>
-							<td>
-								<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-primary m-btn--gradient-to-primary"><i class="m-menu__link-icon flaticon-eye"></i></button> -->
-								<a href="#" class="btn btn-outline-primary m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-eye"></i></a>
+								<a href="#"  data-toggle="modal" data-target="#m-tambah-periode" class="btn btn-outline-success m-btn m-btn--icon m-btn--icon-only" ><i class="m-menu__link-icon flaticon-plus"></i></a>
 								<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-warning m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-edit-1"></i></button> -->
 								<a href="#" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-edit-1"></i></a>
 								<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-danger m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-delete-1"></i></button> -->
@@ -104,32 +96,7 @@
 									
 							</td>
 						</tr>
-						<tr>
-							<td width="10%">
-								2
-							</td>
-							<td>
-								2017
-							</td>
-							<td>
-								1438 H
-							</td>
-							<td>
-								Tidak Aktif
-							</td>
-							<td>
-								<div class="m-demo" data-code-preview="true" data-code-html="true" data-code-js="false">
-									
-								<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-primary m-btn--gradient-to-primary"><i class="m-menu__link-icon flaticon-eye"></i></button> -->
-								<a href="#" class="btn btn-outline-primary m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-eye"></i></a>
-								<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-warning m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-edit-1"></i></button> -->
-								<a href="#" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-edit-1"></i></a>
-								<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-danger m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-delete-1"></i></button> -->
-								<a href="#" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>
-									
-								</div>
-							</td>
-						</tr>										
+					@endforeach
 					</tbody>
 				</table>
 				<!--end: Datatable -->
@@ -138,10 +105,56 @@
 	</div>
 </div>
 
+{{--MODAL--}}
+<div class="modal fade" id="m-tambah-periode" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">
+					Tambah Data Periode
+				</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">
+						&times;
+					</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="form-group m-form__group">
+					<label for="">Tahun</label>
+					<input type="text" name="tahun" class="form-control m-input m-input--air" id="" aria-describedby="emailHelp" placeholder="2017">
+				</div>
+				<div class="form-group m-form__group">
+					<label for="">Periode</label>
+					<input type="text" name="periode" class="form-control m-input m-input--air" id="" aria-describedby="emailHelp" placeholder="1439H">
+				</div>
+				<div class="m-form__group form-group">
+					<label for="">Status</label>
+					<div class="m-radio-inline">
+						<label class="m-radio">
+							<input type="radio" name="status" value="1">Aktif
+							<span></span>
+						</label>
+						<label class="m-radio">
+							<input type="radio" name="status" value="2">Tidak Aktif
+							<span></span>
+						</label>
+					</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+				<button type="button" class="btn btn-primary">Simpan</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
 @endsection
 
 @section('js')
 
 <script src="{{ url('assets/demo/default/custom/components/datatables/base/html-table.js')}}" type="text/javascript"></script>
+
 
 @endsection

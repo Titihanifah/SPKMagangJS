@@ -62,28 +62,22 @@
 				</div>
 				<!--end: Search Form -->
 				<!--begin: Datatable -->
-				<table class="m-datatable" id="html_table" width="100%">
+				<table  class="m-datatable bordered-table" id="example" width="100%">
 					<thead>
 						<tr>
-							<th title="Field #1" width="10%">
-								No
-							</th>
-							<th title="Field #2">
-								Nama Calon Anggota
-							</th>
-							<th title="Field #2">
-								Jenis Kelamin
-							</th>
-							<th title="Field #3" colspan="3">
-								Nilai (tugas,kehadiran)
-							</th>
-							<th title="Field #4">
-								Hasil
-							</th>
-							<th title="Field #6">
-								Aksi
-							</th>
+							<th rowspan="2" width="10%">No</th>
+							<th rowspan="2">Nama Calon Anggota</th>
+							<th rowspan="2">Jenis Kelamin</th>
+							<th colspan="3">Nilai</th>
+							<th rowspan="2">Hasil</th>
+							<th rowspan="2">Aksi</th>
 						</tr>
+					<tr>
+						<th width="10px">Nilai</th>
+						<th width="10px">Tugas</th>
+						<th width="10px">Skill</th>
+
+					</tr>
 					</thead>
 					<tbody>
 						<tr>
@@ -97,7 +91,13 @@
 								Perempuan
 							</td>
 							<td>
-								20, 40
+								 40
+							</td>
+							<td>
+								20
+							</td>
+							<td>
+								10
 							</td>
 							<td>
 								45
@@ -110,35 +110,7 @@
 									
 							</td>
 						</tr>
-						<tr>
-							<td width="10%">
-								2
-							</td>
-							<td>
-								First Gathering
-							</td>
-							<td>
-								Kamis, 20 Juni 2018
-							</td>
-							<td>
-								Ruang Utama Maskam UGM
-							</td>
-							<td>
-								50
-							</td>
-							<td>
-								<div class="m-demo" data-code-preview="true" data-code-html="true" data-code-js="false">
-									
-								<a href="#" class="btn btn-sm btn-outline-success m-btn m-btn--icon m-btn--icon-only"><i class="fa fa-check"></i></a>
-								<!-- <a href="#" class="btn btn-outline-primary m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-eye"></i></a>
-								
-								<a href="#" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-edit-1"></i></a>
-								
-								<a href="#" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a> -->
-									
-								</div>
-							</td>
-						</tr>										
+
 					</tbody>
 				</table>
 				<!--end: Datatable -->
@@ -255,4 +227,34 @@
 
 <script src="{{ url('assets/demo/default/custom/components/datatables/base/html-table.js')}}" type="text/javascript"></script>
 
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        // jQuery update a column title from the demo table to contain a long description
+        // You would not need to do this in your own code.
+        $('#example thead tr:eq(0) th:eq(2)').html("Jenis Kelamin");
+
+        // Wrap the colspan'ing header cells with a span so they can be positioned
+        // absolutely - filling the available space, and no more.
+        $('#example thead th[colspan]').wrapInner( '<span/>' ).append( '&nbsp;' );
+
+        // Standard initialisation
+        $('#example').DataTable( {
+            responsive: true,
+            paging: tru
+        } );
+    } );
+
+</script>
+<style type="text/css">
+	.bordered-table th{
+		border: 1px solid #95a5a6;
+	}
+	.bordered-table td{
+		border: 1px solid #95a5a6;
+	}
+	.bordered-table{
+		border: none;
+	}
+</style>
 @endsection

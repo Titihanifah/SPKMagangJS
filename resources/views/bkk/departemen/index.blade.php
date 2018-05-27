@@ -1,4 +1,4 @@
-@extends('layouts.bkk')
+@extends('layouts.kadept')
 @section('content')
 
 <div class="m-grid__item m-grid__item--fluid m-wrapper">
@@ -75,13 +75,11 @@
 						</tr>
 					</thead>
 					<tbody>
+					@foreach ($departemen as $key)
+
 						<tr>
-							<td width="5px">
-								1
-							</td>
-							<td>
-								Kemuslimahan
-							</td>
+							<td>{{ $key->id }}</td>
+							<td>{{ $key->nama_departemen }}</td>
 							<td>
 								<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-primary m-btn--gradient-to-primary"><i class="m-menu__link-icon flaticon-eye"></i></button> -->
 								<!-- <a href="#" class="btn btn-outline-primary m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-eye"></i></a> -->
@@ -91,7 +89,8 @@
 								<a href="#" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>
 									
 							</td>
-						</tr>										
+						</tr>
+					@endforeach
 					</tbody>
 				</table>
 				<!--end: Datatable -->

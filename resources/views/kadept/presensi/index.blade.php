@@ -120,8 +120,9 @@
 				</div>
 				<!--end: Search Form -->
 				<!--begin: Datatable -->
-				<table class="m-datatable" id="html_table" width="100%">
+				<table class="m-datatable bordered-table" id="html_table" width="100%">
 					<thead>
+
 						<tr>
 							<th title="Field #1" width="10%">
 								No
@@ -132,68 +133,48 @@
 							<th>
 								Jenis Kelamin
 							</th>
+							@foreach($kegiatan as $key)
 							<th title="Field #4">
-								Kegiatan 1
+								Kegiatan {{ $kegiatan->id }}
 							</th>
-							<th title="Field #4">
-								Kegiatan 2
-							</th>
-							<th title="Field #4">
-								Kegiatan 3
-							</th>
-							<th title="Field #4">
-								Kegiatan 4
-							</th>
-							<th title="Field #4">
-								Kegiatan 5
-							</th>
+							@endforeach
 
-							<!-- <th title="Field #5">
-								Tugas 3
-							</th> -->
-							<!-- <th title="Field #6">
-								Aksi
-							</th> -->
 						</tr>
 					</thead>
 					<tbody>
+					{{--// TODO: sepertinya ini tabel presensi namun karena ada id kegiatan jadi bingung deh--}}
+					@foreach($calonAnggota as $calon)
 						<tr>
-							<td width="10%">
-								1
-							</td>
+							<td width="10%">{{ $calon->id }}</td>
+							<td>{{ $calon->nama_calon_anggota }}</td>
+							<td>{{ $calon->jenis_kelamin }}</td>
+							@foreach($kegiatan as $key)
 							<td>
-								Dinda
+								<a href="#" class="btn btn-sm btn-outline-success m-btn m-btn--icon m-btn--icon-only"><i class="fa fa-check"></i></a>
 							</td>
-							<td>
-								Perempuan
-							</td>
-							<!-- <td>
-								<input class="form-control m-input" type="text" value="70" >
-							</td>
-							<td>
-								<input class="form-control m-input" type="text" value="90">
-							</td> -->
-							<td>
-								<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-success m-btn--gradient-to-success"><i class="fa fa-check"></i></button>
-								<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-danger m-btn--gradient-to-danger"><i class="fa fa-remove"></i></button>
-							</td>
-							<td>
-								<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-success m-btn--gradient-to-success"><i class="fa fa-check"></i></button>
-								<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-danger m-btn--gradient-to-danger"><i class="fa fa-remove"></i></button>
-							</td>
-							<td>
-								<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-success m-btn--gradient-to-success"><i class="fa fa-check"></i></button>
-								<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-danger m-btn--gradient-to-danger"><i class="fa fa-remove"></i></button>
-							</td>
-							<td>
-								<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-success m-btn--gradient-to-success"><i class="fa fa-check"></i></button>
-								<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-danger m-btn--gradient-to-danger"><i class="fa fa-remove"></i></button>
-							</td>
-							<td>
-								<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-success m-btn--gradient-to-success"><i class="fa fa-check"></i></button>
-								<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-danger m-btn--gradient-to-danger"><i class="fa fa-remove"></i></button>
-							</td>
+							@endforeach
+							{{--<td>--}}
+								{{--<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-success m-btn--gradient-to-success"><i class="fa fa-check"></i></button>--}}
+								{{--<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-danger m-btn--gradient-to-danger"><i class="fa fa-remove"></i></button>--}}
+							{{--</td>--}}
+							{{--<td>--}}
+								{{--<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-success m-btn--gradient-to-success"><i class="fa fa-check"></i></button>--}}
+								{{--<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-danger m-btn--gradient-to-danger"><i class="fa fa-remove"></i></button>--}}
+							{{--</td>--}}
+							{{--<td>--}}
+								{{--<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-success m-btn--gradient-to-success"><i class="fa fa-check"></i></button>--}}
+								{{--<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-danger m-btn--gradient-to-danger"><i class="fa fa-remove"></i></button>--}}
+							{{--</td>--}}
+							{{--<td>--}}
+								{{--<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-success m-btn--gradient-to-success"><i class="fa fa-check"></i></button>--}}
+								{{--<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-danger m-btn--gradient-to-danger"><i class="fa fa-remove"></i></button>--}}
+							{{--</td>--}}
+							{{--<td>--}}
+								{{--<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-success m-btn--gradient-to-success"><i class="fa fa-check"></i></button>--}}
+								{{--<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-danger m-btn--gradient-to-danger"><i class="fa fa-remove"></i></button>--}}
+							{{--</td>--}}
 						</tr>
+						@endforeach
 						<tr>
 							<td width="10%">
 								2

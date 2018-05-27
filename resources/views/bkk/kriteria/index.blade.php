@@ -1,4 +1,4 @@
-@extends('layouts.bkk')
+@extends('layouts.kadept')
 @section('content')
 
 <div class="m-grid__item m-grid__item--fluid m-wrapper">
@@ -68,50 +68,8 @@
 						<div class="col-xl-12 order-2 order-xl-1">
 							<div class="form-group m-form__group row align-items-center">
 								<div class="col-md-4">
-									<!-- <div class="m-form__group m-form__group--inline">
-										<div class="m-form__label">
-											<label>
-												Periode:
-											</label>
-										</div>
-										<div class="m-form__control">
-											<select id="m_form_status">
-												<option value="1">
-													2018
-												</option>
-												<option value="2">
-													2017
-												</option>
-												<option value="3">
-													2016
-												</option>
-												<option value="4">
-													2015
-												</option>
-											</select>
-										</div>
-									</div>
-									<div class="d-md-none m--margin-bottom-10"></div> -->
 								</div>
 								<div class="col-md-5">
-									<!-- <div class="m-form__group m-form__group--inline">
-										<div class="m-form__label">
-											<label class="m-label m-label--single">
-												Jenis Kelamin :
-											</label>
-										</div>
-										<div>
-											<select class="" id="m_form_type">
-												<option value="1">
-													Laki-laki
-												</option>
-												<option value="2">
-													Perempuan
-												</option>
-											</select>
-										</div>
-									</div>
-									<div class="d-md-none m--margin-bottom-10"></div> -->
 								</div>
 								<div class="col-md-3">
 									<div class="m-input-icon m-input-icon--left">
@@ -132,67 +90,35 @@
 				<table class="m-datatable" id="html_table" width="100%">
 					<thead>
 						<tr>
-							<th title="Field #1">
+							<th>
 								No
 							</th>
-							<th title="Field #2">
-								Nama
+							<th>
+								Kriteria Penilaian
 							</th>
-							<th title="Field #3">
-								Prioritas
+							<th>
+								Bobot
 							</th>
-							<th title="Field #4">
-								Hardskill
-							</th>
-							<th title="Field #5">
-								Softskill
-							</th>
-							<th title="Field #6">
-								Departemen Pilihan
+							<th>
+								Aksi
 							</th>
 						</tr>
 					</thead>
 					<tbody>
+					@foreach($kriteria as $key)
 						<tr>
+							<td>{{ $key->id }}</td>
+							<td>{{ $key->nama_kriteria }}</td>
+							<td>{{ $key->bobot }}</td>
 							<td>
-								1
-							</td>
-							<td>
-								Doni
-							</td>
-							<td>
-								1
-							</td>
-							<td>
-								hardskill
-							</td>
-							<td>
-								softskill
-							</td>
-							<td>
-								Infokes
+								<a href="#"  data-toggle="modal" data-target="#m-tambah-periode" class="btn btn-outline-success m-btn m-btn--icon m-btn--icon-only" ><i class="m-menu__link-icon flaticon-plus"></i></a>
+								<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-warning m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-edit-1"></i></button> -->
+								<a href="#" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-edit-1"></i></a>
+								<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-danger m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-delete-1"></i></button> -->
+								<a href="#" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>
 							</td>
 						</tr>
-						<tr>
-							<td>
-								2
-							</td>
-							<td>
-								Endah
-							</td>
-							<td>
-								2
-							</td>
-							<td>
-								hardskill
-							</td>
-							<td>
-								softskill
-							</td>
-							<td>
-								Kemuslimahan
-							</td>
-						</tr>										
+					@endforeach
 					</tbody>
 				</table>
 				<!--end: Datatable -->

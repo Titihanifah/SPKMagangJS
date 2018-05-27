@@ -7,7 +7,7 @@
 		<div class="d-flex align-items-center">
 			<div class="mr-auto">
 				<h3 class="m-subheader__title m-subheader__title--separator">
-					Tugas
+					Penilaian Skill
 				</h3>
 				<ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
 					<li class="m-nav__item m-nav__item--home">
@@ -21,7 +21,7 @@
 					<li class="m-nav__item">
 						<a href="" class="m-nav__link">
 							<span class="m-nav__link-text">
-								Penilaian Tugas
+								Penilaian Skill
 							</span>
 						</a>
 					</li>
@@ -56,7 +56,7 @@
 				<div class="m-portlet__head-caption">
 					<div class="m-portlet__head-title">
 						<h3 class="m-portlet__head-text">
-							Penilaian Tugas
+							Penilaian Skill
 						</h3>
 					</div>
 				</div>
@@ -67,8 +67,7 @@
 					<div class="row align-items-center">
 						<div class="col-xl-12 order-2 order-xl-1">
 							<div class="form-group m-form__group row align-items-center">
-								<div class="col-md-4">
-									<button class="btn m-btn--square  btn-outline-primary" data-toggle="modal" data-target="#m_tambah_tugas"><i class="m-menu__link-icon fa fa-save "></i> Tambah</button>
+								<div class="col-md-4">									
 								</div>
 								<div class="col-md-5">
 								</div>
@@ -91,26 +90,90 @@
 				<!--begin: Datatable -->
 				<table class="m-datatable" id="html_table" width="100%">
 					<thead>
+					{{--TODO: sepertinya ini belum ada tabelnya :D--}}
 						<tr>
-							<th title="Field #1">No</th>
-							<th title="Field #2">Nama Calon</th>
-							<th>Nilai Akhir</th>
-							@foreach($tugas as $key)
-							<th title="Field #3">{{ $key->nama_tugas }}</th>
-							@endforeach
+							<th title="Field #1">
+								No
+							</th>
+							<th title="Field #2">
+								Nama Calon
+							</th>
+							<th title="Field #3">
+								Skill 1
+							</th>
+							<th title="Field #4">
+								Skill 2
+							</th>
+							<th title="Field #5">
+								Skill 3
+							</th>
+							<!-- <th title="Field #6">
+								Aksi
+							</th> -->
 						</tr>
 					</thead>
 					<tbody>
-					@foreach($calonAnggota as $value)
 						<tr>
-							<td>{{ $value->id }}</td>
-							<td>{{ $value->nama_calon_anggota }}</td>
-							<td>Nilai Akhir (90) </td>
-							@foreach($tugas as $key)
-							<td><input class="form-control m-input" type="text" placeholder="nilai" ></td>
-							@endforeach
+							<td>
+								1
+							</td>
+							<td>
+								Dinda
+							</td>
+							<td>
+								<!-- <input class="form-control m-input" type="text" value="50" > -->
+								<div class="m-radio-inline">
+									<label class="m-radio">
+										<input type="radio" name="example_3" value="1">
+										1
+										<span></span>
+									</label>
+									<label class="m-radio">
+										<input type="radio" name="example_3" value="2">
+										2
+										<span></span>
+									</label>
+									<label class="m-radio">
+										<input type="radio" name="example_3" value="3">
+										3
+										<span></span>
+									</label>
+								</div>
+							</td>
+							<td>
+								<input class="form-control m-input" type="text" value="70" >
+							</td>
+							<td>
+								<input class="form-control m-input" type="text" value="90">
+							</td>
+							<!-- <td>
+								<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-primary m-btn--gradient-to-primary"><i class="m-menu__link-icon flaticon-eye"></i></button>
+								<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-warning m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-edit-1"></i></button>
+								<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-danger m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-delete-1"></i></button>
+							</td> -->
 						</tr>
-					@endforeach
+						<tr>
+							<td>
+								2
+							</td>
+							<td>
+								Theolina
+							</td>
+							<td>
+								<input class="form-control m-input" type="text" value="50" >
+							</td>
+							<td>
+								<input class="form-control m-input" type="text" value="70" >
+							</td>
+							<td>
+								<input class="form-control m-input" type="text" value="90">
+							</td>
+							<!-- <td>
+								<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-primary m-btn--gradient-to-primary"><i class="m-menu__link-icon flaticon-eye"></i></button>
+								<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-warning m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-edit-1"></i></button>
+								<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-danger m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-delete-1"></i></button>
+							</td> -->
+						</tr>
 																
 					</tbody>
 				</table>

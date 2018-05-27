@@ -14,34 +14,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <html lang="en" >
 	<!-- begin::Head -->
 	<head>
-		<meta charset="utf-8" />
-		<title>
-			Penilaian Magang | Dashboard
-		</title>
-		<meta name="description" content="Latest updates and statistic charts">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<!--begin::Web font -->
-		<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
-
-		<script>
-          WebFont.load({
-            google: {"families":["Poppins:300,400,500,600,700","Roboto:300,400,500,600,700"]},
-            active: function() {
-                sessionStorage.fonts = true;
-            }
-          });
-		</script>
-		<!--end::Web font -->
-        <!--begin::Base Styles -->  
-        <!--begin::Page Vendors -->
-		<link href="{{ url('assets/vendors/custom/fullcalendar/fullcalendar.bundle.css') }}" rel="stylesheet" type="text/css" />
-		<!--end::Page Vendors -->
-		<link href="{{ url('assets/vendors/base/vendors.bundle.css') }}" rel="stylesheet" type="text/css" />
-		<link href="{{ url('assets/demo/default/base/style.bundle.css') }}" rel="stylesheet" type="text/css" />
-		<link href="{{ url('css/custom.css') }}" rel="stylesheet" type="text/css" />
-		<!--end::Base Styles -->
-		<link rel="shortcut icon" href="{{ url('assets/demo/default/media/img/logo/logo_title.ico') }}" />
+		@include('includes.head')
 	</head>
 	<!-- end::Head -->
     <!-- end::Body -->
@@ -57,7 +30,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							<div class="m-stack m-stack--ver m-stack--general">
 								<div class="m-stack__item m-stack__item--middle m-brand__logo">
 									<a href="index.html" class="m-brand__logo-wrapper">
-										<img alt="" src="assets/demo/default/media/img/logo/logo.jpg"/>
+										<img alt="" src="{{('assets/demo/default/media/img/logo/logo.jpg')}}"/>
 									</a>
 								</div>
 								<div class="m-stack__item m-stack__item--middle m-brand__tools">
@@ -92,16 +65,16 @@ License: You must have a valid license purchased only from themeforest(the above
 							</button>
 							<div id="m_header_menu" class="m-header-menu m-aside-header-menu-mobile m-aside-header-menu-mobile--offcanvas  m-header-menu--skin-light m-header-menu--submenu-skin-light m-aside-header-menu-mobile--skin-dark m-aside-header-menu-mobile--submenu-skin-dark "  >
 								<ul class="m-menu__nav  m-menu__nav--submenu-arrow ">
-																		
+
 								</ul>
 							</div>
 							<!-- END: Horizontal Menu -->								<!-- BEGIN: Topbar -->
 							<div id="m_header_topbar" class="m-topbar  m-stack m-stack--ver m-stack--general">
 								<div class="m-stack__item m-topbar__nav-wrapper">
 									<ul class="m-topbar__nav m-nav m-nav--inline">
-																			
+
 										<li class="m-nav__item m-topbar__user-profile m-topbar__user-profile--img  m-dropdown m-dropdown--medium m-dropdown--arrow m-dropdown--header-bg-fill m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light" m-dropdown-toggle="click">
-											<a href="#" class="m-nav__link m-dropdown__toggle">
+											<a href="#" class="m-nav__link m-dropdown__toggle ">
 												<span class="m-topbar__userpic">
 													<img src="assets/app/media/img/users/user4.jpg" class="m--img-rounded m--marginless m--img-centered" alt=""/>
 												</span>
@@ -142,18 +115,23 @@ License: You must have a valid license purchased only from themeforest(the above
 																			<span class="m-nav__link-wrap">
 																				<span class="m-nav__link-text">
 																					Profil
-																				</span>																				
+																				</span>
 																			</span>
 																		</span>
 																	</a>
 																</li>
 																<li class="m-nav__item">
-																	<a href="header/profile.html" class="m-nav__link">
+																	<a class="m-nav__link" href="{{ route('logout') }}"
+																	   onclick="event.preventDefault();
+                                                     					document.getElementById('logout-form').submit();">
 																		<i class="m-nav__link-icon flaticon-share"></i>
 																		<span class="m-nav__link-text">
-																			Logout
+																			{{ __('Logout') }}
 																		</span>
 																	</a>
+																	<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+																		@csrf
+																	</form>
 																</li>
 															</ul>
 														</div>
@@ -185,138 +163,7 @@ License: You must have a valid license purchased only from themeforest(the above
 				</button>
 				<div id="m_aside_left" class="m-grid__item	m-aside-left  m-aside-left--skin-dark ">
 					<!-- BEGIN: Aside Menu -->
-					<div id="m_ver_menu" class="m-aside-menu  m-aside-menu--skin-dark m-aside-menu--submenu-skin-dark " m-menu-vertical="1" m-menu-scrollable="0" m-menu-dropdown-timeout="500">
-						<ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow ">
-							<li class="m-menu__item  m-menu__item--active" aria-haspopup="true" >
-								<a  href="{{ url('/dashboard')}}" class="m-menu__link color-menu">
-									<i class="m-menu__link-icon flaticon-line-graph color-menu"></i>
-									<span class="m-menu__link-title color-menu">
-										<span class="m-menu__link-wrap">
-											<span class="m-menu__link-text color-menu">
-												Dashboard
-											</span>
-											<span class="m-menu__link-badge">
-												<!-- <span class="m-badge m-badge--danger">
-													2
-												</span> -->
-											</span>
-										</span>
-									</span>
-								</a>
-							</li>
-							<!-- <li class="m-menu__section">
-								<h4 class="m-menu__section-text">
-									Components
-									<hr>
-								</h4>
-								<i class="m-menu__section-icon flaticon-more-v3"></i>
-							</li> -->
-							<hr>
-
-							<!-- start -->
-							<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
-								<a  href="{{ url('/datacalon')}}" class="m-menu__link m-menu__toggle ">
-									<i class="m-menu__link-icon flaticon-users color-menu"></i>
-									<span class="m-menu__link-text color-menu color-menu">
-										Data Calon
-									</span>									
-								</a>								
-							</li>
-							<!-- <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
-								<a  href="{{ url('/kegiatan')}}" class="m-menu__link m-menu__toggle ">
-									<i class="m-menu__link-icon flaticon-list-3 color-menu"></i>
-									<span class="m-menu__link-text color-menu ">
-										Kegiatan
-									</span>									
-								</a>								
-							</li> -->
-							<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
-								<a  href="#" class="m-menu__link m-menu__toggle ">
-									<i class="m-menu__link-icon flaticon-interface-1 color-menu"></i>
-									<span class="m-menu__link-text color-menu ">
-										Kegiatan
-									</span>
-									<i class="m-menu__ver-arrow la la-angle-right"></i>									
-								</a>
-								<div class="m-menu__submenu ">
-									<span class="m-menu__arrow"></span>
-									<ul class="m-menu__subnav">
-										<li class="m-menu__item " aria-haspopup="true" >
-											<a  href="{{ url('/kegiatan')}}" class="m-menu__link  ">
-												<i class="m-menu__link-bullet m-menu__link-bullet--dot color-menu">
-													<span></span>
-												</i>
-												<span class="m-menu__link-text color-menu ">
-													Data Kegiatan
-												</span>
-											</a>
-										</li>
-										<li class="m-menu__item" aria-haspopup="true" >
-											<a  href="{{route('rekap')}}" class="m-menu__link  ">
-												<i class="m-menu__link-bullet m-menu__link-bullet--dot color-menu">
-													<span></span>
-												</i>
-												<span class="m-menu__link-text color-menu ">
-													Presensi Kegiatan
-												</span>
-											</a>
-										</li>
-									</ul>
-								</div>								
-							</li>
-							<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
-								<a  href="javascript:;" class="m-menu__link m-menu__toggle ">
-									<i class="m-menu__link-icon flaticon-clipboard color-menu"></i>
-									<span class="m-menu__link-text color-menu ">
-										Tugas
-									</span>
-									<i class="m-menu__ver-arrow la la-angle-right"></i>
-								</a>
-								<div class="m-menu__submenu ">
-									<span class="m-menu__arrow"></span>
-									<ul class="m-menu__subnav">
-										<li class="m-menu__item  m-menu__item--active" aria-haspopup="true" >
-											<a  href="{{ url('/tugas')}}" class="m-menu__link  ">
-												<i class="m-menu__link-bullet m-menu__link-bullet--dot color-menu">
-													<span></span>
-												</i>
-												<span class="m-menu__link-text color-menu">
-													Data Tugas
-												</span>
-											</a>
-										</li>
-										<li class="m-menu__item  m-menu__item--active" aria-haspopup="true" >
-											<a  href="{{ url('/penilaianTugas') }}" class="m-menu__link  ">
-												<i class="m-menu__link-bullet m-menu__link-bullet--dot color-menu">
-													<span></span>
-												</i>
-												<span class="m-menu__link-text color-menu">
-													Penilaian Tugas
-												</span>
-											</a>
-										</li>
-									</ul>
-								</div>
-							</li>
-							<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
-								<a  href="{{ url('/rekap_nilai')}}" class="m-menu__link m-menu__toggle ">
-									<i class="m-menu__link-icon fa fa-wpforms color-menu"></i>
-									<span class="m-menu__link-text color-menu">
-										Rekap Penilaian
-									</span>									
-								</a>								
-							</li>
-							<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
-								<a  href="{{ url('/panduan')}}" class="m-menu__link m-menu__toggle ">
-									<i class="m-menu__link-icon fa fa-wpforms color-menu"></i>
-									<span class="m-menu__link-text color-menu">
-										Panduan
-									</span>									
-								</a>								
-							</li>
-							<!-- end -->							
-						</ul>
-					</div>
+					@include('includes.sidebar')
 					<!-- END: Aside Menu -->
 				</div>
 				<!-- END: Left Aside -->
