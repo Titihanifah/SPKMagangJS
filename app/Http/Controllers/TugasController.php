@@ -75,7 +75,8 @@ class TugasController extends Controller
         //message success
         Session::flash('message', 'Sukses menambah data tugas!');
         //TODO: routingnya belum
-        return redirect(route('kadept.tugas')); // Set redirect ketika berhasil
+//        return redirect(route('kadept.tugas')); // Set redirect ketika berhasil
+        return redirect('/tugas'); // Set redirect ketika berhasil
     }
 
     /**
@@ -121,5 +122,9 @@ class TugasController extends Controller
     public function destroy($id)
     {
         //
+        Tugas::destroy($id);
+        // Beri message kalau berhasil
+        Session::flash('message', 'Berhasil menghapus data!');
+        return redirect('/tugas');
     }
 }

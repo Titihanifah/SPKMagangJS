@@ -12,7 +12,7 @@ class KriteriaSeeder extends Seeder
     public function run()
     {
         //
-        DB::table('kriterias')->insert(['nama_keriteria' => 'Tugas' , 'bobot' => '0.3']);
+        DB::table('kriterias')->insert(['nama_kriteria' => 'Tugas' , 'bobot' => '0.3']);
         DB::table('kriterias')->insert(['nama_kriteria' => 'Kehadiran', 'bobot' => '0.7']);
 
 

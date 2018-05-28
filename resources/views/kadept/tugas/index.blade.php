@@ -91,59 +91,25 @@
 				<table class="m-datatable" id="html_table" width="100%">
 					<thead>
 						<tr>
-							<th title="Field #1">
-								No
-							</th>
-							<th title="Field #2">
-								Nama Tugas
-							</th>
-							<th title="Field #3">
-								Deadline
-							</th>											
-							<th title="Field #6">
-								Aksi
-							</th>
+							<th title="Field #1">No</th>
+							<th title="Field #2">Nama Tugas</th>
+							<th title="Field #3">Deadline</th>
+							<th title="Field #6">Aksi</th>
 						</tr>
 					</thead>
 					<tbody>
+					@foreach($tugas as $key)
 						<tr>
+							<td>{{ $tugas->id }}</td>
+							<td>{{ $tugas->nama_tugas }}</td>
+							<td>{{ $tugas->waktu }}</td>
 							<td>
-								1
-							</td>
-							<td>
-								Essay
-							</td>
-							<td>
-								Kamis, 20 Juni 2018
-							</td>
-							<td>
-								<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-primary m-btn--gradient-to-primary"><i class="m-menu__link-icon flaticon-eye"></i></button>
-								<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-warning m-btn--gradient-to-danger" data-toggle="modal" data-target="#m_edit_tugas"><i class="m-menu__link-icon flaticon-edit-1"></i></button>
-								<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-danger m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-delete-1"></i></button> -->
 								<a href="#" class="btn btn-outline-primary m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-eye"></i></a>
 								<a href="#" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only" data-toggle="modal" data-target="#m_edit_tugas"><i class="m-menu__link-icon flaticon-edit-1"></i></a>
 								<a href="#" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>
 							</td>
 						</tr>
-						<tr>
-							<td>
-								2
-							</td>
-							<td>
-								Digitalisasi Buku
-							</td>
-							<td>
-								Kamis, 20 Juni 2018
-							</td>
-							<td>
-								<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-primary m-btn--gradient-to-primary"><i class="m-menu__link-icon flaticon-eye"></i></button>
-								<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-warning m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-edit-1"></i></button>
-								<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-danger m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-delete-1"></i></button> -->
-								<a href="#" class="btn btn-outline-primary m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-eye"></i></a>
-								<a href="#" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only" data-toggle="modal" data-target="#m_edit_tugas"><i class="m-menu__link-icon flaticon-edit-1"></i></a>
-								<a href="#" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>
-							</td>
-						</tr>										
+					@endforeach
 					</tbody>
 				</table>
 				<!--end: Datatable -->

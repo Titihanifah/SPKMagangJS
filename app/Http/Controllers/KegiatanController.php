@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Kegiatan;
 use Illuminate\Http\Request;
-
-
-
+use Illuminate\Support\Facades\Session;
 
 
 class KegiatanController extends Controller
@@ -52,18 +50,19 @@ class KegiatanController extends Controller
 
         ]);
 
-        $kegiatan = new Tugas;
+        $kegiatan = new Kegiatan;
         // fill the object
         $kegiatan->nama_kegiatan = $request->nama_kegiatan;
-        $kegiatan->tempat = $request->tempat;
         $kegiatan->tanggal_kegiatan = $request->tanggal_kegiatan;
+        $kegiatan->waktu = $request->waktu;
 
         //save object to database
         $kegiatan->save();
         //message success
         Session::flash('message', 'Sukses menambah data kegiatan!');
         //TODO: routingnya belum
-        return redirect(route('kadept.kegiatan')); // Set redirect ketika berhasil
+
+        return redirect('/kegiatan'); // Set redirect ketika berhasil
     }
 
     /**
@@ -117,5 +116,9 @@ class KegiatanController extends Controller
     public function destroy($id)
     {
         //
+        Kegiatan::destroy($id);
+        // Beri message kalau berhasil
+        Session::flash('message', 'Berhasil menghapus data!');
+        return redirect('/kegiatan');
     }
 }

@@ -68,6 +68,7 @@
 						<div class="col-xl-12 order-2 order-xl-1">
 							<div class="form-group m-form__group row align-items-center">
 								<div class="col-md-4">
+									<a href="#"  data-toggle="modal" data-target="#m-tambah-kriteria" class="btn m-btn--square  btn-outline-primary" ><i class="m-menu__link-icon flaticon-plus"></i> Tambah</a>
 								</div>
 								<div class="col-md-5">
 								</div>
@@ -90,18 +91,10 @@
 				<table class="m-datatable" id="html_table" width="100%">
 					<thead>
 						<tr>
-							<th>
-								No
-							</th>
-							<th>
-								Kriteria Penilaian
-							</th>
-							<th>
-								Bobot
-							</th>
-							<th>
-								Aksi
-							</th>
+							<th>No</th>
+							<th>Kriteria Penilaian</th>
+							<th>Bobot</th>
+							<th>Aksi</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -111,11 +104,12 @@
 							<td>{{ $key->nama_kriteria }}</td>
 							<td>{{ $key->bobot }}</td>
 							<td>
-								<a href="#"  data-toggle="modal" data-target="#m-tambah-periode" class="btn btn-outline-success m-btn m-btn--icon m-btn--icon-only" ><i class="m-menu__link-icon flaticon-plus"></i></a>
+								{{--<a href="#"  data-toggle="modal" data-target="#m-tambah-periode" class="btn btn-outline-success m-btn m-btn--icon m-btn--icon-only" ><i class="m-menu__link-icon flaticon-plus"></i></a>--}}
 								<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-warning m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-edit-1"></i></button> -->
 								<a href="#" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-edit-1"></i></a>
 								<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-danger m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-delete-1"></i></button> -->
-								<a href="#" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>
+								{{--<a href="#" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>--}}
+								<a href="{{url('admin/kriteria/destroy')}}/{{ $key->id}}" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>
 							</td>
 						</tr>
 					@endforeach
@@ -126,6 +120,42 @@
 		</div>
 	</div>
 </div>
+
+{{--MODAL--}}
+<div class="modal fade" id="m-tambah-kriteria" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">
+					Tambah Kriteria Penilaian
+				</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">
+						&times;
+					</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				{!! Form::open(array('route' => 'kriteria.store', 'enctype' => 'multipart/form-data')) !!}
+				<div class="form-group m-form__group">
+					<label for="">Kriteria Penilaian</label>
+					<input type="text" name="tahun" class="form-control m-input m-input--air" id="" aria-describedby="emailHelp" placeholder="Tugas">
+				</div>
+				<div class="form-group m-form__group">
+					<label for="">Bobot</label>
+					<input type="text" name="periode" class="form-control m-input m-input--air" id="" aria-describedby="emailHelp" placeholder="0.5">
+				</div>
+				<div class="modal-footer">
+					<button type="reset" class="btn btn-danger" data-dismiss="modal">Batal</button>
+					<button type="submit" class="btn btn-primary">Simpan</button>
+				</div>
+				{!! Form::close() !!}
+			</div>
+		</div>
+	</div>
+</div>
+
+
 
 @endsection
 

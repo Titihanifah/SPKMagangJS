@@ -67,7 +67,8 @@
 					<div class="row align-items-center">
 						<div class="col-xl-12 order-2 order-xl-1">
 							<div class="form-group m-form__group row align-items-center">
-								<div class="col-md-4">									
+								<div class="col-md-4">
+									<a href="#"  data-toggle="modal" data-target="#m-tambah-kriteria" class="btn m-btn--square  btn-outline-primary" ><i class="m-menu__link-icon flaticon-save"></i> Simpan</a>
 								</div>
 								<div class="col-md-5">
 								</div>
@@ -104,9 +105,6 @@
 							<th title="Field #4">
 								Skill 2
 							</th>
-							<th title="Field #5">
-								Skill 3
-							</th>
 							<!-- <th title="Field #6">
 								Aksi
 							</th> -->
@@ -122,35 +120,31 @@
 							</td>
 							<td>
 								<!-- <input class="form-control m-input" type="text" value="50" > -->
-								<div class="m-radio-inline">
-									<label class="m-radio">
-										<input type="radio" name="example_3" value="1">
-										1
-										<span></span>
-									</label>
-									<label class="m-radio">
-										<input type="radio" name="example_3" value="2">
-										2
-										<span></span>
-									</label>
-									<label class="m-radio">
-										<input type="radio" name="example_3" value="3">
-										3
+								<div class="m-checkbox-list"">
+									{{--TODO: digabung jadi satu skillnya atau dipisah per kolom ya?--}}
+									{{--brati nanti ada tabel baru yg menghubungkan departemenn dengan kriteria penilaian--}}
+									{{--atau masuk di kriteria penilaian aja?--}}
+									<label class="m-checkbox m-checkbox--solid m-checkbox--state-success">
+										<input type="checkbox">Desain Poster
 										<span></span>
 									</label>
 								</div>
 							</td>
 							<td>
-								<input class="form-control m-input" type="text" value="70" >
+								<label class="m-checkbox m-checkbox--solid m-checkbox--success">
+									<input type="checkbox">Desain Poster
+									<span></span>
+								</label>
+								<label class="m-checkbox m-checkbox--solid m-checkbox--success">
+									<input type="checkbox">Public Speaking
+									<span></span>
+								</label>
+								<label class="m-checkbox m-checkbox--solid m-checkbox--success">
+									<input type="checkbox">Public Speaking
+									<span></span>
+								</label>
 							</td>
-							<td>
-								<input class="form-control m-input" type="text" value="90">
-							</td>
-							<!-- <td>
-								<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-primary m-btn--gradient-to-primary"><i class="m-menu__link-icon flaticon-eye"></i></button>
-								<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-warning m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-edit-1"></i></button>
-								<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-danger m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-delete-1"></i></button>
-							</td> -->
+
 						</tr>
 						<tr>
 							<td>

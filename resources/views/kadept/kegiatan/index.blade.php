@@ -39,7 +39,7 @@
 						<div class="col-xl-12 order-2 order-xl-1">
 							<div class="form-group m-form__group row align-items-center">
 								<div class="col-md-4">
-									<button class="btn m-btn--square  btn-outline-primary" data-toggle="modal" data-target="#m_tambah_kegiatan" data-target-id="{{$kegiatan->id}}">Tambah</button>
+									<button class="btn m-btn--square  btn-outline-primary" data-toggle="modal" data-target="#m_tambah_kegiatan"">Tambah</button>
 								</div>
 								<div class="col-md-5">
 									

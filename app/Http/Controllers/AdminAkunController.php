@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\CalonAnggota;
+use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 
-class AdminDataCalonController extends Controller
+class AdminAkunController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +14,9 @@ class AdminDataCalonController extends Controller
      */
     public function index()
     {
-        //TODO: join dengan tabel detail_calon_anggotas
         //
-        $calonAanggota = CalonAnggota::all();
-        return view('bkk.datacalon.index')->with('calonAnggota', $calonAanggota);
+        $user = User::all();
+        return view('bkk.akun.index')->with('user',$user);
     }
 
     /**
@@ -39,30 +37,7 @@ class AdminDataCalonController extends Controller
      */
     public function store(Request $request)
     {
-
-//         create new object DataCalon
-//        TODO: fieldnya harusnya lengkap
-        $this->validate($request, [
-            'nama_calon_anggota' => 'required',
-            'hardskill' => 'required',
-            'softskill' => 'required',
-            'jenis_kelamin' => 'required',
-
-
-        ]);
-
-        $calonAnggota = new CalonAnggota;
-        // fill the object
-        $calonAnggota->nama_calon_anggota = $request->nama_calon_anggota;
-        $calonAnggota->hardskill = $request->hardskill;
-        $calonAnggota->softskill = $request->softskill;
-        $calonAnggota->jenis_kelamin = $request->jenis_kelamin;
-
-        //save object to database
-        $calonAnggota->save();
-        //message success
-        Session::flash('message', 'Success add data data calon anggota!');
-        return redirect('/admin/datacalon'); // Set redirect ketika berhasil
+        //
     }
 
     /**
@@ -107,10 +82,6 @@ class AdminDataCalonController extends Controller
      */
     public function destroy($id)
     {
-        //TODO: apakah data calon anggota benar-benar dihapus?
-        CalonAnggota::destroy($id);
-        // Beri message kalau berhasil
-        Session::flash('message', 'Berhasil menghapus data!');
-        return redirect('admin/datacalon');
+        //
     }
 }

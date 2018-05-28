@@ -184,9 +184,9 @@
 							<th title="Field #6">
 								Departemen Pilihan
 							</th>
-							{{--<th>--}}
-								{{--Aksi--}}
-							{{--</th>--}}
+							<th>
+								Aksi
+							</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -199,10 +199,11 @@
 							<td>{{ $key->softskill }}</td>
 							{{--// TODO: join tabel detail (prioritas,dept pil duanya)--}}
 							<td>Infokes</td>
-							{{--<td>--}}
-								{{--<a href="#" class="btn btn-outline-success m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-star"></i></a>--}}
+							<td>
+								<a href="#" class="btn btn-outline-success m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-star"></i></a>
 								{{--<a href="#" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only"><i class="fa fa-rotate-right"></i></a>--}}
-							{{--</td>--}}
+
+							</td>
 						</tr>
 					@endforeach
 					</tbody>

@@ -40,9 +40,11 @@
 					<div class="row align-items-center">
 						<div class="col-xl-12 order-2 order-xl-1">
 							<div class="form-group m-form__group row align-items-center">
-								<div class="col-md-4">									
+								<div class="col-md-4">
+									<a href="#"  data-toggle="modal" data-target="#m-tambah-periode" class="btn m-btn--square  btn-outline-primary" ><i class="m-menu__link-icon flaticon-plus"></i> Tambah</a>
 								</div>
-								<div class="col-md-5">									
+								<div class="col-md-5">
+									{{--<button class="btn m-btn--square  btn-outline-primary">Tambah</button>--}}
 								</div>
 								<div class="col-md-3">
 									<div class="m-input-icon m-input-icon--left">
@@ -63,21 +65,11 @@
 				<table class="m-datatable" id="html_table" width="100%">
 					<thead>
 						<tr>
-							<th>
-								No
-							</th>
-							<th>
-								Tahun Periode
-							</th>
-							<th>
-								Periode Tahun Hijriah
-							</th>
-							<th>
-								Status
-							</th>
-							<th>
-								Aksi
-							</th>
+							<th>No</th>
+							<th>Tahun </th>
+							<th>Periode Hijriah</th>
+							<th>Status</th>
+							<th>Aksi</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -88,11 +80,10 @@
 							<td>{{ $key->periode }}</td>
 							<td>{{ $key->status }}</td>
 							<td>
-								<a href="#"  data-toggle="modal" data-target="#m-tambah-periode" class="btn btn-outline-success m-btn m-btn--icon m-btn--icon-only" ><i class="m-menu__link-icon flaticon-plus"></i></a>
 								<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-warning m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-edit-1"></i></button> -->
 								<a href="#" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-edit-1"></i></a>
 								<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-danger m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-delete-1"></i></button> -->
-								<a href="#" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>
+								<a href="{{url('admin/periode/destroy')}}/{{ $key->id}}" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>
 									
 							</td>
 						</tr>
@@ -120,9 +111,10 @@
 				</button>
 			</div>
 			<div class="modal-body">
+				{!! Form::open(array('route' => 'periode.store', 'enctype' => 'multipart/form-data')) !!}
 				<div class="form-group m-form__group">
 					<label for="">Tahun</label>
-					<input type="text" name="tahun" class="form-control m-input m-input--air" id="" aria-describedby="emailHelp" placeholder="2017">
+					<input type="year" name="tahun" class="form-control m-input m-input--air" id="" aria-describedby="emailHelp" placeholder="2017">
 				</div>
 				<div class="form-group m-form__group">
 					<label for="">Periode</label>
@@ -130,20 +122,22 @@
 				</div>
 				<div class="m-form__group form-group">
 					<label for="">Status</label>
-					<div class="m-radio-inline">
+					<div class="m-radio-inline" >
 						<label class="m-radio">
-							<input type="radio" name="status" value="1">Aktif
+							<input type="radio" name="status" value="aktif">Aktif
 							<span></span>
 						</label>
 						<label class="m-radio">
-							<input type="radio" name="status" value="2">Tidak Aktif
+							<input type="radio" name="status" value="tidak_aktif">Tidak Aktif
 							<span></span>
 						</label>
 					</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
-				<button type="button" class="btn btn-primary">Simpan</button>
+				</div>
+				<div class="modal-footer">
+					<button type="reset" class="btn btn-danger" data-dismiss="modal">Batal</button>
+					<button type="submit" class="btn btn-primary">Simpan</button>
+				</div>
+				{!! Form::close() !!}
 			</div>
 		</div>
 	</div>

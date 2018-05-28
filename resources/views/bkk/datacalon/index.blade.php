@@ -142,50 +142,10 @@
 						<div class="col-xl-12 order-2 order-xl-1">
 							<div class="form-group m-form__group row align-items-center">
 								<div class="col-md-4">
-									<!-- <div class="m-form__group m-form__group--inline">
-										<div class="m-form__label">
-											<label>
-												Periode:
-											</label>
-										</div>
-										<div class="m-form__control">
-											<select id="m_form_status">
-												<option value="1">
-													2018
-												</option>
-												<option value="2">
-													2017
-												</option>
-												<option value="3">
-													2016
-												</option>
-												<option value="4">
-													2015
-												</option>
-											</select>
-										</div>
-									</div>
-									<div class="d-md-none m--margin-bottom-10"></div> -->
+									<a href="#"  data-toggle="modal" data-target="#m-tambah-kriteria" class="btn m-btn--square  btn-outline-primary" ><i class="m-menu__link-icon flaticon-plus"></i> Tambah</a>
 								</div>
 								<div class="col-md-5">
-									<!-- <div class="m-form__group m-form__group--inline">
-										<div class="m-form__label">
-											<label class="m-label m-label--single">
-												Jenis Kelamin :
-											</label>
-										</div>
-										<div>
-											<select class="" id="m_form_type">
-												<option value="1">
-													Laki-laki
-												</option>
-												<option value="2">
-													Perempuan
-												</option>
-											</select>
-										</div>
-									</div>
-									<div class="d-md-none m--margin-bottom-10"></div> -->
+
 								</div>
 								<div class="col-md-3">
 									<div class="m-input-icon m-input-icon--left">
@@ -232,7 +192,7 @@
 								<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-warning m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-edit-1"></i></button> -->
 								<a href="#" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-edit-1"></i></a>
 								<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-danger m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-delete-1"></i></button> -->
-								<a href="#" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>
+								<a href="{{url('admin/datacalon/destroy')}}/{{ $key->id}}" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>
 									
 							</td>
 						</tr>

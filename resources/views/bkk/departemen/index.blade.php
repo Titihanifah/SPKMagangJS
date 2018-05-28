@@ -41,6 +41,7 @@
 						<div class="col-xl-12 order-2 order-xl-1">
 							<div class="form-group m-form__group row align-items-center">
 								<div class="col-md-4">
+									<a href="#"  data-toggle="modal" data-target="#m-tambah-departemen" class="btn m-btn--square  btn-outline-primary" ><i class="m-menu__link-icon flaticon-plus"></i> Tambah</a>
 								</div>
 								<div class="col-md-5">
 								</div>
@@ -76,7 +77,6 @@
 					</thead>
 					<tbody>
 					@foreach ($departemen as $key)
-
 						<tr>
 							<td>{{ $key->id }}</td>
 							<td>{{ $key->nama_departemen }}</td>
@@ -86,7 +86,7 @@
 								<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-warning m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-edit-1"></i></button> -->
 								<a href="#" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-edit-1"></i></a>
 								<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-danger m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-delete-1"></i></button> -->
-								<a href="#" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>
+								<a href="{{url('admin/departemen/destroy')}}/{{ $key->id}}" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>
 									
 							</td>
 						</tr>
@@ -98,6 +98,37 @@
 		</div>
 	</div>
 </div>
+
+{{--MODAL--}}
+<div class="modal fade" id="m-tambah-departemen" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">
+					Tambah Departemen
+				</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">
+						&times;
+					</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				{!! Form::open(array('route' => 'departemen.store', 'enctype' => 'multipart/form-data')) !!}
+				<div class="form-group m-form__group">
+					<label for="">Nama Departemen</label>
+					<input type="text" name="nama_departemen" class="form-control m-input m-input--air" id="" aria-describedby="emailHelp" placeholder="Kemuslimahan">
+				</div>
+				<div class="modal-footer">
+					<button type="reset" class="btn btn-danger" data-dismiss="modal">Batal</button>
+					<button type="submit" class="btn btn-primary">Simpan</button>
+				</div>
+				{!! Form::close() !!}
+			</div>
+		</div>
+	</div>
+</div>
+
 
 @endsection
 

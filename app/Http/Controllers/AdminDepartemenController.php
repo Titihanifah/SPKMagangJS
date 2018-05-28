@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Departemen;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class AdminDepartemenController extends Controller
 {
@@ -38,7 +39,21 @@ class AdminDepartemenController extends Controller
      */
     public function store(Request $request)
     {
-        //
+//        create new object Departemen
+        $this->validate($request, [
+            'nama_departemen' => 'required',
+        ]);
+
+        $departemen = new Departemen;
+        // fill the object
+        $departemen->nama_departemen = $request->nama_departemen;
+
+
+        //save object to database
+        $departemen->save();
+        //message success
+        Session::flash('message', 'Success add data data calon anggota!');
+        return redirect('/admin/departemen'); // Set redirect ketika berhasil
     }
 
     /**
@@ -84,5 +99,9 @@ class AdminDepartemenController extends Controller
     public function destroy($id)
     {
         //
+        Departemen::destroy($id);
+        // Beri message kalau berhasil
+        Session::flash('message', 'Berhasil menghapus data!');
+        return redirect('admin/departemen');
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Periode;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class AdminPeriodeController extends Controller
 {
@@ -37,7 +38,26 @@ class AdminPeriodeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        // create new object Periode
+        $this->validate($request, [
+            'tahun' => 'required',
+            'periode' => 'required',
+            'status' => 'required',
+
+        ]);
+
+        $periode = new Periode;
+        // fill the object
+        $periode->tahun = $request->tahun;
+        $periode->periode = $request->periode;
+        $periode->status = $request->status;
+
+        //save object to database
+        $periode->save();
+        //message success
+        Session::flash('message', 'Success add data employee!');
+        return redirect('/admin/periode'); // Set redirect ketika berhasil
     }
 
     /**
@@ -72,6 +92,13 @@ class AdminPeriodeController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $periode= Periode::find($id);
+        $periode->tahun = $request->tahun;
+        $periode->periode = $request->periode;
+        $periode->status = $request->status;
+        $periode->save();
+        Session::flash('message', 'Success menambah data periode!');
+        return redirect('admin/periode'); // Set redirect ketika berhasil
     }
 
     /**
@@ -83,5 +110,9 @@ class AdminPeriodeController extends Controller
     public function destroy($id)
     {
         //
+        Periode::destroy($id);
+        // Beri message kalau berhasil
+        Session::flash('message', 'Berhasil menghapus data!');
+        return redirect('admin/periode');
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Kriteria;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class AdminKriteriaController extends Controller
 {
@@ -37,7 +38,24 @@ class AdminKriteriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+//        create new object Kriteria
+        $this->validate($request, [
+            'nama_kriteria' => 'required',
+            'bobot' => 'required',
+
+        ]);
+
+        $kriteria = new Kriteria;
+        // fill the object
+        $kriteria->nama_kriteria = $request->nama_kriteria;
+        $kriteria->bobot = $request->bobot;
+
+        //save object to database
+        $kriteria->save();
+        //message success
+        Session::flash('message', 'Sukses menambah kriteria penilaian!');
+        return redirect('/admin/kriteria'); // Set redirect ketika berhasil
+
     }
 
     /**
@@ -71,7 +89,7 @@ class AdminKriteriaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+//
     }
 
     /**
@@ -83,5 +101,9 @@ class AdminKriteriaController extends Controller
     public function destroy($id)
     {
         //
+        Kriteria::destroy($id);
+        // Beri message kalau berhasil
+        Session::flash('message', 'Berhasil menghapus data!');
+        return redirect('admin/kriteria');
     }
 }

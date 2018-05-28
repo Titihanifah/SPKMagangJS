@@ -13,6 +13,6 @@ class PeriodeSeeder extends Seeder
     {
         //
         DB::table('periodes')->insert(['tahun' => '2018', 'periode' => '1439H', 'status' => 'aktif']);
-        DB::table('periodes')->insert(['tahun' => '2017', 'periode' => '1438H', 'status' => 'tidak aktif']);
+        DB::table('periodes')->insert(['tahun' => '2017', 'periode' => '1438H', 'status' => 'tidak_aktif']);
     }
 }

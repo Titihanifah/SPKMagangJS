@@ -83,6 +83,6 @@ class DataCalonController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Ketua departemen tidak bisa menghapus data calon anggota
     }
 }
