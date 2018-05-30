@@ -6,8 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!--begin::Web font -->
-<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
-<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js" type="text/javascript"></script>
+{{--<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>--}}
+{{--<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js" type="text/javascript"></script>--}}
 
 <script>
     WebFont.load({
@@ -26,6 +26,6 @@
 <link href="{{ url('assets/demo/default/base/style.bundle.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ url('css/custom.css') }}" rel="stylesheet" type="text/css" />
 
-<link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" type="text/css">
+{{--<link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" type="text/css">--}}
 <!--end::Base Styles -->
 <link rel="shortcut icon" href="{{ url('assets/demo/default/media/img/logo/logo_title.ico') }}" />

@@ -68,7 +68,7 @@
 						<div class="col-xl-12 order-2 order-xl-1">
 							<div class="form-group m-form__group row align-items-center">
 								<div class="col-md-4">
-									<button class="btn m-btn--square  btn-outline-primary" data-toggle="modal" data-target="#m_tambah_tugas">Tambah</button>
+									<button class="btn m-btn--square  btn-outline-primary" data-toggle="modal" data-target="#m-tambah-tugas">Tambah</button>
 								</div>
 								<div class="col-md-5">
 								</div>
@@ -88,7 +88,7 @@
 				</div>
 				<!--end: Search Form -->
 				<!--begin: Datatable -->
-				<table class="m-datatable" id="html_table" width="100%">
+				<table class="m-datatable table-bordered dt-responsive nowrap bordered-table" id="html_table" width="100%">
 					<thead>
 						<tr>
 							<th title="Field #1">No</th>
@@ -106,9 +106,9 @@
 							<td>{{ $key->deskripsi }}</td>
 							<td>{{ $key->deadline }}</td>
 							<td>
-								<a href="#" class="btn btn-outline-primary m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-eye"></i></a>
+								{{--<a href="#" class="btn btn-outline-primary m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-eye"></i></a>--}}
 								<a href="#" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only" data-toggle="modal" data-target="#m_edit_tugas"><i class="m-menu__link-icon flaticon-edit-1"></i></a>
-								<a href="#" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>
+								<a href="{{url('/tugas/destroy')}}/{{ $key->id}}" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>
 							</td>
 						</tr>
 					@endforeach
@@ -144,13 +144,13 @@
 					<label for="">
 						Deskripsi
 					</label>
-					<textarea type="text" class="form-control m-input m-input--air" placeholder="Deskripsi">
+                    <textarea type="text" class="form-control m-input m-input--air" placeholder="Deskripsi"></textarea>a
 				</div>
 				<div class="form-group m-form__group">
 					<label for="">
 						Deadline
 					</label>
-					<input type="email" class="form-control m-input m-input--air" placeholder="Deadline">
+					<input type="date" class="form-control m-input m-input--air" placeholder="Deadline">
 				</div>
 				{{--TODO : harusnya periode default--}}
 				{{--<div class="form-group m-form__group">--}}
@@ -161,10 +161,10 @@
 				{{--</div>--}}
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-danger" data-dismiss="modal">
+				<button type="reset" class="btn btn-danger" data-dismiss="modal">
 					Close
 				</button>
-				<button type="button" class="btn btn-primary">
+				<button type="submit" class="btn btn-primary">
 					Simpan
 				</button>
 			</div>
@@ -172,7 +172,7 @@
 	</div>
 </div>
 
-<div class="modal fade" id="m_tambah_tugas" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="m-tambah-tugas" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -186,39 +186,42 @@
 				</button>
 			</div>
 			<div class="modal-body">
+                {!! Form::open(array('route' => 'tugas.store', 'enctype' => 'multipart/form-data')) !!}
 				<div class="form-group m-form__group">
 					<label for="">
 						Nama Tugas
 					</label>
-					<input type="text" class="form-control m-input m-input--air" placeholder="Nama Tugas">
+					<input type="text" name="nama_tugas" class="form-control m-input m-input--air" placeholder="Nama Tugas">
 				</div>
 				<div class="form-group m-form__group">
 					<label for="">
 						Deskripsi
 					</label>
-					<input type="text" class="form-control m-input m-input--air" placeholder="Deskripsi">
+                    <textarea type="text" name="deskripsi" class="form-control m-input m-input--air" placeholder="Deskripsi"></textarea>
 				</div>
 				<div class="form-group m-form__group">
 					<label for="">
 						Deadline
 					</label>
-					<input type="datetime-local" class="form-control m-input m-input--air" placeholder="Deadline">
+					<input type="date" name="deadline" class="form-control m-input m-input--air" placeholder="Deadline">
 				</div>
-				<div class="form-group m-form__group">
-					<label for="">
-						Periode
-					</label>
-					<input type="text" class="form-control m-input m-input--air" placeholder="Periode">
-				</div>
+				{{--<div class="form-group m-form__group">--}}
+					{{--<label for="">--}}
+						{{--Periode--}}
+					{{--</label>--}}
+					{{--<input type="text" class="form-control m-input m-input--air" placeholder="Periode">--}}
+				{{--</div>--}}
+
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-danger" data-dismiss="modal">
+				<button type="reset" class="btn btn-danger" data-dismiss="modal">
 					Close
 				</button>
-				<button type="button" class="btn btn-primary">
+				<button type="submit" class="btn btn-primary">
 					Simpan
 				</button>
 			</div>
+            {!! Form::close() !!}
 		</div>
 	</div>
 </div>

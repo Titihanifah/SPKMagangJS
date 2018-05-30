@@ -60,7 +60,7 @@
 				</div>
 				<!--end: Search Form -->
 				<!--begin: Datatable -->
-				<table class="m-datatable" id="html_table" width="100%">
+				<table class="m-datatable table-bordered dt-responsive nowrap bordered-table" id="html_table" width="100%">
 					<thead>
 						<tr>
 							<th title="Field #1" width="10%">No</th>
@@ -84,7 +84,7 @@
 							<td>50</td>
 							<td>
 								<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-primary m-btn--gradient-to-primary"><i class="m-menu__link-icon flaticon-eye"></i></button> -->
-								<a href="#" class="btn btn-outline-primary m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-eye"></i></a>
+								{{--<a href="#" class="btn btn-outline-primary m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-eye"></i></a>--}}
 								<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-warning m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-edit-1"></i></button> -->
 								<a href="#" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only" data-toggle="modal" data-target="#m_edit_kegiatan"><i class="m-menu__link-icon flaticon-edit-1"></i></a>
 								<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-danger m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-delete-1"></i></button> -->
@@ -182,7 +182,7 @@
 					<label for="">
 						Waktu Kegiatan
 					</label>
-					<input type="text" name="waktu" class="form-control m-input m-input--air" id="exampleInputEmail1"  placeholder="Waktu Kegiatan">
+					<input type="time" name="waktu" class="form-control m-input m-input--air" id="exampleInputEmail1"  placeholder="Waktu Kegiatan">
 				</div>
 				<div class="form-group m-form__group">
 					<label for="">

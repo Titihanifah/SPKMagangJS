@@ -182,7 +182,7 @@
 								Softskill
 							</th>
 							<th title="Field #6">
-								Departemen Pilihan
+								Dept Pilihan
 							</th>
 							<th>
 								Aksi

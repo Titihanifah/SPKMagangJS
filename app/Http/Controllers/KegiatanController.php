@@ -65,13 +65,14 @@ class KegiatanController extends Controller
         ]);
 
         $kegiatan = new Kegiatan;
-        $periode = Periode::where('status','=','aktif')->first();
+
         // fill the object
         $kegiatan->nama_kegiatan = $request->nama_kegiatan;
         $kegiatan->tanggal_kegiatan = $request->tanggal_kegiatan;
         $kegiatan->waktu = $request->waktu;
         $kegiatan->id_departemen = Auth::user()->id_departemen;
         //TODO : id periode sesuai yg aktif
+        $periode = Periode::where('status','=','aktif')->first();
         $kegiatan->id_periode = $periode->id;
 
         //save object to database

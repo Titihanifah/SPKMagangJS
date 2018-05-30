@@ -36,6 +36,7 @@ Route::get('admin/periode/destroy/{id}', 'AdminPeriodeController@destroy');
 Route::get('admin/kriteria/destroy/{id}', 'AdminKriteriaController@destroy');
 Route::get('/admin/datacalon/destroy/{id}','AdminDataCalonController@destroy');
 Route::get('/admin/departemen/destroy/{id}','AdminDepartemenController@destroy');
+Route::get('/tugas/destroy/{id}','TugasController@destroy');
 
 
 // Route::get('/dashboard','PresensiController@dashboard');
