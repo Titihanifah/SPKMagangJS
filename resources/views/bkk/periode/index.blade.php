@@ -66,10 +66,14 @@
 					<thead>
 						<tr>
 							<th>No</th>
-							<th>Tahun </th>
-							<th>Periode Hijriah</th>
-							<th>Status</th>
-							<th>Aksi</th>
+							<th>Tahun Periode</th>
+							<th>Periode Tahun Hijriah</th>
+							<th>
+								Status
+							</th>
+							<th>
+								Aksi
+							</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -80,10 +84,11 @@
 							<td>{{ $key->periode }}</td>
 							<td>{{ $key->status }}</td>
 							<td>
+
 								<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-warning m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-edit-1"></i></button> -->
 								<a href="#" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-edit-1"></i></a>
 								<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-danger m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-delete-1"></i></button> -->
-								<a href="{{url('admin/periode/destroy')}}/{{ $key->id}}" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>
+								<a href="#" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>
 									
 							</td>
 						</tr>
@@ -111,10 +116,9 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				{!! Form::open(array('route' => 'periode.store', 'enctype' => 'multipart/form-data')) !!}
 				<div class="form-group m-form__group">
 					<label for="">Tahun</label>
-					<input type="year" name="tahun" class="form-control m-input m-input--air" id="" aria-describedby="emailHelp" placeholder="2017">
+					<input type="text" name="tahun" class="form-control m-input m-input--air" id="" aria-describedby="emailHelp" placeholder="2017">
 				</div>
 				<div class="form-group m-form__group">
 					<label for="">Periode</label>
@@ -122,22 +126,20 @@
 				</div>
 				<div class="m-form__group form-group">
 					<label for="">Status</label>
-					<div class="m-radio-inline" >
+					<div class="m-radio-inline">
 						<label class="m-radio">
-							<input type="radio" name="status" value="aktif">Aktif
+							<input type="radio" name="status" value="1">Aktif
 							<span></span>
 						</label>
 						<label class="m-radio">
-							<input type="radio" name="status" value="tidak_aktif">Tidak Aktif
+							<input type="radio" name="status" value="2">Tidak Aktif
 							<span></span>
 						</label>
 					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="reset" class="btn btn-danger" data-dismiss="modal">Batal</button>
-					<button type="submit" class="btn btn-primary">Simpan</button>
-				</div>
-				{!! Form::close() !!}
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+				<button type="button" class="btn btn-primary">Simpan</button>
 			</div>
 		</div>
 	</div>

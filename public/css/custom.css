@@ -18,6 +18,8 @@ table {
 }
  .bordered-table th{
      border: 1px solid #95a5a6;
+     background-color: #acb8f0 !important;
+     /**/
  }
  .bordered-table td{
      border: 1px solid #95a5a6;

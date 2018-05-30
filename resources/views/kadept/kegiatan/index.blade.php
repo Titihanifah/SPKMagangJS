@@ -60,7 +60,7 @@
 				</div>
 				<!--end: Search Form -->
 				<!--begin: Datatable -->
-				<table class="m-datatable table-bordered dt-responsive nowrap bordered-table" id="html_table" width="100%">
+				<table id="myTable" width="100%">
 					<thead>
 						<tr>
 							<th title="Field #1" width="10%">No</th>
@@ -274,6 +274,14 @@
 
 @section('js')
 
-<script src="{{ url('assets/demo/default/custom/components/datatables/base/html-table.js')}}" type="text/javascript"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+
+	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+{{--<script src="{{ url('assets/demo/default/custom/components/datatables/base/html-table.js')}}" type="text/javascript"></script>--}}
+<script type="text/javascript">
+    $(document).ready( function () {
+        $('#myTable').DataTable();
+    } );
+</script>
 
 @endsection
