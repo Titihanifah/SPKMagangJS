@@ -21,6 +21,10 @@ class CreateUsersTable extends Migration
 //            TODO: tanyakan kenapa smallInteger
             $table->smallInteger('role')->default(0); // 0 kadept , 1 BKK
             $table->string('password');
+            $table->integer('id_departemen')->unsigned()->nullable();
+            $table->foreign('id_departemen')
+                ->references('id')->on('departemens')
+                ->onDelete('cascade');
             $table->rememberToken();
             $table->timestamps();
         });

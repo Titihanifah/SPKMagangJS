@@ -39,7 +39,7 @@
 						<div class="col-xl-12 order-2 order-xl-1">
 							<div class="form-group m-form__group row align-items-center">
 								<div class="col-md-4">
-									<button class="btn m-btn--square  btn-outline-primary" data-toggle="modal" data-target="#m_tambah_kegiatan"">Tambah</button>
+									<button class="btn m-btn--square  btn-outline-primary" data-toggle="modal" data-target="#m-tambah-kegiatan">Tambah</button>
 								</div>
 								<div class="col-md-5">
 									
@@ -65,18 +65,20 @@
 						<tr>
 							<th title="Field #1" width="10%">No</th>
 							<th title="Field #2">Nama Kegiatan</th>
+							<th title="Field #2">Tanggal</th>
 							<th title="Field #3">Waktu</th>
 							<th title="Field #5">Jumlah Hadir</th>
 							<th title="Field #6">Aksi</th>
 						</tr>
 					</thead>
 					<tbody>
-					@foreach($kegiatan as $value)
+                    <?php $i = 1; ?>
+					@foreach($userKegiatan->departemen->kegiatans  as $value)
 						<tr>
-							<td>{{ $value->id }}</td>
+							<td><?php echo $i ?></td>
 							<td>{{ $value->nama_kegiatan }}</td>
-							{{--// TODO : tanyakan detail kegiatan apa saja...--}}
 							{{--// TODO : format waktu bagaimana--}}
+							<td>{{ $value->tanggal_kegiatan }}</td>
 							<td>{{ $value->waktu }}</td>
 							{{--TODO: diambil dari presensi--}}
 							<td>50</td>
@@ -90,6 +92,7 @@
 									
 							</td>
 						</tr>
+                    	<?php $i++ ?>
 					@endforeach
 					</tbody>
 				</table>
@@ -124,7 +127,7 @@
 					<label for="">
 						Waktu Kegiatan
 					</label>
-					<input type="email" class="form-control m-input m-input--air" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Waktu Kegiatan">					
+					<input type="text" class="form-control m-input m-input--air" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Waktu Kegiatan">
 				</div>
 				<div class="form-group m-form__group">
 					<label for="">
@@ -152,7 +155,7 @@
 </div>
 
 
-<div class="modal fade" id="m_tambah_kegiatan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="m-tambah-kegiatan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -167,41 +170,49 @@
 			</div>
 			<div class="modal-body">
 {{--				{!! Form::model($kegiatan, array('route' => array('kegiatan.update', $kegiatan->id), 'method' => 'PUT', 'enctype' => 'multipart/form-data')) !!}--}}
+				{!! Form::open(array('route' => 'kegiatan.store', 'enctype' => 'multipart/form-data')) !!}
 				<div class="form-group m-form__group">
 					<label for="">
 						Nama Kegiatan
 					</label>
-					{{--<input type="email" class="form-control m-input m-input--air" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nama Kegiatan">--}}
+					<input type="text" name="nama_kegiatan" class="form-control m-input m-input--air" id="exampleInputEmail1" placeholder="Nama Kegiatan">
 {{--					{{ Form::text('nama_kegiatan', null, array('class' => 'form-control m-input m-input--air')) }}--}}
 				</div>
 				<div class="form-group m-form__group">
 					<label for="">
 						Waktu Kegiatan
 					</label>
-					<input type="email" class="form-control m-input m-input--air" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Waktu Kegiatan">					
+					<input type="text" name="waktu" class="form-control m-input m-input--air" id="exampleInputEmail1"  placeholder="Waktu Kegiatan">
 				</div>
 				<div class="form-group m-form__group">
 					<label for="">
-						Tempat Kegiatan
+						Tanggal Kegiatan
 					</label>
-					<input type="email" class="form-control m-input m-input--air" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tempat Kegiatan">					
+					<input type="date" name="tanggal_kegiatan" class="form-control m-input m-input--air" id="exampleInputEmail1"  placeholder="Tanggal Kegiatan">
 				</div>
+				{{--<div class="form-group m-form__group">--}}
+					{{--<label for="">--}}
+						{{--Tempat Kegiatan--}}
+					{{--</label>--}}
+					{{--<input type="email" class="form-control m-input m-input--air" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tempat Kegiatan">					--}}
+				{{--</div>--}}
 				<div class="form-group m-form__group">
 					<label for="">
 						Jumlah Peserta yang hadir
 					</label>
-					<input type="email" class="form-control m-input m-input--air" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Jumlah Peserta yang hadir" disabled="">					
+					<input type="email" class="form-control m-input m-input--air" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Jumlah Peserta yang hadir" disabled>
 				</div>
-				{{--{!! Form::close() !!}--}}
+
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-danger" data-dismiss="modal">
+				<button type="reset" class="btn btn-danger" data-dismiss="modal">
 					Close
 				</button>
-				<button type="button" class="btn btn-primary">
+				<button type="submit" class="btn btn-primary">
 					Simpan
 				</button>
 			</div>
+			{!! Form::close() !!}
 		</div>
 	</div>
 </div>

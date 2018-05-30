@@ -93,6 +93,7 @@
 						<tr>
 							<th title="Field #1">No</th>
 							<th title="Field #2">Nama Tugas</th>
+							<th title="Field #2">Deskripsi</th>
 							<th title="Field #3">Deadline</th>
 							<th title="Field #6">Aksi</th>
 						</tr>
@@ -100,9 +101,10 @@
 					<tbody>
 					@foreach($tugas as $key)
 						<tr>
-							<td>{{ $tugas->id }}</td>
-							<td>{{ $tugas->nama_tugas }}</td>
-							<td>{{ $tugas->waktu }}</td>
+							<td>{{ $key->id }}</td>
+							<td>{{ $key->nama_tugas }}</td>
+							<td>{{ $key->deskripsi }}</td>
+							<td>{{ $key->deadline }}</td>
 							<td>
 								<a href="#" class="btn btn-outline-primary m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-eye"></i></a>
 								<a href="#" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only" data-toggle="modal" data-target="#m_edit_tugas"><i class="m-menu__link-icon flaticon-edit-1"></i></a>
@@ -136,26 +138,27 @@
 					<label for="">
 						Nama Tugas
 					</label>
-					<input type="email" class="form-control m-input m-input--air" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nama Tugas">					
+					<input type="text" class="form-control m-input m-input--air" placeholder="Nama Tugas">
 				</div>
 				<div class="form-group m-form__group">
 					<label for="">
 						Deskripsi
 					</label>
-					<input type="email" class="form-control m-input m-input--air" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Deskripsi">					
+					<textarea type="text" class="form-control m-input m-input--air" placeholder="Deskripsi">
 				</div>
 				<div class="form-group m-form__group">
 					<label for="">
 						Deadline
 					</label>
-					<input type="email" class="form-control m-input m-input--air" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Deadline">					
+					<input type="email" class="form-control m-input m-input--air" placeholder="Deadline">
 				</div>
-				<div class="form-group m-form__group">
-					<label for="">
-						Periode
-					</label>
-					<input type="email" class="form-control m-input m-input--air" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Periode">					
-				</div>
+				{{--TODO : harusnya periode default--}}
+				{{--<div class="form-group m-form__group">--}}
+					{{--<label for="">--}}
+						{{--Periode--}}
+					{{--</label>--}}
+					{{--<input type="email" class="form-control m-input m-input--air" placeholder="Periode">					--}}
+				{{--</div>--}}
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-danger" data-dismiss="modal">
@@ -187,25 +190,25 @@
 					<label for="">
 						Nama Tugas
 					</label>
-					<input type="email" class="form-control m-input m-input--air" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nama Tugas">					
+					<input type="text" class="form-control m-input m-input--air" placeholder="Nama Tugas">
 				</div>
 				<div class="form-group m-form__group">
 					<label for="">
 						Deskripsi
 					</label>
-					<input type="email" class="form-control m-input m-input--air" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Deskripsi">					
+					<input type="text" class="form-control m-input m-input--air" placeholder="Deskripsi">
 				</div>
 				<div class="form-group m-form__group">
 					<label for="">
 						Deadline
 					</label>
-					<input type="email" class="form-control m-input m-input--air" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Deadline">					
+					<input type="datetime-local" class="form-control m-input m-input--air" placeholder="Deadline">
 				</div>
 				<div class="form-group m-form__group">
 					<label for="">
 						Periode
 					</label>
-					<input type="email" class="form-control m-input m-input--air" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Periode">					
+					<input type="text" class="form-control m-input m-input--air" placeholder="Periode">
 				</div>
 			</div>
 			<div class="modal-footer">

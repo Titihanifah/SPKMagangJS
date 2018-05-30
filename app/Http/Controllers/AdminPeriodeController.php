@@ -6,6 +6,7 @@ use App\Periode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
+
 class AdminPeriodeController extends Controller
 {
     /**
@@ -17,7 +18,8 @@ class AdminPeriodeController extends Controller
     {
         //
         $periode = Periode::all();
-        return view('bkk.periode.index')->with('periode',$periode);
+//        return view('bkk.periode.index')->compact('periode');
+        return view('bkk.periode.index', compact('periode'));
     }
 
     /**

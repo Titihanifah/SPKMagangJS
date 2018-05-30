@@ -27,6 +27,7 @@
         <hr>
 
         <!-- start -->
+        @if(Auth::user()->role == 0)
         <li class="m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
             <a  href="{{ url('/datacalon')}}" class="m-menu__link m-menu__toggle">
                 <i class="m-menu__link-icon flaticon-users color-menu"></i>
@@ -119,6 +120,9 @@
                 </span>
             </a>
         </li>
+        @endif
+
+        @if(Auth::user()->role == 1)
         <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
             <a  href="{{ url('/admin/datacalon')}}" class="m-menu__link m-menu__toggle">
                 <i class="m-menu__link-icon flaticon-users"></i>
@@ -159,6 +163,8 @@
                 </span>
             </a>
         </li>
+        @endif
+
         <li class="m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
             <a  href="{{ url('/panduan')}}" class="m-menu__link m-menu__toggle ">
                 <i class="m-menu__link-icon flaticon-user-settings  color-menu"></i>

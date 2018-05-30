@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Departemen;
 use App\Kegiatan;
+use App\Periode;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-
+use Illuminate\Database\Eloquent;
+use App\User;
 
 class KegiatanController extends Controller
 {
@@ -16,13 +20,22 @@ class KegiatanController extends Controller
      */
     public function index()
     {
-        //
-        $kegiatan = Kegiatan::all();
-        return view('kadept.kegiatan.index')->with('kegiatan',$kegiatan);
+//        $kegiatan = Departemen::join('kegiatans', 'departemens.id','=','kegiatans.id_departemen')
+//            ->join('users', 'departemens.id','=','users.id_departemen')
+//            ->where('users.id', Auth::user()->id)->get();
+//        $kegiatan = User::find(Auth::user()->id)->departemen->with('kegiatan');
+        $userKegiatan = User::where('id', Auth::user()->id)->with('departemen.kegiatans')->first();
+//        dd($kegiatan);
+//        return response()->json($kegiatan);
+
+		return view('kadept.kegiatan.index', compact('userKegiatan'));
+
+
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form fr ae
+     * or creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
@@ -39,22 +52,27 @@ class KegiatanController extends Controller
      */
     public function store(Request $request)
     {
-        // create new object Employee
+        // create new object Kegiatan
         // TODO: use validator?
         $this->validate($request, [
             'nama_kegiatan' => 'required',
-            'tempat' => 'required',
+            'waktu' => 'required',
             'tanggal_kegiatan' => 'required',
+
             //TODO: kan ada id departemen cara nyambunginnya gimana? apakah perlu ditulis disini juga
 
 
         ]);
 
         $kegiatan = new Kegiatan;
+        $periode = Periode::where('status','=','aktif')->first();
         // fill the object
         $kegiatan->nama_kegiatan = $request->nama_kegiatan;
         $kegiatan->tanggal_kegiatan = $request->tanggal_kegiatan;
         $kegiatan->waktu = $request->waktu;
+        $kegiatan->id_departemen = Auth::user()->id_departemen;
+        //TODO : id periode sesuai yg aktif
+        $kegiatan->id_periode = $periode->id;
 
         //save object to database
         $kegiatan->save();

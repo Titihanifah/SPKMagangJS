@@ -15,8 +15,9 @@ class Periode extends Model
     {
         return $this->hasMany('App\Tugas');
     }
-    public function kegiatan()
+    public function kegiatans()
     {
-        return $this->hasMany('App\Kegiatan');
+        return $this->hasMany('App\Kegiatan','id_periode');
     }
+
 }

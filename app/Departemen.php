@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Departemen extends Model
 {
 
-    public function kegiatan()
+    public function kegiatans()
     {
-        return $this->hasMany('App\Kegiatan');
+        return $this->hasMany('App\Kegiatan','id_departemen');
     }
     public function tugas()
     {
@@ -18,5 +18,9 @@ class Departemen extends Model
     public function detailCalonAggota()
     {
         return $this->hasMany('App\DetailCalonAnggota');
+    }
+    public function user()
+    {
+        return $this->hasOne('App\User');
     }
 }

@@ -7,4 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Kegiatan extends Model
 {
     //
+    public function departemen()
+    {
+        return $this->belongsTo('App\Kegiatan');
+    }
+    public function periode()
+    {
+        return $this->belongsTo('App\Periode');
+    }
 }

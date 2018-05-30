@@ -28,5 +28,16 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function isBKK()
+    {
+        if($this->role = 1) return true;
+        else return false;
+    }
+    public function departemen()
+    {
+        return $this->hasOne('App\Departemen','id', 'id_departemen');
+    }
+
+
 
 }
