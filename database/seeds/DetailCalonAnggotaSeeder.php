@@ -12,8 +12,20 @@ class DetailCalonAnggotaSeeder extends Seeder
     public function run()
     {
         //
-        DB::table('detail_calon_anggotas')->insert(['id_departemen' => "1", 'id_calon_anggota' => "1", 'prioritas' => "1"]);
-        DB::table('detail_calon_anggotas')->insert(['id_departemen' => "1", 'id_calon_anggota' => "1", 'prioritas' => "1"]);
-        DB::table('detail_calon_anggotas')->insert(['id_departemen' => "1", 'id_calon_anggota' => "1", 'prioritas' => "1"]);
+        DB::table('detail_calon_anggotas')->insert([
+            'id_departemen' => 1,
+            'id_calon_anggota' => 1,
+            'prioritas' => 1
+        ]);
+        DB::table('detail_calon_anggotas')->insert([
+            'id_departemen' => 1,
+            'id_calon_anggota' => 2,
+            'prioritas' => 2
+        ]);
+        DB::table('detail_calon_anggotas')->insert([
+            'id_departemen' => 2,
+            'id_calon_anggota' => 2,
+            'prioritas' => 1
+        ]);
     }
 }

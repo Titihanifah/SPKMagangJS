@@ -12,8 +12,16 @@ class PresensiSeeder extends Seeder
     public function run()
     {
         // TODO: tidak hadir bisakah tidak di beri _
-        DB::table('presensis')->insert(['id_calon_anggota' => '1', 'id_kegiatan' => '1', 'kehadiran' => 'hadir']);
-        DB::table('presensis')->insert(['id_calon_anggota' => '2', 'id_kegiatan' => '2', 'kehadiran' => 'tidak hadir']);
+        DB::table('presensis')->insert([
+            'id_calon_anggota' => 1,
+            'id_kegiatan' => 1,
+            'kehadiran' => 0
+        ]);
+        DB::table('presensis')->insert([
+            'id_calon_anggota' => 2,
+            'id_kegiatan' => 2,
+            'kehadiran' => 1
+        ]);
 
     }
 }
