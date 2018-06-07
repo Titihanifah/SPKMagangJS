@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Departemen;
 use Illuminate\Http\Request;
 
 class RekapPenilaianController extends Controller
@@ -14,7 +15,8 @@ class RekapPenilaianController extends Controller
     public function index()
     {
         //
-        return view('kadept.rekapPenilaian.index');
+        $departemen = Departemen::all();
+        return view('kadept.rekapPenilaian.index',compact('departemen'));
     }
 
     /**

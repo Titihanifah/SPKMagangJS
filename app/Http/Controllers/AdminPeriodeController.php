@@ -18,7 +18,7 @@ class AdminPeriodeController extends Controller
     {
         //
         $periode = Periode::all();
-//        return view('bkk.periode.index')->compact('periode');
+//        return response()->json($periode);
         return view('bkk.periode.index', compact('periode'));
     }
 

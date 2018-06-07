@@ -25,8 +25,8 @@ class KegiatanController extends Controller
 //            ->where('users.id', Auth::user()->id)->get();
 //        $kegiatan = User::find(Auth::user()->id)->departemen->with('kegiatan');
         $userKegiatan = User::where('id', Auth::user()->id)->with('departemen.kegiatans')->first();
-//        dd($kegiatan);
-//        return response()->json($kegiatan);
+//        dd($userKegiatan);
+//        return response()->json($userKegiatan);
 
 		return view('kadept.kegiatan.index', compact('userKegiatan'));
 
@@ -72,8 +72,9 @@ class KegiatanController extends Controller
         $kegiatan->waktu = $request->waktu;
         $kegiatan->id_departemen = Auth::user()->id_departemen;
         //TODO : id periode sesuai yg aktif
-        $periode = Periode::where('status','=','aktif')->first();
-        $kegiatan->id_periode = $periode->id;
+//        $periode = Periode::where('status','=','aktif')->first();
+//        $kegiatan->id_periode = $periode->id;
+        $kegiatan->id_periode = 1;
 
         //save object to database
         $kegiatan->save();
@@ -117,13 +118,13 @@ class KegiatanController extends Controller
     {
         //
         $kegiatan= Kegiatan::find($id);
+
         $kegiatan->nama_kegiatan = $request->nama_kegiatan;
-//        $kegiatan->waktu = $request->waktu;
-//        $kegiatan->tempat = $request->tempat;
-//        $kegiatan->tanggal_kegiatan = $request->tanggal_kegiatan;
+        $kegiatan->waktu = $request->waktu;
+        $kegiatan->tanggal_kegiatan = $request->tanggal_kegiatan;
         $kegiatan->save();
         Session::flash('message', 'Success add data employee!');
-        return redirect('kadept/kegiatan'); // Set redirect ketika berhasil
+        return redirect('/kegiatan'); // Set redirect ketika berhasil
     }
 
     /**

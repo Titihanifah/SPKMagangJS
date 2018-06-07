@@ -88,6 +88,12 @@ class AdminDepartemenController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $departemen = Departemen::find($id);
+
+        $departemen->nama_departemen = $request->nama_departemen;
+        $departemen->save();
+        Session::flash('message', "Sukses mengubah data departemen");
+        return redirect('/admin/departemen');
     }
 
     /**

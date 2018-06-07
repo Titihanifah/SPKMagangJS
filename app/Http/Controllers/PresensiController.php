@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\CalonAnggota;
 use App\Kegiatan;
 use App\Presensi;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PresensiController extends Controller
 {
@@ -31,7 +33,9 @@ class PresensiController extends Controller
         //
         $kegiatan = Kegiatan::all();
         $calonAnggota = CalonAnggota::all();
-        return view('kadept.presensi.rekapPresensi')->with('kegiatan',$kegiatan)->with('calonAnggota', $calonAnggota);
+        $userKegiatan = User::where('id', Auth::user()->id)->with('departemen.kegiatans')->first();
+//        return view('kadept.presensi.rekapPresensi')->with('kegiatan',$kegiatan)->with('calonAnggota', $calonAnggota);
+        return view('kadept.presensi.rekapPresensi',compact('kegiatan','calonAnggota','userKegiatan'));
     }
     /**
     * numpang controller ya :D

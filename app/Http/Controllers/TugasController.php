@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\CalonAnggota;
 use App\Tugas;
 use App\Periode;
+use App\User;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,8 +21,13 @@ class TugasController extends Controller
     public function index()
     {
         //
-        $tugas = Tugas::all();
-        return view('kadept.tugas.index')->with('tugas',$tugas);
+        $userTugas = User::where('id', Auth::user()->id)->with('departemens.tugas')->first();
+//        dd($kegiatan);
+//        return response()->json($userTugas);
+
+        return view('kadept.tugas.index', compact('userTugas'));
+//        $tugas = Tugas::all();
+//        return view('kadept.tugas.index')->with('tugas',$tugas);
     }
 
     /**
@@ -31,12 +37,28 @@ class TugasController extends Controller
     */
     public function penilaianTugas()
     {
-        $tugas = Tugas::all();
+
+        $userTugas = User::where('id', Auth::user()->id)->with('departemens.tugas')->first();
         $calonAnggota = CalonAnggota::all();
-        return view('kadept.tugas.penilaianTugas')->with('tugas',$tugas)->with('calonAnggota',$calonAnggota);
+        return view('kadept.tugas.penilaianTugas', compact('userTugas','calonAnggota'));
 
 
     }
+
+
+    /**
+    *
+    *
+    *
+    */
+//    public function penilaianTugasStore()
+//    {
+//        $tugas = Tugas::all();
+//        $calonAnggota = CalonAnggota::all();
+//        return view('kadept.tugas.penilaianTugas')->with('tugas',$tugas)->with('calonAnggota',$calonAnggota);
+//
+//
+//    }
     /**
      * Show the form for creating a new resource.
      *
@@ -82,7 +104,6 @@ class TugasController extends Controller
         //message success
         Session::flash('message', 'Sukses menambah data tugas!');
         //TODO: routingnya belum
-//        return redirect(route('kadept.tugas')); // Set redirect ketika berhasil
         return redirect('/tugas'); // Set redirect ketika berhasil
     }
 
@@ -117,7 +138,20 @@ class TugasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $tugas= Tugas::find($id);
+
+        $tugas->nama_tugas = $request->nama_tugas;
+        $tugas->deskripsi = $request->deskripsi;
+        $tugas->deadline = $request->deadline;
+        $tugas->save();
+        Session::flash('message', 'Success add data employee!');
+        return redirect('/tugas'); // Set redirect ketika berhasil
+    }
+
+    public function updatePenilaian(Request $request, $id)
+    {
+
+
     }
 
     /**

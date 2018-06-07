@@ -67,6 +67,7 @@ class AdminKriteriaController extends Controller
     public function show($id)
     {
         //
+
     }
 
     /**
@@ -90,6 +91,13 @@ class AdminKriteriaController extends Controller
     public function update(Request $request, $id)
     {
 //
+        $kriteria = Kriteria::find($id);
+
+        $kriteria->nama_kriteria = $request->nama_kriteria;
+        $kriteria->bobot = $request->bobot;
+        $kriteria->save();
+        Session::flash('message', 'Sukses mengubah data kriteria');
+        return redirect('/admin/kriteria');
     }
 
     /**
