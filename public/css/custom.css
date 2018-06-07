@@ -14,19 +14,20 @@ table {
 .nav-sidebar-menu a:hover {
     /*background-color: #2980b9;*/
     /*background-color: #0a6aa2;*/
+    color: #0a6aa2;
     background-color: #30336b;
 }
- .bordered-table th{
-     border: 1px solid #95a5a6;
-     background-color: #acb8f0 !important;
-     /**/
- }
- .bordered-table td{
-     border: 1px solid #95a5a6;
- }
- .bordered-table{
-     border: none;
- }
+ /*.bordered-table th{*/
+     /*border: 0.1px solid #95a5a6;*/
+     /*!*background-color: #acb8f0 !important;*!*/
+     /*!**!*/
+ /*}*/
+ /*.bordered-table tr , td{*/
+     /*border: 0.1px solid #95a5a6;*/
+ /*}*/
+ /*.bordered-table{*/
+     /*border: 0.1px solid #90a5a6;*/
+ /*}*/
 /*th, td {
     border: 1px solid #2c2e3e;
 }*/

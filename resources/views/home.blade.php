@@ -80,7 +80,7 @@
                                                     <div class="m-widget14__legend">
                                                         <span class="m-widget14__legend-bullet m--bg-warning"></span>
                                                         <span class="m-widget14__legend-text">
-														63% Sudah dinilai
+                                                            63% Sudah dinilai</span>
                                                     </div>
                                                 </div>
                                             </div>
