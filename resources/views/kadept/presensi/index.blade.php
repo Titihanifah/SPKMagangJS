@@ -41,7 +41,6 @@
 					<li class="m-nav__item">
 						<a href="" class="m-nav__link">
 							<span class="m-nav__link-text">
-								
 							</span>
 						</a>
 					</li>
@@ -94,28 +93,17 @@
 									
 								</div>
 								<div class="col-md-3">
-									<div class="m-input-icon m-input-icon--left">
-										<input type="text" class="form-control m-input" placeholder="Search..." id="generalSearch">
-										<span class="m-input-icon__icon m-input-icon__icon--left">
-											<span>
-												<i class="la la-search"></i>
-											</span>
-										</span>
-									</div>
+									{{--<div class="m-input-icon m-input-icon--left">--}}
+										{{--<input type="text" class="form-control m-input" placeholder="Search..." id="generalSearch">--}}
+										{{--<span class="m-input-icon__icon m-input-icon__icon--left">--}}
+											{{--<span>--}}
+												{{--<i class="la la-search"></i>--}}
+											{{--</span>--}}
+										{{--</span>--}}
+									{{--</div>--}}
 								</div>
 							</div>
 						</div>
-						<!-- <div class="col-xl-4 order-1 order-xl-2 m--align-right">
-							<a href="#" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
-								<span>
-									<i class="la la-cart-plus"></i>
-									<span>
-										New Order
-									</span>
-								</span>
-							</a>
-							<div class="m-separator m-separator--dashed d-xl-none"></div>
-						</div> -->
 					</div>
 				</div>
 				<!--end: Search Form -->

@@ -131,12 +131,36 @@
                 </span>
             </a>
         </li>
+        <li class="m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
+            <a  href="{{ url('/admin/kegiatan')}}" class="m-menu__link m-menu__toggle">
+                <i class="m-menu__link-icon flaticon-users color-menu"></i>
+                <span class="m-menu__link-text color-menu color-menu">
+                Kegiatan
+            </span>
+            </a>
+        </li>
+            <li class="m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
+                <a  href="{{ url('/admin/tugas')}}" class="m-menu__link m-menu__toggle">
+                    <i class="m-menu__link-icon flaticon-users color-menu"></i>
+                    <span class="m-menu__link-text color-menu color-menu">
+                Tugas
+            </span>
+                </a>
+            </li>
         <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
             <a  href="{{ url('/admin/kriteria')}}" class="m-menu__link m-menu__toggle">
                 <i class="m-menu__link-icon flaticon-confetti"></i>
                 <span class="m-menu__link-text">
-                    Kriteria
+                    Kriteria Penilaian
                 </span>
+            </a>
+        </li>
+        <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
+            <a  href="{{ url('/admin/kemampuan')}}" class="m-menu__link m-menu__toggle">
+                <i class="m-menu__link-icon flaticon-confetti"></i>
+                <span class="m-menu__link-text">
+                Kemampuan Tambahan
+            </span>
             </a>
         </li>
         <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
@@ -145,6 +169,14 @@
                 <span class="m-menu__link-text">
                     Departemen
                 </span>
+            </a>
+        </li>
+        <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
+            <a  href="{{ url('/admin/hasil')}}" class="m-menu__link m-menu__toggle">
+                <i class="m-menu__link-icon flaticon-map "></i>
+                <span class="m-menu__link-text">
+                Hasil Akhir
+            </span>
             </a>
         </li>
         <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">

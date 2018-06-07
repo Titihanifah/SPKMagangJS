@@ -171,15 +171,15 @@ License: You must have a valid license purchased only from themeforest(the above
 				@yield('content')
 
 			</div>
+		</div>
+	</body>
 
 		<!-- </ul> -->
-		<!-- begin::Quick Nav -->	
-    	<!--begin::Base Scripts -->
-		<script src="{{ url('assets/vendors/base/vendors.bundle.js') }}" type="text/javascript"></script>
-		<script src="{{ url('assets/demo/default/base/scripts.bundle.js') }}" type="text/javascript"></script>
-		<script src="{{ url('assets/demo/default/custom/components/datatables/base/data-local.js') }}" type="text/javascript"></script>
-
+		<!-- begin::Quick Nav -->
+    @include('includes.foot')
 		@yield('js')
-	</body>
+
+
+
 	<!-- end::Body -->
 </html>

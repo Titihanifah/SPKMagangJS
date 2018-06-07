@@ -68,7 +68,7 @@
 						<div class="col-xl-12 order-2 order-xl-1">
 							<div class="form-group m-form__group row align-items-center">
 								<div class="col-md-4">
-									<button class="btn m-btn--square  btn-outline-primary" data-toggle="modal" data-target="#m-tambah-tugas">Tambah</button>
+									<button class="btn m-btn--square  btn-outline-primary" data-toggle="modal" data-target="#m-tambah-tugas"><i class="m-menu__link-icon flaticon-plus"></i> Tambah </button>
 								</div>
 								<div class="col-md-5">
 								</div>
@@ -91,26 +91,28 @@
 				<table class="m-datatable table-bordered dt-responsive nowrap bordered-table" id="html_table" width="100%">
 					<thead>
 						<tr>
-							<th title="Field #1">No</th>
-							<th title="Field #2">Nama Tugas</th>
-							<th title="Field #2">Deskripsi</th>
-							<th title="Field #3">Deadline</th>
-							<th title="Field #6">Aksi</th>
+							<th>No</th>
+							<th>Nama Tugas</th>
+							<th>Deskripsi</th>
+							<th>Deadline</th>
+							<th>Aksi</th>
 						</tr>
 					</thead>
 					<tbody>
-					@foreach($tugas as $key)
+                    <?php $i = 1; ?>
+                    @foreach($userTugas->departemen->tugas  as $key)
 						<tr>
-							<td>{{ $key->id }}</td>
+							<td><?php echo $i ?></td>
 							<td>{{ $key->nama_tugas }}</td>
 							<td>{{ $key->deskripsi }}</td>
 							<td>{{ $key->deadline }}</td>
 							<td>
 								{{--<a href="#" class="btn btn-outline-primary m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-eye"></i></a>--}}
-								<a href="#" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only" data-toggle="modal" data-target="#m_edit_tugas"><i class="m-menu__link-icon flaticon-edit-1"></i></a>
+								<button onclick="edit({{ $i }})" data-nama_tugas="{{ $key->nama_tugas }}" data-deskripsi="{{ $key->deskripsi }}" data-deadline=""{{ $key->deadline }} class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only" data-toggle="modal" data-target="#m_edit_tugas"><i class="m-menu__link-icon flaticon-edit-1"></i></button>
 								<a href="{{url('/tugas/destroy')}}/{{ $key->id}}" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>
 							</td>
 						</tr>
+                        <?php $i++ ?>
 					@endforeach
 					</tbody>
 				</table>
@@ -120,56 +122,49 @@
 	</div>
 </div>
 
-<div class="modal fade" id="m_edit_tugas" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">
-					Edit Data Tugas
-				</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">
-						&times;
-					</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				<div class="form-group m-form__group">
-					<label for="">
-						Nama Tugas
-					</label>
-					<input type="text" class="form-control m-input m-input--air" placeholder="Nama Tugas">
-				</div>
-				<div class="form-group m-form__group">
-					<label for="">
-						Deskripsi
-					</label>
-                    <textarea type="text" class="form-control m-input m-input--air" placeholder="Deskripsi"></textarea>a
-				</div>
-				<div class="form-group m-form__group">
-					<label for="">
-						Deadline
-					</label>
-					<input type="date" class="form-control m-input m-input--air" placeholder="Deadline">
-				</div>
-				{{--TODO : harusnya periode default--}}
-				{{--<div class="form-group m-form__group">--}}
-					{{--<label for="">--}}
-						{{--Periode--}}
-					{{--</label>--}}
-					{{--<input type="email" class="form-control m-input m-input--air" placeholder="Periode">					--}}
-				{{--</div>--}}
-			</div>
-			<div class="modal-footer">
-				<button type="reset" class="btn btn-danger" data-dismiss="modal">
-					Close
-				</button>
-				<button type="submit" class="btn btn-primary">
-					Simpan
-				</button>
-			</div>
-		</div>
-	</div>
+<div class="modal fade" id="m-edit-tugas" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form method="POST" id="edit_form" action="" accept-charset="UTF-8" enctype="multipart/form-data">
+            <input name="_method" type="hidden" value="PUT">
+            @csrf
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        Edit Data Tugas
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group m-form__group">
+                        <label>Nama Tugas</label>
+                        <input type="text" name="nama_tugas" id="nama_tugas" class="form-control m-input m-input--air">
+                    </div>
+                    <div class="form-group m-form__group">
+                        <label>Deskripsi</label>
+                        <textarea type="text" name="deskripsi" id="deskripsi" class="form-control m-input m-input--air"></textarea>
+                    </div>
+                    <div class="form-group m-form__group">
+                        <label>Deadline</label>
+                        <input type="datetime" name="deadline" id="deadline" class="form-control m-input m-input--air">
+                    </div>
+                    {{--TODO : harusnya periode default--}}
+                    {{--<div class="form-group m-form__group">--}}
+                    {{--<label for="">--}}
+                    {{--Periode--}}
+                    {{--</label>--}}
+                    {{--<input type="email" class="form-control m-input m-input--air" placeholder="Periode">					--}}
+                    {{--</div>--}}
+                </div>
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
 
 <div class="modal fade" id="m-tambah-tugas" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -180,29 +175,21 @@
 					Tambah Data Tugas
 				</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">
-						&times;
-					</span>
+					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body">
                 {!! Form::open(array('route' => 'tugas.store', 'enctype' => 'multipart/form-data')) !!}
 				<div class="form-group m-form__group">
-					<label for="">
-						Nama Tugas
-					</label>
+					<label for="">Nama Tugas</label>
 					<input type="text" name="nama_tugas" class="form-control m-input m-input--air" placeholder="Nama Tugas">
 				</div>
 				<div class="form-group m-form__group">
-					<label for="">
-						Deskripsi
-					</label>
+					<label for="">Deskripsi</label>
                     <textarea type="text" name="deskripsi" class="form-control m-input m-input--air" placeholder="Deskripsi"></textarea>
 				</div>
 				<div class="form-group m-form__group">
-					<label for="">
-						Deadline
-					</label>
+					<label for="">Deadline</label>
 					<input type="date" name="deadline" class="form-control m-input m-input--air" placeholder="Deadline">
 				</div>
 				{{--<div class="form-group m-form__group">--}}
@@ -214,12 +201,8 @@
 
 			</div>
 			<div class="modal-footer">
-				<button type="reset" class="btn btn-danger" data-dismiss="modal">
-					Close
-				</button>
-				<button type="submit" class="btn btn-primary">
-					Simpan
-				</button>
+				<button type="reset" class="btn btn-danger" data-dismiss="modal">Batal</button>
+				<button type="submit" class="btn btn-primary">Simpan</button>
 			</div>
             {!! Form::close() !!}
 		</div>
@@ -231,5 +214,28 @@
 @section('js')
 
 <script src="{{ url('assets/demo/default/custom/components/datatables/base/html-table.js')}}" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+    function edit(id) {
+        var datadata = {!! json_encode($userTugas->departemen->tugas) !!};
+        id = id-1;
+
+        console.log(datadata[id]);
+        var idObject = datadata[id].id;
+        var nama_tugas = datadata[id].nama_tugas;
+        var deskripsi = datadata[id].deskripsi;
+        var deadline = datadata[id].deadline;
+
+        $('#nama_tugas').val(nama_tugas);
+        $('#deskripsi').val(deskripsi);
+        $('#deadline').val(deadline);
+
+        var url = "{{ url('/tugas') }}/" + (idObject);
+        document.getElementById("edit_form").action = url;
+
+        $('#m-edit-tugas').modal('show');
+    }
+</script>
 
 @endsection

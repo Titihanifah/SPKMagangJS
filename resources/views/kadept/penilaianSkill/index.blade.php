@@ -89,7 +89,7 @@
 				</div>
 				<!--end: Search Form -->
 				<!--begin: Datatable -->
-				<table class="m-datatable" id="html_table" width="100%">
+				<table class="myTableDataTable table table-striped table-bordered" id="html_table" width="100%">
 					<thead>
 					{{--TODO: sepertinya ini belum ada tabelnya :D--}}
 						<tr>
@@ -98,6 +98,9 @@
 							</th>
 							<th title="Field #2">
 								Nama Calon
+							</th>
+							<th title="Field #2">
+								Rekap Skill
 							</th>
 							<th title="Field #3">
 								Skill 1
@@ -119,30 +122,32 @@
 								Dinda
 							</td>
 							<td>
+								<div class="progress">
+									<label>
+
+									</label>
+									<div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+								</div>
+							</td>
+							<td>
 								<!-- <input class="form-control m-input" type="text" value="50" > -->
-								<div class="m-checkbox-list"">
+								<div class="m-checkbox-list">
 									{{--TODO: digabung jadi satu skillnya atau dipisah per kolom ya?--}}
 									{{--brati nanti ada tabel baru yg menghubungkan departemenn dengan kriteria penilaian--}}
 									{{--atau masuk di kriteria penilaian aja?--}}
 									<label class="m-checkbox m-checkbox--solid m-checkbox--state-success">
-										<input type="checkbox">Desain Poster
+										<input type="checkbox">
 										<span></span>
 									</label>
 								</div>
 							</td>
 							<td>
-								<label class="m-checkbox m-checkbox--solid m-checkbox--success">
-									<input type="checkbox">Desain Poster
-									<span></span>
-								</label>
-								<label class="m-checkbox m-checkbox--solid m-checkbox--success">
-									<input type="checkbox">Public Speaking
-									<span></span>
-								</label>
-								<label class="m-checkbox m-checkbox--solid m-checkbox--success">
-									<input type="checkbox">Public Speaking
-									<span></span>
-								</label>
+								<div class="m-checkbox-list">
+									<label class="m-checkbox m-checkbox--solid m-checkbox--success">
+										<input type="checkbox">
+										<span></span>
+									</label>
+								</div>
 							</td>
 
 						</tr>
@@ -154,13 +159,25 @@
 								Theolina
 							</td>
 							<td>
-								<input class="form-control m-input" type="text" value="50" >
+								<div class="progress">
+									<div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+								</div>
 							</td>
 							<td>
-								<input class="form-control m-input" type="text" value="70" >
+								<div class="m-checkbox-list">
+									<label class="m-checkbox m-checkbox--solid m-checkbox--success">
+										<input type="checkbox">
+										<span></span>
+									</label>
+								</div>
 							</td>
 							<td>
-								<input class="form-control m-input" type="text" value="90">
+								<div class="m-checkbox-list">
+									<label class="m-checkbox m-checkbox--solid m-checkbox--success">
+										<input type="checkbox">
+										<span></span>
+									</label>
+								</div>
 							</td>
 							<!-- <td>
 								<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-primary m-btn--gradient-to-primary"><i class="m-menu__link-icon flaticon-eye"></i></button>
@@ -183,5 +200,10 @@
 @section('js')
 
 <script src="{{ url('assets/demo/default/custom/components/datatables/base/html-table.js')}}" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready( function () {
+            $('.myTableDataTable').DataTable();
+        } );
+    </script>
 
 @endsection

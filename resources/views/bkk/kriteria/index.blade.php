@@ -98,20 +98,23 @@
 						</tr>
 					</thead>
 					<tbody>
+                    <?php $i = 1; ?>
 					@foreach($kriteria as $key)
 						<tr>
-							<td>{{ $key->id }}</td>
+							<td><?php echo $i ?></td>
 							<td>{{ $key->nama_kriteria }}</td>
 							<td>{{ $key->bobot }}</td>
 							<td>
 								{{--<a href="#"  data-toggle="modal" data-target="#m-tambah-periode" class="btn btn-outline-success m-btn m-btn--icon m-btn--icon-only" ><i class="m-menu__link-icon flaticon-plus"></i></a>--}}
 								<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-warning m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-edit-1"></i></button> -->
-								<a href="#" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-edit-1"></i></a>
+								{{--<a href="#" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-edit-1"></i></a>--}}
+									<button onclick="edit({{ $i }})" data-nama_kriteria="{{ $key->nama_kriteria }}" data-bobot="{{ $key->bobot }}" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only" ><i class="m-menu__link-icon flaticon-edit-1"></i></button>
 								<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-danger m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-delete-1"></i></button> -->
 								{{--<a href="#" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>--}}
 								<a href="{{url('admin/kriteria/destroy')}}/{{ $key->id}}" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>
 							</td>
 						</tr>
+						<?php $i++ ?>
 					@endforeach
 					</tbody>
 				</table>
@@ -139,11 +142,11 @@
 				{!! Form::open(array('route' => 'kriteria.store', 'enctype' => 'multipart/form-data')) !!}
 				<div class="form-group m-form__group">
 					<label for="">Kriteria Penilaian</label>
-					<input type="text" name="tahun" class="form-control m-input m-input--air" id="" aria-describedby="emailHelp" placeholder="Tugas">
+					<input type="text" name="nama_kriteria" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Tugas">
 				</div>
 				<div class="form-group m-form__group">
 					<label for="">Bobot</label>
-					<input type="text" name="periode" class="form-control m-input m-input--air" id="" aria-describedby="emailHelp" placeholder="0.5">
+					<input type="text" name="bobot" class="form-control m-input m-input--air"  aria-describedby="emailHelp" placeholder="0.5">
 				</div>
 				<div class="modal-footer">
 					<button type="reset" class="btn btn-danger" data-dismiss="modal">Batal</button>
@@ -155,7 +158,39 @@
 	</div>
 </div>
 
-
+<div class="modal fade" id="m-edit-kriteria" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	 aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<form method="POST" id="edit_form" action="" accept-charset="UTF-8" enctype="multipart/form-data">
+			<input name="_method" type="hidden" value="PUT">
+			@csrf
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">
+						Edit Data Kriteria
+					</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="form-group m-form__group">
+						<label for="">Nama Kriteria</label>
+						<input type="text" id="nama_kriteria" name="nama_kriteria" class="form-control m-input m-input--air">
+					</div>
+					<div class="form-group m-form__group">
+						<label for="">Bobot</label>
+						<input type="text" id="bobot" name="bobot" class="form-control m-input m-input--air">
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary">Simpan</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
 
 @endsection
 
@@ -163,4 +198,22 @@
 
 <script src="{{ url('assets/demo/default/custom/components/datatables/base/html-table.js')}}" type="text/javascript"></script>
 
+<script type="text/javascript">
+    function edit(id) {
+        var datadata = {!! json_encode($kriteria) !!};
+        id = id-1;
+
+        console.log(datadata[id]);
+        var idObject = datadata[id].id;
+        var nama_kriteria = datadata[id].nama_kriteria;
+        var bobot = datadata[id].bobot;
+
+        $('#nama_kriteria').val(nama_kriteria);
+        $('#bobot').val(bobot);
+        var url = "http://spkmagang.test:9000/admin/kriteria/" + (idObject);
+        document.getElementById("edit_form").action = url;
+
+        $('#m-edit-kriteria').modal('show');
+    }
+</script>
 @endsection

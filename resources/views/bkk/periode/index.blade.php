@@ -47,14 +47,14 @@
 									{{--<button class="btn m-btn--square  btn-outline-primary">Tambah</button>--}}
 								</div>
 								<div class="col-md-3">
-									<div class="m-input-icon m-input-icon--left">
-										<input type="text" class="form-control m-input" placeholder="Search..." id="generalSearch">
-										<span class="m-input-icon__icon m-input-icon__icon--left">
-											<span>
-												<i class="la la-search"></i>
-											</span>
-										</span>
-									</div>
+									{{--<div class="m-input-icon m-input-icon--left">--}}
+										{{--<input type="text" class="form-control m-input" placeholder="Search..." id="generalSearch">--}}
+										{{--<span class="m-input-icon__icon m-input-icon__icon--left">--}}
+											{{--<span>--}}
+												{{--<i class="la la-search"></i>--}}
+											{{--</span>--}}
+										{{--</span>--}}
+									{{--</div>--}}
 								</div>
 							</div>
 						</div>
@@ -62,36 +62,30 @@
 				</div>
 				<!--end: Search Form -->
 				<!--begin: Datatable -->
-				<table class="m-datatable" id="html_table" width="100%">
+				<table class="myTableDataTable table table-striped table-bordered" id="html_table" width="100%">
 					<thead>
 						<tr>
 							<th>No</th>
 							<th>Tahun Periode</th>
 							<th>Periode Tahun Hijriah</th>
-							<th>
-								Status
-							</th>
-							<th>
-								Aksi
-							</th>
+							<th>Status</th>
+							<th>Aksi</th>
 						</tr>
 					</thead>
 					<tbody>
+                    <?php $i = 1; ?>
 					@foreach($periode as $key)
 						<tr>
-							<td>{{ $key->id }}</td>
+							<td><?php echo $i; ?></td>
 							<td>{{ $key->tahun }}</td>
 							<td>{{ $key->periode }}</td>
 							<td>{{ $key->status }}</td>
 							<td>
-
-								<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-warning m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-edit-1"></i></button> -->
-								<a href="#" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-edit-1"></i></a>
-								<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-danger m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-delete-1"></i></button> -->
-								<a href="#" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>
-									
+                                <button onclick="edit({{ $i }})" data-tahun="{{ $key->tahun }}" data-periode="{{ $key->periode }}" data-status="{{ $key->status }}" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only" ><i class="m-menu__link-icon flaticon-edit-1"></i></button>
+                                <a href="{{url('/admin/periode/destroy')}}/{{ $key->id}}" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>
 							</td>
 						</tr>
+                        <?php $i++; ?>
 					@endforeach
 					</tbody>
 				</table>
@@ -115,10 +109,11 @@
 					</span>
 				</button>
 			</div>
+			{!! Form::open(array('route' => 'periode.store', 'enctype' => 'multipart/form-data')) !!}
 			<div class="modal-body">
 				<div class="form-group m-form__group">
 					<label for="">Tahun</label>
-					<input type="text" name="tahun" class="form-control m-input m-input--air" id="" aria-describedby="emailHelp" placeholder="2017">
+					<input type="year" name="tahun" class="form-control m-input m-input--air" id="" aria-describedby="emailHelp" placeholder="2017">
 				</div>
 				<div class="form-group m-form__group">
 					<label for="">Periode</label>
@@ -132,17 +127,66 @@
 							<span></span>
 						</label>
 						<label class="m-radio">
-							<input type="radio" name="status" value="2">Tidak Aktif
+							<input type="radio" name="status" value="0">Tidak Aktif
 							<span></span>
 						</label>
 					</div>
-			</div>
+			    </div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
-				<button type="button" class="btn btn-primary">Simpan</button>
+				<button type="submit" class="btn btn-primary">Simpan</button>
 			</div>
+				{!! Form::close() !!}
+
 		</div>
 	</div>
+</div>
+
+<div class="modal fade" id="m-edit-periode" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form method="POST" id="edit_form" action="" accept-charset="UTF-8" enctype="multipart/form-data">
+            <input name="_method" type="hidden" value="PUT">
+            @csrf
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        Edit Data Periode
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group m-form__group">
+                        <label for="">Tahun</label>
+                        <input type="year" id="tahun" name="tahun" class="form-control m-input m-input--air">
+                    </div>
+                    <div class="form-group m-form__group">
+                        <label for="">Periode</label>
+                        <input type="text" id="periode" name="periode" class="form-control m-input m-input--air">
+                    </div>
+                    <div class="m-form__group form-group">
+                        <label for="">Status</label>
+                        <div class="m-radio-inline">
+                            <label class="m-radio">
+                                <input type="radio" name="status" id="status" value="1">Aktif
+                                <span></span>
+                            </label>
+                            <label class="m-radio">
+                                <input type="radio" name="status" id="status" value="0">Tidak Aktif
+                                <span></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
 
 
@@ -150,7 +194,40 @@
 
 @section('js')
 
-<script src="{{ url('assets/demo/default/custom/components/datatables/base/html-table.js')}}" type="text/javascript"></script>
+{{--<script src="{{ url('assets/demo/default/custom/components/datatables/base/html-table.js')}}" type="text/javascript"></script>--}}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+
+<script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+{{--<script src="{{ url('assets/demo/default/custom/components/datatables/base/html-table.js')}}" type="text/javascript"></script>--}}
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('.myTableDataTable').DataTable();
+    });
+
+    function edit(id) {
+        var datadata = {!! json_encode($periode) !!};
+        id = id-1;
+
+        console.log(datadata[id]);
+        var idObject = datadata[id].id;
+        var tahun = datadata[id].tahun;
+        var periode = datadata[id].periode;
+        var status = datadata[id].status;
+
+        $('#tahun').val(tahun);
+        $('#periode').val(periode);
+        $('#status').val(status);
+
+        var url = "http://spkmagang.test:9000/admin/periode/" + (idObject);
+        document.getElementById("edit_form").action = url;
+        $('#m-edit-periode').modal('show');
+
+    }
+
+
+</script>
 
 
 @endsection

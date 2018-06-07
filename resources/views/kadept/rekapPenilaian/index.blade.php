@@ -41,34 +41,33 @@
 						<div class="col-xl-12 order-2 order-xl-1">
 							<div class="form-group m-form__group row align-items-center">
 								<div class="col-md-4">
-									<button class="btn m-btn--square  btn-outline-primary" data-toggle="modal" data-target="#m_tambah_kegiatan">Tambah</button>
+									{{--<button class="btn m-btn--square  btn-outline-primary" data-toggle="modal" data-target="#m_tambah_kegiatan"><i class="m-menu__link-icon flaticon-plus"></i> Tambah</button>--}}
 								</div>
 								<div class="col-md-5">
-									
 								</div>
-								<div class="col-md-3">
-									<div class="m-input-icon m-input-icon--left">
-										<input type="text" class="form-control m-input" placeholder="Search..." id="generalSearch">
-										<span class="m-input-icon__icon m-input-icon__icon--left">
-											<span>
-												<i class="la la-search"></i>
-											</span>
-										</span>
-									</div>
-								</div>
+								{{--<div class="col-md-3">--}}
+									{{--<div class="m-input-icon m-input-icon--left">--}}
+										{{--<input type="text" class="form-control m-input" placeholder="Search..." id="generalSearch">--}}
+										{{--<span class="m-input-icon__icon m-input-icon__icon--left">--}}
+											{{--<span>--}}
+												{{--<i class="la la-search"></i>--}}
+											{{--</span>--}}
+										{{--</span>--}}
+									{{--</div>--}}
+								{{--</div>--}}
 							</div>
 						</div>
 					</div>
 				</div>
 				<!--end: Search Form -->
 				<!--begin: Datatable -->
-				<table  class="m-datatable bordered-table" id="example" width="100%">
+				<table  class="bordered-table myTableDataTable table table-striped table-bordered" id="example" width="100%">
 					<thead>
 						<tr>
 							<th rowspan="2" width="10%">No</th>
 							<th rowspan="2">Nama Calon Anggota</th>
 							<th rowspan="2">Jenis Kelamin</th>
-							<th colspan="3">Nilai</th>
+							<th colspan="3"><center>Total Nilai</center></th>
 							<th rowspan="2">Hasil</th>
 							<th rowspan="2">Aksi</th>
 						</tr>
@@ -91,21 +90,29 @@
 								Perempuan
 							</td>
 							<td>
-								 40
+								<center>40</center>
 							</td>
 							<td>
-								20
+								<center>20</center>
 							</td>
 							<td>
-								10
+								<center>10</center>
 							</td>
 							<td>
-								45
+								<center>45</center>
 							</td>
 							<td>
-								<a href="#" class="btn btn-sm btn-outline-success m-btn m-btn--icon m-btn--icon-only"><i class="fa fa-check"></i></a>
-								<a href="#" class="btn btn-sm btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="fa fa-remove"></i></a>
-								
+								<a href="#" class="btn btn-sm btn-outline-success m-btn m-btn--icon m-btn--icon-only"><i class="flaticon-user-ok "></i></a>
+								{{--<a href="#" class="btn btn-sm btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="fa fa-remove"></i></a>--}}
+								<select class="custom-select form-control col-md-8">
+                                    {{--TODO: selected--}}
+									<option selected>
+										Pilih Departemen
+									</option>
+									@foreach($departemen as $key)
+										<option value="{{ $key->id }}">{{ $key->nama_departemen }}</option>
+									@endforeach
+								</select>
 								<!-- <a href="#" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a> -->
 									
 							</td>
@@ -225,36 +232,16 @@
 
 @section('js')
 
-<script src="{{ url('assets/demo/default/custom/components/datatables/base/html-table.js')}}" type="text/javascript"></script>
+{{--<script src="{{ url('assets/demo/default/custom/components/datatables/base/html-table.js')}}" type="text/javascript"></script>--}}
 
 
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+{{--<script src="{{ url('assets/demo/default/custom/components/datatables/base/html-table.js')}}" type="text/javascript"></script>--}}
 <script type="text/javascript">
-    $(document).ready(function() {
-        // jQuery update a column title from the demo table to contain a long description
-        // You would not need to do this in your own code.
-        $('#example thead tr:eq(0) th:eq(2)').html("Jenis Kelamin");
-
-        // Wrap the colspan'ing header cells with a span so they can be positioned
-        // absolutely - filling the available space, and no more.
-        $('#example thead th[colspan]').wrapInner( '<span/>' ).append( '&nbsp;' );
-
-        // Standard initialisation
-        $('#example').DataTable( {
-            responsive: true,
-            paging: tru
-        } );
+    $(document).ready( function () {
+        $('.myTableDataTable').DataTable();
     } );
-
 </script>
-<style type="text/css">
-	.bordered-table th{
-		border: 1px solid #95a5a6;
-	}
-	.bordered-table td{
-		border: 1px solid #95a5a6;
-	}
-	.bordered-table{
-		border: none;
-	}
-</style>
 @endsection

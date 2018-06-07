@@ -7,7 +7,7 @@
             <div class="d-flex align-items-center">
                 <div class="mr-auto">
                     <h3 class="m-subheader__title m-subheader__title--separator">
-                        Periode
+                        Data Calon
                     </h3>
                     <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
                         <li class="m-nav__item m-nav__item--home">
@@ -18,123 +18,116 @@
                         <li class="m-nav__separator">
                             -
                         </li>
+                        <li class="m-nav__item">
+                            <a href="" class="m-nav__link">
+							<span class="m-nav__link-text">
+								Data Calon
+							</span>
+                            </a>
+                        </li>
+                        <li class="m-nav__separator">
+
+                        </li>
+                        <li class="m-nav__item">
+                            <a href="" class="m-nav__link">
+							<span class="m-nav__link-text">
+
+							</span>
+                            </a>
+                        </li>
+                        <li class="m-nav__separator">
+
+                        </li>
+                        <li class="m-nav__item">
+                            <a href="" class="m-nav__link">
+							<span class="m-nav__link-text">
+
+							</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
         <!-- END: Subheader -->
         <div class="m-content">
+            <div class="m-portlet m-portlet--tab">
+            </div>
             <div class="m-portlet m-portlet--mobile">
                 <div class="m-portlet__head">
                     <div class="m-portlet__head-caption">
                         <div class="m-portlet__head-title">
                             <h3 class="m-portlet__head-text">
-                                Periode
+                                Data Calon
                             </h3>
                         </div>
                     </div>
                 </div>
                 <div class="m-portlet__body">
+
                     <!--begin: Search Form -->
-                    <div class="m-form m-form--label-align-right m--margin-top-20 m--margin-bottom-30">
-                        <div class="row align-items-center">
-                            <div class="col-xl-12 order-2 order-xl-1">
-                                <div class="form-group m-form__group row align-items-center">
-                                    <div class="col-md-4">
-                                    </div>
-                                    <div class="col-md-5">
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="m-input-icon m-input-icon--left">
-                                            <input type="text" class="form-control m-input" placeholder="Search..." id="generalSearch">
-                                            <span class="m-input-icon__icon m-input-icon__icon--left">
-											<span>
-												<i class="la la-search"></i>
-											</span>
-										</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                     <!--end: Search Form -->
                     <!--begin: Datatable -->
-                    {{--<table class="m-datatable" id="html_table" width="100%">--}}
-                        {{--<thead>--}}
-                        {{--<tr>--}}
-                            {{--<th title="Field #1" width="10%">--}}
-                                {{--No--}}
-                            {{--</th>--}}
-                            {{--<th title="Field #2">--}}
-                                {{--Tahun Periode--}}
-                            {{--</th>--}}
-                            {{--<th title="Field #3">--}}
-                                {{--Periode Tahun Hijriah--}}
-                            {{--</th>--}}
-                            {{--<th title="Field #4">--}}
-                                {{--Status--}}
-                            {{--</th>--}}
-                            {{--<th title="Field #6">--}}
-                                {{--Aksi--}}
-                            {{--</th>--}}
-                        {{--</tr>--}}
-                        {{--</thead>--}}
-                        {{--<tbody>--}}
-                        {{--<tr>--}}
-                            {{--<td width="10%">--}}
-                                {{--1--}}
-                            {{--</td>--}}
-                            {{--<td>--}}
-                                {{--2018--}}
-                            {{--</td>--}}
-                            {{--<td>--}}
-                                {{--1439 H--}}
-                            {{--</td>--}}
-                            {{--<td>--}}
-                                {{--Aktif--}}
-                            {{--</td>--}}
-                            {{--<td>--}}
-                                {{--<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-primary m-btn--gradient-to-primary"><i class="m-menu__link-icon flaticon-eye"></i></button> -->--}}
-                                {{--<a href="#" class="btn btn-outline-primary m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-eye"></i></a>--}}
-                                {{--<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-warning m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-edit-1"></i></button> -->--}}
-                                {{--<a href="#" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-edit-1"></i></a>--}}
-                                {{--<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-danger m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-delete-1"></i></button> -->--}}
-                                {{--<a href="#" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>--}}
+                    <table id="data-calon" class="dt-responsive nowrap table table-striped" style="width:100%">
+                        <thead>
+                        <tr>
+                            <th rowspan="2">No</th>
+                            <th rowspan="2">Nama</th>
+                            <th rowspan="2">Jenis Kelamin</th>
+                            <th rowspan="2">Pilihan 1</th>
+                            <th colspan="3"><center>Nilai 1</center></th>
+                            <th rowspan="2">Pilihan 2</th>
+                            <th colspan="3"><center>Nilai 2</center></th>
+                            <th rowspan="2">Rekomendasi</th>
+                            <th rowspan="2">Aksi</th>
+                            <th rowspan="2">Dept Fix</th>
+                        </tr>
+                        <tr>
+                            <th width="10px">Nilai</th>
+                            <th width="10px">Tugas</th>
+                            <th width="10px">Skill</th>
+                            <th width="10px">Nilai</th>
+                            <th width="10px">Tugas</th>
+                            <th width="10px">Skill</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{--@foreach ($calonAnggota as $key)--}}
+                            <tr>
+                                <td>1</td>
+                                <td>Ria</td>
+                                <td>Perempuan</td>
+                                <td>MC</td>
+                                <td>10</td>
+                                <td>20</td>
+                                <td>30</td>
+                                <td>Infokes</td>
+                                <td>10</td>
+                                <td>20</td>
+                                <td>30</td>
+                                <td>Infokes</td>
+                                <td>
+                                    <a href="#" class="btn btn-outline-success m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-check"></i></a>
+                                    {{--<a href="#" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only"><i class="fa fa-rotate-right"></i></a>--}}
 
-                            {{--</td>--}}
-                        {{--</tr>--}}
-                        {{--<tr>--}}
-                            {{--<td width="10%">--}}
-                                {{--2--}}
-                            {{--</td>--}}
-                            {{--<td>--}}
-                                {{--2017--}}
-                            {{--</td>--}}
-                            {{--<td>--}}
-                                {{--1438 H--}}
-                            {{--</td>--}}
-                            {{--<td>--}}
-                                {{--Tidak Aktif--}}
-                            {{--</td>--}}
-                            {{--<td>--}}
-                                {{--<div class="m-demo" data-code-preview="true" data-code-html="true" data-code-js="false">--}}
+                                </td>
+                                <td>
+                                    <select class="custom-select form-control col-md-8">
+                                        {{--TODO: selected--}}
+                                        <option selected>
+                                            Pilih Departemen
+                                        </option>
+                                        @foreach($departemen as $key)
+                                            <option value="{{ $key->id }}">{{ $key->nama_departemen }}</option>
+                                        @endforeach
+                                    </select>
+                                </td>
+                            </tr>
 
-                                    {{--<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-primary m-btn--gradient-to-primary"><i class="m-menu__link-icon flaticon-eye"></i></button> -->--}}
-                                    {{--<a href="#" class="btn btn-outline-primary m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-eye"></i></a>--}}
-                                    {{--<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-warning m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-edit-1"></i></button> -->--}}
-                                    {{--<a href="#" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-edit-1"></i></a>--}}
-                                    {{--<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-danger m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-delete-1"></i></button> -->--}}
-                                    {{--<a href="#" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>--}}
-
-                                {{--</div>--}}
-                            {{--</td>--}}
-                        {{--</tr>--}}
-                        {{--</tbody>--}}
-                    {{--</table>--}}
-
-                    <div class="m_datatable" id="ajax_data"></div>
-
+                        {{--@endforeach--}}
+                        </tbody>
+                    </table>
                     <!--end: Datatable -->
                 </div>
             </div>
@@ -146,7 +139,30 @@
 @section('js')
 
     {{--<script src="{{ url('assets/demo/default/custom/components/datatables/base/html-table.js')}}" type="text/javascript"></script>--}}
-    <script src="{{ url('assets/demo/default/custom/components/datatables/base/data-ajax.js" type="text/javascript') }}"></script>
+    {{--<link rel="stylesheet" type="text/css" href="/css/jquery.dataTables.css">--}}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedcolumns/3.2.4/css/fixedColumns.dataTables.min.css">
+    {{--<link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css" type="text/css">--}}
+    {{--<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>--}}
+    <script src="https://cdn.datatables.net/fixedcolumns/3.2.4/js/dataTables.fixedColumns.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready( function () {
+            $('.myTableDataTable').DataTable();
+        } );
+        $(document).ready(function() {
+            var table = $('#data-calon').DataTable( {
+                paging:         true,
+                scrollY:        "300px",
+                scrollX:        true,
+                scrollCollapse: true,
+                fixedColumns:   {
+                    leftColumns: 2,
+                    rightColumns: 2,
+                }
+            } );
+        } );
+    </script>
+    <style type="text/css">
 
+    </style>
 
 @endsection

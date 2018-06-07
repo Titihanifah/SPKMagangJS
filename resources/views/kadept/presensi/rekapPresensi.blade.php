@@ -60,12 +60,13 @@
 							Keterangan Daftar Kegiatan
 							<hr>
 						</h3>
-						@foreach($kegiatan as $key)
+                        <?php $i=1; ?>
+						@foreach($userKegiatan->departemen->kegiatans as $key)
 
 						<div class="m-list-badge">
 							<div class="m-list-badge__items">
 								<div href="#" class="m-list-badge__item">
-									{{ $key->id }}
+									<?php echo $i ?>
 								</div>
 							</div>
 							<div class="m-list-badge__label m--font-primary">
@@ -79,8 +80,8 @@
 								{{--</div>--}}
 							{{--</div>--}}
 						</div>
-
-							@endforeach
+                            <?php $i++ ?>
+                        @endforeach
 
 					</div>
 				</div>
@@ -136,127 +137,8 @@
 					</div>
 				</div>
 				<!--end: Search Form -->
-			<!--begin: Datatable -->
-				{{--<table class="m-datatable bordered-table" id="html_table" width="100%">--}}
-					{{--<thead>--}}
-						{{--<tr>--}}
-							{{--<th title="Field #1" style=" width: 5px;">--}}
-								{{--No--}}
-							{{--</th>--}}
-							{{--<th title="Field #2">--}}
-								{{--Nama Calon--}}
-							{{--</th>--}}
-							{{--<th>--}}
-								{{--Jenis Kelamin--}}
-							{{--</th>--}}
-							{{--<th>--}}
-								{{--Total Kehadiran--}}
-							{{--</th>--}}
-							{{--<th title="Field #4">--}}
-								{{--1--}}
-							{{--</th>--}}
-							{{--<th title="Field #4">--}}
-								{{--2--}}
-							{{--</th>--}}
-							{{--<th title="Field #4">--}}
-								{{--3--}}
-							{{--</th>--}}
-							{{--<th title="Field #4">--}}
-								{{--4--}}
-							{{--</th>--}}
-							{{--<th title="Field #4">--}}
-								{{--5--}}
-							{{--</th>--}}
-							{{----}}
 
-							{{--<!-- <th title="Field #5">--}}
-								{{--Tugas 3--}}
-							{{--</th> -->--}}
-							{{--<!-- <th title="Field #6">--}}
-								{{--Aksi--}}
-							{{--</th> -->--}}
-						{{--</tr>--}}
-					{{--</thead>--}}
-					{{--<tbody>--}}
-						{{--<tr>--}}
-							{{--<td>--}}
-								{{--1--}}
-							{{--</td>--}}
-							{{--<td>--}}
-								{{--Dinda--}}
-							{{--</td>--}}
-							{{--<td>--}}
-								{{--Perempuan--}}
-							{{--</td>--}}
-							{{--<td>--}}
-								{{--<div class="progress">--}}
-									{{--<div class="progress-bar bg-success" role="progressbar" style="width: 80%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>--}}
-								{{--</div>--}}
-							{{--</td>--}}
-							{{--<td>--}}
-								{{--<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-success m-btn--gradient-to-success"><i class="fa fa-check"></i></button> -->--}}
-								{{--<a href="#" class="btn btn-sm btn-outline-success m-btn m-btn--icon m-btn--icon-only"><i class="fa fa-check"></i></a>--}}
-							{{--</td>--}}
-							{{--<td>--}}
-								{{----}}
-								{{--<button class="btn btn-danger btn-sm m-btn m-btn--icon m-btn--icon-only"><i class="fa fa-remove"></i></button>--}}
-
-							{{--</td>--}}
-							{{--<td>--}}
-								{{--<button class="btn btn-sm btn-outline-success m-btn m-btn--icon m-btn--icon-only"><i class="fa fa-check"></i></button>--}}
-								{{----}}
-							{{--</td>--}}
-							{{--<td>--}}
-								{{--<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-success m-btn--gradient-to-success"><i class="fa fa-check"></i></button>--}}
-								{{--<a href="#" class="btn btn-sm btn-outline-success m-btn m-btn--icon m-btn--icon-only"><i class="fa fa-check"></i></a>--}}
-							{{--</td>--}}
-							{{--<td>--}}
-								{{--<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-success m-btn--gradient-to-success"><i class="fa fa-check"></i></button>--}}
-								{{--<a href="#" class="btn btn-sm btn-outline-success m-btn m-btn--icon m-btn--icon-only"><i class="fa fa-check"></i></a>--}}
-								{{----}}
-							{{--</td>--}}
-							{{----}}
-						{{--</tr>--}}
-						{{--<tr>--}}
-							{{--<td>--}}
-								{{--2--}}
-							{{--</td>--}}
-							{{--<td>--}}
-								{{--Theolina--}}
-							{{--</td>--}}
-							{{--<td>--}}
-								{{--Perempuan--}}
-							{{--</td>--}}
-							{{--<td>--}}
-								{{--<div class="progress">--}}
-									{{--<div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>--}}
-								{{--</div>	--}}
-							{{--</td>--}}
-							{{--<td>--}}
-								{{--<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-success m-btn--gradient-to-success"><i class="fa fa-check"></i></button>--}}
-								{{--<a href="#" class="btn btn-sm btn-outline-success m-btn m-btn--icon m-btn--icon-only"><i class="fa fa-check"></i></a>--}}
-							{{--</td>--}}
-							{{--<td>--}}
-								{{----}}
-							{{--</td>--}}
-							{{--<td>--}}
-								{{----}}
-							{{--</td>--}}
-							{{--<td>--}}
-								{{----}}
-							{{--</td>--}}
-							{{--<td>--}}
-								{{----}}
-							{{--</td>--}}
-							{{----}}
-						{{--</tr>--}}
-																{{----}}
-					{{--</tbody>--}}
-				{{--</table>--}}
-				<!--end: Datatable -->
-
-				<!--begin: Datatable -->
-				<table class="m-datatable bordered-table" id="html_table" width="100%">
+				<table class="myTableDataTable bordered-table" id="html_table" width="100%">
 					<thead>
 
 					<tr>
@@ -264,10 +146,12 @@
 						<th title="Field #2">Nama Calon</th>
 						<th>Jenis Kelamin</th>
 						<th>Total</th>
-						@foreach($kegiatan as $key)
+                        <?php $i=1; ?>
+						@foreach($userKegiatan->departemen->kegiatans as $key)
 							<th title="Field #4">
-								 {{ $key->id }}
+								 <?php echo $i ?>
 							</th>
+                            <?php $i++; ?>
 						@endforeach
 
 					</tr>
@@ -286,7 +170,8 @@
 								</div>
 								<div class="m--space-10"></div>
 							</td>
-							@foreach($kegiatan as $key)
+							@foreach($userKegiatan->departemen->kegiatans as $key)
+
 								<td>
 									<a href="#" class="btn btn-sm btn-outline-success m-btn m-btn--icon m-btn--icon-only"><i class="fa fa-check"></i></a>
 								</td>
@@ -329,5 +214,16 @@
 @section('js')
 
 <script src="{{ url('assets/demo/default/custom/components/datatables/base/html-table.js')}}" type="text/javascript"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.js" charset="utf8" type="text/javascript"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js" charset="utf8" type="text/javascript"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js" charset="utf8" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
 
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+{{--<script src="{{ url('assets/demo/default/custom/components/datatables/base/html-table.js')}}" type="text/javascript"></script>--}}
+<script type="text/javascript">
+    $(document).ready( function () {
+        $('.myTableDataTable').DataTable();
+    } );
+</script>
 @endsection

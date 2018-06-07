@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!--begin::Web font -->
 {{--<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>--}}
+<script src="js/webfont.js"></script>
 {{--<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js" type="text/javascript"></script>--}}
 
 <script>
@@ -25,7 +26,17 @@
 <link href="{{ url('assets/vendors/base/vendors.bundle.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ url('assets/demo/default/base/style.bundle.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ url('css/custom.css') }}" rel="stylesheet" type="text/css" />
+<Link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css" type="text/css">
+<link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" type="text/css">
+<link rel="stylesheet" type="text/css" href="/css/jquery.dataTables.css">
+{{--<link href="/css/jquery.dataTables.css" type="text/css">--}}
+
+
+
 
 {{--<link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" type="text/css">--}}
 <!--end::Base Styles -->
 <link rel="shortcut icon" href="{{ url('assets/demo/default/media/img/logo/logo_title.ico') }}" />
+<script src="https://code.jquery.com/jquery-3.3.1.js" charset="utf8" type="text/javascript"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js" charset="utf8" type="text/javascript"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js" charset="utf8" type="text/javascript"></script>
