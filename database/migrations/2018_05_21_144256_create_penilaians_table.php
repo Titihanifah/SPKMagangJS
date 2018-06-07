@@ -15,10 +15,14 @@ class CreatePenilaiansTable extends Migration
     {
         Schema::create('penilaians', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('total_nilai');
+            $table->integer('nilai');
             $table->integer('id_detail_calon_anggota')->unsigned();
+            $table->integer('id_kriteria')->unsigned();
             $table->foreign('id_detail_calon_anggota')
                 ->references('id')->on('detail_calon_anggotas')
+                ->onDelete('cascade');
+            $table->foreign('id_kriteria')
+                ->references('id')->on('kriterias')
                 ->onDelete('cascade');
             $table->timestamps();
         });

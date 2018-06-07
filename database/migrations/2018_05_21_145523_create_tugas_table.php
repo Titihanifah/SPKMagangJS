@@ -16,8 +16,8 @@ class CreateTugasTable extends Migration
         Schema::create('tugas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nama_tugas');
-            $table->string('deskripsi');
-            $table->dateTime('deadline');
+            $table->string('deskripsi')->nullable();
+            $table->date('deadline');
             $table->integer('id_departemen')->unsigned();
             $table->foreign('id_departemen')
                 ->references('id')->on('departemens')
