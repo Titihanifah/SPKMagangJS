@@ -20,4 +20,13 @@ class Periode extends Model
         return $this->hasMany('App\Kegiatan','id_periode');
     }
 
+    public function getStatusAttribute($value)
+    {
+        if($value == 1) {
+            return "Aktif";
+        } else {
+            return "Tidak Aktif";
+        }
+    }
+
 }

@@ -13,7 +13,7 @@ class Departemen extends Model
     }
     public function tugas()
     {
-        return $this->hasMany('App\Tugas');
+        return $this->hasMany('App\Tugas','id_departemen');
     }
     public function detailCalonAggota()
     {

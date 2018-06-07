@@ -27,4 +27,12 @@ class CalonAnggota extends Model
     {
         return $this->hasMany('App\DetailCalonAnggota');
     }
+    public function getJenisKelaminAttribute($value)
+    {
+        if($value == 0) {
+            return "Laki-laki";
+        } else {
+            return "Perempuan";
+        }
+    }
 }
