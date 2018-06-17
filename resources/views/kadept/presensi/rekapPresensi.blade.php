@@ -112,14 +112,14 @@
 								<div class="col-md-5">									
 								</div>
 								<div class="col-md-3">
-									<div class="m-input-icon m-input-icon--left">
-										<input type="text" class="form-control m-input" placeholder="Search..." id="generalSearch">
-										<span class="m-input-icon__icon m-input-icon__icon--left">
-											<span>
-												<i class="la la-search"></i>
-											</span>
-										</span>
-									</div>
+									{{--<div class="m-input-icon m-input-icon--left">--}}
+										{{--<input type="text" class="form-control m-input" placeholder="Search..." id="generalSearch">--}}
+										{{--<span class="m-input-icon__icon m-input-icon__icon--left">--}}
+											{{--<span>--}}
+												{{--<i class="la la-search"></i>--}}
+											{{--</span>--}}
+										{{--</span>--}}
+									{{--</div>--}}
 								</div>
 							</div>
 						</div>
@@ -173,9 +173,11 @@
 							@foreach($userKegiatan->departemen->kegiatans as $key)
 
 								<td>
-									<a href="#" class="btn btn-sm btn-outline-success m-btn m-btn--icon m-btn--icon-only"><i class="fa fa-check"></i></a>
+									<button href="#" class="btn btn-warning m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--air" id="hadir"><i class="fa fa-check"></i></button>
+                                    <button href="#" class="btn btn-sm btn-outline-danger m-btn m-btn--icon m-btn--icon-only" id="tidakhadir"><i class="fa fa-remove"></i></button>
 								</td>
 							@endforeach
+
 							{{--<td>--}}
 							{{--<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-success m-btn--gradient-to-success"><i class="fa fa-check"></i></button>--}}
 							{{--<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-danger m-btn--gradient-to-danger"><i class="fa fa-remove"></i></button>--}}
@@ -224,6 +226,20 @@
 <script type="text/javascript">
     $(document).ready( function () {
         $('.myTableDataTable').DataTable();
+
+        $("#hadir").click(function () {
+            $("#hadir").show();
+            $("#tidakhadir").hide();
+        });
+        $("#tidakhadir").click(function () {
+            $("#hadir").show();
+            $("#tidakhadir").hide();
+        });
     } );
 </script>
+<style type="text/css">
+    #tidakhadir {
+        display: none;
+    }
+</style>
 @endsection

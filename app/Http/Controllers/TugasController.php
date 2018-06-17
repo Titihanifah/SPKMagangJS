@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CalonAnggota;
+use App\DetailTugas;
 use App\Tugas;
 use App\Periode;
 use App\User;
@@ -40,7 +41,12 @@ class TugasController extends Controller
 
         $userTugas = User::where('id', Auth::user()->id)->with('departemens.tugas')->first();
         $calonAnggota = CalonAnggota::all();
-        return view('kadept.tugas.penilaianTugas', compact('userTugas','calonAnggota'));
+        $detailTugas = DetailTugas::all();
+        $tugas = Tugas::all();
+//        $detailTugas = DetailTugas::where('id_calon_anggota', $calonAnggota->id)->where('id_tugas', $tugas->id)->first();
+//        dd($detailTugas);
+//        dd ($detailTugas->where('id_calon_anggota', $value->id)->where('id_tugas', $key->id)->first()->nilai_tugas)
+        return view('kadept.tugas.penilaianTugas', compact('userTugas','calonAnggota','detailTugas'));
 
 
     }
@@ -96,8 +102,9 @@ class TugasController extends Controller
         $tugas->deadline = $request->deadline;
         $tugas->id_departemen = Auth::user()->id_departemen;
         //TODO : id periode sesuai yg aktif
-        $periode = Periode::where('status','=','aktif')->first();
-        $tugas->id_periode = $periode->id;
+//        $periode = Periode::where('status','=','aktif')->first();
+//        $tugas->id_periode = $periode->id;
+        $tugas->id_periode = 1;
 
         //save object to database
         $tugas->save();
@@ -147,6 +154,8 @@ class TugasController extends Controller
         Session::flash('message', 'Success add data employee!');
         return redirect('/tugas'); // Set redirect ketika berhasil
     }
+
+
 
     public function updatePenilaian(Request $request, $id)
     {

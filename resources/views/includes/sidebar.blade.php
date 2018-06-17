@@ -123,10 +123,10 @@
         @endif
 
         @if(Auth::user()->role == 1)
-        <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
+        <li class="m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
             <a  href="{{ url('/admin/datacalon')}}" class="m-menu__link m-menu__toggle">
-                <i class="m-menu__link-icon flaticon-users"></i>
-                <span class="m-menu__link-text">
+                <i class="m-menu__link-icon flaticon-users color-menu"></i>
+                <span class="m-menu__link-text color-menu">
                     Data Calon Admin
                 </span>
             </a>
@@ -134,68 +134,68 @@
         <li class="m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
             <a  href="{{ url('/admin/kegiatan')}}" class="m-menu__link m-menu__toggle">
                 <i class="m-menu__link-icon flaticon-users color-menu"></i>
-                <span class="m-menu__link-text color-menu color-menu">
-                Kegiatan
-            </span>
+                <span class="m-menu__link-text  color-menu">
+                    Kegiatan
+                </span>
             </a>
         </li>
-            <li class="m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
-                <a  href="{{ url('/admin/tugas')}}" class="m-menu__link m-menu__toggle">
-                    <i class="m-menu__link-icon flaticon-users color-menu"></i>
-                    <span class="m-menu__link-text color-menu color-menu">
-                Tugas
-            </span>
-                </a>
-            </li>
-        <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
+        <li class="m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
+            <a  href="{{ url('/admin/tugas')}}" class="m-menu__link m-menu__toggle">
+                <i class="m-menu__link-icon flaticon-users color-menu"></i>
+                <span class="m-menu__link-text color-menu">
+                    Tugas
+                </span>
+            </a>
+        </li>
+        <li class="m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
             <a  href="{{ url('/admin/kriteria')}}" class="m-menu__link m-menu__toggle">
-                <i class="m-menu__link-icon flaticon-confetti"></i>
-                <span class="m-menu__link-text">
+                <i class="m-menu__link-icon flaticon-confetti color-menu"></i>
+                <span class="m-menu__link-text color-menu ">
                     Kriteria Penilaian
                 </span>
             </a>
         </li>
-        <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
+        <li class="m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
             <a  href="{{ url('/admin/kemampuan')}}" class="m-menu__link m-menu__toggle">
-                <i class="m-menu__link-icon flaticon-confetti"></i>
-                <span class="m-menu__link-text">
+                <i class="m-menu__link-icon flaticon-confetti color-menu"></i>
+                <span class="m-menu__link-text color-menu">
                 Kemampuan Tambahan
             </span>
             </a>
         </li>
-        <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
+        <li class="m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
             <a  href="{{ url('/admin/departemen')}}" class="m-menu__link m-menu__toggle">
-                <i class="m-menu__link-icon flaticon-map "></i>
-                <span class="m-menu__link-text">
+                <i class="m-menu__link-icon flaticon-map color-menu"></i>
+                <span class="m-menu__link-text color-menu">
                     Departemen
                 </span>
             </a>
         </li>
-        <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
+        <li class="m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
             <a  href="{{ url('/admin/hasil')}}" class="m-menu__link m-menu__toggle">
-                <i class="m-menu__link-icon flaticon-map "></i>
-                <span class="m-menu__link-text">
+                <i class="m-menu__link-icon flaticon-map color-menu"></i>
+                <span class="m-menu__link-text color-menu">
                 Hasil Akhir
-            </span>
+                </span>
             </a>
         </li>
-        <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
+        <li class="m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
             <a  href="{{ url('/admin/akun')}}" class="m-menu__link m-menu__toggle">
-                <i class="m-menu__link-icon flaticon-user-settings "></i>
-                <span class="m-menu__link-text">
+                <i class="m-menu__link-icon flaticon-user-settings color-menu"></i>
+                <span class="m-menu__link-text color-menu">
                     Data Akun
                 </span>
             </a>
         </li>
-        <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
+        <li class="m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
             <a  href="{{ url('/admin/periode') }}" class="m-menu__link m-menu__toggle">
-                <i class="m-menu__link-icon flaticon-time-3 "></i>
-                <span class="m-menu__link-text">
+                <i class="m-menu__link-icon flaticon-time-3 color-menu"></i>
+                <span class="m-menu__link-text color-menu">
                     Periode
                 </span>
             </a>
         </li>
-        @endif
+
 
         <li class="m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
             <a  href="{{ url('/panduan')}}" class="m-menu__link m-menu__toggle ">
@@ -205,6 +205,7 @@
                 </span>
             </a>
         </li>
-        <!-- end -->
+    @endif
+            <!-- end -->
     </ul>
 </div>

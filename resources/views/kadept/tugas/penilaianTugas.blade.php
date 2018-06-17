@@ -63,7 +63,7 @@
 			</div>
 			<div class="m-portlet__body">
 				<!--begin: Search Form -->
-				{!! Form::open(array('route' => 'penilaianTugas', 'enctype' => 'multipart/form-data')) !!}
+				{{--{!! Form::open(array('route' => 'penilaianTugas', 'enctype' => 'multipart/form-data')) !!}--}}
 					<div class="m-form m-form--label-align-right m--margin-top-20 m--margin-bottom-30">
 						<div class="row align-items-center">
 							<div class="col-xl-12 order-2 order-xl-1">
@@ -110,7 +110,13 @@
 							{{--TODO: nilai akhir pakai perhitungan--}}
 							<td>Nilai Akhir (90) </td>
 							@foreach($userTugas->departemen->tugas as $key)
-							<td><input class="form-control m-input" name="nilai['{{$key->id}}'][{{ $value->id }}]" type="text" placeholder="nilai" ></td>
+
+                                @if($detailTugas->where('id_calon_anggota', $value->id)->where('id_tugas', $key->id)->first() === null){
+                                <td><input min="0"  max="100" id="[{{ json_encode($key) }},{{ json_encode($value) }}]" class="form-control m-input" onchange="penilaian(this)" type="number" placeholder="nilai" ></td>
+                                @else
+                                <td><input min="0"  max="100" id="[{{ json_encode($key) }},{{ json_encode($value) }}]" class="form-control m-input" onchange="penilaian(this)" type="number" value="{{ $detailTugas->where('id_calon_anggota', $value->id)->where('id_tugas', $key->id)->first()->nilai_tugas }}" ></td>
+
+                            @endif
 							{{--<td><input class="form-control m-input"  type="text" placeholder="nilai" ></td>--}}
 							@endforeach
 						</tr>
@@ -130,5 +136,34 @@
 @section('js')
 
 <script src="{{ url('assets/demo/default/custom/components/datatables/base/html-table.js')}}" type="text/javascript"></script>
+<script type="text/javascript">
+	function penilaian(theForm) {
+	    console.log();
+	    console.log(theForm.value);
+		var tugas = JSON.parse(theForm.id)[0];
+		var calon_anggota = JSON.parse(theForm.id)[1];
+        document.body.style.cursor='wait';
+
+        $.ajax({ // create an AJAX call...
+            data: {
+                id_calon_anggota: calon_anggota.id,
+                id_tugas: tugas.id,
+                nilai_tugas: theForm.value,
+			}, // get the form data
+            type: 'POST', // GET or POST
+            url: 'http://spkmagang.test:9000/api/penilaian/simpan', // the file to call
+            success: function (response) { // on success..
+                console.log(response); // update the DIV
+                window.onload = function(){document.body.style.cursor='default';}
+            }
+        });
+    }
+    $(document).ready( function () {
+        $("#nilai").change(function () {
+            var nilai = $('#nilai').val();
+            console.log("hai keubah");
+        });
+    });
+</script>
 
 @endsection

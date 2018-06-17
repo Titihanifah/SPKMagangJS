@@ -148,7 +148,7 @@
                     </div>
                     <div class="form-group m-form__group">
                         <label>Deadline</label>
-                        <input type="datetime" name="deadline" id="deadline" class="form-control m-input m-input--air">
+                        <input type="date" name="deadline" id="deadline" class="form-control m-input m-input--air">
                     </div>
                     {{--TODO : harusnya periode default--}}
                     {{--<div class="form-group m-form__group">--}}

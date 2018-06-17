@@ -79,6 +79,7 @@
 					</tr>
 					</thead>
 					<tbody>
+
 						<tr>
 							<td width="10%">
 								1
@@ -93,16 +94,16 @@
 								<center>40</center>
 							</td>
 							<td>
-								<center>20</center>
+								<center>60</center>
 							</td>
 							<td>
-								<center>10</center>
+								<center>70</center>
 							</td>
 							<td>
-								<center>45</center>
+								<center>55</center>
 							</td>
 							<td>
-								<a href="#" class="btn btn-sm btn-outline-success m-btn m-btn--icon m-btn--icon-only"><i class="flaticon-user-ok "></i></a>
+								<a href="#" class="btn btn-success"><i class="flaticon-user-ok "></i>Rekomendasi</a>
 								{{--<a href="#" class="btn btn-sm btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="fa fa-remove"></i></a>--}}
 								<select class="custom-select form-control col-md-8">
                                     {{--TODO: selected--}}
@@ -114,9 +115,47 @@
 									@endforeach
 								</select>
 								<!-- <a href="#" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a> -->
-									
+
 							</td>
 						</tr>
+                        <tr>
+                            <td width="10%">
+                                2
+                            </td>
+                            <td>
+                                Deni
+                            </td>
+                            <td>
+                                Laki-laki
+                            </td>
+                            <td>
+                                <center>50</center>
+                            </td>
+                            <td>
+                                <center>45</center>
+                            </td>
+                            <td>
+                                <center>30</center>
+                            </td>
+                            <td>
+                                <center>40</center>
+                            </td>
+                            <td>
+                                <a href="#" id="rekomendasi" class="btn btn-success"><i class="flaticon-user-ok "></i>Rekomendasi</a>
+                                {{--<a href="#" class="btn btn-sm btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="fa fa-remove"></i></a>--}}
+                                <select id="departemen" class="custom-select form-control col-md-8">
+                                    {{--TODO: selected--}}
+                                    <option selected>
+                                        Pilih Departemen
+                                    </option>
+                                    @foreach($departemen as $key)
+                                        <option value="{{ $key->id }}">{{ $key->nama_departemen }}</option>
+                                    @endforeach
+                                </select>
+                                <!-- <a href="#" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a> -->
+
+                            </td>
+                        </tr>
 
 					</tbody>
 				</table>
@@ -239,9 +278,24 @@
 
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
 {{--<script src="{{ url('assets/demo/default/custom/components/datatables/base/html-table.js')}}" type="text/javascript"></script>--}}
+
 <script type="text/javascript">
+
     $(document).ready( function () {
         $('.myTableDataTable').DataTable();
+
+        $("#rekomendasi").click(function () {
+            $("#departemen").show();
+            $("#rekomendasi").hide();
+        });
+
     } );
 </script>
+<style type="text/css">
+    #departemen {
+        display: none;
+    }
+</style>
+
 @endsection
+

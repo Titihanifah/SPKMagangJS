@@ -86,7 +86,7 @@
 								{{--<a href="#" class="btn btn-outline-primary m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-eye"></i></a>--}}
 								<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-warning m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-edit-1"></i></button> -->
 								{{--<a href="#" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only" data-toggle="modal" data-target="#m_edit_kegiatan"><i class="m-menu__link-icon flaticon-edit-1"></i></a>--}}
-								<button onclick="edit({{ $i }})" data-nama_kegiatan="{{ $value->nama_kegiatan }}" data-tanggal_kegiatan="{{ $value->tanggal_kegiatan }}" data-waktu="{{ $value->waktu }}" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only" ><i class="m-menu__link-icon flaticon-edit-1"></i></button>
+								<button onclick="edit({{ $i }})" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only" ><i class="m-menu__link-icon flaticon-edit-1"></i></button>
 								<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-danger m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-delete-1"></i></button> -->
 								<a href="{{url('/kegiatan/destroy')}}/{{ $value->id}}" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>
 									
@@ -177,7 +177,7 @@
 					</div>
 					<div class="form-group m-form__group">
 						<label for="">Waktu Kegiatan</label>
-						<input type="time" name="waktu" id="waktu" class="form-control m-input m-input--air">
+						<input type="text" name="waktu" id="waktu" class="form-control m-input m-input--air">
 					</div>
 				</div>
 				<div class="modal-footer">
