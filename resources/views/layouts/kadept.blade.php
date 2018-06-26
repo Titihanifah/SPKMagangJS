@@ -110,7 +110,7 @@ License: You must have a valid license purchased only from themeforest(the above
 																</li>
 																<li class="m-nav__item">
 																	<a href="header/profile.html" class="m-nav__link">
-																		<i class="m-nav__link-icon flaticon-profile-1"></i>
+																		<i class="m-nav__link-icon flaticon-settings-1"></i>
 																		<span class="m-nav__link-title">
 																			<span class="m-nav__link-wrap">
 																				<span class="m-nav__link-text">
@@ -124,7 +124,7 @@ License: You must have a valid license purchased only from themeforest(the above
 																	<a class="m-nav__link" href="{{ route('logout') }}"
 																	   onclick="event.preventDefault();
                                                      					document.getElementById('logout-form').submit();">
-																		<i class="m-nav__link-icon flaticon-share"></i>
+																		<i class="m-nav__link-icon flaticon-logout "></i>
 																		<span class="m-nav__link-text">
 																			{{ __('Logout') }}
 																		</span>

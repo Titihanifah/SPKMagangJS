@@ -1,6 +1,8 @@
 @extends('layouts.kadept')
 @section('content')
 
+<?php //dd($userKegiatan[0]->departemen->kegiatans); ?>
+
 <div class="m-grid__item m-grid__item--fluid m-wrapper">
 	<!-- BEGIN: Subheader -->
 	<div class="m-subheader ">
@@ -51,43 +53,43 @@
 	</div>
 	<!-- END: Subheader -->
 	<div class="m-content">
-		<div class="m-section">
-			<div class="m-section__content">
-				<!--begin::Preview-->
-				<div class="m-demo">
-					<div class="m-demo__preview" style="background: #c8d6e5;">
-						<h3 class="m-section__heading">
-							Keterangan Daftar Kegiatan
-							<hr>
-						</h3>
-                        <?php $i=1; ?>
-						@foreach($userKegiatan->departemen->kegiatans as $key)
+		{{--<div class="m-section">--}}
+			{{--<div class="m-section__content">--}}
+				{{--<!--begin::Preview-->--}}
+				{{--<div class="m-demo">--}}
+					{{--<div class="m-demo__preview" style="background: #c8d6e5;">--}}
+						{{--<h3 class="m-section__heading">--}}
+							{{--Keterangan Daftar Kegiatan--}}
+							{{--<hr>--}}
+						{{--</h3>--}}
+                        {{--<?php $i=0; ?>--}}
+						{{--@foreach($userKegiatan[$i]->departemen->kegiatans[$i]->presensi[$i] as $key)--}}
 
-						<div class="m-list-badge">
-							<div class="m-list-badge__items">
-								<div href="#" class="m-list-badge__item">
-									<?php echo $i ?>
-								</div>
-							</div>
-							<div class="m-list-badge__label m--font-primary">
-								<div class="col-md-12">
-									{{ $key->nama_kegiatan }}
-								</div>
-							</div>
+						{{--<div class="m-list-badge">--}}
+							{{--<div class="m-list-badge__items">--}}
+								{{--<div href="#" class="m-list-badge__item">--}}
+									{{--<?php echo $i ?>--}}
+								{{--</div>--}}
+							{{--</div>--}}
+							{{--<div class="m-list-badge__label m--font-primary">--}}
+								{{--<div class="col-md-12">--}}
+									{{--{{ $key->nama_kegiatan }}--}}
+								{{--</div>--}}
+							{{--</div>--}}
 							{{--<div class="col-md-12">--}}
 								{{--<div class="m-list-badge__label m--font-primary">--}}
 									{{--{{ $key->waktu }}--}}
 								{{--</div>--}}
 							{{--</div>--}}
-						</div>
-                            <?php $i++ ?>
-                        @endforeach
+						{{--</div>--}}
+                            {{--<?php $i++ ?>--}}
+                        {{--@endforeach--}}
 
-					</div>
-				</div>
-				<!--end::Preview-->
-			</div>
-		</div>
+					{{--</div>--}}
+				{{--</div>--}}
+				{{--<!--end::Preview-->--}}
+			{{--</div>--}}
+		{{--</div>--}}
 
 		<div class="m-portlet m-portlet--mobile">
 			<div class="m-portlet__head">
@@ -138,7 +140,7 @@
 				</div>
 				<!--end: Search Form -->
 
-				<table class="myTableDataTable bordered-table" id="html_table" width="100%">
+				<table id="presensi" class="dt-responsive nowrap table table-striped bordered-table" id="html_table" width="100%">
 					<thead>
 
 					<tr>
@@ -147,10 +149,9 @@
 						<th>Jenis Kelamin</th>
 						<th>Total</th>
                         <?php $i=1; ?>
-						@foreach($userKegiatan->departemen->kegiatans as $key)
-							<th title="Field #4">
-								 <?php echo $i ?>
-							</th>
+						@foreach($userKegiatan[0]->departemen->kegiatans as $key)
+                            <th>{{  $key->nama_kegiatan }}</th>
+
                             <?php $i++; ?>
 						@endforeach
 
@@ -170,34 +171,37 @@
 								</div>
 								<div class="m--space-10"></div>
 							</td>
-							@foreach($userKegiatan->departemen->kegiatans as $key)
 
-								<td>
-									<button href="#" class="btn btn-warning m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--air" id="hadir"><i class="fa fa-check"></i></button>
-                                    <button href="#" class="btn btn-sm btn-outline-danger m-btn m-btn--icon m-btn--icon-only" id="tidakhadir"><i class="fa fa-remove"></i></button>
-								</td>
-							@endforeach
+                            <?php $j = 0; ?>
+                            <?php $datas = $userKegiatan[0]->departemen->kegiatans[0]->presensi; ?>
+                        {{--@for( //$k=0; $k<count($datas); $k++)--}}
+                            @foreach($userKegiatan[0]->departemen->kegiatans as $keys)
+                                @foreach($keys->presensi as $key)
+                                @if($key->id_calon_anggota == $calon->id)
+                                <td >
+                                    {{ $key->id_kegiatan }}
+                                    {{--<button onload="{{ $key->kehadiran ? "hideObject(this)" : "" }}" href="#"  class="ya hadir-{{$key->id}}-{{$calon->id}} btn btn-sm btn-outline-success m-btn m-btn--icon m-btn--icon-only" ><i class="fa fa-check"></i></button>--}}
+                                    {{--<button onload="{{ $key->kehadiran ? "" : "hideObject(this)" }}" href="#"  class="tidak tidakhadir-{{$key->id}}-{{$calon->id}} btn btn-sm btn-outline-danger m-btn m-btn--icon m-btn--icon-only" ><i class="fa fa-remove"></i></button>--}}
+                                        {{--                                        <h2> {{ $p->kehadiran }}</h2>--}}
 
-							{{--<td>--}}
-							{{--<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-success m-btn--gradient-to-success"><i class="fa fa-check"></i></button>--}}
-							{{--<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-danger m-btn--gradient-to-danger"><i class="fa fa-remove"></i></button>--}}
-							{{--</td>--}}
-							{{--<td>--}}
-							{{--<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-success m-btn--gradient-to-success"><i class="fa fa-check"></i></button>--}}
-							{{--<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-danger m-btn--gradient-to-danger"><i class="fa fa-remove"></i></button>--}}
-							{{--</td>--}}
-							{{--<td>--}}
-							{{--<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-success m-btn--gradient-to-success"><i class="fa fa-check"></i></button>--}}
-							{{--<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-danger m-btn--gradient-to-danger"><i class="fa fa-remove"></i></button>--}}
-							{{--</td>--}}
-							{{--<td>--}}
-							{{--<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-success m-btn--gradient-to-success"><i class="fa fa-check"></i></button>--}}
-							{{--<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-danger m-btn--gradient-to-danger"><i class="fa fa-remove"></i></button>--}}
-							{{--</td>--}}
-							{{--<td>--}}
-							{{--<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-success m-btn--gradient-to-success"><i class="fa fa-check"></i></button>--}}
-							{{--<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-danger m-btn--gradient-to-danger"><i class="fa fa-remove"></i></button>--}}
-							{{--</td>--}}
+                                        <label class="m-radio m-radio--solid m-radio--success">
+                                            {{--@if($key->kehadiran == 1)--}}
+                                            <input {{ ($key->kehadiran == 1 ? "checked" : "") }} type="radio" onclick="hadir(this)"  id="[{{ json_encode($key->id_kegiatan) }},{{ json_encode($calon) }}]" name="kehadiran[{{ json_encode($key) }},{{ json_encode($calon) }}]"  value="{{$key->kehadiran}}" >Hadir
+                                            <span> </span>
+                                        </label>
+                                        <label class="m-radio m-radio--solid m-radio--danger">
+                                            {{--@else--}}
+                                            <input {{ ($key->kehadiran == 0 ? "checked" : "") }} type="radio" onclick="tidakhadir(this)" id="[{{ json_encode($key->id_kegiatan) }},{{ json_encode($calon) }}]" name="kehadiran[{{ json_encode($key) }},{{ json_encode($calon) }}]" value="{{$key->kehadiran}}" >Tidak Hadir
+                                            <span> </span>
+                                            {{--@endif--}}
+                                        </label>
+                                        {{--@endforeach--}}
+                                </td>
+                                @endif
+                            @endforeach
+                            @endforeach
+
+
 						</tr>
 					@endforeach
 
@@ -223,23 +227,81 @@
 
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
 {{--<script src="{{ url('assets/demo/default/custom/components/datatables/base/html-table.js')}}" type="text/javascript"></script>--}}
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedcolumns/3.2.4/css/fixedColumns.dataTables.min.css">
+<script src="https://cdn.datatables.net/fixedcolumns/3.2.4/js/dataTables.fixedColumns.min.js" type="text/javascript"></script>
+
 <script type="text/javascript">
     $(document).ready( function () {
         $('.myTableDataTable').DataTable();
 
-        $("#hadir").click(function () {
-            $("#hadir").show();
-            $("#tidakhadir").hide();
-        });
-        $("#tidakhadir").click(function () {
-            $("#hadir").show();
-            $("#tidakhadir").hide();
-        });
     } );
-</script>
-<style type="text/css">
-    #tidakhadir {
-        display: none;
+
+    $(document).ready(function() {
+        var table = $('#presensi').DataTable( {
+            paging:         true,
+            scrollY:        false,
+            scrollX:        true,
+            scrollCollapse: true,
+            fixedColumns:   {
+                leftColumns: 4,
+            }
+        } );
+    } );
+
+
+    function tidakhadir(theForm) {
+        var kegiatan = JSON.parse(theForm.id)[0];
+        var calon_anggota = JSON.parse(theForm.id)[1];
+        console.log("Formvalue"+theForm.value);
+//        $(".hadir-"+kegiatan.id+"-"+calon_anggota.id).show();
+//        $(".tidakhadir-"+kegiatan.id+"-"+calon_anggota.id).hide();
+
+
+        $.ajax({
+            data: {
+                id_calon_anggota: calon_anggota.id,
+                id_kegiatan: kegiatan,
+                kehadiran: 0,
+
+
+            },
+            type: 'POST',
+            url: 'http://spkmagang.test:9000/api/presensi/simpan',
+            success: function (response) { // on success..
+                console.log(response); // update the DIV
+
+            }
+        });
+
     }
-</style>
+
+        function hadir(theForm) {
+            var kegiatan = JSON.parse(theForm.id)[0];
+            var calon_anggota = JSON.parse(theForm.id)[1];
+//            $(".hadir-"+kegiatan.id+"-"+calon_anggota.id).hide();
+//            $(".tidakhadir-"+kegiatan.id+"-"+calon_anggota.id).show();
+            $.ajax({
+                data : {
+                    id_calon_anggota: calon_anggota.id,
+                    id_kegiatan: kegiatan,
+                    kehadiran: 1,
+                },
+                type: 'POST',
+                url: 'http://spkmagang.test:9000/api/presensi/simpan',
+                success: function (response) { // on success..
+                    console.log(response); // update the DIV
+//                window.onload = function(){document.body.style.cursor='default';}
+                }
+            });
+
+
+
+    }
+
+
+</script>
+
+
+
 @endsection

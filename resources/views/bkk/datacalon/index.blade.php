@@ -255,6 +255,74 @@
             </div>
         </div>
 
+        {{--MODAL--}}
+        <div class="modal fade" id="m-tambah-kriteria" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">
+                            Tambah Kriteria Penilaian
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">
+						&times;
+					</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {!! Form::open(array('route' => 'kriteria.store', 'enctype' => 'multipart/form-data')) !!}
+                        <div class="form-group m-form__group">
+                            <label for="">Kriteria Penilaian</label>
+                            <input type="text" name="nama_kriteria" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Tugas">
+                        </div>
+                        <div class="form-group m-form__group">
+                            <label for="">Bobot</label>
+                            <input type="text" name="bobot" class="form-control m-input m-input--air"  aria-describedby="emailHelp" placeholder="0.5">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="reset" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        </div>
+                        {!! Form::close() !!}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="m-edit-kriteria" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <form method="POST" id="edit_form" action="" accept-charset="UTF-8" enctype="multipart/form-data">
+                    <input name="_method" type="hidden" value="PUT">
+                    @csrf
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">
+                                Edit Data Kriteria
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group m-form__group">
+                                <label for="">Nama Kriteria</label>
+                                <input type="text" id="nama_kriteria" name="nama_kriteria" class="form-control m-input m-input--air">
+                            </div>
+                            <div class="form-group m-form__group">
+                                <label for="">Bobot</label>
+                                <input type="text" id="bobot" name="bobot" class="form-control m-input m-input--air">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
         @endsection
 
         @section('js')

@@ -82,9 +82,10 @@
 						</tr>
 					</thead>
 					<tbody>
+                    <?php $i = 1; ?>
 					@foreach ($calonAnggota as $key)
 						<tr>
-							<td>{{ $key->id }}</td>
+							<td><?php echo $i ?></td>
 							<td>{{ $key->nama_calon_anggota }}</td>
 							<td>{{ $key->jenis_kelamin }}</td>
 							<td>{{ $key->hardskill }}</td>
@@ -92,11 +93,12 @@
 							{{--// TODO: join tabel detail (prioritas,dept pil duanya)--}}
 							<td>Infokes</td>
 							<td>
-								<a href="#" class="btn btn-outline-success m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-star"></i></a>
+								<button onclick="star( {{ $i }})" id="[{{ json_encode($key) }}]" class="btn btn-outline-success m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-star"></i></button>
 								{{--<a href="#" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only"><i class="fa fa-rotate-right"></i></a>--}}
 
 							</td>
 						</tr>
+                        <?php $i++ ?>
 					@endforeach
 					</tbody>
 				</table>
@@ -132,6 +134,25 @@
             }
         } );
     } );
+
+    function star(theForm){
+        var calon_anggota = JSON.parse(theForm.id)[0];
+
+        $.ajax({
+            data: {
+                id_calon_anggota: calon_anggota.id,
+                white_card_dept_1: 1,
+
+            },
+            type: 'POST',
+            url: 'http://spkmagang.test:9000/api/star/simpan',
+            success: function (response) { // on success..
+                console.log(response); // update the DIV
+
+            }
+        });
+
+    }
 </script>
 <style type="text/css">
 

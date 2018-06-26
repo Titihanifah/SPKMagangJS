@@ -80,7 +80,7 @@
                                 <td>{{ $value->nama_kegiatan }}</td>
                                 <td>{{ $value->tanggal_kegiatan }}</td>
                                 <td>{{ $value->waktu }}</td>
-                                <td>{{ $value->id_departemen }}</td>
+                                <td>{{ $value->departemen->nama_departemen }}</td>
                                 {{--TODO: diambil dari presensi--}}
                                 <td>50</td>
                                 <td>
@@ -112,7 +112,8 @@
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
 
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+    {{--<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>--}}
+
     {{--<script src="{{ url('assets/demo/default/custom/components/datatables/base/html-table.js')}}" type="text/javascript"></script>--}}
     <script type="text/javascript">
 
@@ -120,17 +121,17 @@
             $('.myTableDataTable').DataTable();
         } );
 
-        $('.myTableDataTable').dataTable({
-            bAutoWidth: false ,
-            aoColumns : [
-                { sWidth: '3%' },
-                { sWidth: '20%' },
-                { sWidth: '20%' },
-                { sWidth: '15%' },
-                { sWidth: '15%' },
-                { sWidth: '15%' }
-            ]
-        });
+//        $('.myTableDataTable').dataTable({
+//            bAutoWidth: false ,
+//            aoColumns : [
+//                { sWidth: '3%' },
+//                { sWidth: '20%' },
+//                { sWidth: '20%' },
+//                { sWidth: '15%' },
+//                { sWidth: '15%' },
+//                { sWidth: '15%' }
+//            ]
+//        });
 
     </script>
 

@@ -69,7 +69,7 @@
 
                     <!--end: Search Form -->
                     <!--begin: Datatable -->
-                    <table id="data-calon" class="dt-responsive nowrap table table-striped" style="width:100%">
+                    <table id="data-calon" class="myTableDataTable table table-striped table-bordered" style="width:100%">
                         <thead>
                         <tr>
                             <th rowspan="2">No</th>
@@ -141,10 +141,12 @@
     {{--<script src="{{ url('assets/demo/default/custom/components/datatables/base/html-table.js')}}" type="text/javascript"></script>--}}
     {{--<link rel="stylesheet" type="text/css" href="/css/jquery.dataTables.css">--}}
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedcolumns/3.2.4/css/fixedColumns.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
     {{--<link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css" type="text/css">--}}
     {{--<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>--}}
     <script src="https://cdn.datatables.net/fixedcolumns/3.2.4/js/dataTables.fixedColumns.min.js" type="text/javascript"></script>
     <script type="text/javascript">
+
         $(document).ready( function () {
             $('.myTableDataTable').DataTable();
         } );

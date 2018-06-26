@@ -161,8 +161,13 @@
 
 @section('js')
 
-<script src="{{ url('assets/demo/default/custom/components/datatables/base/html-table.js')}}" type="text/javascript"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
 	<script type="text/javascript">
+
+        $(document).ready( function () {
+            $('.myTableDataTable').DataTable();
+        } );
+
         function edit(id) {
             var datadata = {!! json_encode($departemen) !!};
             id = id-1;

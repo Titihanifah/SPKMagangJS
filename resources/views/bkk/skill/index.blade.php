@@ -62,7 +62,7 @@
                     </div>
                     <!--end: Search Form -->
                     <!--begin: Datatable -->
-                    <table class="m-datatable" id="html_table" width="100%">
+                    <table class="myTableDataTable table table-striped table-bordered" id="html_table" width="100%">
                         <thead>
                         <tr>
                             <th>No</th>
@@ -138,12 +138,17 @@
             </div>
         </div>
 
+    @endsection
 
-        @endsection
+    @section('js')
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
 
-        @section('js')
+        <script src="{{ url('assets/demo/default/custom/components/datatables/base/html-table.js')}}" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(document).ready( function () {
+                $('.myTableDataTable').DataTable();
+            } );
 
-            <script src="{{ url('assets/demo/default/custom/components/datatables/base/html-table.js')}}" type="text/javascript"></script>
-
+        </script>
 
 @endsection

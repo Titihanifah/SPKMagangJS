@@ -68,7 +68,7 @@
 						<div class="col-xl-12 order-2 order-xl-1">
 							<div class="form-group m-form__group row align-items-center">
 								<div class="col-md-4">
-									<a href="#"  data-toggle="modal" data-target="#m-tambah-kriteria" class="btn m-btn--square  btn-outline-primary" ><i class="m-menu__link-icon flaticon-plus"></i> Tambah</a>
+									{{--<a href="#"  data-toggle="modal" data-target="#m-tambah-kriteria" class="btn m-btn--square  btn-outline-primary" ><i class="m-menu__link-icon flaticon-plus"></i> Tambah</a>--}}
 								</div>
 								<div class="col-md-5">
 								</div>
@@ -88,7 +88,7 @@
 				</div>
 				<!--end: Search Form -->
 				<!--begin: Datatable -->
-				<table class="m-datatable" id="html_table" width="100%">
+				<table class="myTableDataTable table table-striped table-bordered" id="html_table" width="100%">
 					<thead>
 						<tr>
 							<th>No</th>
@@ -111,7 +111,7 @@
 									<button onclick="edit({{ $i }})" data-nama_kriteria="{{ $key->nama_kriteria }}" data-bobot="{{ $key->bobot }}" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only" ><i class="m-menu__link-icon flaticon-edit-1"></i></button>
 								<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-danger m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-delete-1"></i></button> -->
 								{{--<a href="#" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>--}}
-								<a href="{{url('admin/kriteria/destroy')}}/{{ $key->id}}" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>
+{{--								<a href="{{url('admin/kriteria/destroy')}}/{{ $key->id}}" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>--}}
 							</td>
 						</tr>
 						<?php $i++ ?>
@@ -196,24 +196,29 @@
 
 @section('js')
 
-<script src="{{ url('assets/demo/default/custom/components/datatables/base/html-table.js')}}" type="text/javascript"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
 
-<script type="text/javascript">
-    function edit(id) {
-        var datadata = {!! json_encode($kriteria) !!};
-        id = id-1;
+	<script type="text/javascript">
 
-        console.log(datadata[id]);
-        var idObject = datadata[id].id;
-        var nama_kriteria = datadata[id].nama_kriteria;
-        var bobot = datadata[id].bobot;
+		$(document).ready( function () {
+			$('.myTableDataTable').DataTable();
+		} );
 
-        $('#nama_kriteria').val(nama_kriteria);
-        $('#bobot').val(bobot);
-        var url = "http://spkmagang.test:9000/admin/kriteria/" + (idObject);
-        document.getElementById("edit_form").action = url;
+		function edit(id) {
+			var datadata = {!! json_encode($kriteria) !!};
+			id = id-1;
 
-        $('#m-edit-kriteria').modal('show');
-    }
-</script>
+			console.log(datadata[id]);
+			var idObject = datadata[id].id;
+			var nama_kriteria = datadata[id].nama_kriteria;
+			var bobot = datadata[id].bobot;
+
+			$('#nama_kriteria').val(nama_kriteria);
+			$('#bobot').val(bobot);
+			var url = "http://spkmagang.test:9000/admin/kriteria/" + (idObject);
+			document.getElementById("edit_form").action = url;
+
+			$('#m-edit-kriteria').modal('show');
+		}
+	</script>
 @endsection

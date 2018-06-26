@@ -142,52 +142,90 @@
 	</div>
 </div>
 
-<div class="modal fade" id="m-edit-periode" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <form method="POST" id="edit_form" action="" accept-charset="UTF-8" enctype="multipart/form-data">
-            <input name="_method" type="hidden" value="PUT">
-            @csrf
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">
-                        Edit Data Periode
-                    </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group m-form__group">
-                        <label for="">Tahun</label>
-                        <input type="year" id="tahun" name="tahun" class="form-control m-input m-input--air">
-                    </div>
-                    <div class="form-group m-form__group">
-                        <label for="">Periode</label>
-                        <input type="text" id="periode" name="periode" class="form-control m-input m-input--air">
-                    </div>
-                    <div class="m-form__group form-group">
-                        <label for="">Status</label>
-                        <div class="m-radio-inline">
-                            <label class="m-radio">
-                                <input type="radio" name="status" id="status" value="1">Aktif
-                                <span></span>
-                            </label>
-                            <label class="m-radio">
-                                <input type="radio" name="status" id="status" value="0">Tidak Aktif
-                                <span></span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
+{{--<div class="modal fade" id="m-edit-periode" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"--}}
+     {{--aria-hidden="true">--}}
+    {{--<div class="modal-dialog" role="document">--}}
+        {{--<form method="POST" id="edit_form" action="" accept-charset="UTF-8" enctype="multipart/form-data">--}}
+            {{--<input name="_method" type="hidden" value="PUT">--}}
+            {{--@csrf--}}
+            {{--<div class="modal-content">--}}
+                {{--<div class="modal-header">--}}
+                    {{--<h5 class="modal-title">--}}
+                        {{--Edit Data Periode--}}
+                    {{--</h5>--}}
+                    {{--<button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
+                        {{--<span aria-hidden="true">&times;</span>--}}
+                    {{--</button>--}}
+                {{--</div>--}}
+                {{--<div class="modal-body">--}}
+                    {{--<div class="form-group m-form__group">--}}
+                        {{--<label for="">Tahun</label>--}}
+                        {{--<input type="year" id="tahun" name="tahun" class="form-control m-input m-input--air">--}}
+                    {{--</div>--}}
+                    {{--<div class="form-group m-form__group">--}}
+                        {{--<label for="">Periode</label>--}}
+                        {{--<input type="text" id="periode" name="periode" class="form-control m-input m-input--air">--}}
+                    {{--</div>--}}
+                    {{--<div class="m-form__group form-group">--}}
+                        {{--<label for="">Status</label>--}}
+                        {{--<div class="m-radio-inline">--}}
+                            {{--<label class="m-radio">--}}
+                                {{--<input type="radio" name="status" id="status" value="1">Aktif--}}
+                                {{--<span></span>--}}
+                            {{--</label>--}}
+                            {{--<label class="m-radio">--}}
+                                {{--<input type="radio" name="status" id="status" value="0">Tidak Aktif--}}
+                                {{--<span></span>--}}
+                            {{--</label>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+                {{--<div class="modal-footer">--}}
+                    {{--<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>--}}
+                    {{--<button type="submit" class="btn btn-primary">Simpan</button>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</form>--}}
+    {{--</div>--}}
+{{--</div>--}}
+
+	<div class="modal fade" id="m-edit-periode" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+		 aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<form method="POST" id="edit_form" action="" accept-charset="UTF-8" enctype="multipart/form-data">
+				<input name="_method" type="hidden" value="PUT">
+				@csrf
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">
+							Edit Data Periode
+						</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="form-group m-form__group">
+							<label for="">Tahun Periode</label>
+							<input type="year" id="tahun" name="nama_kegiatan" class="form-control m-input m-input--air">
+						</div>
+						<div class="form-group m-form__group">
+							<label for="">Tahun Periode</label>
+							<input type="text" id="periode" name="tanggal_kegiatan" class="form-control m-input m-input--air">
+						</div>
+						<div class="form-group m-form__group">
+							<label for="">Status</label>
+							<input type="text" name="status" id="waktu" class="form-control m-input m-input--air">
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary">Simpan</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
 
 
 @endsection
@@ -196,6 +234,7 @@
 
 {{--<script src="{{ url('assets/demo/default/custom/components/datatables/base/html-table.js')}}" type="text/javascript"></script>--}}
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+
 
 <script type="text/javascript" charset="utf8"
         src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>

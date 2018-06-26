@@ -1,6 +1,9 @@
 @extends('layouts.kadept')
 @section('content')
 
+<?php dd($userKegiatan[0]->departemen->kegiatans[0]->presensi) ?>
+exit();
+
 <div class="m-grid__item m-grid__item--fluid m-wrapper">
 	<!-- BEGIN: Subheader -->
 	<div class="m-subheader ">
@@ -73,14 +76,15 @@
 					</thead>
 					<tbody>
                     <?php $i = 1; ?>
-					@foreach($userKegiatan->departemen->kegiatans  as $value)
+					@foreach($userKegiatan[0]->departeme as $value)
+
 						<tr>
 							<td><?php echo $i ?></td>
 							<td>{{ $value->nama_kegiatan }}</td>
 							<td>{{ $value->tanggal_kegiatan }}</td>
 							<td>{{ $value->waktu }}</td>
 							{{--TODO: diambil dari presensi--}}
-							<td>50</td>
+{{--							<td>{{ $value-> }}</td>--}}
 							<td>
 								<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-primary m-btn--gradient-to-primary"><i class="m-menu__link-icon flaticon-eye"></i></button> -->
 								{{--<a href="#" class="btn btn-outline-primary m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-eye"></i></a>--}}
@@ -194,25 +198,25 @@
 
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
 
-	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
-{{--<script src="{{ url('assets/demo/default/custom/components/datatables/base/html-table.js')}}" type="text/javascript"></script>--}}
+	{{--<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>--}}
+
 	<script type="text/javascript">
 
 	$(document).ready( function () {
 		$('.myTableDataTable').DataTable();
 	} );
 
-    $('.myTableDataTable').dataTable({
-        bAutoWidth: false ,
-        aoColumns : [
-            { sWidth: '3%' },
-            { sWidth: '20%' },
-            { sWidth: '20%' },
-            { sWidth: '15%' },
-            { sWidth: '15%' },
-            { sWidth: '15%' }
-        ]
-    });
+//    $('.myTableDataTable').dataTable({
+//        bAutoWidth: false ,
+//        aoColumns : [
+//            { sWidth: '3%' },
+//            { sWidth: '20%' },
+//            { sWidth: '20%' },
+//            { sWidth: '15%' },
+//            { sWidth: '15%' },
+//            { sWidth: '15%' }
+//        ]
+//    });
 
 
         function edit(id) {
@@ -237,5 +241,14 @@
 
 
 </script>
+	<script type="text/css">
+		.table-bordered th, td{
+			border: 0.2px solid #90a5a6;
+			background-color: #acb8f0 !important;
+		}
+		th, td {
+			border: 1px solid #2c2e3e;
+		}
+	</script>
 
 @endsection

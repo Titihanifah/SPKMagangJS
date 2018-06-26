@@ -141,7 +141,7 @@
         </li>
         <li class="m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
             <a  href="{{ url('/admin/tugas')}}" class="m-menu__link m-menu__toggle">
-                <i class="m-menu__link-icon flaticon-users color-menu"></i>
+                <i class="m-menu__link-icon flaticon-clipboard color-menu"></i>
                 <span class="m-menu__link-text color-menu">
                     Tugas
                 </span>
@@ -157,7 +157,7 @@
         </li>
         <li class="m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
             <a  href="{{ url('/admin/kemampuan')}}" class="m-menu__link m-menu__toggle">
-                <i class="m-menu__link-icon flaticon-confetti color-menu"></i>
+                <i class="m-menu__link-icon flaticon-notes color-menu"></i>
                 <span class="m-menu__link-text color-menu">
                 Kemampuan Tambahan
             </span>
@@ -173,7 +173,7 @@
         </li>
         <li class="m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
             <a  href="{{ url('/admin/hasil')}}" class="m-menu__link m-menu__toggle">
-                <i class="m-menu__link-icon flaticon-map color-menu"></i>
+                <i class="m-menu__link-icon flaticon-list-3  color-menu"></i>
                 <span class="m-menu__link-text color-menu">
                 Hasil Akhir
                 </span>

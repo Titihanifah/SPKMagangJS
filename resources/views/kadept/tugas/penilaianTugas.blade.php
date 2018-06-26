@@ -20,9 +20,7 @@
 					</li>
 					<li class="m-nav__item">
 						<a href="" class="m-nav__link">
-							<span class="m-nav__link-text">
-								Penilaian Tugas
-							</span>
+							<span class="m-nav__link-text">Penilaian Tugas</span>
 						</a>
 					</li>
 					<li class="m-nav__separator">
@@ -30,9 +28,7 @@
 					</li>
 					<li class="m-nav__item">
 						<a href="" class="m-nav__link">
-							<span class="m-nav__link-text">
-								
-							</span>
+							<span class="m-nav__link-text"></span>
 						</a>
 					</li>
 					<li class="m-nav__separator">
@@ -40,9 +36,7 @@
 					</li>
 					<li class="m-nav__item">
 						<a href="" class="m-nav__link">
-							<span class="m-nav__link-text">
-								
-							</span>
+							<span class="m-nav__link-text"></span>
 						</a>
 					</li>
 				</ul>
@@ -63,25 +57,15 @@
 			</div>
 			<div class="m-portlet__body">
 				<!--begin: Search Form -->
-				{{--{!! Form::open(array('route' => 'penilaianTugas', 'enctype' => 'multipart/form-data')) !!}--}}
 					<div class="m-form m-form--label-align-right m--margin-top-20 m--margin-bottom-30">
 						<div class="row align-items-center">
 							<div class="col-xl-12 order-2 order-xl-1">
 								<div class="form-group m-form__group row align-items-center">
 									<div class="col-md-4">
-										<button class="btn m-btn--square  btn-outline-primary" data-toggle="modal" data-target="#m_tambah_tugas"><i class="m-menu__link-icon fa fa-save "></i> Simpan</button>
 									</div>
 									<div class="col-md-5">
 									</div>
 									<div class="col-md-3">
-										<div class="m-input-icon m-input-icon--left">
-											<input type="text" class="form-control m-input" placeholder="Search..." id="generalSearch">
-											<span class="m-input-icon__icon m-input-icon__icon--left">
-											<span>
-												<i class="la la-search"></i>
-											</span>
-										</span>
-										</div>
 									</div>
 								</div>
 							</div>
@@ -91,14 +75,14 @@
 					<!--end: Search Form -->
 
 				<!--begin: Datatable -->
-				<table class="m-datatable" id="html_table" width="100%">
+				<table class="myTableDataTable table table-striped table-bordered" width="100%">
 					<thead>
 						<tr>
-							<th title="Field #1">No</th>
-							<th title="Field #2">Nama Calon</th>
+							<th>No</th>
+							<th>Nama Calon</th>
 							<th>Nilai Akhir</th>
 							@foreach($userTugas->departemen->tugas as $key)
-							<th title="Field #3">{{ $key->nama_tugas }}</th>
+							<th>{{ $key->nama_tugas }}</th>
 							@endforeach
 						</tr>
 					</thead>
@@ -107,7 +91,7 @@
 						<tr>
 							<td>{{ $value->id }}</td>
 							<td>{{ $value->nama_calon_anggota }}</td>
-							{{--TODO: nilai akhir pakai perhitungan--}}
+
 							<td>Nilai Akhir (90) </td>
 							@foreach($userTugas->departemen->tugas as $key)
 
@@ -135,8 +119,14 @@
 
 @section('js')
 
-<script src="{{ url('assets/demo/default/custom/components/datatables/base/html-table.js')}}" type="text/javascript"></script>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
 <script type="text/javascript">
+
+    $(document).ready( function () {
+        $('.myTableDataTable').DataTable();
+    });
+
 	function penilaian(theForm) {
 	    console.log();
 	    console.log(theForm.value);
@@ -158,12 +148,12 @@
             }
         });
     }
-    $(document).ready( function () {
-        $("#nilai").change(function () {
-            var nilai = $('#nilai').val();
-            console.log("hai keubah");
-        });
-    });
+//    $(document).ready( function () {
+//        $("#nilai").change(function () {
+//            var nilai = $('#nilai').val();
+//            console.log("hai keubah");
+//        });
+//    });
 </script>
 
 @endsection
