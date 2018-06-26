@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use App\User;
 use App\DetailCalonAnggota;
-class PenilaianKemampuan extends Controller
+class PenilaianKemampuanController extends Controller
 {
     /**
      * Display a listing of the resource.

@@ -39,14 +39,33 @@ class TugasController extends Controller
     public function penilaianTugas()
     {
 
-        $userTugas = User::where('id', Auth::user()->id)->with('departemens.tugas')->first();
+//        TODO: gimana create dan upatenya sesuai departemennya
+
         $calonAnggota = CalonAnggota::all();
-        $detailTugas = DetailTugas::all();
         $tugas = Tugas::all();
+
+        foreach ($calonAnggota as $value){
+
+            foreach ($tugas as $key){
+
+                if(DetailTugas::where('id_calon_anggota', $value->id)->where('id_tugas', $key->id)->count() == 0) {
+                    $detailTugas = new DetailTugas;
+                    $detailTugas->id_calon_anggota = $value->id;
+                    $detailTugas->id_tugas = $key->id;
+                    $detailTugas->nilai_tugas = null;
+                    $detailTugas->save();
+                }
+            }
+        }
+
+        $detailTugas = DetailTugas::all();
+
+        $userTugas = User::where('id', Auth::user()->id)->with('departemens.tugas')->first();
+
 //        $detailTugas = DetailTugas::where('id_calon_anggota', $calonAnggota->id)->where('id_tugas', $tugas->id)->first();
 //        dd($detailTugas);
 //        dd ($detailTugas->where('id_calon_anggota', $value->id)->where('id_tugas', $key->id)->first()->nilai_tugas)
-        return view('kadept.tugas.penilaianTugas', compact('userTugas','calonAnggota','detailTugas'));
+        return view('kadept.tugas.penilaianTugas', compact('tugas','userTugas','calonAnggota','detailTugas'));
 
 
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Departemen;
 use App\Kegiatan;
 use App\Periode;
+use App\Presensi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -21,13 +22,25 @@ class KegiatanController extends Controller
     public function index()
     {
 //        $kegiatan = Departemen::join('kegiatans', 'departemens.id','=','kegiatans.id_departemen')
-//            ->join('users', 'departemens.id','=','users.id_departemen')
+//            ->join('users', 'departemens.id','=','users.id_denpartemen')
 //            ->where('users.id', Auth::user()->id)->get();
 //        $kegiatan = User::find(Auth::user()->id)->departemen->with('kegiatan');
-        $userKegiatan = User::where('id', Auth::user()->id)->with('departemen.kegiatans')->first();
-//        dd($userKegiatan);
-//        return response()->json($userKegiatan);
+//        $userKegiatan = User::where('id', Auth::user()->id)->with('departemen.kegiatans')->first();
+//        $presensi = Departemen::join('kegiatans', 'departemens.id','=','kegiatans.id_departemen')
+//            ->join('users', 'departemens.id','=','users.id_departemen')
+//            ->join('presensis', 'kegiatans.id','=','presensis.id_kegiatan')
+//            ->select('*', \DB::raw('count(presensis.kehadiran) as jumlah'))
+//            ->where('users.id', Auth::user()->id)
+//            ->where('presensis.kehadiran','=','1')->groupBy('presensis.id_kegiatan')->get();
 
+
+        $userKegiatan = User::where('id', Auth::user()->id)
+                        ->with('departemen.kegiatans.presensi')->get();
+
+//        dd($userKegiatan);
+//        $a = count($presensi);
+//        return response()->json($userKegiatan);
+//
 		return view('kadept.kegiatan.index', compact('userKegiatan'));
 
 
