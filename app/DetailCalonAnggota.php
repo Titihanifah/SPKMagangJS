@@ -12,7 +12,7 @@ class DetailCalonAnggota extends Model
     }
     public function calonAnggota()
     {
-        return $this->belongsTo('App\Kegiatan','id_calon_anggota');
+        return $this->belongsTo('App\CalonAnggota','id_calon_anggota');
     }
 
 }

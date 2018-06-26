@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 
+use App\DetKemampuanCalon;
+use App\KemampuanTambahan;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use App\User;
+use App\DetailCalonAnggota;
 class PenilaianKemampuan extends Controller
 {
     /**
@@ -14,7 +20,10 @@ class PenilaianKemampuan extends Controller
     public function index()
     {
         //
-        return view('kadept.penilaianSkill.index');
+        $kemampuan = KemampuanTambahan::all();
+        $detailCalonAnggota = DetailCalonAnggota::where('id_departemen', Auth::user()->id)->get();
+//        return response()->json($detailCalonAnggota);
+        return view('kadept.penilaianSkill.index', compact('kemampuan','detailCalonAnggota'));
     }
 
     /**
@@ -25,6 +34,25 @@ class PenilaianKemampuan extends Controller
     public function create()
     {
         //
+    }
+
+    public function simpan(Request $request)
+    {
+        $dt = null;
+        $detailKemampCalon = DetKemampuanCalon::where('id_calon_anggota', $request->id_calon_anggota)
+            ->where('id_kemampuan_tambahan', $request->id_kemampuan_tambahan )
+            ->get();
+        if ($detailKemampCalon->count() > 0) {
+            $dt = DetKemampuanCalon::find($detailKemampCalon[0]->id);
+        } else {
+            $dt = new DetKemampuanCalon;
+        }
+        $dt->id_calon_anggota = $request->id_calon_anggota;
+        $dt->id_kemampuan_tambahan = $request->id_kemampuan_tambahan;
+        $dt->kepunyaan = $request->kepunyaan;
+        $dt->save();
+
+        return response()->json('Success');
     }
 
     /**
