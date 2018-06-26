@@ -17,3 +17,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::post('penilaian/simpan', 'PenilaianTugasController@simpan');
+Route::post('presensi/simpan', 'PresensiController@simpan');
+Route::post('kemampuan/simpan', 'PenilaianKemampuanController@simpan');

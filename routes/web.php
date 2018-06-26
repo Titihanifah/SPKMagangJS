@@ -28,13 +28,14 @@ Route::resource('/admin/departemen','AdminDepartemenController');
 Route::resource('/admin/akun','AdminAkunController');
 Route::resource('/admin/kemampuan-tambahan','AdminSkillController');
 Route::resource('/admin/hasil','AdminHasilAkhirController');
+Route::resource('/admin/kemampuan','AdminKemampuanTambahan');
 
 Route::get('/penilaianTugas','TugasController@penilaianTugas')->name('penilaianTugas');
 //Route::post('/penilaianTugas','TugasController@penilaianTugasStore');
 Route::get('/presensi','PresensiController@index')->name('presensi');
 Route::get('/rekap_presensi','PresensiController@rekap')->name('rekap');
 Route::get('/rekap_nilai','RekapPenilaianController@index');
-Route::get('/penilaian_skill','PenilaianKemampuan@index');
+Route::get('/penilaian_skill','PenilaianKemampuanController@index');
 Route::get('/kegiatan/destroy/{id}','KegiatanController@destroy');
 Route::get('admin/periode/destroy/{id}', 'AdminPeriodeController@destroy');
 Route::get('admin/kriteria/destroy/{id}', 'AdminKriteriaController@destroy');
@@ -44,6 +45,7 @@ Route::get('/tugas/destroy/{id}','TugasController@destroy');
 Route::get('/admin/akun/destroy/{id}','AdminAkunController@destroy');
 Route::get('/admin/kegiatan','AdminController@kegiatan');
 Route::get('/admin/tugas','AdminController@tugas');
+Route::get('/admin/kemampuan/destroy/{id}','AdminKemampuanTambahan@destroy');
 
 
 // Route::get('/dashboard','PresensiController@dashboard');
