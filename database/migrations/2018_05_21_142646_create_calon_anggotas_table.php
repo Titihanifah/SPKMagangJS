@@ -19,10 +19,6 @@ class CreateCalonAnggotasTable extends Migration
 //            TODO: ini menggunakan string apa text ya? apa bedanya string dg text
             $table->string('hardskill');
             $table->string('softskill');
-            // pemberian tanda khusus untuk anggota yang memiliki kemampuan khusus supaya nilainya berada di atas
-            $table->boolean('white_card_dept_1')->nullable();
-            $table->boolean('white_card_dept_2')->nullable();
-//            TODO: mending 1 0 atau laki-laki perempuan
             $table->boolean('jenis_kelamin'); // 0 : laki-laki, 1 perempuan
             $table->string('departemen_final')->nullable();
             $table->integer('id_periode')->unsigned();

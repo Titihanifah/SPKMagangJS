@@ -19,6 +19,7 @@ class CreateDetailCalonAnggotasTable extends Migration
             $table->integer('id_calon_anggota')->unsigned();
             $table->integer('prioritas')->unsigned();
             $table->boolean('status')->nullable(); //diterima atau ditolak
+            $table->boolean('favorit')->nullable();
             $table->integer('total_nilai')->nullable();
             $table->foreign('id_departemen')
                 ->references('id')->on('departemens')

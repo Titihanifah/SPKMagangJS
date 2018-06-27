@@ -18,12 +18,12 @@ class CreateDetailTugasTable extends Migration
 //            TODO: ganti nilai_tugas
             $table->integer('nilai_tugas')->nullable();
             $table->integer('id_tugas')->unsigned();
-            $table->integer('id_calon_anggota')->unsigned();
+            $table->integer('id_detail_calon_anggota')->unsigned();
             $table->foreign('id_tugas')
                 ->references('id')->on('tugas')
                 ->onDelete('cascade');
-            $table->foreign('id_calon_anggota')
-                ->references('id')->on('calon_anggotas')
+            $table->foreign('id_detail_calon_anggota')
+                ->references('id')->on('detail_calon_anggotas')
                 ->onDelete('cascade');
             $table->timestamps();
         });

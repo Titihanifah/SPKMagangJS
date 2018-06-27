@@ -18,7 +18,7 @@ class DetailCalonAnggotaSeeder extends Seeder
             'prioritas' => 1
         ]);
         DB::table('detail_calon_anggotas')->insert([
-            'id_departemen' => 1,
+            'id_departemen' => 3,
             'id_calon_anggota' => 2,
             'prioritas' => 2
         ]);
@@ -26,6 +26,16 @@ class DetailCalonAnggotaSeeder extends Seeder
             'id_departemen' => 2,
             'id_calon_anggota' => 2,
             'prioritas' => 1
+        ]);
+        DB::table('detail_calon_anggotas')->insert([
+            'id_departemen' => 2,
+            'id_calon_anggota' => 3,
+            'prioritas' => 2
+        ]);
+        DB::table('detail_calon_anggotas')->insert([
+            'id_departemen' => 2,
+            'id_calon_anggota' => 4,
+            'prioritas' => 2
         ]);
     }
 }
