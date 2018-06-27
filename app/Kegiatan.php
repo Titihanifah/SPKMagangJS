@@ -9,7 +9,7 @@ class Kegiatan extends Model
     //
     public function departemen()
     {
-        return $this->belongsTo('App\Departemen','id_departemen');
+        return $this->belongsTo('App\Departemen','id_departemen', 'id');
     }
     public function periode()
     {

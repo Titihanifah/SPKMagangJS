@@ -9,7 +9,7 @@ class Tugas extends Model
     //
     public function departemen()
     {
-        return $this->belongsTo('App\Departemen');
+        return $this->belongsTo('App\Departemen','id_departemen');
     }
     public function periode()
     {

@@ -14,5 +14,32 @@ class DetailCalonAnggota extends Model
     {
         return $this->belongsTo('App\CalonAnggota','id_calon_anggota');
     }
+    public function presensi()
+    {
+        return $this->hasMany('App\Presensi','id_detail_calon_anggota');
+    }
+    public function detailTugas()
+    {
+        return $this->hasMany('App\DetailTugas','id_detail_calon_anggota');
+    }
+
+    public function getTotalNilaiAttribute($value) {
+        return 50;
+    }
+    public function getNilaiKehadiranAttribute() {
+        $presensi = $this->presensi;
+        $sumPresensi = 0;
+        foreach ($presensi as $key) {
+            if($key->kehadiran) {
+                $sumPresensi++;
+            }
+        }
+        $totalPresensi = $sumPresensi / $presensi->count();
+
+        return $totalPresensi;
+    }
+    public function getNilaiTugasAttribute() {
+        return 50;
+    }
 
 }

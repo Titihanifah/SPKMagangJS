@@ -11,14 +11,14 @@ class CalonAnggota extends Model
     {
         return $this->hasMany('App\DetailCalonAnggota');
     }
-    public function detailTugas()
-    {
-        return $this->hasMany('App\DetailTugas');
-    }
-    public function presensi()
-    {
-        return $this->hasMany('App\Presensi');
-    }
+//    public function detailTugas()
+//    {
+//        return $this->hasMany('App\DetailTugas');
+//    }
+//    public function presensi()
+//    {
+//        return $this->hasMany('App\Presensi');
+//    }
 //    public function rekomendasi()
 //    {
 //        return $this->hasMany('App\Rekomendasi');
@@ -34,5 +34,6 @@ class CalonAnggota extends Model
         } else {
             return "Perempuan";
         }
+
     }
 }

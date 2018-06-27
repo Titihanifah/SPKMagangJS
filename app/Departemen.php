@@ -17,10 +17,11 @@ class Departemen extends Model
     }
     public function detailCalonAggota()
     {
-        return $this->hasMany('App\DetailCalonAnggota');
+        return $this->hasMany('App\DetailCalonAnggota','id_calon_anggota');
     }
     public function user()
     {
-        return $this->hasOne('App\User');
+        return $this->hasOne('App\User','id_departemen','id');
     }
+
 }
