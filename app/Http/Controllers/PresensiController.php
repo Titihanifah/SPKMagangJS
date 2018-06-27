@@ -70,7 +70,7 @@ class PresensiController extends Controller
 //        $anggotaP = Presensi::where(groupBy('id_calon_anggota'));
 //        $departemen = Departemen::all();
 
-        $userKegiatan = User::where('id', Auth::user()->id)->with('departemen.kegiatans.presensi')->get();
+        $userKegiatan = User::where('id', Auth::user()->id_departemen)->with('departemen.kegiatans')->get();
 //        return response()->json($userKegiatan);
 
         return view('kadept.presensi.rekapPresensi',compact('kegiatan','calonAnggota','userKegiatan','presensi'));

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Departemen;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RekapPenilaianController extends Controller
 {
@@ -16,7 +17,9 @@ class RekapPenilaianController extends Controller
     {
         //
         $departemen = Departemen::all();
-        return view('kadept.rekapPenilaian.index',compact('departemen'));
+        $detailCalonAnggotas = Auth::user()->departemen->first()->detailCalonAggota;
+
+        return view('kadept.rekapPenilaian.index',compact('detailCalonAnggotas', 'departemen'));
     }
 
     /**

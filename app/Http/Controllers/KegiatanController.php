@@ -25,17 +25,21 @@ class KegiatanController extends Controller
 //            ->join('users', 'departemens.id','=','users.id_denpartemen')
 //            ->where('users.id', Auth::user()->id)->get();
 //        $kegiatan = User::find(Auth::user()->id)->departemen->with('kegiatan');
-//        $userKegiatan = User::where('id', Auth::user()->id)->with('departemen.kegiatans')->first();
-//        $presensi = Departemen::join('kegiatans', 'departemens.id','=','kegiatans.id_departemen')
+//        $userKegiatan = User::where('id', Auth::user()->id_departemen)->with('departemen.kegiatans')->first();
+        $userKegiatan = Auth::user()->departemen->first()->kegiatans;
+//        $userKegiatan = Departemen::join('kegiatans', 'departemens.id','=','kegiatans.id_departemen')
 //            ->join('users', 'departemens.id','=','users.id_departemen')
 //            ->join('presensis', 'kegiatans.id','=','presensis.id_kegiatan')
 //            ->select('*', \DB::raw('count(presensis.kehadiran) as jumlah'))
-//            ->where('users.id', Auth::user()->id)
+//            ->where('users.id', Auth::user()->id_departemen)
 //            ->where('presensis.kehadiran','=','1')->groupBy('presensis.id_kegiatan')->get();
 
 
-        $userKegiatan = User::where('id', Auth::user()->id)
-                        ->with('departemen.kegiatans.presensi')->get();
+//        $userKegiatan = User::where('id', Auth::user()->id)
+//                        ->with('departemen.kegiatans.presensi')->get();
+
+//        dd($userKegiatan[0]->departemen->kegiatans[0]->presensi)
+
 
 //        dd($userKegiatan);
 //        $a = count($presensi);

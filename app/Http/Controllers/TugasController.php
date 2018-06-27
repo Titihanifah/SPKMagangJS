@@ -22,7 +22,7 @@ class TugasController extends Controller
     public function index()
     {
         //
-        $userTugas = User::where('id', Auth::user()->id)->with('departemens.tugas')->first();
+        $userTugas = User::where('id', Auth::user()->id_departemen)->with('departemen.tugas')->first();
 //        dd($kegiatan);
 //        return response()->json($userTugas);
 
@@ -60,7 +60,7 @@ class TugasController extends Controller
 
         $detailTugas = DetailTugas::all();
 
-        $userTugas = User::where('id', Auth::user()->id)->with('departemens.tugas')->first();
+        $userTugas = User::where('id', Auth::user()->id_departemen)->with('departemen.tugas')->first();
 
 //        $detailTugas = DetailTugas::where('id_calon_anggota', $calonAnggota->id)->where('id_tugas', $tugas->id)->first();
 //        dd($detailTugas);
