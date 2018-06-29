@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\CalonAnggota;
+
 use App\Departemen;
+use App\DetailCalonAnggota;
 use App\Kegiatan;
+use App\Periode;
 use App\Presensi;
 use App\User;
 use Illuminate\Http\Request;
@@ -49,17 +51,21 @@ class PresensiController extends Controller
     public function rekap()
     {
         //
-        $calonAnggota   = CalonAnggota::all();
-        $kegiatan   = Kegiatan::all();
+//        $detailCalonAnggota   = DetailCalonAnggota::where('id', Auth::user()->id_departemen)->with('departemen');
+        $detailCalonAnggota =  Auth::user()->departemen->detailCalonAnggota;
+        $activePeriode = Periode::active()->first();
+        $kegiatan   = Auth::user()->departemen->kegiatans->where('id_periode', $activePeriode->id);
+//        dd($kegiatan);
 
 
-        foreach ($calonAnggota as $value){
+//        dd(User::where('id', Auth::user()->id)->with('departemen.detailCalonAnggota')->first());
+        foreach ($detailCalonAnggota as $value) {
 
             foreach ($kegiatan as $key){
 
-                if(Presensi::where('id_calon_anggota', $value->id)->where('id_kegiatan', $key->id)->count() == 0) {
+                if(Presensi::where('id_detail_calon_anggota', $value->id)->where('id_kegiatan', $key->id)->count() == 0) {
                     $presensi = new Presensi;
-                    $presensi->id_calon_anggota = $value->id;
+                    $presensi->id_detail_calon_anggota = $value->id;
                     $presensi->id_kegiatan = $key->id;
                     $presensi->kehadiran = 1;
                     $presensi->save();
@@ -70,10 +76,10 @@ class PresensiController extends Controller
 //        $anggotaP = Presensi::where(groupBy('id_calon_anggota'));
 //        $departemen = Departemen::all();
 
-        $userKegiatan = User::where('id', Auth::user()->id_departemen)->with('departemen.kegiatans')->get();
+        $userKegiatan = User::where('id', Auth::user()->id)->with('departemen.kegiatans.presensi')->first();
 //        return response()->json($userKegiatan);
 
-        return view('kadept.presensi.rekapPresensi',compact('kegiatan','calonAnggota','userKegiatan','presensi'));
+        return view('kadept.presensi.rekapPresensi',compact('kegiatan','detailCalonAnggota','userKegiatan','presensi','activePeriode'));
     }
     /**
     * numpang controller ya :D
@@ -88,7 +94,7 @@ class PresensiController extends Controller
     public function simpan(Request $request)
     {
         $p = null;
-        $presensi = Presensi::where('id_calon_anggota', $request->id_calon_anggota)
+        $presensi = Presensi::where('id_detail_calon_anggota', $request->id_detail_calon_anggota)
             ->where('id_kegiatan', $request->id_kegiatan)
             ->get();
         if ($presensi->count() > 0) {
@@ -96,7 +102,7 @@ class PresensiController extends Controller
         } else {
             $p = new Presensi;
         }
-        $p->id_calon_anggota = $request->id_calon_anggota;
+        $p->id_detail_calon_anggota = $request->id_detail_calon_anggota;
         $p->id_kegiatan = $request->id_kegiatan;
         $p->kehadiran = $request->kehadiran;
         $p->save();

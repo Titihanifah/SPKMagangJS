@@ -83,7 +83,7 @@ class PenilaianTugasController extends Controller
     public function simpan(Request $request)
     {
         $dt = null;
-        $detailTugas = DetailTugas::where('id_calon_anggota', $request->id_calon_anggota)
+        $detailTugas = DetailTugas::where('id_detail_calon_anggota', $request->id_detail_calon_anggota)
             ->where('id_tugas', $request->id_tugas)
             ->get();
         if ($detailTugas->count() > 0) {
@@ -91,7 +91,7 @@ class PenilaianTugasController extends Controller
         } else {
             $dt = new DetailTugas;
         }
-        $dt->id_calon_anggota = $request->id_calon_anggota;
+        $dt->id_detail_calon_anggota = $request->id_detail_calon_anggota;
         $dt->id_tugas = $request->id_tugas;
         $dt->nilai_tugas = $request->nilai_tugas;
         $dt->save();

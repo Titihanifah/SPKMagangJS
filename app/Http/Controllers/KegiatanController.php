@@ -26,7 +26,10 @@ class KegiatanController extends Controller
 //            ->where('users.id', Auth::user()->id)->get();
 //        $kegiatan = User::find(Auth::user()->id)->departemen->with('kegiatan');
 //        $userKegiatan = User::where('id', Auth::user()->id_departemen)->with('departemen.kegiatans')->first();
-        $userKegiatan = Auth::user()->departemen->first()->kegiatans;
+        $activePeriode = Periode::active()->first();
+        $userKegiatan = Auth::user()->departemen->kegiatans->where('id_periode', $activePeriode->id);
+//        dd($userKegiatan);
+//        dd($userKegiatan);
 //        $userKegiatan = Departemen::join('kegiatans', 'departemens.id','=','kegiatans.id_departemen')
 //            ->join('users', 'departemens.id','=','users.id_departemen')
 //            ->join('presensis', 'kegiatans.id','=','presensis.id_kegiatan')

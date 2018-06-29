@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\CalonAnggota;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 
 class AdminDataCalonController extends Controller
@@ -19,6 +20,42 @@ class AdminDataCalonController extends Controller
         //
         $calonAanggota = CalonAnggota::all();
         return view('bkk.datacalon.index')->with('calonAnggota', $calonAanggota);
+    }
+
+    public function importExcel()
+    {
+        $id_calon_anggota = request()->id_calon_anggota;
+        $periode = request()->periode;
+        if(Input::hasFile('importExcel')){
+            $file = Input::file('importExcel');
+            $data = Excel::load($file)->get();
+            if(!empty($data)){
+                $message = "";
+                $index = 0;
+                foreach ($data as $value){
+                    // cek apakah ada id_calon_anggota dalam database
+                    $cekCalonAnggota = CalonAnggota::where('id', $value->id)->first();
+
+                    if(count($cekCalonAnggota) > 0) {
+                        // apabila id_calon_anggota suda ada maka ditolak
+                        $cekDataAnggota = CalonAnggota::where('id_calon_anggota', $value->id)
+                            ->where('id', $value->id)
+                            ->where('nama_calon_anggota', $value->nama)
+                            ->where('jenis_kelamin', $value->jenis_kelamin)
+                            ->where('hardskill', $value->hardskill)
+                            ->where('softskill', $value->softskill)
+                            ->where('jenis_kelamin', $value->jenis_kelamin)
+                            ->where('id_periode', '!=', \App\Periode::where('status','Aktif')->first()->id_periode)
+                            ->first(); // untuk menampilkan data teratas
+
+                        if(count($cekDataAnggota) > 0) {
+                            //
+
+                        }
+                    }
+                }
+            }
+        }
     }
 
     /**

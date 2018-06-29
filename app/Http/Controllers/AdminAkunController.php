@@ -16,7 +16,9 @@ class AdminAkunController extends Controller
     public function index()
     {
         //
-        $user = User::all();
+
+        $user = User::with('departemen')->get();
+//        return response()->json($user);
         return view('bkk.akun.index')->with('user',$user);
     }
 

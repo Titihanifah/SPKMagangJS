@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\CalonAnggota;
+use App\Periode;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DataCalonController extends Controller
 {
@@ -15,8 +17,11 @@ class DataCalonController extends Controller
     public function index()
     {
 //        TODO: filter berdasarkan departemen ya... :)
-        $calonAnggota = CalonAnggota::all();
-        return view('kadept.datacalon.index')->with('calonAnggota',$calonAnggota);
+        $activePeriode = Periode::active()->first();
+        $userCalon = Auth::user()->departemen->detailCalonAnggota;
+        //dd($userCalon);
+//        $calonAnggota = CalonAnggota::all()->where('id_periode', $activePeriode->id);
+        return view('kadept.datacalon.index', compact('userCalon','calonAnggota','activePeriode'));
     }
     
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Departemen;
 use App\Kegiatan;
+use App\Periode;
 use App\Tugas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -27,14 +28,16 @@ class AdminController extends Controller
 //            ->join('departemens', 'departemens.id', '=', 'kegiatans.id_departemen')
 //            ->get();
 //        $kegiatan = Kegiatan::with('departemen')->where('id_departemen', departemen()->id)->get();
-        $kegiatan = Kegiatan::all();
+        $activePeriode = Periode::active()->first();
+        $kegiatan = Kegiatan::all()->where('id_periode', $activePeriode->id);
 //        return response()->json($kegiatan);
         return view('bkk.kegiatan.index',compact('kegiatan'));
     }
 
     public function tugas()
     {
-        $tugas = Tugas::all();
+        $activePeriode = Periode::active()->first();
+        $tugas = Tugas::with('departemen')->get()->where('id_periode', $activePeriode->id);
         return view('bkk.tugas.index', compact('tugas'));
     }
 

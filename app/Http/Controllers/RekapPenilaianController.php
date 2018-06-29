@@ -17,7 +17,8 @@ class RekapPenilaianController extends Controller
     {
         //
         $departemen = Departemen::all();
-        $detailCalonAnggotas = Auth::user()->departemen->first()->detailCalonAggota;
+        $detailCalonAnggotas = Auth::user()->departemen->detailCalonAnggota;
+//        dd($departemen);
 
         return view('kadept.rekapPenilaian.index',compact('detailCalonAnggotas', 'departemen'));
     }

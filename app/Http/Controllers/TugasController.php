@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\CalonAnggota;
 use App\DetailTugas;
 use App\Tugas;
 use App\Periode;
@@ -22,7 +21,9 @@ class TugasController extends Controller
     public function index()
     {
         //
-        $userTugas = User::where('id', Auth::user()->id_departemen)->with('departemen.tugas')->first();
+//        $userTugas = User::where('id', Auth::user()->id_departemen)->with('departemen.tugas')->first();
+        $activePeriode = Periode::active()->first();
+        $userTugas = Auth::user()->departemen->tugas->where('id_periode', $activePeriode->id);
 //        dd($kegiatan);
 //        return response()->json($userTugas);
 
@@ -41,16 +42,18 @@ class TugasController extends Controller
 
 //        TODO: gimana create dan upatenya sesuai departemennya
 
-        $calonAnggota = CalonAnggota::all();
-        $tugas = Tugas::all();
+        $detailCalonAnggota = Auth::user()->departemen->detailCalonAnggota;
+        $activePeriode = Periode::active()->first();
+        $tugas = Auth::user()->departemen->tugas->where('id_periode', $activePeriode->id);
 
-        foreach ($calonAnggota as $value){
+//        dd($detailCalonAnggota);
+        foreach ($detailCalonAnggota as $value){
 
             foreach ($tugas as $key){
 
-                if(DetailTugas::where('id_calon_anggota', $value->id)->where('id_tugas', $key->id)->count() == 0) {
+                if(DetailTugas::where('id_detail_calon_anggota', $value->id)->where('id_tugas', $key->id)->count() == 0) {
                     $detailTugas = new DetailTugas;
-                    $detailTugas->id_calon_anggota = $value->id;
+                    $detailTugas->id_detail_calon_anggota = $value->id;
                     $detailTugas->id_tugas = $key->id;
                     $detailTugas->nilai_tugas = null;
                     $detailTugas->save();
@@ -60,12 +63,12 @@ class TugasController extends Controller
 
         $detailTugas = DetailTugas::all();
 
-        $userTugas = User::where('id', Auth::user()->id_departemen)->with('departemen.tugas')->first();
+        $userTugas = User::where('id', Auth::user()->id)->with('departemen.tugas.detailTugas')->first();
 
 //        $detailTugas = DetailTugas::where('id_calon_anggota', $calonAnggota->id)->where('id_tugas', $tugas->id)->first();
 //        dd($detailTugas);
 //        dd ($detailTugas->where('id_calon_anggota', $value->id)->where('id_tugas', $key->id)->first()->nilai_tugas)
-        return view('kadept.tugas.penilaianTugas', compact('tugas','userTugas','calonAnggota','detailTugas'));
+        return view('kadept.tugas.penilaianTugas', compact('tugas','userTugas','detailCalonAnggota','detailTugas','activePeriode'));
 
 
     }
