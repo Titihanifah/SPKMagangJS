@@ -19,4 +19,16 @@ class Kegiatan extends Model
     {
         return $this->hasMany('App\Presensi','id_kegiatan');
     }
+    public function getJumlahHadirAttribute()
+    {
+        $present = $this->presensi;
+        $sumPresensi = 0;
+        foreach ($present as $key) {
+            if($key->kehadiran) {
+                $sumPresensi++;
+            }
+        }
+
+        return $sumPresensi;
+    }
 }

@@ -15,13 +15,13 @@ class Departemen extends Model
     {
         return $this->hasMany('App\Tugas','id_departemen');
     }
-    public function detailCalonAggota()
+    public function detailCalonAnggota()
     {
-        return $this->hasMany('App\DetailCalonAnggota','id_calon_anggota');
+        return $this->hasMany('App\DetailCalonAnggota','id_departemen');
     }
     public function user()
     {
-        return $this->hasOne('App\User','id_departemen','id');
+        return $this->hasMany('App\User','id_departemen');
     }
 
 }

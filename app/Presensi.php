@@ -9,7 +9,7 @@ class Presensi extends Model
     //
     public function kegiatans()
     {
-        return $this->belongsTo('App\Kegiatan','id_kegiatan');
+        return $this->belongsTo('App\Kegiatan','id_kegiatan','id');
     }
     public function detailCalonAnggota()
     {

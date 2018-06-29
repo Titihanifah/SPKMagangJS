@@ -19,6 +19,9 @@ class Periode extends Model
     {
         return $this->hasMany('App\Kegiatan','id_periode');
     }
+    public function scopeActive($query) {
+        return $query->where('status', 1);
+    }
 
     public function getStatusAttribute($value)
     {

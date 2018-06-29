@@ -30,12 +30,23 @@ class User extends Authenticatable
 
     public function isBKK()
     {
-        if($this->role = 1) return true;
+        if($this->role === 1) return true;
         else return false;
     }
     public function departemen()
     {
         return $this->belongsTo('App\Departemen','id_departemen', 'id');
+    }
+    public function getRoleUserAttribute()
+    {
+        $value = $this->role;
+
+        if($value == 0)
+        {
+            return "Ketua Departemen";
+        } else {
+            return "BKK";
+        }
     }
 
 
