@@ -81,7 +81,7 @@
 							<td>{{ $key->periode }}</td>
 							<td>{{ $key->status }}</td>
 							<td>
-                                <button onclick="edit({{ $i }})" data-tahun="{{ $key->tahun }}" data-periode="{{ $key->periode }}" data-status="{{ $key->status }}" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only" ><i class="m-menu__link-icon flaticon-edit-1"></i></button>
+                                <button onclick="edit({{ $i }})" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only" ><i class="m-menu__link-icon flaticon-edit-1"></i></button>
                                 <a href="{{url('/admin/periode/destroy')}}/{{ $key->id}}" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>
 							</td>
 						</tr>
@@ -137,58 +137,18 @@
 				<button type="submit" class="btn btn-primary">Simpan</button>
 			</div>
 				{!! Form::close() !!}
+			</div>
 
 		</div>
 	</div>
 </div>
 
-{{--<div class="modal fade" id="m-edit-periode" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"--}}
-     {{--aria-hidden="true">--}}
-    {{--<div class="modal-dialog" role="document">--}}
-        {{--<form method="POST" id="edit_form" action="" accept-charset="UTF-8" enctype="multipart/form-data">--}}
-            {{--<input name="_method" type="hidden" value="PUT">--}}
-            {{--@csrf--}}
-            {{--<div class="modal-content">--}}
-                {{--<div class="modal-header">--}}
-                    {{--<h5 class="modal-title">--}}
-                        {{--Edit Data Periode--}}
-                    {{--</h5>--}}
-                    {{--<button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
-                        {{--<span aria-hidden="true">&times;</span>--}}
-                    {{--</button>--}}
-                {{--</div>--}}
-                {{--<div class="modal-body">--}}
-                    {{--<div class="form-group m-form__group">--}}
-                        {{--<label for="">Tahun</label>--}}
-                        {{--<input type="year" id="tahun" name="tahun" class="form-control m-input m-input--air">--}}
-                    {{--</div>--}}
-                    {{--<div class="form-group m-form__group">--}}
-                        {{--<label for="">Periode</label>--}}
-                        {{--<input type="text" id="periode" name="periode" class="form-control m-input m-input--air">--}}
-                    {{--</div>--}}
-                    {{--<div class="m-form__group form-group">--}}
-                        {{--<label for="">Status</label>--}}
-                        {{--<div class="m-radio-inline">--}}
-                            {{--<label class="m-radio">--}}
-                                {{--<input type="radio" name="status" id="status" value="1">Aktif--}}
-                                {{--<span></span>--}}
-                            {{--</label>--}}
-                            {{--<label class="m-radio">--}}
-                                {{--<input type="radio" name="status" id="status" value="0">Tidak Aktif--}}
-                                {{--<span></span>--}}
-                            {{--</label>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-                {{--<div class="modal-footer">--}}
-                    {{--<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>--}}
-                    {{--<button type="submit" class="btn btn-primary">Simpan</button>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-        {{--</form>--}}
-    {{--</div>--}}
-{{--</div>--}}
+	<div class="modal fade" id="m-test-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+		 aria-hidden="true">
+		<div class="modal-dialog" role="document">
 
+		</div>
+	</div>
 	<div class="modal fade" id="m-edit-periode" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 		 aria-hidden="true">
 		<div class="modal-dialog" role="document">
@@ -206,16 +166,30 @@
 					</div>
 					<div class="modal-body">
 						<div class="form-group m-form__group">
-							<label for="">Tahun Periode</label>
-							<input type="year" id="tahun" name="nama_kegiatan" class="form-control m-input m-input--air">
+							<label for="">Tahun </label>
+							<input type="year" id="tahun" name="tahun" class="form-control m-input m-input--air">
 						</div>
 						<div class="form-group m-form__group">
 							<label for="">Tahun Periode</label>
-							<input type="text" id="periode" name="tanggal_kegiatan" class="form-control m-input m-input--air">
+							<input type="text" id="periode" name="periode" class="form-control m-input m-input--air">
 						</div>
-						<div class="form-group m-form__group">
+						{{--<div class="form-group m-form__group">--}}
+							{{--<label for="">Status</label>--}}
+							{{--<input type="text" name="status" id="status" class="form-control m-input m-input--air">--}}
+						{{--</div>--}}
+						<div class="m-form__group m-form__group">
 							<label for="">Status</label>
-							<input type="text" name="status" id="waktu" class="form-control m-input m-input--air">
+							<div class="m-radio-inline">
+								<input type="hidden" id="status" value="">
+								<label class="m-radio">
+									<input type="radio" id="aktif" name="status" value="">Aktif
+									<span></span>
+								</label>
+								<label class="m-radio">
+									<input type="radio" id="tidak_aktif" name="status" value="">Tidak Aktif
+									<span></span>
+								</label>
+							</div>
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -254,10 +228,26 @@
         var tahun = datadata[id].tahun;
         var periode = datadata[id].periode;
         var status = datadata[id].status;
+        var finalstatus;
+        if(status == "Tidak Aktif") {
+            finalstatus = 0;
+            $('#tidak_aktif').val(finalstatus);
+            $('#tidak_aktif').attr('checked', 'checked');
 
+        } else {
+            finalstatus = 1;
+            $('#aktif').val(finalstatus);
+            $('#aktif').attr('checked', 'checked');
+
+        }
+        console.log(finalstatus);
+
+        $('#status').val(finalstatus);
         $('#tahun').val(tahun);
         $('#periode').val(periode);
-        $('#status').val(status);
+//        $('#status').val(status);
+
+
 
         var url = "http://spkmagang.test:9000/admin/periode/" + (idObject);
         document.getElementById("edit_form").action = url;

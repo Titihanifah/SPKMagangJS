@@ -46,15 +46,15 @@
                                     <div class="col-md-5">
                                     </div>
                                     <div class="col-md-3">
-                                        <div class="m-input-icon m-input-icon--left">
-                                            <input type="text" class="form-control m-input" placeholder="Search..."
-                                                   id="generalSearch">
-                                            <span class="m-input-icon__icon m-input-icon__icon--left">
-											<span>
-												<i class="la la-search"></i>
-											</span>
-										</span>
-                                        </div>
+                                        {{--<div class="m-input-icon m-input-icon--left">--}}
+                                            {{--<input type="text" class="form-control m-input" placeholder="Search..."--}}
+                                                   {{--id="generalSearch">--}}
+                                            {{--<span class="m-input-icon__icon m-input-icon__icon--left">--}}
+											{{--<span>--}}
+												{{--<i class="la la-search"></i>--}}
+											{{--</span>--}}
+										{{--</span>--}}
+                                        {{--</div>--}}
                                     </div>
                                 </div>
                             </div>
@@ -68,7 +68,7 @@
                             <th>No</th>
                             <th>Username</th>
                             {{--TODO: password apakah ditampilkan dalam tabel--}}
-                            <th>Password</th>
+
                             <th>Role</th>
                             <th>Departemen</th>
                             <th>Aksi</th>
@@ -82,9 +82,9 @@
                                 <td><?php echo $i; ?></td>
                                 <td>{{ $key->name }}</td>
                                 {{--TODO: kalo tambahin role nya BKK ada emailnya--}}
-                                <td>{{ $key->password }}</td>
-                                <td>{{ $key->role }}</td>
-                                <td>{{ $key->id_departemen }}</td>
+
+                                <td>{{ $key->role_user }}</td>
+                                <td>{{ isset($key->departemen) ? $key->departemen->nama_departemen : "-" }}</td>
                                 <td>
                                     <button onclick="edit({{ $i }})" data-name="{{ $key->name }}" data-role="{{ $key->role }}" data-id_departemen="{{ $key->id_departemen }}" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only" ><i class="m-menu__link-icon flaticon-edit-1"></i></button>
                                     <a href="{{url('/admin/akun/destroy')}}/{{ $key->id}}" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>
@@ -123,11 +123,20 @@
                         </label>
                         <input type="text" name="name" class="form-control m-input m-input--air" id="exampleInputEmail1" placeholder="Username">
                     </div>
+                    {{--<div class="form-group m-form__group">--}}
+                        {{--<label for="">--}}
+                            {{--Role--}}
+                        {{--</label>--}}
+                        {{--<input type="text" name="role" class="form-control m-input m-input--air" id="exampleInputEmail1"  placeholder="Role">--}}
+                    {{--</div>--}}
                     <div class="form-group m-form__group">
                         <label for="">
                             Role
                         </label>
-                        <input type="text" name="role" class="form-control m-input m-input--air" id="exampleInputEmail1"  placeholder="Role">
+                            <select id="role" name="role" class="custom-select form-control col-md-12">
+                                    <option value="0">Ketua Departemen</option>
+                                    <option value="0">BKK</option>
+                            </select>
                     </div>
                     <div class="form-group m-form__group">
                         <label for="">

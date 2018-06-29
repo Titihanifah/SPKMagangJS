@@ -28,7 +28,7 @@
 
         <!-- start -->
         @if(Auth::user()->role == 0)
-        <li class="m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
+        <li class="{{ set_active('kadept.datacalon') }}" aria-haspopup="true"  m-menu-submenu-toggle="hover">
             <a  href="{{ url('/datacalon')}}" class="m-menu__link m-menu__toggle">
                 <i class="m-menu__link-icon flaticon-users color-menu"></i>
                 <span class="m-menu__link-text color-menu color-menu">
@@ -127,7 +127,7 @@
             <a  href="{{ url('/admin/datacalon')}}" class="m-menu__link m-menu__toggle">
                 <i class="m-menu__link-icon flaticon-users color-menu"></i>
                 <span class="m-menu__link-text color-menu">
-                    Data Calon Admin
+                    Data Calon
                 </span>
             </a>
         </li>

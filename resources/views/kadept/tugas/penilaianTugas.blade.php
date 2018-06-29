@@ -81,24 +81,24 @@
 							<th>No</th>
 							<th>Nama Calon</th>
 							<th>Nilai Akhir</th>
-							@foreach($userTugas->departemen->tugas as $key)
+							@foreach($userTugas->departemen->tugas->where('id_periode', $activePeriode->id) as $key)
 							<th>{{ $key->nama_tugas }}</th>
 							@endforeach
 						</tr>
 					</thead>
 					<tbody>
-					@foreach($calonAnggota as $value)
+					@foreach($detailCalonAnggota as $value)
 						<tr>
 							<td>{{ $value->id }}</td>
-							<td>{{ $value->nama_calon_anggota }}</td>
+							<td>{{ $value->calonAnggota->nama_calon_anggota }}</td>
 
-							<td>Nilai Akhir (90) </td>
-							@foreach($userTugas->departemen->tugas as $key)
+							<td>{{ $value->tugas }}</td>
+							@foreach($userTugas->departemen->tugas->where('id_periode', $activePeriode->id) as $key)
 
-                                @if($detailTugas->where('id_calon_anggota', $value->id)->where('id_tugas', $key->id)->first() === null){
+                                @if($detailTugas->where('id_detail_calon_anggota', $value->id)->where('id_tugas', $key->id)->first() === null){
                                 <td><input min="0"  max="100" id="[{{ json_encode($key) }},{{ json_encode($value) }}]" class="form-control m-input" onchange="penilaian(this)" type="number" placeholder="nilai" ></td>
                                 @else
-                                <td><input min="0"  max="100" id="[{{ json_encode($key) }},{{ json_encode($value) }}]" class="form-control m-input" onchange="penilaian(this)" type="number" value="{{ $detailTugas->where('id_calon_anggota', $value->id)->where('id_tugas', $key->id)->first()->nilai_tugas }}" ></td>
+                                <td><input min="0"  max="100" id="[{{ json_encode($key) }},{{ json_encode($value) }}]" class="form-control m-input" onchange="penilaian(this)" type="number" value="{{ $detailTugas->where('id_detail_calon_anggota', $value->id)->where('id_tugas', $key->id)->first()->nilai_tugas }}" ></td>
 
                             @endif
 							{{--<td><input class="form-control m-input"  type="text" placeholder="nilai" ></td>--}}
@@ -131,12 +131,12 @@
 	    console.log();
 	    console.log(theForm.value);
 		var tugas = JSON.parse(theForm.id)[0];
-		var calon_anggota = JSON.parse(theForm.id)[1];
+		var detail_calon_anggota = JSON.parse(theForm.id)[1];
         document.body.style.cursor='wait';
 
         $.ajax({ // create an AJAX call...
             data: {
-                id_calon_anggota: calon_anggota.id,
+                id_detail_calon_anggota: detail_calon_anggota.id,
                 id_tugas: tugas.id,
                 nilai_tugas: theForm.value,
 			}, // get the form data

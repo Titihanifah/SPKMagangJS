@@ -68,14 +68,13 @@
                 <div class="m-accordion m-accordion--default m-accordion--toggle-arrow" id="m_accordion_5"
                      role="tablist">
                     <div class="m-accordion__item">
-                        <div class="m-accordion__item-head collapsed" role="tab" id="m_accordion_7_item_1_head"
-                             data-toggle="collapse" href="#m_accordion_7_item_1_body" aria-expanded="    false">
-										<span class="m-accordion__item-icon">
-											<i class="fa flaticon-user-ok"></i>
-										</span>
+                        <div class="m-accordion__item-head collapsed" role="tab" id="m_accordion_7_item_1_head" data-toggle="collapse" href="#m_accordion_7_item_1_body" aria-expanded="    false">
+                            <span class="m-accordion__item-icon">
+                                <i class="fa flaticon-user-ok"></i>
+                            </span>
                             <span class="m-accordion__item-title">
-											Panduan Import Data
-										</span>
+                                Panduan Import Data
+                            </span>
                             <span class="m-accordion__item-mode"></span>
                         </div>
                         <div class="m-accordion__item-body collapse" id="m_accordion_7_item_1_body" role="tabpanel"
@@ -97,8 +96,7 @@
                                             <br>
                                             <hr>
                                             <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-primary m-btn--gradient-to-primary">
-                                                <i class="m-menu__link-icon flaticon-download "></i> Download Contoh
-                                                File
+                                                <i class="m-menu__link-icon flaticon-download "></i> Download Contoh File
                                             </button>
                                         </div>
                                     </div>
@@ -151,9 +149,8 @@
                             <div class="col-xl-12 order-2 order-xl-1">
                                 <div class="form-group m-form__group row align-items-center">
                                     <div class="col-md-4">
-                                        <a href="#" data-toggle="modal" data-target="#m-tambah-kriteria"
-                                           class="btn m-btn--square  btn-outline-primary"><i
-                                                    class="m-menu__link-icon flaticon-plus"></i> Tambah</a>
+                                        {{--<a href="#" data-toggle="modal" data-target="#m-tambah-kriteria" class="btn m-btn--square  btn-outline-primary"><i class="m-menu__link-icon flaticon-plus"></i> Tambah</a>--}}
+                                        <button class="btn m-btn--square  btn-outline-primary" data-toggle="modal" data-target="#m-tambah-datacalon"><i class="m-menu__link-icon flaticon-plus"></i> Tambah</button>
                                     </div>
                                     <div class="col-md-5">
 
@@ -173,6 +170,7 @@
                             </div>
 
                         </div>
+                    </div>
                         <!--end: Search Form -->
                         <!--begin: Datatable -->
                         <table class="dt-responsive nowrap table table-striped" id="table_data_calon" width="100%">
@@ -188,9 +186,10 @@
                             </tr>
                             </thead>
                             <tbody>
+                            @php $i = 1; @endphp
                             @foreach($calonAnggota as $key)
                                 <tr>
-                                    <td>{{ $key->id }}</td>
+                                    <td>{{ $i }}</td>
                                     <td>{{ $key->nama_calon_anggota }}</td>
                                     {{--TODO: tanyakan join tabel--}}
                                     <td>Prioritas 1</td>
@@ -200,14 +199,16 @@
                                     <td>Infokes</td>
                                     <td>
                                         <!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-primary m-btn--gradient-to-primary"><i class="m-menu__link-icon flaticon-eye"></i></button> -->
-                                        <a href="#" class="btn btn-outline-primary m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-eye"></i></a>
+                                        <a href="#" onclick="view({{ $i }})" class="btn btn-outline-primary m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-eye"></i></a>
+                                        <a href="#lihat-datacalon" data-toggle="modal" class="btn btn-outline-primary m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-eye"></i></a>
                                         <!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-warning m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-edit-1"></i></button> -->
-                                        <a href="#" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-edit-1"></i></a>
+                                        <a href="#" onclick="edit({{ $i }})" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-edit-1"></i></a>
                                         <!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-danger m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-delete-1"></i></button> -->
                                         <a href="{{url('admin/datacalon/destroy')}}/{{ $key->id}}" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>
 
                                     </td>
                                 </tr>
+                                @php $i++; @endphp
                             @endforeach
                             </tbody>
                         </table>
@@ -323,6 +324,57 @@
             </div>
         </div>
 
+    {{--modal view detail--}}
+    <div class="modal fade" id="lihat-datacalon" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <form method="POST" id="edit_form" action="" accept-charset="UTF-8" enctype="multipart/form-data">
+                <input name="_method" type="hidden" value="PUT">
+                @csrf
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">
+                            Detail Anggota
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+
+                            </div>
+                            <div class="col-md-6">
+                                
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="form-control-label">
+                                Recipient:
+                            </label>
+                            <input type="text" class="form-control" id="recipient-name">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="form-control-label">
+                                Message:
+                            </label>
+                            <textarea class="form-control" id="message-text"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="button" class="btn btn-primary">
+                            Send message
+                        </button>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    {{--end modal view--}}
         @endsection
 
         @section('js')

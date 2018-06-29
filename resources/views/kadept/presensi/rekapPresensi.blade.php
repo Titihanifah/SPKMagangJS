@@ -53,43 +53,6 @@
 	</div>
 	<!-- END: Subheader -->
 	<div class="m-content">
-		{{--<div class="m-section">--}}
-			{{--<div class="m-section__content">--}}
-				{{--<!--begin::Preview-->--}}
-				{{--<div class="m-demo">--}}
-					{{--<div class="m-demo__preview" style="background: #c8d6e5;">--}}
-						{{--<h3 class="m-section__heading">--}}
-							{{--Keterangan Daftar Kegiatan--}}
-							{{--<hr>--}}
-						{{--</h3>--}}
-                        {{--<?php $i=0; ?>--}}
-						{{--@foreach($userKegiatan[$i]->departemen->kegiatans[$i]->presensi[$i] as $key)--}}
-
-						{{--<div class="m-list-badge">--}}
-							{{--<div class="m-list-badge__items">--}}
-								{{--<div href="#" class="m-list-badge__item">--}}
-									{{--<?php echo $i ?>--}}
-								{{--</div>--}}
-							{{--</div>--}}
-							{{--<div class="m-list-badge__label m--font-primary">--}}
-								{{--<div class="col-md-12">--}}
-									{{--{{ $key->nama_kegiatan }}--}}
-								{{--</div>--}}
-							{{--</div>--}}
-							{{--<div class="col-md-12">--}}
-								{{--<div class="m-list-badge__label m--font-primary">--}}
-									{{--{{ $key->waktu }}--}}
-								{{--</div>--}}
-							{{--</div>--}}
-						{{--</div>--}}
-                            {{--<?php $i++ ?>--}}
-                        {{--@endforeach--}}
-
-					{{--</div>--}}
-				{{--</div>--}}
-				{{--<!--end::Preview-->--}}
-			{{--</div>--}}
-		{{--</div>--}}
 
 		<div class="m-portlet m-portlet--mobile">
 			<div class="m-portlet__head">
@@ -109,19 +72,12 @@
 						<div class="col-xl-12 order-2 order-xl-1">
 							<div class="form-group m-form__group row align-items-center">
 								<div class="col-md-4">
-									<button class="btn m-btn--square  btn-outline-primary" data-toggle="modal" data-target="#m_tambah_tugas"><i class="m-menu__link-icon fa fa-save "></i> Simpan</button>
+
 								</div>
 								<div class="col-md-5">									
 								</div>
 								<div class="col-md-3">
-									{{--<div class="m-input-icon m-input-icon--left">--}}
-										{{--<input type="text" class="form-control m-input" placeholder="Search..." id="generalSearch">--}}
-										{{--<span class="m-input-icon__icon m-input-icon__icon--left">--}}
-											{{--<span>--}}
-												{{--<i class="la la-search"></i>--}}
-											{{--</span>--}}
-										{{--</span>--}}
-									{{--</div>--}}
+
 								</div>
 							</div>
 						</div>
@@ -145,11 +101,11 @@
 
 					<tr>
 						<th>No</th>
-						<th title="Field #2">Nama Calon</th>
+						<th>Nama Calon</th>
 						<th>Jenis Kelamin</th>
 						<th>Total</th>
-                        <?php $i=1; ?>
-						@foreach($userKegiatan[0]->departemen->kegiatans as $key)
+                        <?php $i=0; ?>
+						@foreach($userKegiatan->departemen->kegiatans->where('id_periode', $activePeriode->id) as $key)
                             <th>{{  $key->nama_kegiatan }}</th>
 
                             <?php $i++; ?>
@@ -159,49 +115,69 @@
 					</thead>
 					<tbody>
 					{{--// TODO: sepertinya ini tabel presensi namun karena ada id kegiatan jadi bingung deh--}}
-					@foreach($calonAnggota as $calon)
+					@foreach($detailCalonAnggota as $calon)
 						<tr>
+
 							<td width="10%">{{ $calon->id }}</td>
-							<td>{{ $calon->nama_calon_anggota }}</td>
-							<td>{{ $calon->jenis_kelamin }}</td>
-							<td>
-								{{--TODO: progress sesuai dengan jumlah kehadiran dan jika kurang dari setengah merah warnanya--}}
-								<div class="progress">
-									<div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-								</div>
-								<div class="m--space-10"></div>
-							</td>
+							<td>{{ $calon->calonAnggota->nama_calon_anggota }}</td>
+							<td>{{ $calon->calonAnggota->jenis_kelamin }}</td>
+
+							@if( $calon->kehadiran_calon > 80 && $calon->kehadiran_calon >= 50)
+								<td >
+									{{--TODO: progress sesuai dengan jumlah kehadiran dan jika kurang dari setengah merah warnanya--}}
+									{{--<div class="progress">--}}
+									{{--<div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>--}}
+									{{--</div>--}}
+									{{--<div class="m--space-10"></div>--}}
+									<span class="m-badge m-badge--success m-badge--wide">
+											{{ $calon->kehadiran_calon }} %
+										</span>
+								</td>
+								@elseif( $calon->kehadiran_calon < 80 && $calon->kehadiran_calon > 35 )
+									<td >
+										{{--TODO: progress sesuai dengan jumlah kehadiran dan jika kurang dari setengah merah warnanya--}}
+										{{--<div class="progress">--}}
+										{{--<div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>--}}
+										{{--</div>--}}
+										{{--<div class="m--space-10"></div>--}}
+										<span class="m-badge m-badge--warning m-badge--wide">
+											{{ $calon->kehadiran_calon }} %
+										</span>
+									</td>
+								@else
+									<td >
+										{{--TODO: progress sesuai dengan jumlah kehadiran dan jika kurang dari setengah merah warnanya--}}
+										{{--<div class="progress">--}}
+										{{--<div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>--}}
+										{{--</div>--}}
+										{{--<div class="m--space-10"></div>--}}
+										<span class="m-badge m-badge--danger m-badge--wide">
+											{{ $calon->kehadiran_calon }} %
+										</span>
+									</td>
+								@endif
 
                             <?php $j = 0; ?>
-                            <?php $datas = $userKegiatan[0]->departemen->kegiatans[0]->presensi; ?>
                         {{--@for( //$k=0; $k<count($datas); $k++)--}}
-                            @foreach($userKegiatan[0]->departemen->kegiatans as $keys)
+
+
+                            @foreach($userKegiatan->departemen->kegiatans->where('id_periode', $activePeriode->id) as $keys)
                                 @foreach($keys->presensi as $key)
-                                @if($key->id_calon_anggota == $calon->id)
-                                <td >
-                                    {{ $key->id_kegiatan }}
-                                    {{--<button onload="{{ $key->kehadiran ? "hideObject(this)" : "" }}" href="#"  class="ya hadir-{{$key->id}}-{{$calon->id}} btn btn-sm btn-outline-success m-btn m-btn--icon m-btn--icon-only" ><i class="fa fa-check"></i></button>--}}
-                                    {{--<button onload="{{ $key->kehadiran ? "" : "hideObject(this)" }}" href="#"  class="tidak tidakhadir-{{$key->id}}-{{$calon->id}} btn btn-sm btn-outline-danger m-btn m-btn--icon m-btn--icon-only" ><i class="fa fa-remove"></i></button>--}}
-                                        {{--                                        <h2> {{ $p->kehadiran }}</h2>--}}
+									@if($key->id_detail_calon_anggota == $calon->id)
+									<td>
+										<label class="m-radio m-radio--solid m-radio--success">
+											<input {{ ($key->kehadiran == 1 ? "checked" : "") }} type="radio" onclick="hadir(this)"  id="[{{ json_encode($key->id_kegiatan) }},{{ json_encode($calon) }}]" name="kehadiran[{{ json_encode($key) }},{{ json_encode($calon) }}]"  value="{{$key->kehadiran}}" > Hadir✔️️
+											<span> </span>
+										</label>
+										<label class="m-radio m-radio--solid m-radio--danger">
+											<input {{ ($key->kehadiran == 0 ? "checked" : "") }} type="radio" onclick="tidakhadir(this)" id="[{{ json_encode($key->id_kegiatan) }},{{ json_encode($calon) }}]" name="kehadiran[{{ json_encode($key) }},{{ json_encode($calon) }}]" value="{{$key->kehadiran}}" >Tidak Hadir
+											<span> </span>
+										</label>
 
-                                        <label class="m-radio m-radio--solid m-radio--success">
-                                            {{--@if($key->kehadiran == 1)--}}
-                                            <input {{ ($key->kehadiran == 1 ? "checked" : "") }} type="radio" onclick="hadir(this)"  id="[{{ json_encode($key->id_kegiatan) }},{{ json_encode($calon) }}]" name="kehadiran[{{ json_encode($key) }},{{ json_encode($calon) }}]"  value="{{$key->kehadiran}}" >Hadir
-                                            <span> </span>
-                                        </label>
-                                        <label class="m-radio m-radio--solid m-radio--danger">
-                                            {{--@else--}}
-                                            <input {{ ($key->kehadiran == 0 ? "checked" : "") }} type="radio" onclick="tidakhadir(this)" id="[{{ json_encode($key->id_kegiatan) }},{{ json_encode($calon) }}]" name="kehadiran[{{ json_encode($key) }},{{ json_encode($calon) }}]" value="{{$key->kehadiran}}" >Tidak Hadir
-                                            <span> </span>
-                                            {{--@endif--}}
-                                        </label>
-                                        {{--@endforeach--}}
-                                </td>
-                                @endif
+									</td>
+									@endif
+                            	@endforeach
                             @endforeach
-                            @endforeach
-
-
 						</tr>
 					@endforeach
 
@@ -252,15 +228,15 @@
 
     function tidakhadir(theForm) {
         var kegiatan = JSON.parse(theForm.id)[0];
-        var calon_anggota = JSON.parse(theForm.id)[1];
+        var detail_calon_anggota = JSON.parse(theForm.id)[1];
         console.log("Formvalue"+theForm.value);
-//        $(".hadir-"+kegiatan.id+"-"+calon_anggota.id).show();
-//        $(".tidakhadir-"+kegiatan.id+"-"+calon_anggota.id).hide();
+//        $(".hadir-"+kegiatan.id+"-"+detail_calon_anggota.id).show();
+//        $(".tidakhadir-"+kegiatan.id+"-"+detail_calon_anggota.id).hide();
 
 
         $.ajax({
             data: {
-                id_calon_anggota: calon_anggota.id,
+                id_detail_calon_anggota: detail_calon_anggota.id,
                 id_kegiatan: kegiatan,
                 kehadiran: 0,
 
@@ -278,12 +254,12 @@
 
         function hadir(theForm) {
             var kegiatan = JSON.parse(theForm.id)[0];
-            var calon_anggota = JSON.parse(theForm.id)[1];
-//            $(".hadir-"+kegiatan.id+"-"+calon_anggota.id).hide();
-//            $(".tidakhadir-"+kegiatan.id+"-"+calon_anggota.id).show();
+            var detail_calon_anggota = JSON.parse(theForm.id)[1];
+//            $(".hadir-"+kegiatan.id+"-"+detail_calon_anggota.id).hide();
+//            $(".tidakhadir-"+kegiatan.id+"-"+detail_calon_anggota.id).show();
             $.ajax({
                 data : {
-                    id_calon_anggota: calon_anggota.id,
+                    id_detail_calon_anggota: detail_calon_anggota.id,
                     id_kegiatan: kegiatan,
                     kehadiran: 1,
                 },

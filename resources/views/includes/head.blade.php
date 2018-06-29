@@ -7,16 +7,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!--begin::Web font -->
 {{--<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>--}}
-<script src="js/webfont.js"></script>
+
 {{--<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js" type="text/javascript"></script>--}}
 
 <script>
-    WebFont.load({
-        google: {"families":["Poppins:300,400,500,600,700","Roboto:300,400,500,600,700"]},
-        active: function() {
-            sessionStorage.fonts = true;
-        }
-    });
+//    WebFont.load({
+//        google: {"families":["Poppins:300,400,500,600,700","Roboto:300,400,500,600,700"]},
+//        active: function() {
+//            sessionStorage.fonts = true;
+//        }
+//    });
 </script>
 <!--end::Web font -->
 <!--begin::Base Styles -->

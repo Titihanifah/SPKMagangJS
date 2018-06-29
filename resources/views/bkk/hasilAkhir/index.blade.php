@@ -69,27 +69,28 @@
 
                     <!--end: Search Form -->
                     <!--begin: Datatable -->
-                    <table id="data-calon" class="myTableDataTable table table-striped table-bordered" style="width:100%">
+                    <table id="hasil_akhir" class="dt-responsive nowrap table table-striped bordered-table" style="width:100%">
                         <thead>
                         <tr>
                             <th rowspan="2">No</th>
                             <th rowspan="2">Nama</th>
                             <th rowspan="2">Jenis Kelamin</th>
                             <th rowspan="2">Pilihan 1</th>
-                            <th colspan="3"><center>Nilai 1</center></th>
+                            <th rowspan="2">Rekomendasi 1</th>
+                            <th colspan="2"><center>Nilai 1</center></th>
                             <th rowspan="2">Pilihan 2</th>
-                            <th colspan="3"><center>Nilai 2</center></th>
-                            <th rowspan="2">Rekomendasi</th>
+                            <th colspan="2"><center>Nilai 2</center></th>
+                            <th rowspan="2">Rekomendasi 2</th>
                             <th rowspan="2">Aksi</th>
                             <th rowspan="2">Dept Fix</th>
                         </tr>
                         <tr>
                             <th width="10px">Nilai</th>
                             <th width="10px">Tugas</th>
-                            <th width="10px">Skill</th>
+
                             <th width="10px">Nilai</th>
                             <th width="10px">Tugas</th>
-                            <th width="10px">Skill</th>
+
                         </tr>
                         </thead>
                         <tbody>
@@ -99,16 +100,15 @@
                                 <td>Ria</td>
                                 <td>Perempuan</td>
                                 <td>MC</td>
+                                <td>MC</td>
                                 <td>10</td>
                                 <td>20</td>
-                                <td>30</td>
                                 <td>Infokes</td>
                                 <td>10</td>
                                 <td>20</td>
-                                <td>30</td>
                                 <td>Infokes</td>
                                 <td>
-                                    <a href="#" class="btn btn-outline-success m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-check"></i></a>
+                                    <a href="#" class="btn btn-success">Terima</a>
                                     {{--<a href="#" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only"><i class="fa fa-rotate-right"></i></a>--}}
 
                                 </td>
@@ -151,13 +151,13 @@
             $('.myTableDataTable').DataTable();
         } );
         $(document).ready(function() {
-            var table = $('#data-calon').DataTable( {
+            var table = $('#hasil_akhir').DataTable( {
                 paging:         true,
                 scrollY:        "300px",
                 scrollX:        true,
                 scrollCollapse: true,
                 fixedColumns:   {
-                    leftColumns: 2,
+                    leftColumns: 3,
                     rightColumns: 2,
                 }
             } );

@@ -73,14 +73,14 @@
 								<div class="col-md-5">
 								</div>
 								<div class="col-md-3">
-									<div class="m-input-icon m-input-icon--left">
-										<input type="text" class="form-control m-input" placeholder="Search..." id="generalSearch">
-										<span class="m-input-icon__icon m-input-icon__icon--left">
-											<span>
-												<i class="la la-search"></i>
-											</span>
-										</span>
-									</div>
+									{{--<div class="m-input-icon m-input-icon--left">--}}
+										{{--<input type="text" class="form-control m-input" placeholder="Search..." id="generalSearch">--}}
+										{{--<span class="m-input-icon__icon m-input-icon__icon--left">--}}
+											{{--<span>--}}
+												{{--<i class="la la-search"></i>--}}
+											{{--</span>--}}
+										{{--</span>--}}
+									{{--</div>--}}
 								</div>
 							</div>
 						</div>
@@ -100,7 +100,7 @@
 					</thead>
 					<tbody>
                     <?php $i = 1; ?>
-                    @foreach($userTugas->departemen->tugas  as $key)
+                    @foreach($userTugas as $key)
 						<tr>
 							<td><?php echo $i ?></td>
 							<td>{{ $key->nama_tugas }}</td>
@@ -108,7 +108,7 @@
 							<td>{{ $key->deadline }}</td>
 							<td>
 								{{--<a href="#" class="btn btn-outline-primary m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-eye"></i></a>--}}
-								<button onclick="edit({{ $i }})" data-nama_tugas="{{ $key->nama_tugas }}" data-deskripsi="{{ $key->deskripsi }}" data-deadline=""{{ $key->deadline }} class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only" data-toggle="modal" data-target="#m_edit_tugas"><i class="m-menu__link-icon flaticon-edit-1"></i></button>
+								<button onclick="edit({{ $i }})"  class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only" data-toggle="modal" data-target="#m_edit_tugas"><i class="m-menu__link-icon flaticon-edit-1"></i></button>
 								<a href="{{url('/tugas/destroy')}}/{{ $key->id}}" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>
 							</td>
 						</tr>
@@ -224,7 +224,7 @@
     } );
 
     function edit(id) {
-        var datadata = {!! json_encode($userTugas->departemen->tugas) !!};
+        var datadata = {!! json_encode($userTugas) !!};
         id = id-1;
 
         console.log(datadata[id]);

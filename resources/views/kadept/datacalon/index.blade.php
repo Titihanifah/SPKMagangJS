@@ -83,13 +83,14 @@
 					</thead>
 					<tbody>
                     <?php $i = 1; ?>
-					@foreach ($calonAnggota as $key)
+					@foreach ($userCalon as $key)
+						@if($key->calonAnggota->id_periode == $activePeriode->id)
 						<tr>
 							<td><?php echo $i ?></td>
-							<td>{{ $key->nama_calon_anggota }}</td>
-							<td>{{ $key->jenis_kelamin }}</td>
-							<td>{{ $key->hardskill }}</td>
-							<td>{{ $key->softskill }}</td>
+							<td>{{ $key->calonAnggota->where('id_periode', $activePeriode->id)->first()->nama_calon_anggota }}</td>
+							<td>{{ $key->calonAnggota->where('id_periode', $activePeriode->id)->first()->jenis_kelamin }}</td>
+							<td>{{ $key->calonAnggota->where('id_periode', $activePeriode->id)->first()->hardskill }}</td>
+							<td>{{ $key->calonAnggota->where('id_periode', $activePeriode->id)->first()->softskill }}</td>
 							{{--// TODO: join tabel detail (prioritas,dept pil duanya)--}}
 							<td>Infokes</td>
 							<td>
@@ -98,6 +99,7 @@
 
 							</td>
 						</tr>
+						@endif
                         <?php $i++ ?>
 					@endforeach
 					</tbody>

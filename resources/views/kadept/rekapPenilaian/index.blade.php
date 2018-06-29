@@ -74,46 +74,51 @@
 					<tr>
 						<th width="10px">Kehadiran</th>
 						<th width="10px">Tugas</th>
-
 					</tr>
 					</thead>
 					<tbody>
-
+						@foreach($detailCalonAnggotas as $key)
 						<tr>
-							<td width="10%">
-								1
-							</td>
-							<td>
-								Tiara
-							</td>
-							<td>
-								Perempuan
-							</td>
-							<td>
-								<center>40</center>
-							</td>
-							<td>
-								<center></center>
-							</td>
-							<td>
-								<center>55</center>
-							</td>
-							<td>
-								<a href="#" class="btn btn-success"><i class="flaticon-user-ok "></i>Rekomendasi</a>
+							<td width="10%">{{ $loop->iteration }}</td>
+							<td>{{ $key->calonAnggota->nama_calon_anggota }}</td>
+							<td>{{ $key->calonAnggota->jenis_kelamin }}</td>
+							<td><center>{{ $key->nilai_kehadiran }}</center></td>
+
+							<td><center>{{ $key->nilai_tugas }}</center></td>
+
+							<td><center>{{ $key->total_nilai }}</center></td>
+
+								{{--<a href="#" id="rekomendasi" class="btn btn-success"><i class="flaticon-user-ok "></i>Rekomendasi</a>--}}
 								{{--<a href="#" class="btn btn-sm btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="fa fa-remove"></i></a>--}}
-								<select class="custom-select form-control col-md-8">
+								{{--<select id="departemen" class="custom-select form-control col-md-8">--}}
                                     {{--TODO: selected--}}
-									<option selected>
-										Pilih Departemen
-									</option>
-									@foreach($departemen as $key)
-										<option value="{{ $key->id }}">{{ $key->nama_departemen }}</option>
-									@endforeach
-								</select>
+									{{--<option selected>--}}
+										{{--Pilih Departemen--}}
+									{{--</option>--}}
+
+									{{--@foreach($departemen as $value)--}}
+										{{--<option value="{{ $value->id }}">{{ $key->nama_departemen }}</option>--}}
+									{{--@endforeach--}}
+								{{--</select>--}}
 								<!-- <a href="#" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a> -->
+
+							<td>
+							<a href="#" id="rekomendasi" class="btn btn-success"><i class="flaticon-user-ok "></i>Rekomendasi</a>
+							{{--<a href="#" class="btn btn-sm btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="fa fa-remove"></i></a>--}}
+							<select id="departemen" class="custom-select form-control col-md-8">
+							{{--TODO: selected--}}
+							<option selected>
+							Pilih Departemen
+							</option>
+							@foreach($departemen as $key)
+							<option value="{{ $key->id }}">{{ $key->nama_departemen }}</option>
+							@endforeach
+							</select>
+							<!-- <a href="#" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a> -->
 
 							</td>
 						</tr>
+						@endforeach
                         {{--<tr>--}}
                             {{--<td width="10%">--}}
                                 {{--2--}}

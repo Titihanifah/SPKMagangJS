@@ -68,19 +68,19 @@
                             <div class="col-xl-12 order-2 order-xl-1">
                                 <div class="form-group m-form__group row align-items-center">
                                     <div class="col-md-4">
-                                        <button class="btn m-btn--square  btn-outline-primary" data-toggle="modal" data-target="#m-tambah-tugas"><i class="m-menu__link-icon flaticon-plus"></i> Tambah </button>
+                                        {{--<button class="btn m-btn--square  btn-outline-primary" data-toggle="modal" data-target="#m-tambah-tugas"><i class="m-menu__link-icon flaticon-plus"></i> Tambah </button>--}}
                                     </div>
                                     <div class="col-md-5">
                                     </div>
                                     <div class="col-md-3">
-                                        <div class="m-input-icon m-input-icon--left">
-                                            <input type="text" class="form-control m-input" placeholder="Search..." id="generalSearch">
-                                            <span class="m-input-icon__icon m-input-icon__icon--left">
-											<span>
-												<i class="la la-search"></i>
-											</span>
-										</span>
-                                        </div>
+                                        {{--<div class="m-input-icon m-input-icon--left">--}}
+                                            {{--<input type="text" class="form-control m-input" placeholder="Search..." id="generalSearch">--}}
+                                            {{--<span class="m-input-icon__icon m-input-icon__icon--left">--}}
+											{{--<span>--}}
+												{{--<i class="la la-search"></i>--}}
+											{{--</span>--}}
+										{{--</span>--}}
+                                        {{--</div>--}}
                                     </div>
                                 </div>
                             </div>
@@ -107,7 +107,7 @@
                                 <td>{{ $key->nama_tugas }}</td>
                                 <td>{{ $key->deskripsi }}</td>
                                 <td>{{ $key->deadline }}</td>
-                                <td>{{ $key->id_departemen }}</td>
+                                <td>{{ $key->departemen->nama_departemen }}</td>
                                 <td>
                                     {{--<a href="#" class="btn btn-outline-primary m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-eye"></i></a>--}}
                                     {{--<button onclick="edit({{ $i }})" data-nama_tugas="{{ $key->nama_tugas }}" data-deskripsi="{{ $key->deskripsi }}" data-deadline=""{{ $key->deadline }} class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only" data-toggle="modal" data-target="#m_edit_tugas"><i class="m-menu__link-icon flaticon-edit-1"></i></button>--}}
