@@ -82,7 +82,7 @@
                                 <td>{{ $value->waktu }}</td>
                                 <td>{{ $value->departemen->nama_departemen }}</td>
                                 {{--TODO: diambil dari presensi--}}
-                                <td>50</td>
+                                <td>{{ $value->jumlah_hadir }}</td>
                                 <td>
                                     <!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-primary m-btn--gradient-to-primary"><i class="m-menu__link-icon flaticon-eye"></i></button> -->
                                 {{--<a href="#" class="btn btn-outline-primary m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-eye"></i></a>--}}

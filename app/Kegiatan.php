@@ -29,6 +29,7 @@ class Kegiatan extends Model
             }
         }
 
+//        dd($sumPresensi);
         return $sumPresensi;
     }
 }

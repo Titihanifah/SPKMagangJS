@@ -17,7 +17,7 @@ class CreateDetKemampuanCalonsTable extends Migration
             $table->increments('id');
             $table->integer('id_kemampuan_tambahan')->unsigned();
             $table->integer('id_calon_anggota')->unsigned();
-            $table->boolean('kepunyaan')->nullable();
+            $table->boolean('kepunyaan')->nullable(); // 1 punya , 0 tidak punya
             $table->foreign('id_kemampuan_tambahan')
                 ->references('id')->on('kemampuan_tambahans')
                 ->onDelete('cascade');
