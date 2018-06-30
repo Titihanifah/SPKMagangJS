@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\DetailCalonAnggota;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
-class DetailCalonAnggota extends Controller
+class DetailCalonAnggotaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -40,6 +42,41 @@ class DetailCalonAnggota extends Controller
     public function store(Request $request)
     {
         //
+    }
+
+    public function simpan(Request $request)
+    {
+//        $p = null;
+//        $presensi = Presensi::where('id_detail_calon_anggota', $request->id_detail_calon_anggota)
+//            ->where('id_kegiatan', $request->id_kegiatan)
+//            ->get();
+//        if ($presensi->count() > 0) {
+//            $p = Presensi::find($presensi[0]->id);
+//        } else {
+//            $p = new Presensi;
+//        }
+
+//        $detailCalonAnggota= DetailCalonAnggota::find($request->id_detail_calon_anggota);
+//        $detailCalonAnggota->favorit = $request->favorit;
+//
+//        $detailCalonAnggota->save();
+//        Session::flash('message', 'Success add data employee!');
+
+        $p = null;
+        $detailCalonAnggota = DetailCalonAnggota::where('id', $request->id_detail_calon_anggota)
+            ->get();
+        if ($detailCalonAnggota->count() > 0) {
+            $p = DetailCalonAnggota::find($detailCalonAnggota[0]->id);
+        } else {
+            $p = new DetailCalonAnggota;
+        }
+        $p->id = $request->id_detail_calon_anggota;
+        $p->id_departemen = $request->id_departemen;
+        $p->favorit = $request->favorit;
+        $p->save();
+
+
+        return response()->json('Success');
     }
 
     /**

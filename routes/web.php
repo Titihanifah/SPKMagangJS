@@ -35,7 +35,7 @@ Route::get('/penilaianTugas','TugasController@penilaianTugas')->name('penilaianT
 Route::get('/presensi','PresensiController@index')->name('presensi');
 Route::get('/rekap_presensi','PresensiController@rekap')->name('rekap');
 Route::get('/rekap_nilai','RekapPenilaianController@index');
-Route::get('/penilaian_skill','PenilaianKemampuanController@index');
+Route::get('/kemampuan_tambahan','PenilaianKemampuanController@index');
 Route::get('/kegiatan/destroy/{id}','KegiatanController@destroy');
 Route::get('admin/periode/destroy/{id}', 'AdminPeriodeController@destroy');
 Route::get('admin/kriteria/destroy/{id}', 'AdminKriteriaController@destroy');

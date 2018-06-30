@@ -70,6 +70,7 @@
 							<th colspan="2"><center>Total Nilai</center></th>
 							<th rowspan="2">Hasil Akhir</th>
 							<th rowspan="2">Aksi</th>
+							<th rowspan="2">Keterangan</th>
 						</tr>
 					<tr>
 						<th width="10px">Kehadiran</th>
@@ -105,17 +106,18 @@
 							<td>
 							<a href="#" id="rekomendasi" class="btn btn-success"><i class="flaticon-user-ok "></i>Rekomendasi</a>
 							{{--<a href="#" class="btn btn-sm btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="fa fa-remove"></i></a>--}}
-							<select id="departemen" class="custom-select form-control col-md-8">
-							{{--TODO: selected--}}
-							<option selected>
-							Pilih Departemen
-							</option>
-							@foreach($departemen as $key)
-							<option value="{{ $key->id }}">{{ $key->nama_departemen }}</option>
-							@endforeach
+							<select id="departemen" class="custom-select form-control col-md-12">
+								{{--TODO: selected--}}
+								<option selected>Pilih Departemen</option>
+								@foreach($departemen as $key)
+									<option value="{{ $key->id }}">{{ $key->nama_departemen }}</option>
+								@endforeach
 							</select>
 							<!-- <a href="#" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a> -->
 
+							</td>
+							<td>
+								<textarea class="form-control m-input" placeholder="keterangan/alasan"></textarea>
 							</td>
 						</tr>
 						@endforeach

@@ -51,7 +51,7 @@ class PresensiController extends Controller
     public function rekap()
     {
         //
-//        $detailCalonAnggota   = DetailCalonAnggota::where('id', Auth::user()->id_departemen)->with('departemen');
+//        $detailCalonAnggota   = DetailCalonAnggotaController::where('id', Auth::user()->id_departemen)->with('departemen');
         $detailCalonAnggota =  Auth::user()->departemen->detailCalonAnggota;
         $activePeriode = Periode::active()->first();
         $kegiatan   = Auth::user()->departemen->kegiatans->where('id_periode', $activePeriode->id);

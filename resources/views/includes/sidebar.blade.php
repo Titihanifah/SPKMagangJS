@@ -28,7 +28,7 @@
 
         <!-- start -->
         @if(Auth::user()->role == 0)
-        <li class="{{ set_active('kadept.datacalon') }}" aria-haspopup="true"  m-menu-submenu-toggle="hover">
+        <li class="m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
             <a  href="{{ url('/datacalon')}}" class="m-menu__link m-menu__toggle">
                 <i class="m-menu__link-icon flaticon-users color-menu"></i>
                 <span class="m-menu__link-text color-menu color-menu">
@@ -104,12 +104,21 @@
                 </ul>
             </div>
         </li>
+        {{--<li class="m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">--}}
+            {{--<a  href="{{ url('/penilaian_skill')}}" class="m-menu__link m-menu__toggle ">--}}
+                {{--<i class="m-menu__link-icon flaticon-notes color-menu"></i>--}}
+                {{--<span class="m-menu__link-text color-menu">--}}
+                    {{--Penilaian Kemampuan--}}
+                {{--</span>--}}
+            {{--</a>--}}
+        {{--</li>--}}
+        {{--</li>--}}
         <li class="m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
-            <a  href="{{ url('/penilaian_skill')}}" class="m-menu__link m-menu__toggle ">
+            <a  href="{{ url('/kemampuan_tambahan')}}" class="m-menu__link m-menu__toggle ">
                 <i class="m-menu__link-icon flaticon-notes color-menu"></i>
                 <span class="m-menu__link-text color-menu">
-                    Penilaian Kemampuan
-                </span>
+                Kemampuan Tambahan
+            </span>
             </a>
         </li>
         <li class="m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
@@ -120,9 +129,15 @@
                 </span>
             </a>
         </li>
-        @endif
-
-        @if(Auth::user()->role == 1)
+        <li class="m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
+            <a  href="{{ url('/admin/panduan')}}" class="m-menu__link m-menu__toggle ">
+                <i class="m-menu__link-icon flaticon-user-settings  color-menu"></i>
+                <span class="m-menu__link-text color-menu">
+                Panduan
+            </span>
+            </a>
+        </li>
+        @else
         <li class="m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
             <a  href="{{ url('/admin/datacalon')}}" class="m-menu__link m-menu__toggle">
                 <i class="m-menu__link-icon flaticon-users color-menu"></i>
@@ -133,7 +148,7 @@
         </li>
         <li class="m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
             <a  href="{{ url('/admin/kegiatan')}}" class="m-menu__link m-menu__toggle">
-                <i class="m-menu__link-icon flaticon-users color-menu"></i>
+                <i class="m-menu__link-icon flaticon-interface-1 color-menu"></i>
                 <span class="m-menu__link-text  color-menu">
                     Kegiatan
                 </span>

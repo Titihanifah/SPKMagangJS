@@ -94,7 +94,7 @@
 							{{--// TODO: join tabel detail (prioritas,dept pil duanya)--}}
 							<td>Infokes</td>
 							<td>
-								<button onclick="star( {{ $i }})" id="[{{ json_encode($key) }}]" class="btn btn-outline-success m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-star"></i></button>
+								<button onclick="star(this)" id="[{{ json_encode($key) }}]" class="btn btn-outline-success m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-star"></i></button>
 								{{--<a href="#" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only"><i class="fa fa-rotate-right"></i></a>--}}
 
 							</td>
@@ -138,21 +138,42 @@
     } );
 
     function star(theForm){
-        var calon_anggota = JSON.parse(theForm.id)[0];
+        var detail_calon_anggota = JSON.parse(theForm.id)[0];
+        console.log(theForm.id);
 
-        $.ajax({
-            data: {
-                id_calon_anggota: calon_anggota.id,
-                white_card_dept_1: 1,
+        if(detail_calon_anggota.favorit == 1){
 
-            },
-            type: 'POST',
-            url: 'http://spkmagang.test:9000/api/star/simpan',
-            success: function (response) { // on success..
-                console.log(response); // update the DIV
+            $.ajax({
+                data: {
+                    id_detail_calon_anggota: detail_calon_anggota.id,
+                    id_departemen : detail_calon_anggota.id_departemen,
+                    favorit : 0,
 
-            }
-        });
+                },
+                type: 'POST',
+                url: 'http://spkmagang.test:9000/api/star/simpan',
+                success: function (response) { // on success..
+                    console.log(response); // update the DIV
+
+                }
+            });
+		}else{
+            $.ajax({
+                data: {
+                    id_detail_calon_anggota: detail_calon_anggota.id,
+                    id_departemen : detail_calon_anggota.id_departemen,
+                    favorit : 1,
+
+                },
+                type: 'POST',
+                url: 'http://spkmagang.test:9000/api/star/simpan',
+                success: function (response) { // on success..
+                    console.log(response); // update the DIV
+
+                }
+            });
+		}
+
 
     }
 </script>
