@@ -118,10 +118,12 @@
 
                     {!! Form::open(array('route' => 'akun.store', 'enctype' => 'multipart/form-data')) !!}
                     <div class="form-group m-form__group">
-                        <label for="">
-                            Username
-                        </label>
+                        <label for="">Username</label>
                         <input type="text" name="name" class="form-control m-input m-input--air" id="exampleInputEmail1" placeholder="Username">
+                    </div>
+                    <div class="form-group m-form__group">
+                        <label for="">Password</label>
+                        <input type="password" name="password" class="form-control m-input m-input--air" id="exampleInputEmail1" placeholder="Username">
                     </div>
                     {{--<div class="form-group m-form__group">--}}
                         {{--<label for="">--}}
@@ -134,8 +136,8 @@
                             Role
                         </label>
                             <select id="role" name="role" class="custom-select form-control col-md-12">
-                                    <option value="0">Ketua Departemen</option>
-                                    <option value="0">BKK</option>
+                                <option value="0">Ketua Departemen</option>
+                                <option value="0">BKK</option>
                             </select>
                     </div>
                     <div class="form-group m-form__group">

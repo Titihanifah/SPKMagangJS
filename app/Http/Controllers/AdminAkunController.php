@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Departemen;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -18,8 +19,9 @@ class AdminAkunController extends Controller
         //
 
         $user = User::with('departemen')->get();
+        $departemen = Departemen::all();
 //        return response()->json($user);
-        return view('bkk.akun.index')->with('user',$user);
+        return view('bkk.akun.index',compact('user','departemen'));
     }
 
     /**
@@ -44,18 +46,20 @@ class AdminAkunController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'role' => 'required',
-            'id_departemen' => 'required',
+            'password' => 'required',
         ]);
 
         $user = new User;
 
+
+
         $user->name = $request->name;
         $user->role = $request->role;
         $user->id_departemen = $request->id_departemen;
-        $mail = $user->name;
-        $user->email = $mail.'departemen@gmail.com';
-//        TODO : ini gimana biar password nya default?
-        $user->password = bcrypt('departemen');
+        $nameDep = $request->name;
+        $user->password = bcrypt($request->password);
+
+        $user->email = $nameDep.'departemen@gmail.com';
         $user->save();
         Session::flash('message', 'Sukses menambah akun');
 

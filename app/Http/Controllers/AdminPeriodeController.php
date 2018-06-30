@@ -97,7 +97,7 @@ class AdminPeriodeController extends Controller
         $periode= Periode::find($id);
         $periode->tahun = $request->tahun;
         $periode->periode = $request->periode;
-        $periode->status = $request->final_status;
+        $periode->status = $request->status;
         $periode->save();
         Session::flash('message', 'Success menambah data periode!');
         return redirect('admin/periode'); // Set redirect ketika berhasil

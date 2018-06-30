@@ -143,12 +143,7 @@
 	</div>
 </div>
 
-	<div class="modal fade" id="m-test-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-		 aria-hidden="true">
-		<div class="modal-dialog" role="document">
 
-		</div>
-	</div>
 	<div class="modal fade" id="m-edit-periode" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 		 aria-hidden="true">
 		<div class="modal-dialog" role="document">
@@ -180,13 +175,12 @@
 						<div class="m-form__group m-form__group">
 							<label for="">Status</label>
 							<div class="m-radio-inline">
-								<input type="hidden" id="status" value="">
+								{{--<input type="hidden" id="final_status" value="">--}}
 								<label class="m-radio">
-									<input type="radio" id="aktif" name="status" value="">Aktif
-									<span></span>
+									<input type="radio" id="aktif" name="status" value="1">Aktif<span></span>
 								</label>
 								<label class="m-radio">
-									<input type="radio" id="tidak_aktif" name="status" value="">Tidak Aktif
+									<input type="radio" id="tidak_aktif" name="status" value="0">Tidak Aktif
 									<span></span>
 								</label>
 							</div>
@@ -234,7 +228,7 @@
             $('#tidak_aktif').val(finalstatus);
             $('#tidak_aktif').attr('checked', 'checked');
 
-        } else {
+        } else if(status == "Aktif") {
             finalstatus = 1;
             $('#aktif').val(finalstatus);
             $('#aktif').attr('checked', 'checked');
@@ -242,7 +236,7 @@
         }
         console.log(finalstatus);
 
-        $('#status').val(finalstatus);
+        $('#status').val(status);
         $('#tahun').val(tahun);
         $('#periode').val(periode);
 //        $('#status').val(status);
