@@ -27,13 +27,17 @@ class CalonAnggota extends Model
     {
         return $this->hasMany('App\DetailCalonAnggota');
     }
-    public function getJenisKelaminAttribute($value)
+//    public function getJenisKelaminAttribute($value)
+//    {
+//        if($value == 0) {
+//            return "Laki-laki";
+//        } else {
+//            return "Perempuan";
+//        }
+//
+//    }
+    public function detKemampuanCalon()
     {
-        if($value == 0) {
-            return "Laki-laki";
-        } else {
-            return "Perempuan";
-        }
-
+        return $this->hasMany('App\DetKemampuanCalon','id_calon_anggota');
     }
 }

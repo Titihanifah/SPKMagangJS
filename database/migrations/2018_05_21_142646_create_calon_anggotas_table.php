@@ -16,10 +16,19 @@ class CreateCalonAnggotasTable extends Migration
         Schema::create('calon_anggotas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nama_calon_anggota');
-//            TODO: ini menggunakan string apa text ya? apa bedanya string dg text
-            $table->string('hardskill');
-            $table->string('softskill');
-            $table->boolean('jenis_kelamin'); // 0 : laki-laki, 1 perempuan
+            $table->enum('jenis_kelamin',['laki-laki','perempuam']);
+//            $table->string('fakultas');
+//            $table->string('prodi');
+//            $table->year('angkatan');
+            $table->string('asal');
+            $table->string('alamat_jogja');
+            $table->string('sumber_belajar_islam')->nullable();
+            $table->string('pengalaman_organisasi')->nullable();
+            $table->string('pengalaman_kepanitiaan')->nullable();
+            $table->string('minat')->nullable();
+            $table->string('hardskill')->nullable();
+            $table->string('softskill')->nullable();
+            $table->string('riwayat_penyakit')->nullable();
             $table->string('departemen_final')->nullable();
             $table->integer('id_periode')->unsigned();
             $table->foreign('id_periode')

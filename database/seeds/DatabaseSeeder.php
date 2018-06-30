@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
         $this->call(DetailTugasSeeder::class);
         $this->call(PenilaianSeeder::class);
         $this->call(KemampuanTambahanSeeder::class);
-        $this->call(DetailDeptKemampSeeder::class);
+//        $this->call(DetailDeptKemampSeeder::class);
         $this->call(DetailKemampCalonSeeder::class);
 
     }
