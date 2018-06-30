@@ -92,7 +92,8 @@ License: You must have a valid license purchased only from themeforest(the above
                                     </div>
                                 </div>
                                 <div class="m-login__form-action">
-                                    <button type="submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air">
+                                    <button type="submit" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
+
                                         {{ __('Login') }}
                                     </button>
                                     {{ __('Forgot Your Password?') }}
@@ -190,9 +191,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     Jamaah Shalahuddin
                 </h3>
                 <p class="m-login__msg">
-                    Lorem ipsum dolor sit amet, coectetuer adipiscing
-                    <br>
-                    elit sed diam nonummy et nibh euismod
+                    Ukm kerohanian Islam dan lembaga dakwah kamppus UGM
                 </p>
             </div>
         </div>
