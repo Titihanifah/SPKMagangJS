@@ -15,10 +15,10 @@ class CreateDetailCalonAnggotasTable extends Migration
     {
         Schema::create('detail_calon_anggotas', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_departemen')->unsigned();
+            $table->integer('id_departemen')->unsigned()->nullable();
             $table->integer('id_calon_anggota')->unsigned();
             $table->integer('prioritas');
-            $table->smallInteger('rekomendasi')->nullable(); //rekomendasi dr kadept
+            $table->string('rekomendasi')->nullable(); //rekomendasi dr kadept
             $table->boolean('favorit')->nullable();
             $table->text('keterangan')->nullable();
             $table->integer('total_nilai')->nullable();

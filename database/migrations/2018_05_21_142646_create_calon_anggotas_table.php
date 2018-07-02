@@ -16,7 +16,7 @@ class CreateCalonAnggotasTable extends Migration
         Schema::create('calon_anggotas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nama_calon_anggota');
-            $table->enum('jenis_kelamin',['laki-laki','perempuam']);
+            $table->enum('jenis_kelamin',['laki-laki','perempuan']);
 //            $table->string('fakultas');
 //            $table->string('prodi');
 //            $table->year('angkatan');
