@@ -22,10 +22,10 @@ class DetailCalonAnggota extends Model
     {
         return $this->hasMany('App\DetailTugas','id_detail_calon_anggota');
     }
-//    public function penilaian()
-//    {
-//        return $this->hasMany('App\Penilaian','')
-//    }
+    public function penilaian()
+    {
+        return $this->hasMany('App\Penilaian','id_detail_calon_anggota');
+    }
 
     public function getTotalNilaiAttribute() {
 
@@ -45,7 +45,14 @@ class DetailCalonAnggota extends Model
             }
         }
 
-        $totalPresensi = ($sumPresensi / $this->departemen->kegiatans->count());
+        if($this->departemen->kegiatans->count() == 0){
+            $totalPresensi = 0;
+
+        }else {
+            $totalPresensi = ($sumPresensi / $this->departemen->kegiatans->count());
+        }
+
+
 
         return $totalPresensi;
     }
@@ -54,20 +61,42 @@ class DetailCalonAnggota extends Model
 
         $presensi = $this->presensis;
         $sumPresensi = 0;
+//        $bobot = $this->penilaian->kriteria->bobot;
         foreach ($presensi as $key) {
             if($key->kehadiran) {
                 $sumPresensi++;
             }
         }
 
-        $totalPresensi = ($sumPresensi / $this->departemen->kegiatans->count()) * 100;
+        if($this->departemen->kegiatans->count() == 0){
+            $totalPresensi = 0;
+
+        }else {
+            $totalPresensi = ($sumPresensi / $this->departemen->kegiatans->count()) * 100  ;
+        }
+
 
         return $totalPresensi;
     }
+
+    /**
+     * @return float|int
+     */
     public function getNilaiTugasAttribute() {
 
         $detTugas = $this->detailTugas;
         $sumTugas = 0;
+//        $bobotTugas =  0;
+//        $kriteria = $this->penilaian;
+//        foreach ($kriteria as $value) {
+//            if($value->id_kriteria == 1){
+//                $bobotTugas = $value->bobot;
+//            }else{
+//                $bobotKehadiran = $value->bobot;
+//            }
+//
+//        }
+//        $bobot = Kriteria::where(id,$kriteria)->bobot;
 
         foreach ($detTugas as $key) {
             if($key->nilai_tugas !== null) {
@@ -75,8 +104,13 @@ class DetailCalonAnggota extends Model
             }
         }
 
+        if($this->departemen->tugas->count() == 0){
+            $totalTugas = 0;
 
-        $totalTugas = ($sumTugas / (($this->departemen->tugas->count()) * 100))  ;
+        }else {
+            $totalTugas = $sumTugas / (($this->departemen->tugas->count()) * 100);
+        }
+
 
         return $totalTugas;
     }

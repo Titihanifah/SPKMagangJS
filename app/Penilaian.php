@@ -9,7 +9,7 @@ class Penilaian extends Model
     //
     public function kriteria()
     {
-        return $this->belongsTo('App\Kriteria');
+        return $this->belongsTo('App\Kriteria','id_kriteria','id');
     }
     public function detailCalonAnggota()
     {
