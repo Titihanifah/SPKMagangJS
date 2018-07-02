@@ -82,6 +82,8 @@ class PenilaianTugasController extends Controller
 
     public function simpan(Request $request)
     {
+
+
         $dt = null;
         $detailTugas = DetailTugas::where('id_detail_calon_anggota', $request->id_detail_calon_anggota)
             ->where('id_tugas', $request->id_tugas)
