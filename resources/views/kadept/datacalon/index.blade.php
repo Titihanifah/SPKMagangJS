@@ -75,22 +75,40 @@
 							<th>No</th>
 							<th>Nama</th>
 							<th>Jenis Kelamin</th>
+							<th>Prioritas</th>
 							<th>Hardskill</th>
 							<th>Softskill</th>
-							<th>Dept Pilihan</th>
+							<th>Organisasi</th>
+							<th>Kepanitiaan</th>
+							<th>Minat</th>
+							<th>Sumber Belajar Islam</th>
+							<th>Riwayat Penyakit</th>
+							<th>Asal</th>
+							<th>Alamat Jogja</th>
+							<th>Departemen Pilihan</th>
 							<th>Aksi</th>
 						</tr>
 					</thead>
 					<tbody>
                     <?php $i = 1; ?>
 					@foreach ($userCalon as $key)
+						{{--@php dd($key->calonAnggota) @endphp--}}
 						@if($key->calonAnggota->id_periode == $activePeriode->id)
+
 						<tr>
 							<td><?php echo $i ?></td>
 							<td>{{ $key->calonAnggota->where('id_periode', $activePeriode->id)->first()->nama_calon_anggota }}</td>
 							<td>{{ $key->calonAnggota->where('id_periode', $activePeriode->id)->first()->jenis_kelamin }}</td>
+							<td>{{ $key->prioritas }}</td>
 							<td>{{ $key->calonAnggota->where('id_periode', $activePeriode->id)->first()->hardskill }}</td>
 							<td>{{ $key->calonAnggota->where('id_periode', $activePeriode->id)->first()->softskill }}</td>
+							<td>{{ $key->calonAnggota->where('id_periode', $activePeriode->id)->first()->pengalaman_organisasi }}</td>
+							<td>{{ $key->calonAnggota->where('id_periode', $activePeriode->id)->first()->pengalaman_kepanitiaan }}</td>
+							<td>{{ $key->calonAnggota->where('id_periode', $activePeriode->id)->first()->minat }}</td>
+							<td>{{ $key->calonAnggota->where('id_periode', $activePeriode->id)->first()->sumber_belajar_islam }}</td>
+							<td>{{ $key->calonAnggota->where('id_periode', $activePeriode->id)->first()->riwayat_penyakit }}</td>
+							<td>{{ $key->calonAnggota->where('id_periode', $activePeriode->id)->first()->asal }}</td>
+							<td>{{ $key->calonAnggota->where('id_periode', $activePeriode->id)->first()->alamat_jogja }}</td>
 							{{--// TODO: join tabel detail (prioritas,dept pil duanya)--}}
 							<td>Infokes</td>
 							<td>
@@ -131,7 +149,7 @@
             scrollX:        true,
             scrollCollapse: true,
             fixedColumns:   {
-                leftColumns: 2,
+                leftColumns: 3,
                 rightColumns: 1,
             }
         } );

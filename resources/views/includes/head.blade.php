@@ -7,27 +7,30 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!--begin::Web font -->
 {{--<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>--}}
+<script src="{{ url('/js/webfont.js') }}"></script>
 
 {{--<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js" type="text/javascript"></script>--}}
 
 <script>
-//    WebFont.load({
-//        google: {"families":["Poppins:300,400,500,600,700","Roboto:300,400,500,600,700"]},
-//        active: function() {
-//            sessionStorage.fonts = true;
-//        }
-//    });
+    WebFont.load({
+        google: {"families":["Poppins:300,400,500,600,700","Roboto:300,400,500,600,700"]},
+        active: function() {
+            sessionStorage.fonts = true;
+        }
+    });
 </script>
 <!--end::Web font -->
 <!--begin::Base Styles -->
 <!--begin::Page Vendors -->
-<link href="{{ url('assets/vendors/custom/fullcalendar/fullcalendar.bundle.css') }}" rel="stylesheet" type="text/css" />
+{{--<link href="{{ url('assets/vendors/custom/fullcalendar/fullcalendar.bundle.css') }}" rel="stylesheet" type="text/css" />--}}
 <!--end::Page Vendors -->
 <link href="{{ url('assets/vendors/base/vendors.bundle.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ url('assets/demo/default/base/style.bundle.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ url('css/custom.css') }}" rel="stylesheet" type="text/css" />
-<Link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css" type="text/css">
-<link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" type="text/css">
+{{--<Link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css" type="text/css">--}}
+{{--ini--}}
+{{--<link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" type="text/css">--}}
+{{--end ini--}}
 <link rel="stylesheet" type="text/css" href="/css/jquery.dataTables.min.css">
 <link rel="stylesheet" type="text/css" href="/css/jquery.dataTables.css">
 {{--<link href="/css/jquery.dataTables.css" type="text/css">--}}

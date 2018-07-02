@@ -76,44 +76,54 @@
                             <th rowspan="2">Nama</th>
                             <th rowspan="2">Jenis Kelamin</th>
                             <th rowspan="2">Pilihan 1</th>
-                            <th rowspan="2">Rekomendasi 1</th>
-                            <th colspan="2"><center>Nilai 1</center></th>
+                            <th colspan="3"><center>Nilai 1</center></th>
                             <th rowspan="2">Pilihan 2</th>
-                            <th colspan="2"><center>Nilai 2</center></th>
+                            <th rowspan="2">Rekomendasi 1</th>
                             <th rowspan="2">Rekomendasi 2</th>
-                            <th rowspan="2">Aksi</th>
-                            <th rowspan="2">Dept Fix</th>
+                            <th colspan="3"><center>Nilai 2</center></th>
+
+                            {{--<th rowspan="2">Aksi</th>--}}
+                            <th rowspan="2">Departemen Akhir</th>
                         </tr>
                         <tr>
-                            <th width="10px">Nilai</th>
-                            <th width="10px">Tugas</th>
+                            <th>Kehadiran</th>
+                            <th>Tugas</th>
+                            <th>Hasil</th>
 
-                            <th width="10px">Nilai</th>
-                            <th width="10px">Tugas</th>
+
+                            <th>Kehadiran</th>
+                            <th>Tugas</th>
+                            <th>Hasil</th>
 
                         </tr>
                         </thead>
                         <tbody>
-                        {{--@foreach ($calonAnggota as $key)--}}
+                        @php $i=1 @endphp
+                        @foreach ($detailCalonAnggotas as $key)
+                            @if($key->first()->calonAnggota->id_periode == $activePeriode->id)
                             <tr>
-                                <td>1</td>
-                                <td>Ria</td>
-                                <td>Perempuan</td>
-                                <td>MC</td>
-                                <td>MC</td>
-                                <td>10</td>
-                                <td>20</td>
-                                <td>Infokes</td>
-                                <td>10</td>
-                                <td>20</td>
-                                <td>Infokes</td>
-                                <td>
-                                    <a href="#" class="btn btn-success">Terima</a>
+
+                                <td>{{ $i++ }}</td>
+                                <td>{{ $key->first()->calonAnggota->nama_calon_anggota }}</td>
+                                <td>{{ $key->first()->calonAnggota->jenis_kelamin }}</td>
+                                <td>{{ $key->first()->departemen->nama_departemen }}</td>
+                                <td>{{ $key->first()->nilai_kehadiran }}</td>
+                                <td>{{ $key->first()->nilai_tugas }}</td>
+                                <td>{{ $key->first()->total_nilai }}</td>
+                                <td>{{ $key[1]->departemen->nama_departemen }}</td>
+                                <td>{{ $key->first()->rekomendasi }}</td>
+                                <td>{{ $key[1]->rekomendasi }}</td>
+                                <td>{{ $key[1]->nilai_kehadiran }}</td>
+                                <td>{{ $key[1]->nilai_tugas }}</td>
+                                <td>{{ $key[1]->total_nilai }}</td>
+
+                                {{--<td>--}}
+                                    {{--<a href="#" class="btn btn-success">Terima</a>--}}
                                     {{--<a href="#" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only"><i class="fa fa-rotate-right"></i></a>--}}
 
-                                </td>
+                                {{--</td>--}}
                                 <td>
-                                    <select class="custom-select form-control col-md-8">
+                                    <select class="custom-select form-control col-md-12">
                                         {{--TODO: selected--}}
                                         <option selected>
                                             Pilih Departemen
@@ -123,9 +133,11 @@
                                         @endforeach
                                     </select>
                                 </td>
-                            </tr>
 
-                        {{--@endforeach--}}
+                            </tr>
+                            @endif
+
+                        @endforeach
                         </tbody>
                     </table>
                     <!--end: Datatable -->
@@ -153,12 +165,12 @@
         $(document).ready(function() {
             var table = $('#hasil_akhir').DataTable( {
                 paging:         true,
-                scrollY:        "300px",
+                scrollY:        false,
                 scrollX:        true,
                 scrollCollapse: true,
                 fixedColumns:   {
                     leftColumns: 3,
-                    rightColumns: 2,
+                    rightColumns: 1,
                 }
             } );
         } );

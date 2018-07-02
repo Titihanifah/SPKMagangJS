@@ -81,7 +81,7 @@
 						@foreach($detailCalonAnggotas as $key)
 						<tr>
 							<td width="10%">{{ $loop->iteration }}</td>
-							<td>{{ $key->calonAnggota->nama_calon_anggota }}</td>
+							<td>{{ $key->calonAnggota->nama_calon_anggota }} {{ $key->favorit ? "⭐" : "" }} </td>
 							<td>{{ $key->calonAnggota->jenis_kelamin }}</td>
 							<td><center>{{ $key->nilai_kehadiran }}</center></td>
 
@@ -89,76 +89,36 @@
 
 							<td><center>{{ $key->total_nilai }}</center></td>
 
-								{{--<a href="#" id="rekomendasi" class="btn btn-success"><i class="flaticon-user-ok "></i>Rekomendasi</a>--}}
-								{{--<a href="#" class="btn btn-sm btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="fa fa-remove"></i></a>--}}
-								{{--<select id="departemen" class="custom-select form-control col-md-8">--}}
-                                    {{--TODO: selected--}}
-									{{--<option selected>--}}
-										{{--Pilih Departemen--}}
-									{{--</option>--}}
-
-									{{--@foreach($departemen as $value)--}}
-										{{--<option value="{{ $value->id }}">{{ $key->nama_departemen }}</option>--}}
-									{{--@endforeach--}}
-								{{--</select>--}}
-								<!-- <a href="#" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a> -->
-
 							<td>
-							<a href="#" id="rekomendasi" class="btn btn-success"><i class="flaticon-user-ok "></i>Rekomendasi</a>
-							{{--<a href="#" class="btn btn-sm btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="fa fa-remove"></i></a>--}}
-							<select id="departemen" class="custom-select form-control col-md-12">
-								{{--TODO: selected--}}
-								<option selected>Pilih Departemen</option>
-								@foreach($departemen as $key)
-									<option value="{{ $key->id }}">{{ $key->nama_departemen }}</option>
-								@endforeach
-							</select>
-							<!-- <a href="#" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a> -->
+								@if(isset($key->rekomendasi))
+									<select name="departemen" onchange="rekomendasiID(this)" id="[{{ json_encode($key) }}]" class="departemen-{{ $key->id }} custom-select form-control col-md-12">
+										{{--TODO: selected--}}
+										<option >Pilih Departemen</option>
+										@foreach($departemen as $value)
+											<option {{ ($key->rekomendasi == $value->nama_departemen) ? "selected" : "" }} value="{{ $value->nama_departemen }}" >{{ $value->nama_departemen }}</option>
+										@endforeach
+									</select>
+
+								@else
+									<!-- <a href="#" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a> -->
+										<button id="{{ json_encode($key) }}" class="btn btn-success btn-rekomendasi-{{ $key->id }}" onclick="clickRekomendasi(this)"><i class="flaticon-user-ok "></i>Rekomendasi</button>
+										{{--<a href="#" class="btn btn-sm btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="fa fa-remove"></i></a>--}}
+										<select name="departemen" onchange="rekomendasiID(this)" id="[{{ json_encode($key) }}]" class="departemen-{{ $key->id }} dept custom-select form-control col-md-12">
+											{{--TODO: selected--}}
+											<option selected>Pilih Departemen</option>
+											@foreach($departemen as $value)
+												<option value="{{ $value->nama_departemen }}">{{ $value->nama_departemen }}</option>
+											@endforeach
+										</select>
+								@endif
 
 							</td>
 							<td>
-								<textarea class="form-control m-input" placeholder="keterangan/alasan"></textarea>
+								<textarea id="[{{ json_encode($key) }}]" class="form-control m-input" placeholder="keterangan/alasan"></textarea>
 							</td>
 						</tr>
 						@endforeach
-                        {{--<tr>--}}
-                            {{--<td width="10%">--}}
-                                {{--2--}}
-                            {{--</td>--}}
-                            {{--<td>--}}
-                                {{--Deni--}}
-                            {{--</td>--}}
-                            {{--<td>--}}
-                                {{--Laki-laki--}}
-                            {{--</td>--}}
-                            {{--<td>--}}
-                                {{--<center>50</center>--}}
-                            {{--</td>--}}
-                            {{--<td>--}}
-                                {{--<center>45</center>--}}
-                            {{--</td>--}}
-                            {{--<td>--}}
-                                {{--<center>30</center>--}}
-                            {{--</td>--}}
-                            {{--<td>--}}
-                                {{--<center>40</center>--}}
-                            {{--</td>--}}
-                            {{--<td>--}}
-                                {{--<a href="#" id="rekomendasi" class="btn btn-success"><i class="flaticon-user-ok "></i>Rekomendasi</a>--}}
-                                {{--<a href="#" class="btn btn-sm btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="fa fa-remove"></i></a>--}}
-                                {{--<select id="departemen" class="custom-select form-control col-md-8">--}}
-                                    {{--TODO: selected--}}
-                                    {{--<option selected>--}}
-                                        {{--Pilih Departemen--}}
-                                    {{--</option>--}}
-                                    {{--@foreach($departemen as $key)--}}
-                                        {{--<option value="{{ $key->id }}">{{ $key->nama_departemen }}</option>--}}
-                                    {{--@endforeach--}}
-                                {{--</select>--}}
-                                {{--<!-- <a href="#" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a> -->--}}
 
-                            {{--</td>--}}
-                        {{--</tr>--}}
 
 					</tbody>
 				</table>
@@ -168,134 +128,60 @@
 	</div>
 </div>
 
-<div class="modal fade" id="m_modal_1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">
-					Edit Data Kegiatan
-				</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">
-						&times;
-					</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				<div class="form-group m-form__group">
-					<label for="">
-						Nama Kegiatan
-					</label>
-					<input type="email" class="form-control m-input m-input--air" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nama Kegiatan">					
-				</div>
-				<div class="form-group m-form__group">
-					<label for="">
-						Waktu Kegiatan
-					</label>
-					<input type="email" class="form-control m-input m-input--air" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Waktu Kegiatan">					
-				</div>
-				<div class="form-group m-form__group">
-					<label for="">
-						Tempat Kegiatan
-					</label>
-					<input type="email" class="form-control m-input m-input--air" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tempat Kegiatan">					
-				</div>
-				<div class="form-group m-form__group">
-					<label for="">
-						Jumlah Peserta yang hadir
-					</label>
-					<input type="email" class="form-control m-input m-input--air" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Jumlah Peserta yang hadir" disabled="">					
-				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-danger" data-dismiss="modal">
-					Close
-				</button>
-				<button type="button" class="btn btn-primary">
-					Simpan
-				</button>
-			</div>
-		</div>
-	</div>
-</div>
-
-<div class="modal fade" id="m_tambah_kegiatan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">
-					Tambah Data Kegiatan
-				</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">
-						&times;
-					</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				<div class="form-group m-form__group">
-					<label for="">
-						Nama Kegiatan
-					</label>
-					<input type="email" class="form-control m-input m-input--air" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nama Kegiatan">					
-				</div>
-				<div class="form-group m-form__group">
-					<label for="">
-						Waktu Kegiatan
-					</label>
-					<input type="email" class="form-control m-input m-input--air" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Waktu Kegiatan">					
-				</div>
-				<div class="form-group m-form__group">
-					<label for="">
-						Tempat Kegiatan
-					</label>
-					<input type="email" class="form-control m-input m-input--air" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tempat Kegiatan">					
-				</div>
-				<div class="form-group m-form__group">
-					<label for="">
-						Jumlah Peserta yang hadir
-					</label>
-					<input type="email" class="form-control m-input m-input--air" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Jumlah Peserta yang hadir" disabled="">					
-				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-danger" data-dismiss="modal">
-					Close
-				</button>
-				<button type="button" class="btn btn-primary">
-					Simpan
-				</button>
-			</div>
-		</div>
-	</div>
-</div>
-
 @endsection
 
 @section('js')
 
-{{--<script src="{{ url('assets/demo/default/custom/components/datatables/base/html-table.js')}}" type="text/javascript"></script>--}}
 
 
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
 
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
-{{--<script src="{{ url('assets/demo/default/custom/components/datatables/base/html-table.js')}}" type="text/javascript"></script>--}}
 
 <script type="text/javascript">
 
     $(document).ready( function () {
         $('.myTableDataTable').DataTable();
 
-        $("#rekomendasi").click(function () {
-            $("#departemen").show();
-            $("#rekomendasi").hide();
-        });
-
     } );
+
+//    jika kadept rekomendasi ke departemen tertentu
+
+	function clickRekomendasi(param) {
+	    var n = JSON.parse(param.id);
+
+        $(".departemen-"+n.id).show();
+        $(".btn-rekomendasi-"+n.id).hide();
+	}
+
+	function rekomendasiID(theForm){
+	    var detail_calon_anggota = JSON.parse(theForm.id)[0];
+	    console.log(JSON.parse(theForm.id));
+        var rekomendasi= $(".departemen-"+detail_calon_anggota.id).val();
+        console.log("rekomendasi"+rekomendasi);
+
+        // show keterangan
+
+	    $.ajax({
+			data:{
+			    id_detail_calon_anggota : detail_calon_anggota.id,
+				id_departemen : detail_calon_anggota.id_departemen,
+				rekomendasi : rekomendasi,
+
+			},
+			type: 'POST',
+			url: 'http://spkmagang.test:9000/api/rekomendasi/simpan',
+            success: function (response) { // on success..
+                console.log(response); // update the DIV
+
+				$("#keterangan").show();
+            }
+		});
+	}
+
 </script>
 <style type="text/css">
-    #departemen {
+	.dept{
         display: none;
     }
 </style>
