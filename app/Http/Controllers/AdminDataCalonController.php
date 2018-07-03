@@ -81,8 +81,6 @@ class AdminDataCalonController extends Controller
 //        TODO: fieldnya harusnya lengkap
         $this->validate($request, [
             'nama_calon_anggota' => 'required',
-            'hardskill' => 'required',
-            'softskill' => 'required',
             'jenis_kelamin' => 'required',
 
 

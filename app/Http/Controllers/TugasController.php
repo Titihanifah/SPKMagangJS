@@ -42,8 +42,8 @@ class TugasController extends Controller
 
 //        TODO: gimana create dan upatenya sesuai departemennya
 
-        $detailCalonAnggota = Auth::user()->departemen->detailCalonAnggota;
         $activePeriode = Periode::active()->first();
+        $detailCalonAnggota = Auth::user()->departemen->detailCalonAnggota;
         $tugas = Auth::user()->departemen->tugas->where('id_periode', $activePeriode->id);
 
 //        dd($detailCalonAnggota);
@@ -110,7 +110,6 @@ class TugasController extends Controller
         // TODO: use validator?
         $this->validate($request, [
             'nama_tugas' => 'required',
-            'deskripsi' => 'required',
             'deadline' => 'required',
             //TODO: kan ada id departemen cara nyambunginnya gimana? apakah perlu ditulis disini juga
 

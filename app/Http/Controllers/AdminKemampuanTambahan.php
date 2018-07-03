@@ -43,14 +43,11 @@ class AdminKemampuanTambahan extends Controller
         //
         $this->validate($request, [
             'nama_kemampuan' => 'required',
-//            'departemen' => 'required',
-
         ]);
 
         $kemampuan = new KemampuanTambahan;
         // fill the object
         $kemampuan->nama_kemampuan = $request->nama_kemampuan;
-//        $kemampuan->departemen = $request->departemen;
 
         //save object to database
         $kemampuan->save();
@@ -94,7 +91,6 @@ class AdminKemampuanTambahan extends Controller
         $kemampuan = KemampuanTambahan::find($id);
 
         $kemampuan->nama_kemampuan = $request->nama_kemampuan;
-//        $kemampuan->departemen = $request->departemen;
         $kemampuan->save();
         Session::flash('message', 'Sukses mengubah data kemampuan tambahan');
         return redirect('/admin/kemampuan');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\CalonAnggota;
 use App\Departemen;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -62,9 +63,13 @@ class AdminDepartemenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function departemen_akhir()
     {
         //
+        $activePeriode = Periode::active()->first();
+        $calonAnggota = CalonAnggota::where('id_periode', $activePeriode->id);
+
+        return view('bkk.departemenAkhir.index',compact('calonAnggota','activePeriode'));
     }
 
     /**
@@ -87,7 +92,11 @@ class AdminDepartemenController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $this->validate($request, [
+            'nama_departemen' => 'required',
+        ]);
+
         $departemen = Departemen::find($id);
 
         $departemen->nama_departemen = $request->nama_departemen;

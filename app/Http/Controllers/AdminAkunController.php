@@ -43,6 +43,8 @@ class AdminAkunController extends Controller
     public function store(Request $request)
     {
         //
+
+
         $this->validate($request, [
             'name' => 'required',
             'role' => 'required',
@@ -50,8 +52,6 @@ class AdminAkunController extends Controller
         ]);
 
         $user = new User;
-
-
 
         $user->name = $request->name;
         $user->role = $request->role;
@@ -98,11 +98,17 @@ class AdminAkunController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request, [
+            'name' => 'required',
+            'role' => 'required',
+        ]);
+
         $user= User::find($id);
 
         $user->name = $request->name;
         $user->role = $request->role;
         $user->id_departemen = $request->id_departemen;
+        $user->password = bcrypt($request->password);
         $user->save();
         Session::flash('message', 'Success add data employee!');
         return redirect('/admin/akun'); // Set redirect ketika berhasil

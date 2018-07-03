@@ -21,10 +21,8 @@ class AdminHasilAkhirController extends Controller
         //
         $departemen = Departemen::all();
         $activePeriode = Periode::active()->first();
-//        $detailCalonAnggotas1 = DetailCalonAnggota::all()->where('prioritas','=','1');
-//        $detailCalonAnggotas2 = DetailCalonAnggota::all()->where('prioritas','=','2');
         $detailCalonAnggotas = DetailCalonAnggota::all()->sortBy('prioritas')->groupBy('id_calon_anggota');
-//        $detailCalonAnggota =  Departemen->detailCalonAnggota;
+
 //        dd($detailCalonAnggotas);
 //        return response()->json($detailCalonAnggotas);
         return view('bkk.hasilAkhir.index',compact('departemen','detailCalonAnggotas','activePeriode'));

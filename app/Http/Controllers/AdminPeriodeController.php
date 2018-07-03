@@ -93,7 +93,12 @@ class AdminPeriodeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'tahun' => 'required',
+            'periode' => 'required',
+            'status' => 'required',
+
+        ]);
         $periode= Periode::find($id);
         $periode->tahun = $request->tahun;
         $periode->periode = $request->periode;

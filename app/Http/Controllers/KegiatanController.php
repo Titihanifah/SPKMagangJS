@@ -136,7 +136,15 @@ class KegiatanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'nama_kegiatan' => 'required',
+            'waktu' => 'required',
+            'tanggal_kegiatan' => 'required',
+
+            //TODO: kan ada id departemen cara nyambunginnya gimana? apakah perlu ditulis disini juga
+
+
+        ]);
         $kegiatan= Kegiatan::find($id);
 
         $kegiatan->nama_kegiatan = $request->nama_kegiatan;
