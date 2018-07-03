@@ -29,9 +29,12 @@ class DetailCalonAnggota extends Model
 
     public function getTotalNilaiAttribute() {
 
-        $nilaiKehadiran = $this->nilai_kehadiran;
-        $nilaiTugas = $this->nilai_tugas;
-        $hasil = ($nilaiKehadiran+$nilaiTugas) / 2;
+        $bobotTugas =  Kriteria::find(1)->bobot;
+        $bobotKehadiran =  Kriteria::find(2)->bobot;
+
+        $nilaiKehadiran = $this->nilai_kehadiran * $bobotKehadiran;
+        $nilaiTugas = $this->nilai_tugas * $bobotTugas;
+        $hasil = ($nilaiKehadiran+$nilaiTugas);
 
         return $hasil;
     }
