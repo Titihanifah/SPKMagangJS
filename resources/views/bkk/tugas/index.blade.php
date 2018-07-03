@@ -96,7 +96,6 @@
                             <th>Deskripsi</th>
                             <th>Deadline</th>
                             <th>Departemen</th>
-                            <th>Aksi</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -108,11 +107,11 @@
                                 <td>{{ $key->deskripsi }}</td>
                                 <td>{{ $key->deadline }}</td>
                                 <td>{{ $key->departemen->nama_departemen }}</td>
-                                <td>
+                                {{--<td>--}}
                                     {{--<a href="#" class="btn btn-outline-primary m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-eye"></i></a>--}}
                                     {{--<button onclick="edit({{ $i }})" data-nama_tugas="{{ $key->nama_tugas }}" data-deskripsi="{{ $key->deskripsi }}" data-deadline=""{{ $key->deadline }} class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only" data-toggle="modal" data-target="#m_edit_tugas"><i class="m-menu__link-icon flaticon-edit-1"></i></button>--}}
-                                    <a href="{{url('/tugas/destroy')}}/{{ $key->id}}" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>
-                                </td>
+                                    {{--<a href="{{url('/tugas/destroy')}}/{{ $key->id}}" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>--}}
+                                {{--</td>--}}
                             </tr>
                             <?php $i++ ?>
                         @endforeach

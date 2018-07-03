@@ -69,7 +69,7 @@
                             <th>Waktu</th>
                             <th>Departemen</th>
                             <th>Jumlah Hadir</th>
-                            <th>Aksi</th>
+                            {{--<th>Aksi</th>--}}
                         </tr>
                         </thead>
                         <tbody>
@@ -83,16 +83,16 @@
                                 <td>{{ $value->departemen->nama_departemen }}</td>
                                 {{--TODO: diambil dari presensi--}}
                                 <td>{{ $value->jumlah_hadir }}</td>
-                                <td>
-                                    <!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-primary m-btn--gradient-to-primary"><i class="m-menu__link-icon flaticon-eye"></i></button> -->
+                                {{--<td>--}}
+                                    {{--<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-primary m-btn--gradient-to-primary"><i class="m-menu__link-icon flaticon-eye"></i></button> -->--}}
                                 {{--<a href="#" class="btn btn-outline-primary m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-eye"></i></a>--}}
-                                <!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-warning m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-edit-1"></i></button> -->
+                                {{--<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-warning m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-edit-1"></i></button> -->--}}
                                     {{--<a href="#" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only" data-toggle="modal" data-target="#m_edit_kegiatan"><i class="m-menu__link-icon flaticon-edit-1"></i></a>--}}
                                     {{--<button onclick="edit({{ $i }})" data-nama_kegiatan="{{ $value->nama_kegiatan }}" data-tanggal_kegiatan="{{ $value->tanggal_kegiatan }}" data-waktu="{{ $value->waktu }}" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only" ><i class="m-menu__link-icon flaticon-edit-1"></i></button>--}}
-                                    <!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-danger m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-delete-1"></i></button> -->
-                                    <a href="{{url('/kegiatan/destroy')}}/{{ $value->id}}" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>
+                                    {{--<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-danger m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-delete-1"></i></button> -->--}}
+                                    {{--<a href="{{url('/kegiatan/destroy')}}/{{ $value->id}}" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>--}}
 
-                                </td>
+                                {{--</td>--}}
                             </tr>
                             <?php $i++ ?>
                         @endforeach

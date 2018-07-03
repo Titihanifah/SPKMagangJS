@@ -111,14 +111,16 @@
                             <?php $i++; ?>
 						@endforeach
 
+						<th>Aksi</th>
 					</tr>
 					</thead>
 					<tbody>
 					{{--// TODO: sepertinya ini tabel presensi namun karena ada id kegiatan jadi bingung deh--}}
+					@php $i= 1; @endphp
 					@foreach($detailCalonAnggota as $calon)
-						<tr>
+							<tr>
 
-							<td width="10%">{{ $calon->id }}</td>
+							<td width="10%"><?php echo $i; ?></td>
 							<td>{{ $calon->calonAnggota->nama_calon_anggota }}</td>
 							<td>{{ $calon->calonAnggota->jenis_kelamin }}</td>
 
@@ -129,8 +131,8 @@
 									{{--<div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>--}}
 									{{--</div>--}}
 									{{--<div class="m--space-10"></div>--}}
-									<span class="m-badge m-badge--success m-badge--wide">
-											{{ $calon->kehadiran_calon }} %
+									<span class="m-badge m-badge--success m-badge--wide badge-kehadiran-{{ $calon->id }}">
+											{{--{{ $calon->kehadiran_calon }} %--}}
 										</span>
 								</td>
 								@elseif( $calon->kehadiran_calon < 80 && $calon->kehadiran_calon > 35 )
@@ -140,8 +142,8 @@
 										{{--<div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>--}}
 										{{--</div>--}}
 										{{--<div class="m--space-10"></div>--}}
-										<span class="m-badge m-badge--warning m-badge--wide">
-											{{ $calon->kehadiran_calon }} %
+										<span class="m-badge m-badge--warning m-badge--wide badge-kehadiran-{{ $calon->id }}">
+											{{--{{ $calon->kehadiran_calon }} %--}}
 										</span>
 									</td>
 								@else
@@ -151,12 +153,11 @@
 										{{--<div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>--}}
 										{{--</div>--}}
 										{{--<div class="m--space-10"></div>--}}
-										<span class="m-badge m-badge--danger m-badge--wide">
-											{{ $calon->kehadiran_calon }} %
+										<span class="m-badge m-badge--danger m-badge--wide badge-kehadiran-{{ $calon->id }}">
+											{{--{{ $calon->kehadiran_calon }} %--}}
 										</span>
 									</td>
 								@endif
-
                             <?php $j = 0; ?>
                         {{--@for( //$k=0; $k<count($datas); $k++)--}}
 
@@ -178,14 +179,16 @@
 									@endif
                             	@endforeach
                             @endforeach
+								<td>
+									<button class="btn m-button btn-success"><i class="-menu__link-icon flaticon-eye"></i></button>
+								</td>
 						</tr>
+							@php $i++ @endphp
 					@endforeach
 
 					</tbody>
 				</table>
 				<!--end: Datatable -->
-
-
 			</div>
 		</div>
 	</div>
@@ -221,6 +224,7 @@
             scrollCollapse: true,
             fixedColumns:   {
                 leftColumns: 4,
+                rightColumns: 1,
             }
         } );
     } );
@@ -230,10 +234,6 @@
         var kegiatan = JSON.parse(theForm.id)[0];
         var detail_calon_anggota = JSON.parse(theForm.id)[1];
         console.log("Formvalue"+theForm.value);
-//        $(".hadir-"+kegiatan.id+"-"+detail_calon_anggota.id).show();
-//        $(".tidakhadir-"+kegiatan.id+"-"+detail_calon_anggota.id).hide();
-
-
         $.ajax({
             data: {
                 id_detail_calon_anggota: detail_calon_anggota.id,
@@ -246,33 +246,42 @@
             url: 'http://spkmagang.test:9000/api/presensi/simpan',
             success: function (response) { // on success..
                 console.log(response); // update the DIV
-
+				getPresensi(detail_calon_anggota.id);
             }
         });
 
     }
 
-        function hadir(theForm) {
-            var kegiatan = JSON.parse(theForm.id)[0];
-            var detail_calon_anggota = JSON.parse(theForm.id)[1];
+    function getPresensi(id) {
+        $.ajax({
+            type: 'GET',
+            url: 'http://spkmagang.test:9000/api/get/total/kehadiran/' + id,
+            success: function (response) { // on success..
+                $(".badge-kehadiran-"+id).text(response * 100 + " %");
+                console.log(response * 100 + " %");
+            }
+        });
+    }
+
+	function hadir(theForm) {
+		var kegiatan = JSON.parse(theForm.id)[0];
+		var detail_calon_anggota = JSON.parse(theForm.id)[1];
 //            $(".hadir-"+kegiatan.id+"-"+detail_calon_anggota.id).hide();
 //            $(".tidakhadir-"+kegiatan.id+"-"+detail_calon_anggota.id).show();
-            $.ajax({
-                data : {
-                    id_detail_calon_anggota: detail_calon_anggota.id,
-                    id_kegiatan: kegiatan,
-                    kehadiran: 1,
-                },
-                type: 'POST',
-                url: 'http://spkmagang.test:9000/api/presensi/simpan',
-                success: function (response) { // on success..
-                    console.log(response); // update the DIV
+		$.ajax({
+			data : {
+				id_detail_calon_anggota: detail_calon_anggota.id,
+				id_kegiatan: kegiatan,
+				kehadiran: 1,
+			},
+			type: 'POST',
+			url: 'http://spkmagang.test:9000/api/presensi/simpan',
+			success: function (response) { // on success..
+				console.log(response); // update the DIV
+				getPresensi(detail_calon_anggota.id);
 //                window.onload = function(){document.body.style.cursor='default';}
-                }
-            });
-
-
-
+			}
+		});
     }
 
 

@@ -114,7 +114,9 @@
 
 							</td>
 							<td>
-								<textarea id="[{{ json_encode($key) }}]" class="form-control m-input" placeholder="keterangan/alasan"></textarea>
+
+								<textarea name="keterangan" onkeypress="keterangan(this)" id="[{{ json_encode($key) }},{{ json_encode($value) }}]" class="keterangan-{{ $key->id }} form-control m-input" placeholder="keterangan">{{ $key->keterangan }}</textarea><span></span>
+								{{--<button class="btn btn-success " onclick="clickRekomendasi(this)"><i class="fa fa-save"></i></button>--}}
 							</td>
 						</tr>
 						@endforeach
@@ -178,6 +180,30 @@
             }
 		});
 	}
+
+    function keterangan(theForm) {
+        var detail_calon_anggota = JSON.parse(theForm.id)[0];
+        var keterangan= $(".keterangan-"+detail_calon_anggota.id).val();
+
+        // show keterangan
+
+        $.ajax({
+            data:{
+                id_detail_calon_anggota : detail_calon_anggota.id,
+                id_departemen : detail_calon_anggota.id_departemen,
+                keterangan : keterangan,
+
+            },
+            type: 'POST',
+            url: 'http://spkmagang.test:9000/api/keterangan/simpan',
+            success: function (response) { // on success..
+                console.log(response); // update the DIV
+
+
+            }
+        });
+    }
+
 
 </script>
 <style type="text/css">

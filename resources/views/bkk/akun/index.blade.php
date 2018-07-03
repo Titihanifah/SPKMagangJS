@@ -86,7 +86,7 @@
                                 <td>{{ $key->role_user }}</td>
                                 <td>{{ isset($key->departemen) ? $key->departemen->nama_departemen : "-" }}</td>
                                 <td>
-                                    <button onclick="edit({{ $i }})" data-name="{{ $key->name }}" data-role="{{ $key->role }}" data-id_departemen="{{ $key->id_departemen }}" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only" ><i class="m-menu__link-icon flaticon-edit-1"></i></button>
+                                    <button onclick="edit({{ $i }})" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only" ><i class="m-menu__link-icon flaticon-edit-1"></i></button>
                                     <a href="{{url('/admin/akun/destroy')}}/{{ $key->id}}" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>
 
                                 </td>
@@ -119,11 +119,11 @@
                     {!! Form::open(array('route' => 'akun.store', 'enctype' => 'multipart/form-data')) !!}
                     <div class="form-group m-form__group">
                         <label for="">Username</label>
-                        <input type="text" name="name" class="form-control m-input m-input--air" id="exampleInputEmail1" placeholder="Username">
+                        <input type="text" name="name" class="form-control m-input m-input--air"  placeholder="Username">
                     </div>
                     <div class="form-group m-form__group">
                         <label for="">Password</label>
-                        <input type="password" name="password" class="form-control m-input m-input--air" id="exampleInputEmail1" placeholder="Username">
+                        <input type="password" name="password"  class="form-control m-input m-input--air" id="exampleInputEmail1" placeholder="Password">
                     </div>
                     {{--<div class="form-group m-form__group">--}}
                         {{--<label for="">--}}
@@ -132,19 +132,20 @@
                         {{--<input type="text" name="role" class="form-control m-input m-input--air" id="exampleInputEmail1"  placeholder="Role">--}}
                     {{--</div>--}}
                     <div class="form-group m-form__group">
-                        <label for="">
-                            Role
-                        </label>
-                            <select id="role" name="role" class="custom-select form-control col-md-12">
+                        <label for="">Role</label>
+                            <select  name="role" class="custom-select form-control col-md-12">
                                 <option value="0">Ketua Departemen</option>
-                                <option value="0">BKK</option>
+                                <option value="1">BKK</option>
                             </select>
                     </div>
                     <div class="form-group m-form__group">
-                        <label for="">
-                            Departemen
-                        </label>
-                        <input type="text" name="id_departemen" class="form-control m-input m-input--air" id="exampleInputEmail1"  placeholder="Departemen">
+                        <label for="">Departemen</label>
+                        <select name="id_departemen" class="custom-select form-control col-md-12">
+                                <option value="">Pilih Departemen</option>
+                            @foreach($departemen as $key)
+                                <option value="{{ $key->id }}">{{ $key->nama_departemen }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -182,13 +183,24 @@
                             <input type="text" id="name" name="name" class="form-control m-input m-input--air">
                         </div>
                         <div class="form-group m-form__group">
-                            <label for="">Role</label>
-                            <input type="text" id="role" name="role" class="form-control m-input m-input--air">
+                            <label for="">Password</label>
+                            <input type="password" id="password" name="password" class="form-control m-input m-input--air">
                         </div>
                         <div class="form-group m-form__group">
-                            {{--TODO : ini harusnya droopdown--}}
+                            <label for="">Role</label>
+                            <select id="role" id="role" name="role" class="custom-select form-control col-md-12">
+                                <option value="0">Ketua Departemen</option>
+                                <option value="1">BKK</option>
+                            </select>
+                        </div>
+                        <div class="form-group m-form__group">
                             <label for="">Departemen</label>
-                            <input type="text" name="id_departemen" id="id_departemen" class="form-control m-input m-input--air">
+                            <select id="id_departemen" name="id_departemen" class="custom-select form-control col-md-12">
+                                <option value="">Pilih Departemen</option>
+                                @foreach($departemen as $key)
+                                <option value="{{ $key->id }}">{{ $key->nama_departemen }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -220,10 +232,12 @@
             var name = datadata[id].name;
             var role = datadata[id].role;
             var id_departemen = datadata[id].id_departemen;
+            var password = datadata[id].password;
 
             $('#name').val(name);
             $('#role').val(role);
             $('#id_departemen').val(id_departemen);
+            $('#password').val(password);
 
             var url = "http://spkmagang.test:9000/admin/akun/" + (idObject);
             document.getElementById("edit_form").action = url;

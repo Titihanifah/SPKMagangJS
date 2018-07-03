@@ -80,19 +80,19 @@
 						<tr>
 							<th>No</th>
 							<th>Nama Calon</th>
-							<th>Nilai Akhir</th>
+							<th>Nilai Tugas</th>
 							@foreach($userTugas->departemen->tugas->where('id_periode', $activePeriode->id) as $key)
 							<th>{{ $key->nama_tugas }}</th>
 							@endforeach
 						</tr>
 					</thead>
 					<tbody>
+					@php $i= 1; @endphp
 					@foreach($detailCalonAnggota as $value)
+						@if($value->calonAnggota->id_periode == $activePeriode->id)
 						<tr>
-							<td>{{ $value->id }}</td>
+							<td>{{ $i++ }}</td>
 							<td>{{ $value->calonAnggota->nama_calon_anggota }}</td>
-
-							<td>{{ $value->tugas }}</td>
 							@foreach($userTugas->departemen->tugas->where('id_periode', $activePeriode->id) as $key)
 
                                 @if($detailTugas->where('id_detail_calon_anggota', $value->id)->where('id_tugas', $key->id)->first() === null){
@@ -100,10 +100,13 @@
                                 @else
                                 <td><input min="0"  max="100" id="[{{ json_encode($key) }},{{ json_encode($value) }}]" class="form-control m-input" onchange="penilaian(this)" type="number" value="{{ $detailTugas->where('id_detail_calon_anggota', $value->id)->where('id_tugas', $key->id)->first()->nilai_tugas }}" ></td>
 
+
                             @endif
 							{{--<td><input class="form-control m-input"  type="text" placeholder="nilai" ></td>--}}
 							@endforeach
+							{{--<td><button onclick="detail({{ $i }})" data-toggle="modal" onclick="totalTugas(this)" id="[{{ json_encode($key) }},{{ json_encode($value) }}]" class="btn btn-primary"><i class="-menu__link-icon flaticon-eye"></i> Lihat Detail</button></td>--}}
 						</tr>
+						@endif
 					@endforeach
 																
 					</tbody>
@@ -114,6 +117,32 @@
 		<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-primary m-btn--gradient-to-primary"><i class="m-menu__link-icon fa fa-save "></i> Simpan</button>
 	</div>
 </div>
+
+
+<div class="modal fade" id="m-nilai-tugas" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	 aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<form method="POST" id="edit_form" action="" accept-charset="UTF-8" enctype="multipart/form-data">
+			<input name="_method" type="hidden" value="PUT">
+			@csrf
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">
+						Jumlah Presentasi Nilai Tugas Akhir
+					</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="form-group m-form__group">
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
 
 @endsection
 
@@ -147,6 +176,63 @@
                 window.onload = function(){document.body.style.cursor='default';}
             }
         });
+    }
+
+    function totalTugas(theForm) {
+        console.log();
+        console.log(theForm.value);
+        var tugas = JSON.parse(theForm.id)[0];
+        var detail_calon_anggota = JSON.parse(theForm.id)[1];
+        document.body.style.cursor='wait';
+
+        $.ajax({ // create an AJAX call...
+            data: {
+                id_detail_calon_anggota: detail_calon_anggota.id,
+                id_tugas: tugas.id,
+                nilai_tugas: theForm.value,
+            }, // get the form data
+            type: 'POST', // GET or POST
+            url: 'http://spkmagang.test:9000/api/penilaian/simpan', // the file to call
+            success: function (response) { // on success..
+                console.log(response); // update the DIV
+                window.onload = function(){document.body.style.cursor='default';}
+            }
+        });
+    }
+
+    function getTugas(id) {
+        $.ajax({
+            type: 'GET',
+            url: 'http://spkmagang.test:9000/api/get/total/tugas/' + id,
+            success: function (response) { // on success..
+//				TODO :
+                $(".badge-tugas-"+id).text(response * 100 + " %");
+                console.log(response + " %");
+            }
+        });
+    }
+
+    function detail(id) {
+        var datadata = {!! json_encode($detailCalonAnggota) !!};
+        id = id-1;
+
+        var idObject = datadata[id].id;
+
+        $.ajax({ // create an AJAX call...
+            data: {
+                id_detail_calon_anggota: detail_calon_anggota.id,
+                id_tugas: tugas.id,
+                nilai_tugas: theForm.value,
+            }, // get the form data
+            type: 'POST', // GET or POST
+            url: 'http://spkmagang.test:9000/api/penilaian/simpan', // the file to call
+            success: function (response) { // on success..
+                console.log(response); // update the DIV
+                window.onload = function(){document.body.style.cursor='default';}
+            }
+        });
+
+        $('#m-nilai-tugas').modal('show');
     }
 //    $(document).ready( function () {
 //        $("#nilai").change(function () {

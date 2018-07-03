@@ -20,25 +20,25 @@
                             <i class="la la-angle-down"></i>
                         </a>
                     </span> -->
-                    <div class="form-group m-form__group row">
-                        <label for="example-number-input" class="col-2 col-form-label">
-                            Periode
-                        </label>
-                        <select class="custom-select form-control">
-                            <option selected>
-                                2018
-                            </option>
-                            <option value="1">
-                                2017
-                            </option>
-                            <option value="2">
-                                2016
-                            </option>
-                            <option value="3">
-                                2015
-                            </option>
-                        </select>
-                    </div>
+                    {{--<div class="form-group m-form__group row">--}}
+                        {{--<label for="example-number-input" class="col-2 col-form-label">--}}
+                            {{--Periode--}}
+                        {{--</label>--}}
+                        {{--<select class="custom-select form-control">--}}
+                            {{--<option selected>--}}
+                                {{--2018--}}
+                            {{--</option>--}}
+                            {{--<option value="1">--}}
+                                {{--2017--}}
+                            {{--</option>--}}
+                            {{--<option value="2">--}}
+                                {{--2016--}}
+                            {{--</option>--}}
+                            {{--<option value="3">--}}
+                                {{--2015--}}
+                            {{--</option>--}}
+                        {{--</select>--}}
+                    {{--</div>--}}
                 </div>
             </div>
         </div>
@@ -63,7 +63,7 @@
                                         </div>
                                         <div class="row  align-items-center">
                                             <div class="col">
-                                                <div id="m_chart_profit_share" class="m-widget14__chart" style="height: 160px">
+                                                <div id="" class="m-widget14__chart" style="height: 160px">
                                                     <div class="m-widget14__stat">
                                                         Tugas
                                                     </div>
@@ -219,6 +219,10 @@
 
 @section('js')
 
-    <script src="{{ url('assets/demo/default/custom/components/charts/morris-charts.js') }}" type="text/javascript">
+    <script src="{{ url('assets/demo/default/custom/components/charts/morris-charts.js') }}" type="text/javascript"></script>
+    <script src="{{ url('assets/vendors/custom/fullcalendar/fullcalendar.bundle.js') }}" type="text/javascript"></script>
+    <!--end::Page Vendors -->
+    <!--begin::Page Snippets -->
+    <script src="{{ url('assets/app/js/dashboard.js') }}" type="text/javascript"></script>
 
 @endsection

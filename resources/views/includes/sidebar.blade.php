@@ -28,7 +28,7 @@
 
         <!-- start -->
         @if(Auth::user()->role == 0)
-        <li class="m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
+        <li class="@if(request()->is('*datacalon*')) active @endif m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
             <a  href="{{ url('/datacalon')}}" class="m-menu__link m-menu__toggle">
                 <i class="m-menu__link-icon flaticon-users color-menu"></i>
                 <span class="m-menu__link-text color-menu color-menu">
@@ -47,7 +47,7 @@
             <div class="m-menu__submenu nav-sidebar-menu ">
                 <span class="m-menu__arrow"></span>
                 <ul class="m-menu__subnav">
-                    <li class="m-menu__item  nav-sidebar-menu" aria-haspopup="true" >
+                    <li class="@if(request()->is('*kegiatan*')) active @endif m-menu__item  nav-sidebar-menu" aria-haspopup="true" >
                         <a  href="{{ url('/kegiatan')}}" class="m-menu__link  ">
                             <i class="m-menu__link-bullet m-menu__link-bullet--dot color-menu">
                                 <span></span>
@@ -57,7 +57,7 @@
                             </span>
                         </a>
                     </li>
-                    <li class="m-menu__item nav-sidebar-menu" aria-haspopup="true" >
+                    <li class="@if(request()->is('*rekap*')) active @endif m-menu__item nav-sidebar-menu" aria-haspopup="true" >
                         <a  href="{{route('rekap')}}" class="m-menu__link  ">
                             <i class="m-menu__link-bullet m-menu__link-bullet--dot color-menu">
                                 <span></span>
@@ -81,7 +81,7 @@
             <div class="m-menu__submenu ">
                 <span class="m-menu__arrow"></span>
                 <ul class="m-menu__subnav nav-sidebar-menu">
-                    <li class="m-menu__item  m-menu__item--active nav-sidebar-menu" aria-haspopup="true" >
+                    <li class="@if(request()->is('*tugas*')) active @endif m-menu__item  m-menu__item--active nav-sidebar-menu" aria-haspopup="true" >
                         <a  href="{{ url('/tugas')}}" class="m-menu__link  ">
                             <i class="m-menu__link-bullet m-menu__link-bullet--dot color-menu">
                                 <span></span>
@@ -91,7 +91,7 @@
                             </span>
                         </a>
                     </li>
-                    <li class="m-menu__item  m-menu__item--active nav-sidebar-menu" aria-haspopup="true" >
+                    <li class="@if(request()->is('*penilaianTugas*')) active @endif m-menu__item  m-menu__item--active nav-sidebar-menu" aria-haspopup="true" >
                         <a  href="{{ url('/penilaianTugas') }}" class="m-menu__link  ">
                             <i class="m-menu__link-bullet m-menu__link-bullet--dot color-menu">
                                 <span></span>
@@ -113,15 +113,15 @@
             {{--</a>--}}
         {{--</li>--}}
         {{--</li>--}}
-        <li class="m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
-            <a  href="{{ url('/kemampuan_tambahan')}}" class="m-menu__link m-menu__toggle ">
-                <i class="m-menu__link-icon flaticon-notes color-menu"></i>
-                <span class="m-menu__link-text color-menu">
-                Kemampuan Tambahan
-            </span>
-            </a>
-        </li>
-        <li class="m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
+        {{--<li class="m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">--}}
+            {{--<a  href="{{ url('/kemampuan_tambahan')}}" class="m-menu__link m-menu__toggle ">--}}
+                {{--<i class="m-menu__link-icon flaticon-notes color-menu"></i>--}}
+                {{--<span class="m-menu__link-text color-menu">--}}
+                {{--Kemampuan Tambahan--}}
+            {{--</span>--}}
+            {{--</a>--}}
+        {{--</li>--}}
+        <li class="@if(request()->is('*rekap_nilai*')) active @endif m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
             <a  href="{{ url('/rekap_nilai')}}" class="m-menu__link m-menu__toggle ">
                 <i class="m-menu__link-icon flaticon-list-3  color-menu"></i>
                 <span class="m-menu__link-text color-menu">
@@ -129,7 +129,7 @@
                 </span>
             </a>
         </li>
-        <li class="m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
+        <li class="@if(request()->is('*admin/panduan*')) active @endif m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
             <a  href="{{ url('/admin/panduan')}}" class="m-menu__link m-menu__toggle ">
                 <i class="m-menu__link-icon flaticon-user-settings  color-menu"></i>
                 <span class="m-menu__link-text color-menu">
@@ -137,8 +137,9 @@
             </span>
             </a>
         </li>
-        @else
-        <li class="m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
+        @endif
+        @if(Auth::user()->role == 1)
+        <li class="@if(request()->is('*admin/datacalon*')) active @endif m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
             <a  href="{{ url('/admin/datacalon')}}" class="m-menu__link m-menu__toggle">
                 <i class="m-menu__link-icon flaticon-users color-menu"></i>
                 <span class="m-menu__link-text color-menu">
@@ -146,7 +147,7 @@
                 </span>
             </a>
         </li>
-        <li class="m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
+        <li class="@if(request()->is('*admin/kegiatan*')) active @endif m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
             <a  href="{{ url('/admin/kegiatan')}}" class="m-menu__link m-menu__toggle">
                 <i class="m-menu__link-icon flaticon-interface-1 color-menu"></i>
                 <span class="m-menu__link-text  color-menu">
@@ -154,7 +155,7 @@
                 </span>
             </a>
         </li>
-        <li class="m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
+        <li class="@if(request()->is('*admin/tugas*')) active @endif  m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
             <a  href="{{ url('/admin/tugas')}}" class="m-menu__link m-menu__toggle">
                 <i class="m-menu__link-icon flaticon-clipboard color-menu"></i>
                 <span class="m-menu__link-text color-menu">
@@ -162,7 +163,7 @@
                 </span>
             </a>
         </li>
-        <li class="m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
+        <li class="@if(request()->is('*admin/kriteria*')) active @endif  m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
             <a  href="{{ url('/admin/kriteria')}}" class="m-menu__link m-menu__toggle">
                 <i class="m-menu__link-icon flaticon-confetti color-menu"></i>
                 <span class="m-menu__link-text color-menu ">
@@ -170,15 +171,15 @@
                 </span>
             </a>
         </li>
-        <li class="m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
-            <a  href="{{ url('/admin/kemampuan')}}" class="m-menu__link m-menu__toggle">
-                <i class="m-menu__link-icon flaticon-notes color-menu"></i>
-                <span class="m-menu__link-text color-menu">
-                Kemampuan Tambahan
-            </span>
-            </a>
-        </li>
-        <li class="m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
+        {{--<li class="m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">--}}
+            {{--<a  href="{{ url('/admin/kemampuan')}}" class="m-menu__link m-menu__toggle">--}}
+                {{--<i class="m-menu__link-icon flaticon-notes color-menu"></i>--}}
+                {{--<span class="m-menu__link-text color-menu">--}}
+                {{--Kemampuan Tambahan--}}
+            {{--</span>--}}
+            {{--</a>--}}
+        {{--</li>--}}
+        <li class="@if(request()->is('*admin/departemen*')) active @endif m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
             <a  href="{{ url('/admin/departemen')}}" class="m-menu__link m-menu__toggle">
                 <i class="m-menu__link-icon flaticon-map color-menu"></i>
                 <span class="m-menu__link-text color-menu">
@@ -186,7 +187,7 @@
                 </span>
             </a>
         </li>
-        <li class="m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
+        <li class="@if(request()->is('*admin/hasil*')) active @endif m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
             <a  href="{{ url('/admin/hasil')}}" class="m-menu__link m-menu__toggle">
                 <i class="m-menu__link-icon flaticon-list-3  color-menu"></i>
                 <span class="m-menu__link-text color-menu">
@@ -194,7 +195,7 @@
                 </span>
             </a>
         </li>
-        <li class="m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
+        <li class="@if(request()->is('*admin/akun*')) active @endif m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
             <a  href="{{ url('/admin/akun')}}" class="m-menu__link m-menu__toggle">
                 <i class="m-menu__link-icon flaticon-user-settings color-menu"></i>
                 <span class="m-menu__link-text color-menu">
@@ -202,7 +203,7 @@
                 </span>
             </a>
         </li>
-        <li class="m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
+        <li class="@if(request()->is('*admin/periode*')) active @endif m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
             <a  href="{{ url('/admin/periode') }}" class="m-menu__link m-menu__toggle">
                 <i class="m-menu__link-icon flaticon-time-3 color-menu"></i>
                 <span class="m-menu__link-text color-menu">
@@ -212,7 +213,7 @@
         </li>
 
 
-        <li class="m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
+        <li class="@if(request()->is('*panduan*')) active @endif m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
             <a  href="{{ url('/panduan')}}" class="m-menu__link m-menu__toggle ">
                 <i class="m-menu__link-icon flaticon-user-settings  color-menu"></i>
                 <span class="m-menu__link-text color-menu">
@@ -221,6 +222,7 @@
             </a>
         </li>
     @endif
+
             <!-- end -->
     </ul>
 </div>
