@@ -163,14 +163,14 @@
                 </span>
             </a>
         </li>
-        <li class="@if(request()->is('*admin/kriteria*')) active @endif  m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
-            <a  href="{{ url('/admin/kriteria')}}" class="m-menu__link m-menu__toggle">
-                <i class="m-menu__link-icon flaticon-confetti color-menu"></i>
-                <span class="m-menu__link-text color-menu ">
-                    Kriteria Penilaian
-                </span>
-            </a>
-        </li>
+        {{--<li class="@if(request()->is('*admin/kriteria*')) active @endif  m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">--}}
+            {{--<a  href="{{ url('/admin/kriteria')}}" class="m-menu__link m-menu__toggle">--}}
+                {{--<i class="m-menu__link-icon flaticon-confetti color-menu"></i>--}}
+                {{--<span class="m-menu__link-text color-menu ">--}}
+                    {{--Kriteria Penilaian--}}
+                {{--</span>--}}
+            {{--</a>--}}
+        {{--</li>--}}
         {{--<li class="m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">--}}
             {{--<a  href="{{ url('/admin/kemampuan')}}" class="m-menu__link m-menu__toggle">--}}
                 {{--<i class="m-menu__link-icon flaticon-notes color-menu"></i>--}}

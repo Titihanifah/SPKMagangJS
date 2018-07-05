@@ -111,7 +111,7 @@
                             <?php $i++; ?>
 						@endforeach
 
-						<th>Aksi</th>
+						{{--<th>Aksi</th>--}}
 					</tr>
 					</thead>
 					<tbody>
@@ -167,7 +167,7 @@
 									@if($key->id_detail_calon_anggota == $calon->id)
 									<td>
 										<label class="m-radio m-radio--solid m-radio--success">
-											<input {{ ($key->kehadiran == 1 ? "checked" : "") }} type="radio" onclick="hadir(this)"  id="[{{ json_encode($key->id_kegiatan) }},{{ json_encode($calon) }}]" name="kehadiran[{{ json_encode($key) }},{{ json_encode($calon) }}]"  value="{{$key->kehadiran}}" > Hadir✔️️
+											<input {{ ($key->kehadiran == 1 ? "checked" : "") }} type="radio" onclick="hadir(this)"  id="[{{ json_encode($key->id_kegiatan) }},{{ json_encode($calon) }}]" name="kehadiran[{{ json_encode($key) }},{{ json_encode($calon) }}]"  value="{{$key->kehadiran}}" > Hadir
 											<span> </span>
 										</label>
 										<label class="m-radio m-radio--solid m-radio--danger">
@@ -179,9 +179,9 @@
 									@endif
                             	@endforeach
                             @endforeach
-								<td>
-									<button class="btn m-button btn-success"><i class="-menu__link-icon flaticon-eye"></i></button>
-								</td>
+								{{--<td>--}}
+									{{--<button class="btn m-button btn-success"><i class="-menu__link-icon flaticon-eye"></i></button>--}}
+								{{--</td>--}}
 						</tr>
 							@php $i++ @endphp
 					@endforeach

@@ -80,7 +80,7 @@
 						<tr>
 							<th>No</th>
 							<th>Nama Calon</th>
-							<th>Nilai Tugas</th>
+							{{--<th>Nilai Tugas</th>--}}
 							@foreach($userTugas->departemen->tugas->where('id_periode', $activePeriode->id) as $key)
 							<th>{{ $key->nama_tugas }}</th>
 							@endforeach

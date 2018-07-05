@@ -7,7 +7,7 @@
             <div class="d-flex align-items-center">
                 <div class="mr-auto">
                     <h3 class="m-subheader__title m-subheader__title--separator">
-                        Data Calon
+                        Hasil Akhir
                     </h3>
                     <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
                         <li class="m-nav__item m-nav__item--home">
@@ -21,7 +21,7 @@
                         <li class="m-nav__item">
                             <a href="" class="m-nav__link">
 							<span class="m-nav__link-text">
-								Data Calon
+								Hasil Akhir
 							</span>
                             </a>
                         </li>
@@ -58,7 +58,7 @@
                     <div class="m-portlet__head-caption">
                         <div class="m-portlet__head-title">
                             <h3 class="m-portlet__head-text">
-                                Data Calon
+                                Hasil Akhir
                             </h3>
                         </div>
                     </div>

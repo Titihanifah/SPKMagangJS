@@ -126,7 +126,7 @@
 					<label for="">
 						Waktu Kegiatan
 					</label>
-					<input type="text" name="waktu" class="form-control m-input m-input--air" id="exampleInputEmail1"  placeholder="Waktu Kegiatan">
+					<input type="datetime-local" name="waktu" class="form-control m-input m-input--air" id="exampleInputEmail1"  placeholder="Waktu Kegiatan">
 				</div>
 				<div class="form-group m-form__group">
 					<label for="">
@@ -174,7 +174,7 @@
 					</div>
 					<div class="form-group m-form__group">
 						<label for="">Waktu Kegiatan</label>
-						<input type="text" name="waktu" id="waktu" class="form-control m-input m-input--air">
+						<input type="datetime-local" name="waktu" id="waktu" class="form-control m-input m-input--air">
 					</div>
 				</div>
 				<div class="modal-footer">

@@ -3,33 +3,42 @@
 
     <div class="m-grid__item m-grid__item--fluid m-wrapper">
         <!-- BEGIN: Subheader -->
-        <div class="m-subheader ">
-            <div class="d-flex align-items-center">
-                <div class="mr-auto">
-                    <h3 class="m-subheader__title m-subheader__title--separator">
-                        Kegiatan
-                    </h3>
-                    <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
-                        <li class="m-nav__item m-nav__item--home">
-                            <a href="#" class="m-nav__link m-nav__link--icon">
-                                <i class="m-nav__link-icon la la-home"></i>
-                            </a>
-                        </li>
-                        <li class="m-nav__separator">
-                            -
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+        {{--<div class="m-subheader ">--}}
+            {{--<div class="d-flex align-items-center">--}}
+                {{--<div class="mr-auto">--}}
+                    {{--<h3 class="m-subheader__title m-subheader__title--separator">--}}
+                        {{--Kegiatan--}}
+                    {{--</h3>--}}
+                    {{--<ul class="m-subheader__breadcrumbs m-nav m-nav--inline">--}}
+                        {{--<li class="m-nav__item m-nav__item--home">--}}
+                            {{--<a href="#" class="m-nav__link m-nav__link--icon">--}}
+                                {{--<i class="m-nav__link-icon la la-home"></i>--}}
+                            {{--</a>--}}
+                        {{--</li>--}}
+                        {{--<li class="m-nav__separator">--}}
+                            {{-----}}
+                        {{--</li>--}}
+                    {{--</ul>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
         <!-- END: Subheader -->
         <div class="m-content">
-            <div class="m-portlet m-portlet--mobile">
+            {{--m-portlet m-portlet--success m-portlet--head-solid-bg--}}
+            {{--<div class="m-portlet m-portlet--primary m-portlet--head-solid-bg m-portlet--head-sm">--}}
+            <div class="m-portlet m-portlet--creative m-portlet--first m-portlet--head-sm m-portlet--bordered-primary">
+                {{--m-portlet m-portlet--accent m-portlet--head-solid-bg m-portlet--head-sm--}}
                 <div class="m-portlet__head">
                     <div class="m-portlet__head-caption">
-                        <div class="m-portlet__head-title">
-                            <h3 class="m-portlet__head-text">Kegiatan</h3>
-                        </div>
+                        {{--<div class="m-portlet__head-title">--}}
+                            <h5 class="m-portlet__head-text"></h5>
+                            <h2 class="m-portlet__head-label m-portlet__head-label--primary">
+                                <span>
+                                    <i class="m-menu__link-icon flaticon-interface-1"></i> Data Kegiatan
+
+                                </span>
+                            </h2>
+                        {{--</div>--}}
                     </div>
                 </div>
                 <div class="m-portlet__body">
@@ -38,22 +47,7 @@
                         <div class="row align-items-center">
                             <div class="col-xl-12 order-2 order-xl-1">
                                 <div class="form-group m-form__group row align-items-center">
-                                    <div class="col-md-4">
-                                        {{--<button class="btn m-btn--square  btn-outline-primary" data-toggle="modal" data-target="#m-tambah-kegiatan"><i class="m-menu__link-icon flaticon-plus"></i> Tambah</button>--}}
-                                    </div>
-                                    <div class="col-md-5">
-
-                                    </div>
-                                    {{--<div class="col-md-3">--}}
-                                    {{--<div class="m-input-icon m-input-icon--left">--}}
-                                    {{--<input type="text" class="form-control m-input" placeholder="Search..." id="generalSearch">--}}
-                                    {{--<span class="m-input-icon__icon m-input-icon__icon--left">--}}
-                                    {{--<span>--}}
-                                    {{--<i class="la la-search"></i>--}}
-                                    {{--</span>--}}
-                                    {{--</span>--}}
-                                    {{--</div>--}}
-                                    {{--</div>--}}
+                                    <button class="btn m-btn--square  btn-outline-primary" data-toggle="modal" data-target="#m-tambah-kegiatan"><i class="m-menu__link-icon flaticon-plus"></i> Tambah</button>
                                 </div>
                             </div>
                         </div>
