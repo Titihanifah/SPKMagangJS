@@ -68,6 +68,32 @@ class RekapPenilaianController extends Controller
 
         return response()->json('Success');
     }
+    public function ketSimpan(Request $request)
+    {
+        $p = null;
+        $detCalonAnggota = DetailCalonAnggota::where('id', $request->id_detail_calon_anggota)
+            ->where('id_departemen', $request->id_departemen)
+            ->get();
+        if ($detCalonAnggota->count() > 0) {
+            $p = DetailCalonAnggota::find($detCalonAnggota[0]->id);
+        } else {
+            $p = new DetailCalonAnggota;
+        }
+        $p->id = $request->id_detail_calon_anggota;
+        $p->id_departemen = $request->id_departemen;
+        $p->keterangan = $request->keterangan;
+        $p->save();
+
+
+        return response()->json('Success');
+    }
+    public function ketKehadiran($id)
+    {
+        $detailCalonAnggota = DetailCalonAnggota::find($id);
+        $nilai = $detailCalonAnggota->nilai_kehadiran;
+
+        return response()->json($nilai);
+    }
 
     /**
      * Display the specified resource.

@@ -17,11 +17,8 @@ class CreateCalonAnggotasTable extends Migration
             $table->increments('id');
             $table->string('nama_calon_anggota');
             $table->enum('jenis_kelamin',['laki-laki','perempuan']);
-//            $table->string('fakultas');
-//            $table->string('prodi');
-//            $table->year('angkatan');
             $table->string('asal');
-            $table->string('alamat_jogja');
+            $table->string('alamat_yogyakarta');
             $table->string('sumber_belajar_islam')->nullable();
             $table->string('pengalaman_organisasi')->nullable();
             $table->string('pengalaman_kepanitiaan')->nullable();
@@ -29,7 +26,7 @@ class CreateCalonAnggotasTable extends Migration
             $table->string('hardskill')->nullable();
             $table->string('softskill')->nullable();
             $table->string('riwayat_penyakit')->nullable();
-            $table->string('departemen_final')->nullable();
+            $table->string('departemen_akhir')->nullable();
             $table->integer('id_periode')->unsigned();
             $table->foreign('id_periode')
                 ->references('id')->on('periodes')

@@ -96,7 +96,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
                                         {{ __('Login') }}
                                     </button>
-                                    {{ __('Forgot Your Password?') }}
+                                    {{--{{ __('Forgot Your Password?') }}--}}
                                 </div>
                             </form>
                         </div>
