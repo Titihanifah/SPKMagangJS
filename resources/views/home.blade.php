@@ -55,17 +55,17 @@
                                     <div class="m-widget14">
                                         <div class="m-widget14__header">
                                             <h3 class="m-widget14__title">
-                                                Tugas
+                                                Nilai
                                             </h3>
                                             <span class="m-widget14__desc">
-											Diagram pengumpulan tugas
+											Diagram presentase nilai
 										</span>
                                         </div>
                                         <div class="row  align-items-center">
                                             <div class="col">
                                                 <div id="" class="m-widget14__chart" style="height: 160px">
                                                     <div class="m-widget14__stat">
-                                                        Tugas
+                                                        Nilai
                                                     </div>
                                                 </div>
                                             </div>
@@ -73,14 +73,15 @@
                                                 <div class="m-widget14__legends">
                                                     <div class="m-widget14__legend">
                                                         <span class="m-widget14__legend-bullet m--bg-accent"></span>
-                                                        <span class="m-widget14__legend-text">
-														37% Belum Mengumpulkan
-													</span>
+                                                        <span class="m-widget14__legend-text">37% range 0-0.3</span>
                                                     </div>
                                                     <div class="m-widget14__legend">
                                                         <span class="m-widget14__legend-bullet m--bg-warning"></span>
-                                                        <span class="m-widget14__legend-text">
-                                                            63% Sudah dinilai</span>
+                                                        <span class="m-widget14__legend-text">37% range 0.3-0.6</span>
+                                                    </div>
+                                                    <div class="m-widget14__legend">
+                                                        <span class="m-widget14__legend-bullet m--bg-success"></span>
+                                                        <span class="m-widget14__legend-text">37% range 0.6-1</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -147,19 +148,27 @@
                                 <div class="col-xl-4">
                                     <!--begin:: Widgets/Profit Share-->
                                     <div class="m-widget14">
-                                        <div class="m-widget14__header">
-                                            <h3 class="m-widget14__title">
-                                                Prioritas Calon Anggota
-                                            </h3>
-                                            <span class="m-widget14__desc">
-											Profit Share between customers
-										</span>
+                                        <div class="m-widget1__item">
+                                            <div class="row m-row--no-padding align-items-center">
+                                                <div class="col">
+                                                    <h5 class="m-widget1__title">
+                                                        Total Calon Anggota
+                                                    </h5>
+
+                                                </span>
+                                                </div>
+                                                <div class="col m--align-right">
+												<span class="m-widget1__number m--font-brand">
+													57
+												</span>
+                                            </div>
                                         </div>
+                                    </div>
                                         <div class="row  align-items-center">
                                             <div class="col">
                                                 <div id="m_chart_profit_share" class="m-widget14__chart" style="height: 160px">
                                                     <div class="m-widget14__stat">
-                                                        45
+                                                        Infokes
                                                     </div>
                                                 </div>
                                             </div>
@@ -168,13 +177,13 @@
                                                     <div class="m-widget14__legend">
                                                         <span class="m-widget14__legend-bullet m--bg-accent"></span>
                                                         <span class="m-widget14__legend-text">
-														37% Prioritas 1
+														37% Laki-laki
 													</span>
                                                     </div>
                                                     <div class="m-widget14__legend">
                                                         <span class="m-widget14__legend-bullet m--bg-warning"></span>
                                                         <span class="m-widget14__legend-text">
-														47% Prioritas 2
+														Perempuan
 													</span>
                                                     </div>
                                                 </div>
@@ -186,34 +195,328 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <!--begin::Portlet-->
-                    <div class="m-portlet m-portlet--tab">
-                        <div class="m-portlet__head">
-                            <div class="m-portlet__head-caption">
-                                <div class="m-portlet__head-title">
+                            <!--Begin::Section-->
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <!--begin:: Widgets/Sales States-->
+                                    <div class="m-portlet m-portlet--full-height ">
+                                        <div class="m-portlet__head">
+                                            <div class="m-portlet__head-caption">
+                                                <div class="m-portlet__head-title">
+                                                    <h3 class="m-portlet__head-text">
+                                                        Nilai Teratas
+                                                    </h3>
+                                                </div>
+                                            </div>
+                                            <div class="m-portlet__head-tools">
+                                                <ul class="m-portlet__nav">
+                                                    <li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover" aria-expanded="true">
+                                                        <a href="#" class="m-portlet__nav-link m-portlet__nav-link--icon m-portlet__nav-link--icon-xl">
+                                                            <i class="fa fa-genderless m--font-brand"></i>
+                                                        </a>
+                                                        <div class="m-dropdown__wrapper">
+                                                            <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust" style="left: auto; right: 17px;"></span>
+                                                            {{--<div class="m-dropdown__inner">--}}
+                                                                {{--<div class="m-dropdown__body">--}}
+                                                                    {{--<div class="m-dropdown__content">--}}
+                                                                        {{--<ul class="m-nav">--}}
+                                                                            {{--<li class="m-nav__item">--}}
+                                                                                {{--<a href="" class="m-nav__link">--}}
+                                                                                    {{--<i class="m-nav__link-icon flaticon-share"></i>--}}
+                                                                                    {{--<span class="m-nav__link-text">--}}
+																					{{--Activity--}}
+																				{{--</span>--}}
+                                                                                {{--</a>--}}
+                                                                            {{--</li>--}}
+                                                                            {{--<li class="m-nav__item">--}}
+                                                                                {{--<a href="" class="m-nav__link">--}}
+                                                                                    {{--<i class="m-nav__link-icon flaticon-chat-1"></i>--}}
+                                                                                    {{--<span class="m-nav__link-text">--}}
+																					{{--Messages--}}
+																				{{--</span>--}}
+                                                                                {{--</a>--}}
+                                                                            {{--</li>--}}
+                                                                            {{--<li class="m-nav__item">--}}
+                                                                                {{--<a href="" class="m-nav__link">--}}
+                                                                                    {{--<i class="m-nav__link-icon flaticon-info"></i>--}}
+                                                                                    {{--<span class="m-nav__link-text">--}}
+																					{{--FAQ--}}
+																				{{--</span>--}}
+                                                                                {{--</a>--}}
+                                                                            {{--</li>--}}
+                                                                            {{--<li class="m-nav__item">--}}
+                                                                                {{--<a href="" class="m-nav__link">--}}
+                                                                                    {{--<i class="m-nav__link-icon flaticon-lifebuoy"></i>--}}
+                                                                                    {{--<span class="m-nav__link-text">--}}
+																					{{--Support--}}
+																				{{--</span>--}}
+                                                                                {{--</a>--}}
+                                                                            {{--</li>--}}
+                                                                        {{--</ul>--}}
+                                                                    {{--</div>--}}
+                                                                {{--</div>--}}
+                                                            {{--</div>--}}
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="m-portlet__body">
+                                            <div class="m-widget6">
+                                                <div class="m-widget6__head">
+                                                    <div class="m-widget6__item">
+													<span class="m-widget6__caption">
+														Nama
+													</span>
+                                                        <span class="m-widget6__caption">
+
+													</span>
+                                                        <span class="m-widget6__caption m--align-right">
+														Nilai
+													</span>
+                                                    </div>
+                                                </div>
+                                                <div class="m-widget6__body">
+                                                    <div class="m-widget6__item">
+													<span class="m-widget6__text">
+														Denis
+													</span>
+
+                                                        <span class="m-widget6__text m--align-right m--font-boldest m--font-brand">
+														$14,740
+													</span>
+                                                    </div>
+                                                    <div class="m-widget6__item">
+													<span class="m-widget6__text">
+														Tono
+													</span>
+
+                                                        <span class="m-widget6__text m--align-right m--font-boldest m--font-brand">
+														$11,002
+													</span>
+                                                    </div>
+                                                    <div class="m-widget6__item">
+													<span class="m-widget6__text">
+														Santoso
+													</span>
+
+                                                        <span class="m-widget6__text m--align-right m--font-boldest m--font-brand">
+														$10,900
+													</span>
+                                                    </div>
+                                                    <div class="m-widget6__item">
+													<span class="m-widget6__text">
+														RAni
+													</span>
+
+													</span>
+                                                        <span class="m-widget6__text m--align-right m--font-boldest m--font-brand">
+														$14,740
+													</span>
+                                                    </div>
+                                                    <div class="m-widget6__item">
+													<span class="m-widget6__text">
+														Amir
+													</span>
+
+                                                        <span class="m-widget6__text m--align-right m--font-boldest m--font-brand">
+														$18,540
+													</span>
+                                                    </div>
+
+
+                                                </div>
+                                                <div class="m-widget6__foot">
+                                                    <div class="m-widget6__action m--align-right">
+                                                        <button type="button" class="btn m-btn--pill btn-secondary m-btn m-btn--hover-brand m-btn--custom">
+                                                            Export
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--end:: Widgets/Sales States-->
+                                </div>
+
+                                <div class="col-xl-6">
+                                    <!--begin:: Widgets/Sales States-->
+                                    <div class="m-portlet m-portlet--full-height ">
+                                        <div class="m-portlet__head">
+                                            <div class="m-portlet__head-caption">
+                                                <div class="m-portlet__head-title">
+                                                    <h3 class="m-portlet__head-text">
+                                                        Favorit
+                                                    </h3>
+                                                </div>
+                                            </div>
+                                            <div class="m-portlet__head-tools">
+                                                <ul class="m-portlet__nav">
+                                                    <li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover" aria-expanded="true">
+                                                        <a href="#" class="m-portlet__nav-link m-portlet__nav-link--icon m-portlet__nav-link--icon-xl">
+                                                            <i class="fa fa-genderless m--font-brand"></i>
+                                                        </a>
+                                                        <div class="m-dropdown__wrapper">
+                                                            <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust" style="left: auto; right: 17px;"></span>
+                                                            {{--<div class="m-dropdown__inner">--}}
+                                                            {{--<div class="m-dropdown__body">--}}
+                                                            {{--<div class="m-dropdown__content">--}}
+                                                            {{--<ul class="m-nav">--}}
+                                                            {{--<li class="m-nav__item">--}}
+                                                            {{--<a href="" class="m-nav__link">--}}
+                                                            {{--<i class="m-nav__link-icon flaticon-share"></i>--}}
+                                                            {{--<span class="m-nav__link-text">--}}
+                                                            {{--Activity--}}
+                                                            {{--</span>--}}
+                                                            {{--</a>--}}
+                                                            {{--</li>--}}
+                                                            {{--<li class="m-nav__item">--}}
+                                                            {{--<a href="" class="m-nav__link">--}}
+                                                            {{--<i class="m-nav__link-icon flaticon-chat-1"></i>--}}
+                                                            {{--<span class="m-nav__link-text">--}}
+                                                            {{--Messages--}}
+                                                            {{--</span>--}}
+                                                            {{--</a>--}}
+                                                            {{--</li>--}}
+                                                            {{--<li class="m-nav__item">--}}
+                                                            {{--<a href="" class="m-nav__link">--}}
+                                                            {{--<i class="m-nav__link-icon flaticon-info"></i>--}}
+                                                            {{--<span class="m-nav__link-text">--}}
+                                                            {{--FAQ--}}
+                                                            {{--</span>--}}
+                                                            {{--</a>--}}
+                                                            {{--</li>--}}
+                                                            {{--<li class="m-nav__item">--}}
+                                                            {{--<a href="" class="m-nav__link">--}}
+                                                            {{--<i class="m-nav__link-icon flaticon-lifebuoy"></i>--}}
+                                                            {{--<span class="m-nav__link-text">--}}
+                                                            {{--Support--}}
+                                                            {{--</span>--}}
+                                                            {{--</a>--}}
+                                                            {{--</li>--}}
+                                                            {{--</ul>--}}
+                                                            {{--</div>--}}
+                                                            {{--</div>--}}
+                                                            {{--</div>--}}
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="m-portlet__body">
+                                            <div class="m-widget6">
+                                                <div class="m-widget6__head">
+                                                    <div class="m-widget6__item">
+													<span class="m-widget6__caption">
+														Nama
+													</span>
+                                                        <span class="m-widget6__caption">
+
+													</span>
+                                                        <span class="m-widget6__caption m--align-right">
+														Keterangan
+													</span>
+                                                    </div>
+                                                </div>
+                                                <div class="m-widget6__body">
+                                                    <div class="m-widget6__item">
+													<span class="m-widget6__text">
+														Denis
+													</span>
+
+                                                        <span class="m-widget6__text m--align-right m--font-boldest m--font-brand">
+														$14,740
+													</span>
+                                                    </div>
+                                                    <div class="m-widget6__item">
+													<span class="m-widget6__text">
+														Tono
+													</span>
+
+                                                        <span class="m-widget6__text m--align-right m--font-boldest m--font-brand">
+														$11,002
+													</span>
+                                                    </div>
+                                                    <div class="m-widget6__item">
+													<span class="m-widget6__text">
+														Santoso
+													</span>
+
+                                                        <span class="m-widget6__text m--align-right m--font-boldest m--font-brand">
+														$10,900
+													</span>
+                                                    </div>
+                                                    <div class="m-widget6__item">
+													<span class="m-widget6__text">
+														RAni
+													</span>
+
+                                                        </span>
+                                                        <span class="m-widget6__text m--align-right m--font-boldest m--font-brand">
+														$14,740
+													</span>
+                                                    </div>
+                                                    <div class="m-widget6__item">
+													<span class="m-widget6__text">
+														Amir
+													</span>
+
+                                                        <span class="m-widget6__text m--align-right m--font-boldest m--font-brand">
+														$18,540
+													</span>
+                                                    </div>
+
+
+                                                </div>
+                                                <div class="m-widget6__foot">
+                                                    <div class="m-widget6__action m--align-right">
+                                                        <button type="button" class="btn m-btn--pill btn-secondary m-btn m-btn--hover-brand m-btn--custom">
+                                                            Export
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--end:: Widgets/Sales States-->
+                                </div>
+
+                            </div>
+                            <!--End::Section-->
+                            <!--Begin::Section-->
+                        </div>
+                    <div class="col-md-6">
+                        <!--begin::Portlet-->
+                        <div class="m-portlet m-portlet--tab">
+                            <div class="m-portlet__head">
+                                <div class="m-portlet__head-caption">
+                                    <div class="m-portlet__head-title">
 								<span class="m-portlet__head-icon m--hide">
 									<i class="la la-gear"></i>
 								</span>
-                                    <h3 class="m-portlet__head-text">
-                                        Line Chart
-                                    </h3>
+                                        <h3 class="m-portlet__head-text">
+                                            Line Chart
+                                        </h3>
+                                    </div>
                                 </div>
                             </div>
+                            <div class="m-portlet__body">
+                                <div id="m_morris_1" style="height:500px;"></div>
+                            </div>
                         </div>
-                        <div class="m-portlet__body">
-                            <div id="m_morris_1" style="height:500px;"></div>
-                        </div>
+                        <!--end::Portlet-->
                     </div>
-                    <!--end::Portlet-->
                 </div>
             </div>
-            <!--End::Section-->
-        </div>
+                    </div>
+
+                </div>
+
+
     </div>
+
+            <!--End::Section-->
+
 
 @endsection
 

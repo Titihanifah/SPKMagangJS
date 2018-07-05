@@ -199,11 +199,17 @@
                                 <tr>
                                     <td>{{ $i }}</td>
                                     <td>{{ $key->nama_calon_anggota }}</td>
-                                    {{--TODO: tanyakan join tabel--}}
+                                    <td>{{ $key->jenis_kelamin }}</td>
                                     <td>Prioritas 1</td>
                                     <td>{{ $key->hardskill }}</td>
                                     <td>{{ $key->softskill }}</td>
-                                    {{--TODO: tanyakan join tabel--}}
+                                    <td>pengalaman organisasi</td>
+                                    <td>pengalaman kepanitian</td>
+                                    <td>minat</td>
+                                    <td>Sumber belajar islam</td>
+                                    <td>Riwayat Penyakit</td>
+                                    <td>Asal</td>
+                                    <td>Alamat Yogyakarta</td>
                                     <td>Infokes</td>
                                     <td>
                                         <!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-primary m-btn--gradient-to-primary"><i class="m-menu__link-icon flaticon-eye"></i></button> -->

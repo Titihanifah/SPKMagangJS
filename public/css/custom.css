@@ -17,6 +17,12 @@ table {
     color: #0a6aa2;
     background-color: #30336b;
 }
+.active{
+     /*background-color: #2980b9;*/
+     /*background-color: #0a6aa2;*/
+     color: #0a6aa2;
+     background-color: #30336b;
+ }
  /*.bordered-table th{*/
      /*border: 0.1px solid #95a5a6;*/
      /*background-color: #acb8f0 !important;*/
@@ -31,3 +37,6 @@ table {
  /*.th, td {*/
     /*border: 1px solid #2c2e3e;*/
 /*}*/
+ .bg-portlet {
+     background-color: #95a5a6 !important;
+ }

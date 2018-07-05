@@ -30,6 +30,8 @@ License: You must have a valid license purchased only from themeforest(the above
                 sessionStorage.fonts = true;
             }
         });
+
+
     </script>
     <!--end::Web font -->
     <!--begin::Base Styles -->
@@ -63,15 +65,17 @@ License: You must have a valid license purchased only from themeforest(the above
                             <form class="m-login__form m-form" method="POST" action="{{ route('login') }}">
                                 @csrf
                                 <div class="form-group m-form__group">
-                                    <input class="form-control m-input" type="text" placeholder="Email" name="email" autocomplete="off">
-                                    @if ($errors->has('email'))
-                                        <span class="invalid-feedback">
-                                            <strong>{{ $errors->first('email') }}</strong>
-                                        </span>
-                                    @endif
+                                    {{--<div class="m-input-icon m-input-icon--left m-input-icon--right">--}}
+                                        <input class="form-control m-input" type="text" placeholder="Email" name="email" autocomplete="off" required>
+                                        @if ($errors->has('email'))
+                                            <span class="invalid-feedback">
+                                                <strong>{{ $errors->first('email') }}</strong>
+                                            </span>
+                                        @endif
+                                    {{--</div>--}}
                                 </div>
                                 <div class="form-group m-form__group">
-                                    <input class="form-control m-input m-login__form-input--last" type="password" placeholder="Password" name="password">
+                                    <input class="form-control m-input m-login__form-input--last" type="password" placeholder="Password" name="password" required>
                                     @if ($errors->has('password'))
                                         <span class="invalid-feedback">
                                             <strong>{{ $errors->first('password') }}</strong>
@@ -191,7 +195,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     Jamaah Shalahuddin
                 </h3>
                 <p class="m-login__msg">
-                    Ukm kerohanian Islam dan lembaga dakwah kamppus UGM
+                    Ukm kerohanian Islam dan lembaga dakwah kampus UGM
                 </p>
             </div>
         </div>
