@@ -47,7 +47,7 @@
                         <div class="row align-items-center">
                             <div class="col-xl-12 order-2 order-xl-1">
                                 <div class="form-group m-form__group row align-items-center">
-                                    <button class="btn m-btn--square  btn-outline-primary" data-toggle="modal" data-target="#m-tambah-kegiatan"><i class="m-menu__link-icon flaticon-plus"></i> Tambah</button>
+                                    {{--<button class="btn m-btn--square  btn-outline-primary" data-toggle="modal" data-target="#m-tambah-kegiatan"><i class="m-menu__link-icon flaticon-plus"></i> Tambah</button>--}}
                                 </div>
                             </div>
                         </div>

@@ -77,9 +77,9 @@
                             <th rowspan="2">Jenis Kelamin</th>
                             <th rowspan="2">Pilihan 1</th>
                             <th colspan="3"><center>Nilai 1</center></th>
-                            <th rowspan="2">Pilihan 2</th>
                             <th rowspan="2">Rekomendasi 1</th>
                             <th rowspan="2">Rekomendasi 2</th>
+                            <th rowspan="2">Pilihan 2</th>
                             <th colspan="3"><center>Nilai 2</center></th>
 
                             {{--<th rowspan="2">Aksi</th>--}}
@@ -110,9 +110,9 @@
                                 <td>{{ $key->first()->nilai_kehadiran }}</td>
                                 <td>{{ $key->first()->nilai_tugas }}</td>
                                 <td>{{ $key->first()->total_nilai }}</td>
-                                <td>{{ $key[1]->departemen->nama_departemen }}</td>
                                 <td>{{ $key->first()->rekomendasi }}</td>
                                 <td>{{ $key[1]->rekomendasi }}</td>
+                                <td>{{ $key[1]->departemen->nama_departemen }}</td>
                                 <td>{{ $key[1]->nilai_kehadiran }}</td>
                                 <td>{{ $key[1]->nilai_tugas }}</td>
                                 <td>{{ $key[1]->total_nilai }}</td>

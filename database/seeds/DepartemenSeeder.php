@@ -17,7 +17,7 @@ class DepartemenSeeder extends Seeder
         DB::table('departemens')->insert(['nama_departemen' => "Media Center"]);
         DB::table('departemens')->insert(['nama_departemen' => "BSO GMMQ"]);
         DB::table('departemens')->insert(['nama_departemen' => "Kastrat"]);
-        DB::table('departemens')->insert(['nama_departemen' => "Syar'e"]);
+        DB::table('departemens')->insert(['nama_departemen' => "Shar'E"]);
 
 
     }

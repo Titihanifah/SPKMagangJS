@@ -46,14 +46,14 @@ class AdminAkunController extends Controller
 
 
         $this->validate($request, [
-            'name' => 'required',
+            'username' => 'required',
             'role' => 'required',
             'password' => 'required',
         ]);
 
         $user = new User;
 
-        $user->name = $request->name;
+        $user->name = $request->username;
         $user->role = $request->role;
         $user->id_departemen = $request->id_departemen;
         $nameDep = $request->name;

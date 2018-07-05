@@ -36,6 +36,17 @@
                 </div>
                 <div class="m-portlet__body">
                     <!--begin: Search Form -->
+
+
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div class="m-form m-form--label-align-right m--margin-top-20 m--margin-bottom-30">
                         <div class="row align-items-center">
                             <div class="col-xl-12 order-2 order-xl-1">
@@ -119,7 +130,7 @@
                     {!! Form::open(array('route' => 'akun.store', 'enctype' => 'multipart/form-data')) !!}
                     <div class="form-group m-form__group">
                         <label for="">Username</label>
-                        <input type="text" name="name" class="form-control m-input m-input--air"  placeholder="Username">
+                        <input type="text" name="username" class="form-control m-input m-input--air"  placeholder="Username">
                     </div>
                     <div class="form-group m-form__group">
                         <label for="">Password</label>

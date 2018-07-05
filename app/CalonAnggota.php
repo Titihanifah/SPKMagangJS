@@ -9,7 +9,7 @@ class CalonAnggota extends Model
 
     public function detailCalonAnggota()
     {
-        return $this->hasMany('App\DetailCalonAnggota');
+        return $this->hasMany('App\DetailCalonAnggota', 'id_calon_anggota');
     }
 //    public function detailTugas()
 //    {

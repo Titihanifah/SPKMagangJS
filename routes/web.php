@@ -22,6 +22,7 @@ Route::resource('/datacalon','DataCalonController');
 Route::resource('/kegiatan','KegiatanController');
 Route::resource('/tugas','TugasController');
 Route::resource('/admin/datacalon','AdminDataCalonController');
+Route::post('/admin/upload/datacalon','AdminDataCalonController@importExcel')->name('datacalon.importexcel');
 Route::resource('/admin/kriteria','AdminKriteriaController');
 Route::resource('/admin/periode','AdminPeriodeController');
 Route::resource('/admin/departemen','AdminDepartemenController');

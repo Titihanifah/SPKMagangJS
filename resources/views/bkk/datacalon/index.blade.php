@@ -105,29 +105,41 @@
                         </div>
                     </div>
                 </div>
-                <form class="alert m-alert m-alert--default">
+                {!! Form::open(array('class' => 'alert m-alert m-alert--default', 'route' => 'datacalon.importexcel', 'enctype' => 'multipart/form-data')) !!}
                     <div class="m-portlet__body">
-                        <div class="row">
-                            <div class="col-md-7">
 
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="customFile">
-                                    <label class="custom-file-label" for="customFile">
-                                        Pilih Berkas
-                                    </label>
-                                </div>
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
                             </div>
-                            <button type="reset" class="btn btn-sm btn-primary" style="margin-right: 10px">
-                                Import
-                            </button>
-                            <span></span>
-                            <button type="reset" class="btn btn-sm btn-danger">
-                                Batal
-                            </button>
+                        @endif
+                        <div class="row">
+
+                                <div class="col-md-7">
+
+                                    <div class="custom-file">
+                                        <input name="file_excel" type="file" class="custom-file-input" id="customFile">
+                                        <label class="custom-file-label" for="customFile">
+                                            Pilih Berkas
+                                        </label>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-sm btn-primary" style="margin-right: 10px">
+                                    Import
+                                </button>
+                                <span></span>
+                                <button type="reset" class="btn btn-sm btn-danger">
+                                    Batal
+                                </button>
+
                         </div>
 
                     </div>
-                </form>
+                {!! Form::close() !!}
                 <!--begin::Form-->
 
                 <!--end::Form-->
@@ -144,6 +156,11 @@
                 </div>
                 <div class="m-portlet__body">
                     <!--begin: Search Form -->
+                    @if (\Illuminate\Support\Facades\Session::has('message'))
+                        <div class="alert alert-success">
+                            {{ \Illuminate\Support\Facades\Session::get('message') }}
+                        </div>
+                    @endif
                     <div class="m-form m-form--label-align-right m--margin-top-20 m--margin-bottom-30">
                         <div class="row align-items-center">
                             <div class="col-xl-12 order-2 order-xl-1">
@@ -203,14 +220,14 @@
                                     <td>Prioritas 1</td>
                                     <td>{{ $key->hardskill }}</td>
                                     <td>{{ $key->softskill }}</td>
-                                    <td>pengalaman organisasi</td>
-                                    <td>pengalaman kepanitian</td>
-                                    <td>minat</td>
-                                    <td>Sumber belajar islam</td>
-                                    <td>Riwayat Penyakit</td>
-                                    <td>Asal</td>
-                                    <td>Alamat Yogyakarta</td>
-                                    <td>Infokes</td>
+                                    <td>{{ $key->pengalaman_organisasi }}</td>
+                                    <td>{{ $key->pengalaman_kepanitiaan }}</td>
+                                    <td>{{ $key->minat }}</td>
+                                    <td>{{ $key->sumber_belajar_islam }}</td>
+                                    <td>{{ $key->riwayat_penyakit }}</td>
+                                    <td>{{ $key->asal }}</td>
+                                    <td>{{ $key->alamat_yogyakarta }}</td>
+                                    <td>Pilihan 1: {{ $key->detailCalonAnggota[0]->departemen->nama_departemen }}<br>Pilihan 2: {{ $key->detailCalonAnggota[1]->departemen->nama_departemen }}</td>
                                     <td>
                                         <!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-primary m-btn--gradient-to-primary"><i class="m-menu__link-icon flaticon-eye"></i></button> -->
                                         {{--<a href="#" onclick="view({{ $i }})" class="btn btn-outline-primary m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-eye"></i></a>--}}
@@ -271,12 +288,12 @@
         </div>
 
         {{--MODAL--}}
-        <div class="modal fade" id="m-tambah-kriteria" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="m-tambah-datacalon" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">
-                            Tambah Kriteria Penilaian
+                            Tambah Data Calon
                         </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">
@@ -285,14 +302,77 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        {!! Form::open(array('route' => 'kriteria.store', 'enctype' => 'multipart/form-data')) !!}
+                        {!! Form::open(array('route' => 'datacalon.store', 'enctype' => 'multipart/form-data')) !!}
                         <div class="form-group m-form__group">
-                            <label for="">Kriteria Penilaian</label>
-                            <input type="text" name="nama_kriteria" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Tugas">
+                            <label for="">Nama Calon Anggota</label>
+                            <input type="text" name="nama_calon_anggota" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Nama Calon Anggota">
+                        </div>
+                        <div class="m-form__group form-group">
+                            <label for="">Jenis Kelamin</label>
+                            <div class="m-radio-inline">
+                                <label class="m-radio">
+                                    <input type="radio" name="jenis_kelamin" value="L">Laki-Laki
+                                    <span></span>
+                                </label>
+                                <label class="m-radio">
+                                    <input type="radio" name="jenis_kelamin" value="P">Perempuan
+                                    <span></span>
+                                </label>
+                            </div>
                         </div>
                         <div class="form-group m-form__group">
-                            <label for="">Bobot</label>
-                            <input type="text" name="bobot" class="form-control m-input m-input--air"  aria-describedby="emailHelp" placeholder="0.5">
+                            <label for="">Departemen Pilihan 1</label>
+                            <select name="departemen_satu" class="custom-select form-control col-md-12">
+                                <option value="">Pilih Departemen</option>
+                                @foreach($departemen as $key)
+                                    <option value="{{ $key->id }}">{{ $key->nama_departemen }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group m-form__group">
+                            <label for="">Departemen Pilihan 2</label>
+                            <select name="departemen_dua" class="custom-select form-control col-md-12">
+                                <option value="">Pilih Departemen</option>
+                                @foreach($departemen as $key)
+                                    <option value="{{ $key->id }}">{{ $key->nama_departemen }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group m-form__group">
+                            <label for="">Asal</label>
+                            <input type="text" name="asal" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Asal">
+                        </div>
+                        <div class="form-group m-form__group">
+                            <label for="">Alamat di Yogyakarta</label>
+                            <input type="text" name="alamat_yogyakarta" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Alamat di Yogyakarta">
+                        </div>
+                        <div class="form-group m-form__group">
+                            <label for="">Sumber Belajar Islam</label>
+                            <input type="text" name="sumber_belajar_islam" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Sumber Belajar Islam">
+                        </div>
+                        <div class="form-group m-form__group">
+                            <label for="">Pengalaman Organisasi</label>
+                            <input type="text" name="pengalaman_organisasi" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Pengalaman Organisasi">
+                        </div>
+                        <div class="form-group m-form__group">
+                            <label for="">Pengalaman Kepanitiaan</label>
+                            <input type="text" name="pengalaman_kepanitiaan" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Pengalaman Kepanitiaan">
+                        </div>
+                        <div class="form-group m-form__group">
+                            <label for="">Minat</label>
+                            <input type="text" name="minat" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Minat">
+                        </div>
+                        <div class="form-group m-form__group">
+                            <label for="">Hardskill</label>
+                            <input type="text" name="hardskill" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Hardskill">
+                        </div>
+                        <div class="form-group m-form__group">
+                            <label for="">Softskill</label>
+                            <input type="text" name="softskill" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Softskill">
+                        </div>
+                        <div class="form-group m-form__group">
+                            <label for="">Riwayat Penyakit</label>
+                            <input type="text" name="riwayat_penyakit" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Riwayat Penyakit">
                         </div>
                         <div class="modal-footer">
                             <button type="reset" class="btn btn-danger" data-dismiss="modal">Batal</button>
@@ -304,7 +384,7 @@
             </div>
         </div>
 
-        <div class="modal fade" id="m-edit-kriteria" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        <div class="modal fade" id="m-edit-datacalon" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
              aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <form method="POST" id="edit_form" action="" accept-charset="UTF-8" enctype="multipart/form-data">
@@ -392,9 +472,19 @@
 
         @section('js')
 
+            {{--<script src="{{ url('assets/demo/default/custom/components/datatables/base/html-table.js')}}" type="text/javascript"></script>--}}
+            {{--<link rel="stylesheet" type="text/css" href="/css/jquery.dataTables.css">--}}
+            <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedcolumns/3.2.4/css/fixedColumns.dataTables.min.css">
+            {{--<link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css" type="text/css">--}}
+            {{--<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>--}}
+            <script src="https://cdn.datatables.net/fixedcolumns/3.2.4/js/dataTables.fixedColumns.min.js" type="text/javascript"></script>
             <script type="text/javascript">
 
                 $('#table_data_calon').dataTable({
+                    paging:         true,
+                    scrollY:        false,
+                    scrollX:        true,
+                    scrollCollapse: true,
                     "columnDefs": [
                         {"width": "2px", "targets": 1}
                     ]

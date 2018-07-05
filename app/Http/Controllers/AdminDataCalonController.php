@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\CalonAnggota;
+use App\Departemen;
+use App\DetailCalonAnggota;
+use App\Periode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AdminDataCalonController extends Controller
 {
@@ -19,43 +23,67 @@ class AdminDataCalonController extends Controller
         //TODO: join dengan tabel detail_calon_anggotas
         //
         $calonAanggota = CalonAnggota::all();
-        return view('bkk.datacalon.index')->with('calonAnggota', $calonAanggota);
+        $departemen = Departemen::all();
+        return view('bkk.datacalon.index')->with('calonAnggota', $calonAanggota)->with('departemen', $departemen);
     }
 
-    public function importExcel()
+    public function importExcel(Request $request)
     {
-        $id_calon_anggota = request()->id_calon_anggota;
-        $periode = request()->periode;
-        if(Input::hasFile('importExcel')){
-            $file = Input::file('importExcel');
-            $data = Excel::load($file)->get();
-            if(!empty($data)){
-                $message = "";
-                $index = 0;
-                foreach ($data as $value){
-                    // cek apakah ada id_calon_anggota dalam database
-                    $cekCalonAnggota = CalonAnggota::where('id', $value->id)->first();
+        $this->validate($request, [
+            'file_excel' => 'required|file' // xls file
+        ]);
+        $results = Excel::load($request->file_excel, function($reader) {
+        })->get();
+        foreach ($results as $key) {
+            $errors = [];
+            $errCount = 0;
 
-                    if(count($cekCalonAnggota) > 0) {
-                        // apabila id_calon_anggota suda ada maka ditolak
-                        $cekDataAnggota = CalonAnggota::where('id_calon_anggota', $value->id)
-                            ->where('id', $value->id)
-                            ->where('nama_calon_anggota', $value->nama)
-                            ->where('jenis_kelamin', $value->jenis_kelamin)
-                            ->where('hardskill', $value->hardskill)
-                            ->where('softskill', $value->softskill)
-                            ->where('jenis_kelamin', $value->jenis_kelamin)
-                            ->where('id_periode', '!=', \App\Periode::where('status','Aktif')->first()->id_periode)
-                            ->first(); // untuk menampilkan data teratas
+            $departemenSatu = Departemen::where('nama_departemen', $key->departemen_satu)->get();
+            $departemenDua = Departemen::where('nama_departemen', $key->departemen_dua)->get();
+            $periodeAktif = Periode::where('status', 1)->get();
 
-                        if(count($cekDataAnggota) > 0) {
-                            //
-
-                        }
-                    }
-                }
+            if($departemenSatu->count() == 0) {
+                $errors[] = "Nama departemen ".$key->departemen_satu." tidak valid";
+                $errCount++;
             }
+            if($departemenDua->count() == 0) {
+                $errors[] = "Nama departemen ".$key->departemen_dua." tidak valid";
+                $errCount++;
+            }
+            if($periodeAktif->count() == 0) {
+                $errors[] = "Tidak ada periode yang sedang aktif";
+                $errCount++;
+            }
+
+            $calonAnggota                           = new CalonAnggota;
+            $calonAnggota->nama_calon_anggota       = $key->nama_calon_anggota;
+            $calonAnggota->jenis_kelamin            = ($key->jenis_kelamin == 'P' ? 'perempuan' : 'laki-laki');
+            $calonAnggota->asal                     = $key->asal;
+            $calonAnggota->alamat_yogyakarta        = $key->alamat_yogyakarta;
+            $calonAnggota->sumber_belajar_islam     = $key->sumber_belajar_islam;
+            $calonAnggota->pengalaman_organisasi    = $key->pengalaman_organisasi;
+            $calonAnggota->pengalaman_kepanitiaan   = $key->pengalaman_kepanitiaan;
+            $calonAnggota->minat                    = $key->minat;
+            $calonAnggota->hardskill                = $key->hardskill;
+            $calonAnggota->softskill                = $key->softskill;
+            $calonAnggota->riwayat_penyakit         = $key->riwayat_penyakit;
+            $calonAnggota->id_periode               = $periodeAktif->first()->id;
+            $calonAnggota->save();
+
+            $detCalonAnggotaSatu                    = new DetailCalonAnggota;
+            $detCalonAnggotaSatu->id_departemen     = $departemenSatu->first()->id;
+            $detCalonAnggotaSatu->id_calon_anggota  = $calonAnggota->id;
+            $detCalonAnggotaSatu->prioritas         = 1;
+            $detCalonAnggotaSatu->save();
+
+            $detCalonAnggotaDua                    = new DetailCalonAnggota;
+            $detCalonAnggotaDua->id_departemen     = $departemenDua->first()->id;
+            $detCalonAnggotaDua->id_calon_anggota  = $calonAnggota->id;
+            $detCalonAnggotaDua->prioritas         = 2;
+            $detCalonAnggotaDua->save();
         }
+        Session::flash('message', 'Berhasil mengimpor!');
+        return redirect('admin/datacalon');
     }
 
     /**
@@ -76,7 +104,7 @@ class AdminDataCalonController extends Controller
      */
     public function store(Request $request)
     {
-
+        $errors = [];
 //         create new object DataCalon
 //        TODO: fieldnya harusnya lengkap
         $this->validate($request, [
