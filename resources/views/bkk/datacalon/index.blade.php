@@ -289,7 +289,7 @@
 
         {{--MODAL--}}
         <div class="modal fade" id="m-tambah-datacalon" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">
@@ -386,40 +386,105 @@
 
         <div class="modal fade" id="m-edit-datacalon" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
              aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <form method="POST" id="edit_form" action="" accept-charset="UTF-8" enctype="multipart/form-data">
-                    <input name="_method" type="hidden" value="PUT">
-                    @csrf
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">
-                                Edit Data Kriteria
-                            </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">
+                            Edit Data Calon
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">
+						&times;
+					</span>
+                        </button>
+                    </div>
+                    <form method="POST" id="edit_form" action="" accept-charset="UTF-8" enctype="multipart/form-data">
                         <div class="modal-body">
-                            <div class="form-group m-form__group">
-                                <label for="">Nama Kriteria</label>
-                                <input type="text" id="nama_kriteria" name="nama_kriteria" class="form-control m-input m-input--air">
-                            </div>
-                            <div class="form-group m-form__group">
-                                <label for="">Bobot</label>
-                                <input type="text" id="bobot" name="bobot" class="form-control m-input m-input--air">
-                            </div>
+                                <input name="_method" type="hidden" value="PUT">
+                                @csrf
+                                <div class="form-group m-form__group">
+                                    <label for="">Nama Calon Anggota</label>
+                                    <input type="text" name="nama_calon_anggota" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Nama Calon Anggota">
+                                </div>
+                                <div class="m-form__group form-group">
+                                    <label for="">Jenis Kelamin</label>
+                                    <div class="m-radio-inline">
+                                        <label class="m-radio">
+                                            <input type="radio" name="jenis_kelamin" value="L">Laki-Laki
+                                            <span></span>
+                                        </label>
+                                        <label class="m-radio">
+                                            <input type="radio" name="jenis_kelamin" value="P">Perempuan
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group">
+                                    <label for="">Departemen Pilihan 1</label>
+                                    <select name="departemen_satu" class="custom-select form-control col-md-12">
+                                        <option value="">Pilih Departemen</option>
+                                        @foreach($departemen as $key)
+                                            <option value="{{ $key->id }}">{{ $key->nama_departemen }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group m-form__group">
+                                    <label for="">Departemen Pilihan 2</label>
+                                    <select name="departemen_dua" class="custom-select form-control col-md-12">
+                                        <option value="">Pilih Departemen</option>
+                                        @foreach($departemen as $key)
+                                            <option value="{{ $key->id }}">{{ $key->nama_departemen }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group m-form__group">
+                                    <label for="">Asal</label>
+                                    <input type="text" name="asal" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Asal">
+                                </div>
+                                <div class="form-group m-form__group">
+                                    <label for="">Alamat di Yogyakarta</label>
+                                    <input type="text" name="alamat_yogyakarta" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Alamat di Yogyakarta">
+                                </div>
+                                <div class="form-group m-form__group">
+                                    <label for="">Sumber Belajar Islam</label>
+                                    <input type="text" name="sumber_belajar_islam" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Sumber Belajar Islam">
+                                </div>
+                                <div class="form-group m-form__group">
+                                    <label for="">Pengalaman Organisasi</label>
+                                    <input type="text" name="pengalaman_organisasi" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Pengalaman Organisasi">
+                                </div>
+                                <div class="form-group m-form__group">
+                                    <label for="">Pengalaman Kepanitiaan</label>
+                                    <input type="text" name="pengalaman_kepanitiaan" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Pengalaman Kepanitiaan">
+                                </div>
+                                <div class="form-group m-form__group">
+                                    <label for="">Minat</label>
+                                    <input type="text" name="minat" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Minat">
+                                </div>
+                                <div class="form-group m-form__group">
+                                    <label for="">Hardskill</label>
+                                    <input type="text" name="hardskill" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Hardskill">
+                                </div>
+                                <div class="form-group m-form__group">
+                                    <label for="">Softskill</label>
+                                    <input type="text" name="softskill" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Softskill">
+                                </div>
+                                <div class="form-group m-form__group">
+                                    <label for="">Riwayat Penyakit</label>
+                                    <input type="text" name="riwayat_penyakit" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Riwayat Penyakit">
+                                </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            <button type="reset" class="btn btn-danger" data-dismiss="modal">Batal</button>
                             <button type="submit" class="btn btn-primary">Simpan</button>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
 
     {{--modal view detail--}}
-    <div class="modal fade" id="lihat-datacalon" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <form class="modal fade" id="lihat-datacalon" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <form method="POST" id="edit_form" action="" accept-charset="UTF-8" enctype="multipart/form-data">
                 <input name="_method" type="hidden" value="PUT">
@@ -465,6 +530,7 @@
                     </div>
                 </div>
             </div>
+        </form>
     </div>
 
     {{--end modal view--}}
@@ -489,6 +555,40 @@
                         {"width": "2px", "targets": 1}
                     ]
                 });
+
+
+                function edit(id) {
+//                     console.log(datadata[id]);
+//                     var idObject = datadata[id].id;
+//                     var tahun = datadata[id].tahun;
+//                     var periode = datadata[id].periode;
+//                     var status = datadata[id].status;
+//                     var finalstatus;
+//                     if(status == "Tidak Aktif") {
+//                         finalstatus = 0;
+//                         $('#tidak_aktif').val(finalstatus);
+//                         $('#tidak_aktif').attr('checked', 'checked');
+//
+//                     } else if(status == "Aktif") {
+//                         finalstatus = 1;
+//                         $('#aktif').val(finalstatus);
+//                         $('#aktif').attr('checked', 'checked');
+//
+//                     }
+//                     console.log(finalstatus);
+//
+//                     $('#status').val(status);
+//                     $('#tahun').val(tahun);
+//                     $('#periode').val(periode);
+// //        $('#status').val(status);
+//
+//
+//
+//                     var url = "http://spkmagang.test:9000/admin/periode/" + (idObject);
+//                     document.getElementById("edit_form").action = url;
+                    $('#m-edit-datacalon').modal('show');
+
+                }
 
             </script>
 
