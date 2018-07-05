@@ -132,12 +132,12 @@
 
                 <!--end::Form-->
             </div>
-            <div class="m-portlet m-portlet--mobile">
+            <div class="m-portlet m-portlet--primary m-portlet--head-solid-bg m-portlet--head-sm m-portlet--bordered-primary">
                 <div class="m-portlet__head">
                     <div class="m-portlet__head-caption">
                         <div class="m-portlet__head-title">
                             <h3 class="m-portlet__head-text">
-                                Data Calon
+                               <i class="m-menu__link-icon flaticon-users"></i> Data Calon
                             </h3>
                         </div>
                     </div>
@@ -178,9 +178,17 @@
                             <tr>
                                 <th>No</th>
                                 <th>Nama</th>
+                                <th>Jenis Kelamin</th>
                                 <th>Prioritas</th>
                                 <th>Hardskill</th>
                                 <th>Softskill</th>
+                                <th>Organisasi</th>
+                                <th>Kepanitiaan</th>
+                                <th>Minat</th>
+                                <th>Sumber Belajar Islam</th>
+                                <th>Riwayat Penyakit</th>
+                                <th>Asal</th>
+                                <th>Alamat Jogja</th>
                                 <th>Departemen Pilihan</th>
                                 <th>Aksi</th>
                             </tr>
@@ -199,7 +207,7 @@
                                     <td>Infokes</td>
                                     <td>
                                         <!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-primary m-btn--gradient-to-primary"><i class="m-menu__link-icon flaticon-eye"></i></button> -->
-                                        <a href="#" onclick="view({{ $i }})" class="btn btn-outline-primary m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-eye"></i></a>
+                                        {{--<a href="#" onclick="view({{ $i }})" class="btn btn-outline-primary m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-eye"></i></a>--}}
                                         <a href="#lihat-datacalon" data-toggle="modal" class="btn btn-outline-primary m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-eye"></i></a>
                                         <!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-warning m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-edit-1"></i></button> -->
                                         <a href="#" onclick="edit({{ $i }})" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-edit-1"></i></a>
