@@ -9,6 +9,7 @@ use App\Periode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Validation\ValidationException;
 use Maatwebsite\Excel\Facades\Excel;
 
 class AdminDataCalonController extends Controller
@@ -36,7 +37,6 @@ class AdminDataCalonController extends Controller
         })->get();
         foreach ($results as $key) {
             $errors = [];
-            $errCount = 0;
 
             $departemenSatu = Departemen::where('nama_departemen', $key->departemen_satu)->get();
             $departemenDua = Departemen::where('nama_departemen', $key->departemen_dua)->get();
@@ -44,15 +44,17 @@ class AdminDataCalonController extends Controller
 
             if($departemenSatu->count() == 0) {
                 $errors[] = "Nama departemen ".$key->departemen_satu." tidak valid";
-                $errCount++;
             }
             if($departemenDua->count() == 0) {
                 $errors[] = "Nama departemen ".$key->departemen_dua." tidak valid";
-                $errCount++;
             }
             if($periodeAktif->count() == 0) {
                 $errors[] = "Tidak ada periode yang sedang aktif";
-                $errCount++;
+            }
+
+            if (!empty($errors)) {
+                array_unshift($errors, "Terdapat kesalahan pada baris data dengan nama ".$key->nama_calon_anggota);
+                throw ValidationException::withMessages($errors);
             }
 
             $calonAnggota                           = new CalonAnggota;
@@ -110,19 +112,55 @@ class AdminDataCalonController extends Controller
         $this->validate($request, [
             'nama_calon_anggota' => 'required',
             'jenis_kelamin' => 'required',
-
-
+            'asal' => 'required',
+            'alamat_yogyakarta' => 'required',
+            'sumber_belajar_islam' => 'required',
+            'pengalaman_organisasi' => 'required',
+            'pengalaman_kepanitiaan' => 'required',
+            'minat' => 'required',
+            'hardskill' => 'required',
+            'softskill' => 'required',
+            'riwayat_penyakit' => 'required',
         ]);
 
-        $calonAnggota = new CalonAnggota;
-        // fill the object
-        $calonAnggota->nama_calon_anggota = $request->nama_calon_anggota;
-        $calonAnggota->hardskill = $request->hardskill;
-        $calonAnggota->softskill = $request->softskill;
-        $calonAnggota->jenis_kelamin = $request->jenis_kelamin;
+        $errors = [];
+        $periodeAktif = Periode::where('status', 1)->get();
 
-        //save object to database
+        if($periodeAktif->count() == 0) {
+            $errors[] = "Tidak ada periode yang sedang aktif";
+        }
+
+        if (!empty($errors)) {
+            throw ValidationException::withMessages($errors);
+        }
+
+        $calonAnggota                           = new CalonAnggota;
+        $calonAnggota->nama_calon_anggota       = $request->nama_calon_anggota;
+        $calonAnggota->jenis_kelamin            = ($request->jenis_kelamin == 'P' ? 'perempuan' : 'laki-laki');
+        $calonAnggota->asal                     = $request->asal;
+        $calonAnggota->alamat_yogyakarta        = $request->alamat_yogyakarta;
+        $calonAnggota->sumber_belajar_islam     = $request->sumber_belajar_islam;
+        $calonAnggota->pengalaman_organisasi    = $request->pengalaman_organisasi;
+        $calonAnggota->pengalaman_kepanitiaan   = $request->pengalaman_kepanitiaan;
+        $calonAnggota->minat                    = $request->minat;
+        $calonAnggota->hardskill                = $request->hardskill;
+        $calonAnggota->softskill                = $request->softskill;
+        $calonAnggota->riwayat_penyakit         = $request->riwayat_penyakit;
+        $calonAnggota->id_periode               = $periodeAktif->first()->id;
         $calonAnggota->save();
+
+        $detCalonAnggotaSatu                    = new DetailCalonAnggota;
+        $detCalonAnggotaSatu->id_departemen     = $request->departemen_satu;
+        $detCalonAnggotaSatu->id_calon_anggota  = $calonAnggota->id;
+        $detCalonAnggotaSatu->prioritas         = 1;
+        $detCalonAnggotaSatu->save();
+
+        $detCalonAnggotaDua                    = new DetailCalonAnggota;
+        $detCalonAnggotaDua->id_departemen     = $request->departemen_dua;
+        $detCalonAnggotaDua->id_calon_anggota  = $calonAnggota->id;
+        $detCalonAnggotaDua->prioritas         = 2;
+        $detCalonAnggotaDua->save();
+
         //message success
         Session::flash('message', 'Success add data data calon anggota!');
         return redirect('/admin/datacalon'); // Set redirect ketika berhasil
