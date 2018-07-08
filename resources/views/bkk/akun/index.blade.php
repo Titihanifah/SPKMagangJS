@@ -24,12 +24,12 @@
         </div>
         <!-- END: Subheader -->
         <div class="m-content">
-            <div class="m-portlet m-portlet--mobile">
+            <div class="m-portlet m-portlet--primary m-portlet--head-solid-bg m-portlet--bordered m-portlet--head-sm">
                 <div class="m-portlet__head">
                     <div class="m-portlet__head-caption">
                         <div class="m-portlet__head-title">
                             <h3 class="m-portlet__head-text">
-                                Data Akun
+                                <i class="m-menu__link-icon flaticon-user-settings"></i> - Akun
                             </h3>
                         </div>
                     </div>
@@ -97,9 +97,9 @@
                                 <td>{{ $key->role_user }}</td>
                                 <td>{{ isset($key->departemen) ? $key->departemen->nama_departemen : "-" }}</td>
                                 <td>
+                                    <button onclick="reset(this)" id="[{{ json_encode($key) }}]"  class="btn btn-outline-primary m-btn m-btn--icon m-btn--icon-only" ><i class="m-menu__link-icon flaticon-refresh"></i></button>
                                     <button onclick="edit({{ $i }})" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only" ><i class="m-menu__link-icon flaticon-edit-1"></i></button>
                                     <a href="{{url('/admin/akun/destroy')}}/{{ $key->id}}" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>
-
                                 </td>
                             </tr>
                             <?php $i++; ?>
@@ -254,6 +254,23 @@
             document.getElementById("edit_form").action = url;
 
             $('#m-edit-akun').modal('show');
+        }
+
+        function reset(theForm) {
+            var user = JSON.parse(theForm.id)[0];
+
+            $.ajax({
+                data: {
+                    id_user: user.id,
+                    password: '123456',
+                },
+                type: 'POST',
+                url: 'http://spkmagang.test:9000/api/user/reset',
+                success: function (response) { // on success..
+                    console.log(response); // update the DIV
+
+                }
+            });
         }
     </script>
 
