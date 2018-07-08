@@ -24,7 +24,7 @@
 	</div>
 	<!-- END: Subheader -->
 	<div class="m-content">						
-		<div class="m-portlet m-portlet--mobile">
+		<div class="m-portlet m-portlet--primary m-portlet--head-solid-bg m-portlet--bordered m-portlet--head-sm">
 			<div class="m-portlet__head">
 				<div class="m-portlet__head-caption">
 					<div class="m-portlet__head-title">
@@ -36,29 +36,7 @@
 			</div>
 			<div class="m-portlet__body">
 				<!--begin: Search Form -->
-				<div class="m-form m-form--label-align-right m--margin-top-20 m--margin-bottom-30">
-					<div class="row align-items-center">
-						<div class="col-xl-12 order-2 order-xl-1">
-							<div class="form-group m-form__group row align-items-center">
-								<div class="col-md-4">
-									{{--<button class="btn m-btn--square  btn-outline-primary" data-toggle="modal" data-target="#m_tambah_kegiatan"><i class="m-menu__link-icon flaticon-plus"></i> Tambah</button>--}}
-								</div>
-								<div class="col-md-5">
-								</div>
-								{{--<div class="col-md-3">--}}
-									{{--<div class="m-input-icon m-input-icon--left">--}}
-										{{--<input type="text" class="form-control m-input" placeholder="Search..." id="generalSearch">--}}
-										{{--<span class="m-input-icon__icon m-input-icon__icon--left">--}}
-											{{--<span>--}}
-												{{--<i class="la la-search"></i>--}}
-											{{--</span>--}}
-										{{--</span>--}}
-									{{--</div>--}}
-								{{--</div>--}}
-							</div>
-						</div>
-					</div>
-				</div>
+
 				<!--end: Search Form -->
 				<!--begin: Datatable -->
 				<table  class="bordered-table myTableDataTable table table-striped table-bordered" id="example" width="100%">
@@ -204,26 +182,7 @@
         });
     }
 
-    function reset(theForm) {
-        var  = JSON.parse(theForm.id)[0];
-        console.log(detail_calon_anggota.id_departemen);
 
-
-        $.ajax({
-            data: {
-                id_detail_calon_anggota: detail_calon_anggota.id,
-                id_departemen: detail_calon_anggota.id_departemen,
-                favorit: 0,
-
-            },
-            type: 'POST',
-            url: 'http://spkmagang.test:9000/api/star/simpan',
-            success: function (response) { // on success..
-                console.log(response); // update the DIV
-
-            }
-        });
-    }
 
 
 </script>

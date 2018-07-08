@@ -56,8 +56,6 @@ class DetailCalonAnggota extends Model
 
         }
 
-
-
         return $totalPresensi;
     }
 
@@ -112,7 +110,7 @@ class DetailCalonAnggota extends Model
             $totalTugas = 0;
 
         }else {
-            $totalTugas = round($sumTugas / (($this->departemen->tugas->count()) * 100));
+            $totalTugas = round(($sumTugas / (($this->departemen->tugas->count()) * 100)),2);
         }
 
 

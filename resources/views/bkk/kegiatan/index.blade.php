@@ -111,18 +111,6 @@
             $('.myTableDataTable').DataTable();
         } );
 
-//        $('.myTableDataTable').dataTable({
-//            bAutoWidth: false ,
-//            aoColumns : [
-//                { sWidth: '3%' },
-//                { sWidth: '20%' },
-//                { sWidth: '20%' },
-//                { sWidth: '15%' },
-//                { sWidth: '15%' },
-//                { sWidth: '15%' }
-//            ]
-//        });
-
     </script>
 
 @endsection

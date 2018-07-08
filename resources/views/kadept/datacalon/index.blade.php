@@ -25,19 +25,13 @@
 							</span>
 						</a>
 					</li>
-					<li class="m-nav__separator">
-						
-					</li>
+					<li class="m-nav__separator"></li>
 					<li class="m-nav__item">
 						<a href="" class="m-nav__link">
-							<span class="m-nav__link-text">
-								
-							</span>
+							<span class="m-nav__link-text"></span>
 						</a>
 					</li>
-					<li class="m-nav__separator">
-						
-					</li>
+					<li class="m-nav__separator"></li>
 					<li class="m-nav__item">
 						<a href="" class="m-nav__link">
 							<span class="m-nav__link-text">
@@ -51,81 +45,78 @@
 	</div>
 	<!-- END: Subheader -->
 	<div class="m-content">
-		<div class="m-portlet m-portlet--tab">
-		</div>
-		<div class="m-portlet m-portlet--mobile">
+		<div class="m-portlet m-portlet--primary m-portlet--head-solid-bg m-portlet--bordered m-portlet--head-sm">
 			<div class="m-portlet__head">
 				<div class="m-portlet__head-caption">
 					<div class="m-portlet__head-title">
 						<h3 class="m-portlet__head-text">
-							Data Calon
+							<i class="m-nav__link-icon flaticon-users"></i> - Calon Anggota
 						</h3>
 					</div>
 				</div>
 			</div>
 			<div class="m-portlet__body">
+					<!--begin: Search Form -->
 
-				<!--begin: Search Form -->
+					<!--end: Search Form -->
+					<!--begin: Datatable -->
+					<table id="data-calon" class="dt-responsive nowrap table table-striped" style="width:100%">
+						<thead>
+							<tr>
+								<th>No</th>
+								<th>Nama</th>
+								<th>Jenis Kelamin</th>
+								<th>Prioritas</th>
+								<th>Hardskill</th>
+								<th>Softskill</th>
+								<th>Organisasi</th>
+								<th>Kepanitiaan</th>
+								<th>Minat</th>
+								<th>Sumber Belajar Islam</th>
+								<th>Riwayat Penyakit</th>
+								<th>Asal</th>
+								<th>Alamat Jogja</th>
+								<th>Departemen Pilihan</th>
+								<th>Aksi</th>
+							</tr>
+						</thead>
+						<tbody>
+						@php $i = 1; @endphp
 
-				<!--end: Search Form -->
-				<!--begin: Datatable -->
-				<table id="data-calon" class="dt-responsive nowrap table table-striped" style="width:100%">
-					<thead>
-						<tr>
-							<th>No</th>
-							<th>Nama</th>
-							<th>Jenis Kelamin</th>
-							<th>Prioritas</th>
-							<th>Hardskill</th>
-							<th>Softskill</th>
-							<th>Organisasi</th>
-							<th>Kepanitiaan</th>
-							<th>Minat</th>
-							<th>Sumber Belajar Islam</th>
-							<th>Riwayat Penyakit</th>
-							<th>Asal</th>
-							<th>Alamat Jogja</th>
-							<th>Departemen Pilihan</th>
-							<th>Aksi</th>
-						</tr>
-					</thead>
-					<tbody>
-                    @php $i = 1; @endphp
+						@foreach ($userCalon as $key)
+							@if($key->first()->calonAnggota->id_periode == $activePeriode->id)
 
-					@foreach ($userCalon as $key)
-						@if($key->first()->calonAnggota->id_periode == $activePeriode->id)
+							<tr>
+								<td>{{ $i++ }}</td>
+								<td>{{ $key->first()->calonAnggota->nama_calon_anggota }}</td>
+								<td>{{ $key->first()->calonAnggota->jenis_kelamin }}</td>
+								<td>1</td>
+								<td>{{ $key->first()->calonAnggota->hardskill }}</td>
+								<td>{{ $key->first()->calonAnggota->softskill }}</td>
+								<td>{{ $key->first()->calonAnggota->pengalaman_organisasi }}</td>
+								<td>{{ $key->first()->calonAnggota->pengalaman_kepanitiaan }}</td>
+								<td>{{ $key->first()->calonAnggota->minat }}</td>
+								<td>{{ $key->first()->calonAnggota->sumber_belajar_islam }}</td>
+								<td>{{ $key->first()->calonAnggota->riwayat_penyakit }}</td>
+								<td>{{ $key->first()->calonAnggota->asal }}</td>
+								<td>{{ $key->first()->calonAnggota->alamat_jogja }}</td>
+								{{--// TODO: join tabel detail (prioritas,dept pil duanya)--}}
+								<td>Infokes</td>
+								<td>
 
-						<tr>
-							<td>{{ $i++ }}</td>
-							<td>{{ $key->first()->calonAnggota->nama_calon_anggota }}</td>
-							<td>{{ $key->first()->calonAnggota->jenis_kelamin }}</td>
-							<td>1</td>
-							<td>{{ $key->first()->calonAnggota->hardskill }}</td>
-							<td>{{ $key->first()->calonAnggota->softskill }}</td>
-							<td>{{ $key->first()->calonAnggota->pengalaman_organisasi }}</td>
-							<td>{{ $key->first()->calonAnggota->pengalaman_kepanitiaan }}</td>
-							<td>{{ $key->first()->calonAnggota->minat }}</td>
-							<td>{{ $key->first()->calonAnggota->sumber_belajar_islam }}</td>
-							<td>{{ $key->first()->calonAnggota->riwayat_penyakit }}</td>
-							<td>{{ $key->first()->calonAnggota->asal }}</td>
-							<td>{{ $key->first()->calonAnggota->alamat_jogja }}</td>
-							{{--// TODO: join tabel detail (prioritas,dept pil duanya)--}}
-							<td>Infokes</td>
-							<td>
+									<button {{ $key->first()->favorit ? "disabled" : "" }} onclick="star(this)" id="[{{ json_encode($key->first()) }}]" class="btn btn-warning"><i class="m-menu__link-icon flaticon-star"></i> Favorit</button>
+									<button {{ $key->first()->favorit ? "" : "disabled" }} onclick="clickBatal(this)" id="{{ json_encode($key) }}" class="btn btn-danger btn-batal-favorit-{{ $key->first()->id }}" >Batal</button>
+									{{--<a href="#" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only"><i class="fa fa-rotate-right"></i></a>--}}
 
-								<button {{ $key->first()->favorit ? "disabled" : "" }} onclick="star(this)" id="[{{ json_encode($key->first()) }}]" class="btn btn-warning"><i class="m-menu__link-icon flaticon-star"></i> Favorit</button>
-								<button {{ $key->first()->favorit ? "" : "disabled" }} onclick="clickBatal(this)" id="{{ json_encode($key) }}" class="btn btn-danger btn-batal-favorit-{{ $key->first()->id }}" >Batal</button>
-								{{--<a href="#" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only"><i class="fa fa-rotate-right"></i></a>--}}
-
-							</td>
-						</tr>
-						@endif
-					@endforeach
-					</tbody>
-				</table>
-				<!--end: Datatable -->
+								</td>
+							</tr>
+							@endif
+						@endforeach
+						</tbody>
+					</table>
+					<!--end: Datatable -->
+				</div>
 			</div>
-		</div>
 	</div>
 </div>
 

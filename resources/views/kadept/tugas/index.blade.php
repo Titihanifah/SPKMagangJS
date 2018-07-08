@@ -51,7 +51,7 @@
 	</div>
 	<!-- END: Subheader -->
 	<div class="m-content">						
-		<div class="m-portlet m-portlet--mobile">
+		<div class="m-portlet m-portlet--primary m-portlet--head-solid-bg m-portlet--bordered m-portlet--head-sm">
 			<div class="m-portlet__head">
 				<div class="m-portlet__head-caption">
 					<div class="m-portlet__head-title">
