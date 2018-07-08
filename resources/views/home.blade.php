@@ -506,14 +506,14 @@
                         </div>
                         <!--end::Portlet-->
                     </div>
+                    <div class="col-md-6">
+                        <canvas id="densityChart" width="600" height="400"></canvas>
+                    </div>
                 </div>
             </div>
-                    </div>
-
-                </div>
-
-
+        </div>
     </div>
+</div>
 
             <!--End::Section-->
 
@@ -527,5 +527,57 @@
     <!--end::Page Vendors -->
     <!--begin::Page Snippets -->
     <script src="{{ url('assets/app/js/dashboard.js') }}" type="text/javascript"></script>
+    <script type="text/javascript">
+
+        var densityCanvas = document.getElementById("densityChart");
+
+        Chart.defaults.global.defaultFontFamily = "Lato";
+        Chart.defaults.global.defaultFontSize = 18;
+
+        var densityData = {
+            label: 'Laki-laki',
+            data: [40, 30, 25, 33, 40, 45, 25, 44],
+            backgroundColor: 'rgba(0, 99, 132, 0.6)',
+            borderWidth: 1,
+            yAxisID: "y-axis-density"
+        };
+
+        var gravityData = {
+            label: 'Perempuan',
+            data: [40, 30, 25, 33, 40, 45, 25, 44],
+            backgroundColor: 'rgba(99, 132, 0, 0.6)',
+            borderWidth: 1,
+            yAxisID: "y-axis-gravity"
+        };
+
+        var planetData = {
+            labels: ["BSO GMMQ", "BSO Dosha", "Kemuslimahan", "Shar'E", "Jaringan", "Media Center", "Sosmas", "DPS"],
+            datasets: [densityData, gravityData]
+        };
+
+        var chartOptions = {
+            scales: {
+                xAxes: [{
+                    barPercentage: 1,
+                    categoryPercentage: 0.6
+                }],
+                yAxes: [{
+                    id: "y-axis-density"
+                }, {
+                    id: "y-axis-gravity"
+                }]
+            }
+        };
+
+        var barChart = new Chart(densityCanvas, {
+            type: 'bar',
+            data: planetData,
+            options: chartOptions
+        });
+
+
+        LINK JS
+//        http://www.proweb.co.id/articles/web_application/grafikbar_chartjs.html
+    </script>
 
 @endsection

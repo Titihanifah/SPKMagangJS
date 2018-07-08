@@ -23,6 +23,9 @@ class AdminDataCalonController extends Controller
         //TODO: join dengan tabel detail_calon_anggotas
         //
         $calonAanggota = CalonAnggota::all();
+        $detailCalonAnggota = CalonAnggota::join('detail_calon_anggotas', 'detail_calon_anggotas.id_calon_anggota', 'calon_anggotas.id')
+            ->get();
+        dd($detailCalonAnggota);
         $departemen = Departemen::all();
         return view('bkk.datacalon.index')->with('calonAnggota', $calonAanggota)->with('departemen', $departemen);
     }
@@ -37,11 +40,9 @@ class AdminDataCalonController extends Controller
         foreach ($results as $key) {
             $errors = [];
             $errCount = 0;
-
             $departemenSatu = Departemen::where('nama_departemen', $key->departemen_satu)->get();
             $departemenDua = Departemen::where('nama_departemen', $key->departemen_dua)->get();
             $periodeAktif = Periode::where('status', 1)->get();
-
             if($departemenSatu->count() == 0) {
                 $errors[] = "Nama departemen ".$key->departemen_satu." tidak valid";
                 $errCount++;
@@ -54,7 +55,6 @@ class AdminDataCalonController extends Controller
                 $errors[] = "Tidak ada periode yang sedang aktif";
                 $errCount++;
             }
-
             $calonAnggota                           = new CalonAnggota;
             $calonAnggota->nama_calon_anggota       = $key->nama_calon_anggota;
             $calonAnggota->jenis_kelamin            = ($key->jenis_kelamin == 'P' ? 'perempuan' : 'laki-laki');
@@ -110,21 +110,39 @@ class AdminDataCalonController extends Controller
         $this->validate($request, [
             'nama_calon_anggota' => 'required',
             'jenis_kelamin' => 'required',
-
-
         ]);
 
         $calonAnggota = new CalonAnggota;
         // fill the object
-        $calonAnggota->nama_calon_anggota = $request->nama_calon_anggota;
-        $calonAnggota->hardskill = $request->hardskill;
-        $calonAnggota->softskill = $request->softskill;
-        $calonAnggota->jenis_kelamin = $request->jenis_kelamin;
+        $periodeAktif = Periode::where('status', 1)->get();
 
-        //save object to database
+        $calonAnggota->nama_calon_anggota       = $request->nama_calon_anggota;
+        $calonAnggota->jenis_kelamin            = ($request->jenis_kelamin == 'P' ? 'perempuan' : 'laki-laki');
+        $calonAnggota->asal                     = $request->asal;
+        $calonAnggota->alamat_yogyakarta        = $request->alamat_yogyakarta;
+        $calonAnggota->sumber_belajar_islam     = $request->sumber_belajar_islam;
+        $calonAnggota->pengalaman_organisasi    = $request->pengalaman_organisasi;
+        $calonAnggota->pengalaman_kepanitiaan   = $request->pengalaman_kepanitiaan;
+        $calonAnggota->minat                    = $request->minat;
+        $calonAnggota->hardskill                = $request->hardskill;
+        $calonAnggota->softskill                = $request->softskill;
+        $calonAnggota->riwayat_penyakit         = $request->riwayat_penyakit;
+        $calonAnggota->id_periode               = $periodeAktif->first()->id;
         $calonAnggota->save();
+
+        $detCalonAnggotaSatu                    = new DetailCalonAnggota;
+        $detCalonAnggotaSatu->id_departemen     = $request->departemen_satu;
+        $detCalonAnggotaSatu->id_calon_anggota  = $calonAnggota->id;
+        $detCalonAnggotaSatu->prioritas         = 1;
+        $detCalonAnggotaSatu->save();
+
+        $detCalonAnggotaDua                    = new DetailCalonAnggota;
+        $detCalonAnggotaDua->id_departemen     = $request->departemen_satu;
+        $detCalonAnggotaDua->id_calon_anggota  = $calonAnggota->id;
+        $detCalonAnggotaDua->prioritas         = 2;
+        $detCalonAnggotaDua->save();
         //message success
-        Session::flash('message', 'Success add data data calon anggota!');
+        Session::flash('message', 'Success menambah data calon anggota!');
         return redirect('/admin/datacalon'); // Set redirect ketika berhasil
     }
 
@@ -159,7 +177,43 @@ class AdminDataCalonController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'nama_calon_anggota' => 'required',
+            'jenis_kelamin' => 'required',
+        ]);
+
+        $calonAnggota = CalonAnggota::find($id);
+        // fill the object
+        $periodeAktif = Periode::where('status', 1)->get();
+
+        $calonAnggota->nama_calon_anggota       = $request->nama_calon_anggota;
+        $calonAnggota->jenis_kelamin            = ($request->jenis_kelamin == 'P' ? 'perempuan' : 'laki-laki');
+        $calonAnggota->asal                     = $request->asal;
+        $calonAnggota->alamat_yogyakarta        = $request->alamat_yogyakarta;
+        $calonAnggota->sumber_belajar_islam     = $request->sumber_belajar_islam;
+        $calonAnggota->pengalaman_organisasi    = $request->pengalaman_organisasi;
+        $calonAnggota->pengalaman_kepanitiaan   = $request->pengalaman_kepanitiaan;
+        $calonAnggota->minat                    = $request->minat;
+        $calonAnggota->hardskill                = $request->hardskill;
+        $calonAnggota->softskill                = $request->softskill;
+        $calonAnggota->riwayat_penyakit         = $request->riwayat_penyakit;
+        $calonAnggota->id_periode               = $periodeAktif->first()->id;
+        $calonAnggota->save();
+
+        $detCalonAnggotaSatu                    = new DetailCalonAnggota;
+        $detCalonAnggotaSatu->id_departemen     = $request->departemen_satu;
+        $detCalonAnggotaSatu->id_calon_anggota  = $calonAnggota->id;
+        $detCalonAnggotaSatu->prioritas         = 1;
+        $detCalonAnggotaSatu->save();
+
+        $detCalonAnggotaDua                    = new DetailCalonAnggota;
+        $detCalonAnggotaDua->id_departemen     = $request->departemen_satu;
+        $detCalonAnggotaDua->id_calon_anggota  = $calonAnggota->id;
+        $detCalonAnggotaDua->prioritas         = 2;
+        $detCalonAnggotaDua->save();
+        //message success
+        Session::flash('message', 'Success mengubah data calon anggota!');
+        return redirect('/admin/datacalon'); // Set redirect ketika berhasil
     }
 
     /**
@@ -172,7 +226,7 @@ class AdminDataCalonController extends Controller
     {
         //TODO: apakah data calon anggota benar-benar dihapus?
         CalonAnggota::destroy($id);
-        // Beri message kalau berhasil
+
         Session::flash('message', 'Berhasil menghapus data!');
         return redirect('admin/datacalon');
     }

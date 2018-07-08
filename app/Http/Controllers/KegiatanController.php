@@ -28,26 +28,7 @@ class KegiatanController extends Controller
 //        $userKegiatan = User::where('id', Auth::user()->id_departemen)->with('departemen.kegiatans')->first();
         $activePeriode = Periode::active()->first();
         $userKegiatan = Auth::user()->departemen->kegiatans->where('id_periode', $activePeriode->id);
-//        dd($userKegiatan);
-//        dd($userKegiatan);
-//        $userKegiatan = Departemen::join('kegiatans', 'departemens.id','=','kegiatans.id_departemen')
-//            ->join('users', 'departemens.id','=','users.id_departemen')
-//            ->join('presensis', 'kegiatans.id','=','presensis.id_kegiatan')
-//            ->select('*', \DB::raw('count(presensis.kehadiran) as jumlah'))
-//            ->where('users.id', Auth::user()->id_departemen)
-//            ->where('presensis.kehadiran','=','1')->groupBy('presensis.id_kegiatan')->get();
 
-
-//        $userKegiatan = User::where('id', Auth::user()->id)
-//                        ->with('departemen.kegiatans.presensi')->get();
-
-//        dd($userKegiatan[0]->departemen->kegiatans[0]->presensi)
-
-
-//        dd($userKegiatan);
-//        $a = count($presensi);
-//        return response()->json($userKegiatan);
-//
 		return view('kadept.kegiatan.index', compact('userKegiatan'));
 
 
@@ -73,15 +54,10 @@ class KegiatanController extends Controller
     public function store(Request $request)
     {
         // create new object Kegiatan
-        // TODO: use validator?
         $this->validate($request, [
             'nama_kegiatan' => 'required',
             'waktu' => 'required',
             'tanggal_kegiatan' => 'required',
-
-            //TODO: kan ada id departemen cara nyambunginnya gimana? apakah perlu ditulis disini juga
-
-
         ]);
 
         $kegiatan = new Kegiatan;
@@ -141,9 +117,6 @@ class KegiatanController extends Controller
             'waktu' => 'required',
             'tanggal_kegiatan' => 'required',
 
-            //TODO: kan ada id departemen cara nyambunginnya gimana? apakah perlu ditulis disini juga
-
-
         ]);
         $kegiatan= Kegiatan::find($id);
 
@@ -151,7 +124,7 @@ class KegiatanController extends Controller
         $kegiatan->waktu = $request->waktu;
         $kegiatan->tanggal_kegiatan = $request->tanggal_kegiatan;
         $kegiatan->save();
-        Session::flash('message', 'Success add data employee!');
+        Session::flash('message', 'Sukses mengubah data kegiatan !');
         return redirect('/kegiatan'); // Set redirect ketika berhasil
     }
 
@@ -163,9 +136,7 @@ class KegiatanController extends Controller
      */
     public function destroy($id)
     {
-        //
         Kegiatan::destroy($id);
-        // Beri message kalau berhasil
         Session::flash('message', 'Berhasil menghapus data!');
         return redirect('/kegiatan');
     }

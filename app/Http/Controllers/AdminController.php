@@ -23,11 +23,6 @@ class AdminController extends Controller
 
     public function kegiatan()
     {
-//        $kegiatan = Kegiatan::where('id_departemen',Departemen::id)->with('departemen')->get();
-//        $kegiatan = DB::table('kegiatans')
-//            ->join('departemens', 'departemens.id', '=', 'kegiatans.id_departemen')
-//            ->get();
-//        $kegiatan = Kegiatan::with('departemen')->where('id_departemen', departemen()->id)->get();
         $activePeriode = Periode::active()->first();
         $kegiatan = Kegiatan::all()->where('id_periode', $activePeriode->id);
 //        return response()->json($kegiatan);
