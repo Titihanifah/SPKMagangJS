@@ -24,12 +24,12 @@
 	</div>
 	<!-- END: Subheader -->
 	<div class="m-content">						
-		<div class="m-portlet m-portlet--mobile">
+		<div class="m-portlet m-portlet--primary m-portlet--head-solid-bg m-portlet--bordered m-portlet--head-sm">
 			<div class="m-portlet__head">
 				<div class="m-portlet__head-caption">
 					<div class="m-portlet__head-title">
 						<h3 class="m-portlet__head-text">
-							Periode
+							<i class="m-menu__link-icon flaticon-time-3"></i> - Periode
 						</h3>
 					</div>
 				</div>
@@ -236,7 +236,7 @@
         }
         console.log(finalstatus);
 
-        $('#status').val(status);
+//        $('#status').val(status);
         $('#tahun').val(tahun);
         $('#periode').val(periode);
 //        $('#status').val(status);

@@ -28,7 +28,7 @@
 	<!-- END: Subheader -->
 	<div class="m-content">						
 		{{--<div class="m-portlet m-portlet--primary m-portlet--head-solid-bg m-portlet--head-sm">--}}
-			<div class="m-portlet m-portlet--primary bg-portlet m-portlet--head-solid-bg m-portlet--bordered m-portlet--head-sm">
+			<div class="m-portlet m-portlet--primary m-portlet--head-solid-bg m-portlet--bordered m-portlet--head-sm">
 			<div class="m-portlet__head">
 				<div class="m-portlet__head-caption">
 					<div class="m-portlet__head-title">
@@ -38,7 +38,7 @@
 					</div>
 				</div>
 				<div class="m-portlet__head-tools">
-					<a href="#"  data-toggle="modal" data-target="#m-tambah-departemen" class="btn m-btn--square  m-btn m-btn--gradient-from-accent m-btn--gradient-to-accent" ><i class="m-menu__link-icon flaticon-plus"></i> Tambah Data</a>
+
 				</div>
 			</div>
 			<div class="m-portlet__body">
@@ -47,9 +47,7 @@
 					<div class="row align-items-center">
 						<div class="col-xl-12 order-2 order-xl-1">
 							<div class="form-group m-form__group row align-items-right">
-
-
-
+								<a href="#"  data-toggle="modal" data-target="#m-tambah-departemen" class="btn m-btn--square  btn-outline-primary" ><i class="m-menu__link-icon flaticon-plus"></i> Tambah</a>
 							</div>
 						</div>
 					</div>

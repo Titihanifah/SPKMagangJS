@@ -51,14 +51,12 @@
         </div>
         <!-- END: Subheader -->
         <div class="m-content">
-            <div class="m-portlet m-portlet--tab">
-            </div>
-            <div class="m-portlet m-portlet--mobile">
+            <div class="m-portlet m-portlet--primary m-portlet--head-solid-bg m-portlet--bordered m-portlet--head-sm">
                 <div class="m-portlet__head">
                     <div class="m-portlet__head-caption">
                         <div class="m-portlet__head-title">
                             <h3 class="m-portlet__head-text">
-                                Hasil Akhir
+                                <i class="m-menu__link-icon flaticon-list-3"></i> - Hasil Akhir
                             </h3>
                         </div>
                     </div>
@@ -104,7 +102,7 @@
                             <tr>
 
                                 <td>{{ $i++ }}</td>
-                                <td>{{ $key->first()->calonAnggota->nama_calon_anggota }}</td>
+                                <td>{{ $key->first()->calonAnggota->nama_calon_anggota }} {{ $key->first()->favorit ? "⭐" : "" }}</td>
                                 <td>{{ $key->first()->calonAnggota->jenis_kelamin }}</td>
                                 <td>{{ $key->first()->departemen->nama_departemen }}</td>
                                 <td>{{ $key->first()->nilai_kehadiran }}</td>
