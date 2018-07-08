@@ -66,7 +66,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 @csrf
                                 <div class="form-group m-form__group">
                                     {{--<div class="m-input-icon m-input-icon--left m-input-icon--right">--}}
-                                        <input class="form-control m-input" type="text" placeholder="Email" name="email" autocomplete="off" required>
+                                        <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }} m-input" value="{{ old('email') }}" placeholder="Email" name="email" required autofocus>
                                         @if ($errors->has('email'))
                                             <span class="invalid-feedback">
                                                 <strong>{{ $errors->first('email') }}</strong>
@@ -75,7 +75,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     {{--</div>--}}
                                 </div>
                                 <div class="form-group m-form__group">
-                                    <input class="form-control m-input m-login__form-input--last" type="password" placeholder="Password" name="password" required>
+                                    <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }} m-input" type="password" placeholder="Password" name="password" required autofocus>
                                     @if ($errors->has('password'))
                                         <span class="invalid-feedback">
                                             <strong>{{ $errors->first('password') }}</strong>
