@@ -204,6 +204,27 @@
         });
     }
 
+    function reset(theForm) {
+        var  = JSON.parse(theForm.id)[0];
+        console.log(detail_calon_anggota.id_departemen);
+
+
+        $.ajax({
+            data: {
+                id_detail_calon_anggota: detail_calon_anggota.id,
+                id_departemen: detail_calon_anggota.id_departemen,
+                favorit: 0,
+
+            },
+            type: 'POST',
+            url: 'http://spkmagang.test:9000/api/star/simpan',
+            success: function (response) { // on success..
+                console.log(response); // update the DIV
+
+            }
+        });
+    }
+
 
 </script>
 <style type="text/css">
