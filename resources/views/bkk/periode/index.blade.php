@@ -81,6 +81,7 @@
 							<td>{{ $key->periode }}</td>
 							<td>{{ $key->status }}</td>
 							<td>
+                                <button onclick="setActive({{ $key->id }})" class="btn {{ (($key->status == 'Aktif') ? "btn-outline-success" : "btn-outline-danger") }} m-btn m-btn--icon m-btn--icon-only" ><i class="fa {{ (($key->status == 'Aktif') ? "fa-check" : "fa-times") }}"></i></button>
                                 <button onclick="edit({{ $i }})" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only" ><i class="m-menu__link-icon flaticon-edit-1"></i></button>
 {{--                                <a href="{{url('/admin/periode/destroy')}}/{{ $key->id}}" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>--}}
 								<a href="#" onclick="
@@ -150,19 +151,19 @@
 					<label for="">Periode</label>
 					<input type="text" name="periode" class="form-control m-input m-input--air" id="" aria-describedby="emailHelp" placeholder="1439H">
 				</div>
-				<div class="m-form__group form-group">
-					<label for="">Status</label>
-					<div class="m-radio-inline">
-						<label class="m-radio">
-							<input type="radio" name="status" value="1">Aktif
-							<span></span>
-						</label>
-						<label class="m-radio">
-							<input type="radio" name="status" value="0">Tidak Aktif
-							<span></span>
-						</label>
-					</div>
-			    </div>
+				{{--<div class="m-form__group form-group">--}}
+					{{--<label for="">Status</label>--}}
+					{{--<div class="m-radio-inline">--}}
+						{{--<label class="m-radio">--}}
+							{{--<input type="radio" name="status" value="1">Aktif--}}
+							{{--<span></span>--}}
+						{{--</label>--}}
+						{{--<label class="m-radio">--}}
+							{{--<input type="radio" name="status" value="0">Tidak Aktif--}}
+							{{--<span></span>--}}
+						{{--</label>--}}
+					{{--</div>--}}
+			    {{--</div>--}}
 			<div class="modal-footer">
 				<button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
 				<button type="submit" class="btn btn-primary">Simpan</button>
@@ -203,19 +204,19 @@
 							{{--<label for="">Status</label>--}}
 							{{--<input type="text" name="status" id="status" class="form-control m-input m-input--air">--}}
 						{{--</div>--}}
-						<div class="m-form__group m-form__group">
-							<label for="">Status</label>
-							<div class="m-radio-inline">
+						{{--<div class="m-form__group m-form__group">--}}
+							{{--<label for="">Status</label>--}}
+							{{--<div class="m-radio-inline">--}}
 								{{--<input type="hidden" id="final_status" value="">--}}
-								<label class="m-radio">
-									<input type="radio" id="aktif" name="status" value="1">Aktif<span></span>
-								</label>
-								<label class="m-radio">
-									<input type="radio" id="tidak_aktif" name="status" value="0">Tidak Aktif
-									<span></span>
-								</label>
-							</div>
-						</div>
+								{{--<label class="m-radio">--}}
+									{{--<input type="radio" id="aktif" name="status" value="1">Aktif<span></span>--}}
+								{{--</label>--}}
+								{{--<label class="m-radio">--}}
+									{{--<input type="radio" id="tidak_aktif" name="status" value="0">Tidak Aktif--}}
+									{{--<span></span>--}}
+								{{--</label>--}}
+							{{--</div>--}}
+						{{--</div>--}}
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -281,6 +282,25 @@
         document.getElementById("edit_form").action = url;
         $('#m-edit-periode').modal('show');
 
+    }
+
+    function setActive(id) {
+
+        $.ajax({
+            type: 'GET',
+            url: '{{ url('/') }}/api/periode/setactive/'+id,
+            success: function (response) { // on success..
+                console.log(response); // update the DIV
+                swal({
+                    title : 'Sukses',
+                    text : 'Berhasil mengubah periode aktif !',
+                    type : 'success'
+                },function(){
+                    setTimeout(location.reload.bind(location), 100);
+                });
+
+            }
+        });
     }
 
 

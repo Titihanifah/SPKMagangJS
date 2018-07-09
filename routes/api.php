@@ -24,3 +24,4 @@ Route::post('rekomendasi/simpan', 'RekapPenilaianController@simpan');
 Route::post('keterangan/simpan', 'RekapPenilaianController@ketSimpan');
 Route::post('user/reset', 'AdminAkunController@reset');
 Route::get('get/total/kehadiran/{id}', 'RekapPenilaianController@ketKehadiran');
+Route::get('periode/setactive/{id}', 'AdminPeriodeController@changeActive');
