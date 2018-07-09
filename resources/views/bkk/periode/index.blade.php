@@ -82,7 +82,38 @@
 							<td>{{ $key->status }}</td>
 							<td>
                                 <button onclick="edit({{ $i }})" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only" ><i class="m-menu__link-icon flaticon-edit-1"></i></button>
-                                <a href="{{url('/admin/periode/destroy')}}/{{ $key->id}}" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>
+{{--                                <a href="{{url('/admin/periode/destroy')}}/{{ $key->id}}" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>--}}
+								<a href="#" onclick="
+								$().ready(function(e){
+									swal({
+										title : 'Hapus Data?',
+										text : 'Anda yakin ingin menghapus data?',
+										type : 'warning',
+										showCancelButton : true,
+										confirmButtonColor: '#DD6B55',
+										confirmButtonText: 'Hapus',
+										cancelButtonText: 'Batal',
+										closeOnConfirm: false,
+										closeOnCancel: false,
+										showLoaderOnConfirm : true
+									},
+									function(isConfirm){
+										if(isConfirm){
+											$.get('<?php echo url('/admin/periode/destroy').'/'.$key->id?>', function(){
+											swal({
+											title : 'Sukses',
+											text : 'Data periode berhasil dihapus!',
+											type : 'success'
+											},function(){
+											location.reload() ;
+											});
+											}) ;
+										}else{
+										swal('Batal dihapus', '', 'error');
+										}
+									})
+								}) ;" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>
+
 							</td>
 						</tr>
                         <?php $i++; ?>
@@ -207,6 +238,9 @@
 <script type="text/javascript" charset="utf8"
         src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
 {{--<script src="{{ url('assets/demo/default/custom/components/datatables/base/html-table.js')}}" type="text/javascript"></script>--}}
+<link rel="stylesheet" href="{{ url('css/sweetalert.css') }}" type="text/css">
+
+<script type="text/javascript" src="{{ url('js/sweetalert.min.js') }}"></script>
 <script type="text/javascript">
 
     $(document).ready(function () {

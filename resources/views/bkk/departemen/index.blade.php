@@ -75,8 +75,38 @@
 								<button onclick="edit({{ $i }})" data-nama_departemen="{{ $key->nama_departemen }}" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only" ><i class="m-menu__link-icon flaticon-edit-1"></i></button>
 								{{--<a href="#" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-edit-1"></i></a>--}}
 								<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-danger m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-delete-1"></i></button> -->
-								<a href="{{url('admin/departemen/destroy')}}/{{ $key->id}}" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>
-									
+								{{--<a href="{{url('admin/departemen/destroy')}}/{{ $key->id}}" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>--}}
+								<a href="#" onclick="
+									$().ready(function(e){
+										swal({
+											title : 'Hapus Data?',
+											text : 'Anda yakin ingin menghapus data?',
+											type : 'warning',
+											showCancelButton : true,
+											confirmButtonColor: '#DD6B55',
+											confirmButtonText: 'Hapus',
+											cancelButtonText: 'Batal',
+											closeOnConfirm: false,
+											closeOnCancel: false,
+											showLoaderOnConfirm : true
+										},
+									function(isConfirm){
+										if(isConfirm){
+											$.get('<?php echo url('/admin/departemen/destroy').'/'.$key->id?>', function(){
+											swal({
+											title : 'Sukses',
+											text : 'Data departemen berhasil dihapus!',
+											type : 'success'
+											},function(){
+											location.reload() ;
+											});
+										}) ;
+										}else{
+											swal('Batal dihapus', '', 'error');
+										}
+									})
+										}) ;" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>
+
 							</td>
 						</tr>
 						<?php $i++ ?>
@@ -155,6 +185,9 @@
 @section('js')
 
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+	<link rel="stylesheet" href="{{ url('css/sweetalert.css') }}" type="text/css">
+
+	<script type="text/javascript" src="{{ url('js/sweetalert.min.js') }}"></script>
 	<script type="text/javascript">
 
         $(document).ready( function () {

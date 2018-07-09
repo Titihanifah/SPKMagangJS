@@ -207,7 +207,6 @@
                             </thead>
                             <tbody>
                             @php $i = 1; @endphp
-                            @php dd($calonAnggota); exit; @endphp
                             @foreach($calonAnggota as $key)
                                 <tr>
                                     <td>{{ $i }}</td>
@@ -230,7 +229,36 @@
                                         <!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-warning m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-edit-1"></i></button> -->
                                         <a href="#" onclick="edit({{ $i }})" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-edit-1"></i></a>
                                         <!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-danger m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-delete-1"></i></button> -->
-                                        <a href="{{url('admin/datacalon/destroy')}}/{{ $key->id}}" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>
+                                        <a href="#" onclick="
+                                            $().ready(function(e){
+                                            swal({
+                                                title : 'Hapus Data?',
+                                                text : 'Anda yakin ingin menghapus data?',
+                                                type : 'warning',
+                                                showCancelButton : true,
+                                                confirmButtonColor: '#DD6B55',
+                                                confirmButtonText: 'Hapus',
+                                                cancelButtonText: 'Batal',
+                                                closeOnConfirm: false,
+                                                closeOnCancel: false,
+                                                showLoaderOnConfirm : true
+                                            },
+                                            function(isConfirm){
+                                                if(isConfirm){
+                                                    $.get('<?php echo url('/admin/datacalon/destroy').'/'.$key->id?>', function(){
+                                                    swal({
+                                                    title : 'Sukses',
+                                                    text : 'Data Calon Anggota berhasil dihapus!',
+                                                    type : 'success'
+                                                    },function(){
+                                                    location.reload() ;
+                                                    });
+                                                    }) ;
+                                                }else{
+                                                    swal('Batal dihapus', '', 'error');
+                                                }
+                                            })
+                                        }) ;" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>
 
                                     </td>
                                 </tr>
@@ -469,7 +497,6 @@
                                 <label for="">Departemen Pilihan 1</label>
                                 <select name="departemen_satu" id="departemen_satu" class="custom-select form-control col-md-12" required>
                                     <option value="">Pilih Departemen</option>
-
                                     @foreach($departemen as $key)
                                         <option value="{{ $key->id }}">{{ $key->nama_departemen }}</option>
                                     @endforeach
@@ -559,6 +586,8 @@
                     </div>
 
                     {!! Form::close() !!}
+
+
                 </div>
             </div>
         </div>
@@ -566,7 +595,7 @@
 
 
     {{--modal view detail--}}
-    <div class="modal fade" id="lihat-datacalon" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <form class="modal fade" id="lihat-datacalon" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <form method="POST" id="edit_form" action="" accept-charset="UTF-8" enctype="multipart/form-data">
                 <input name="_method" type="hidden" value="PUT">
@@ -611,7 +640,7 @@
                         </button>
                     </div>
                 </div>
-            </div>
+        </form>
     </div>
 
     {{--end modal view--}}
@@ -625,6 +654,9 @@
             {{--<link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css" type="text/css">--}}
             {{--<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>--}}
             <script src="https://cdn.datatables.net/fixedcolumns/3.2.4/js/dataTables.fixedColumns.min.js" type="text/javascript"></script>
+            <link rel="stylesheet" href="{{ url('css/sweetalert.css') }}" type="text/css">
+
+            <script type="text/javascript" src="{{ url('js/sweetalert.min.js') }}"></script>
             <script type="text/javascript">
 
                 $('#table_data_calon').dataTable({
@@ -641,38 +673,39 @@
                     ]
                 });
 
+
                 function edit(id) {
                     var datadata = {!! json_encode($calonAnggota) !!};
 
-                    id = id-1;
+                    id = id - 1;
 
                     console.log(datadata[id]);
-                    var idObject                = datadata[id].id;
-                    var nama_calon_anggota      = datadata[id].nama_calon_anggota;
+                    var idObject = datadata[id].id;
+                    var nama_calon_anggota = datadata[id].nama_calon_anggota;
 
 //                    TODO : if prioritas 1 (departemen_satu) else 2
-                    var departemen_satu         = datadata[id].departemen_satu;
-                    var departemen_dua          = datadata[id].departemen_dua;
-                    var asal                    = datadata[id].asal;
-                    var alamat_yogyakarta       = datadata[id].alamat_yogyakarta;
-                    var sumber_belajar_islam    = datadata[id].sumber_belajar_islam;
-                    var pengalaman_organisasi   = datadata[id].pengalaman_organisasi;
-                    var pengalaman_kepanitiaan  = datadata[id].pengalaman_kepanitiaan;
-                    var minat                   = datadata[id].minat;
-                    var hardskill               = datadata[id].hardskill;
-                    var softskill               = datadata[id].softskill;
-                    var riwayat_penyakit        = datadata[id].riwayat_penyakit;
-                    var jenis_kelamin           = datadata[id].jenis_kelamin;
+                    var departemen_satu = datadata[id].departemen_satu;
+                    var departemen_dua = datadata[id].departemen_dua;
+                    var asal = datadata[id].asal;
+                    var alamat_yogyakarta = datadata[id].alamat_yogyakarta;
+                    var sumber_belajar_islam = datadata[id].sumber_belajar_islam;
+                    var pengalaman_organisasi = datadata[id].pengalaman_organisasi;
+                    var pengalaman_kepanitiaan = datadata[id].pengalaman_kepanitiaan;
+                    var minat = datadata[id].minat;
+                    var hardskill = datadata[id].hardskill;
+                    var softskill = datadata[id].softskill;
+                    var riwayat_penyakit = datadata[id].riwayat_penyakit;
+                    var jenis_kelamin = datadata[id].jenis_kelamin;
                     var finaljk;
 
-                    if(jenis_kelamin == "laki-laki"){
+                    if (jenis_kelamin == "laki-laki") {
                         finaljk = "L";
                         $('#L-edit').val(finaljk);
-                        $('#L-edit').attr('checked','checked');
-                    }else if(jenis_kelamin == "perempuan"){
+                        $('#L-edit').attr('checked', 'checked');
+                    } else if (jenis_kelamin == "perempuan") {
                         finaljk = "P";
                         $('#P-edit').val(finaljk);
-                        $('#P-edit').attr('checked','checked');
+                        $('#P-edit').attr('checked', 'checked');
                     }
 
                     $('input[name=nama_calon_anggota]').val(nama_calon_anggota);
