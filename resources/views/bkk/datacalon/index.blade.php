@@ -210,7 +210,7 @@
                             @foreach($calonAnggota as $key)
                                 <tr>
                                     <td>{{ $i }}</td>
-                                    <td>{{ $key->id }}</td>
+                                    <td>{{ $key->nama_calon_anggota }}</td>
                                     <td>{{ $key->jenis_kelamin }}</td>
                                     <td>{{ $key->hardskill }}</td>
                                     <td>{{ $key->softskill }}</td>
@@ -679,6 +679,7 @@
                     var dataCalon = {!! json_encode($calonAnggota) !!};
 										
 										var id_departemen = [];
+										var idObject;
 										
 										for(var i=0; i<datadata.length; i++){
 											if(datadata[i].id_calon_anggota == id){
@@ -690,6 +691,7 @@
 										for(var j=0; j<dataCalon.length; j++){
 											if(dataCalon[j].id == id){
 												console.log(dataCalon[j]);
+												idObject = dataCalon[j].id;
 												$('input[name=nama_calon_anggota]').val(dataCalon[j].nama_calon_anggota);
 												if(dataCalon[j].jenis_kelamin == 'perempuan'){
 													$("input[name=jenis_kelamin][value='P']").prop("checked",true);
@@ -709,6 +711,9 @@
 												$('input[name=riwayat_penyakit]').val(dataCalon[j].riwayat_penyakit);
 											}
 										}
+										
+										var url = "http://spkmagang.test:9000/admin/datacalon/" + (idObject);
+                    document.getElementById("edit_form").action = url;
 
                     $('#m-edit-datacalon').modal('show');
                 }
