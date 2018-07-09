@@ -10,6 +10,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -62,19 +63,19 @@ class AdminController extends Controller
 
     public function ubahPasswordUser(Request $request)
     {
-//        $ubahpassword=User::find(Auth::user()->id);
-//        if (Hash::check($ubahpassword->password,$request->password_lama )){
-//            if ($request->password_baru == $request->konfirmasi){
-//                $ubahpassword->password = bcrypt($request->konfirmasi);
-//                $ubahpassword->save();
-//                return back();
-//            }
-//        }
-
         $ubahpassword=User::find(Auth::user()->id);
-        $ubahpassword->password = bcrypt($request->password);
-        $ubahpassword->save();
-        return back();
+        if (Hash::check($request->password_lama, $ubahpassword->password)){
+            if ($request->password_baru == $request->konfirmasi){
+                $ubahpassword->password = bcrypt($request->konfirmasi);
+                $ubahpassword->save();
+                return back();
+            }
+        }
+
+//        $ubahpassword=User::find(Auth::user()->id);
+//        $ubahpassword->password = bcrypt($request->password);
+//        $ubahpassword->save();
+//        return back();
 
 
     }

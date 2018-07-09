@@ -11,6 +11,8 @@
 |
 */
 
+use App\Http\Controllers\PasswordController;
+
 Route::get('/', function () {
     return redirect('/login');
 });
@@ -23,6 +25,8 @@ Route::resource('/kegiatan','KegiatanController');
 Route::resource('/tugas','TugasController');
 Route::resource('/admin/datacalon','AdminDataCalonController');
 Route::post('/admin/upload/datacalon','AdminDataCalonController@importExcel')->name('datacalon.importexcel');
+Route::post('/ubahPasswordUser','AdminController@ubahPasswordUser');
+Route::get('/admin/dashboard','AdminController@dashboard');
 Route::resource('/admin/kriteria','AdminKriteriaController');
 Route::resource('/admin/periode','AdminPeriodeController');
 Route::resource('/admin/departemen','AdminDepartemenController');
