@@ -22,12 +22,10 @@ class AdminDataCalonController extends Controller
     {
         //TODO: join dengan tabel detail_calon_anggotas
         //
-        $calonAanggota = CalonAnggota::all();
-        $detailCalonAnggota = CalonAnggota::join('detail_calon_anggotas', 'detail_calon_anggotas.id_calon_anggota', 'calon_anggotas.id')
-            ->get();
-        dd($detailCalonAnggota);
+        $calonAnggota = CalonAnggota::all();
+        $detailCalonAnggota = DetailCalonAnggota::all();
         $departemen = Departemen::all();
-        return view('bkk.datacalon.index')->with('calonAnggota', $calonAanggota)->with('departemen', $departemen);
+        return view('bkk.datacalon.index', compact('calonAnggota', 'detailCalonAnggota', 'departemen'));
     }
 
     public function importExcel(Request $request)

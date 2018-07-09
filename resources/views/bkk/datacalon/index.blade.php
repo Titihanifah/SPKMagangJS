@@ -1,6 +1,6 @@
 @extends('layouts.kadept')
 @section('content')
-
+<?php //dd($detailCalonAnggota);exit; ?>
     <div class="m-grid__item m-grid__item--fluid m-wrapper">
         <!-- BEGIN: Subheader -->
         <div class="m-subheader ">
@@ -210,7 +210,7 @@
                             @foreach($calonAnggota as $key)
                                 <tr>
                                     <td>{{ $i }}</td>
-                                    <td>{{ $key->nama_calon_anggota }}</td>
+                                    <td>{{ $key->id }}</td>
                                     <td>{{ $key->jenis_kelamin }}</td>
                                     <td>{{ $key->hardskill }}</td>
                                     <td>{{ $key->softskill }}</td>
@@ -675,56 +675,40 @@
 
 
                 function edit(id) {
-                    var datadata = {!! json_encode($calonAnggota) !!};
-
-                    id = id - 1;
-
-                    console.log(datadata[id]);
-                    var idObject = datadata[id].id;
-                    var nama_calon_anggota = datadata[id].nama_calon_anggota;
-
-//                    TODO : if prioritas 1 (departemen_satu) else 2
-                    var departemen_satu = datadata[id].departemen_satu;
-                    var departemen_dua = datadata[id].departemen_dua;
-                    var asal = datadata[id].asal;
-                    var alamat_yogyakarta = datadata[id].alamat_yogyakarta;
-                    var sumber_belajar_islam = datadata[id].sumber_belajar_islam;
-                    var pengalaman_organisasi = datadata[id].pengalaman_organisasi;
-                    var pengalaman_kepanitiaan = datadata[id].pengalaman_kepanitiaan;
-                    var minat = datadata[id].minat;
-                    var hardskill = datadata[id].hardskill;
-                    var softskill = datadata[id].softskill;
-                    var riwayat_penyakit = datadata[id].riwayat_penyakit;
-                    var jenis_kelamin = datadata[id].jenis_kelamin;
-                    var finaljk;
-
-                    if (jenis_kelamin == "laki-laki") {
-                        finaljk = "L";
-                        $('#L-edit').val(finaljk);
-                        $('#L-edit').attr('checked', 'checked');
-                    } else if (jenis_kelamin == "perempuan") {
-                        finaljk = "P";
-                        $('#P-edit').val(finaljk);
-                        $('#P-edit').attr('checked', 'checked');
-                    }
-
-                    $('input[name=nama_calon_anggota]').val(nama_calon_anggota);
-//                    $('input[name=jenis_kelamin]').val(jenis_kelamin);
-                    $('#departemen_satu').val(departemen_satu);
-                    $('#epartemen_dua').val(departemen_dua);
-                    $('input[name=asal]').val(asal);
-                    $('input[name=alamat_yogyakarta]').val(alamat_yogyakarta);
-                    $('input[name=sumber_belajar_islam]').val(sumber_belajar_islam);
-                    $('input[name=pengalaman_organisasi]').val(pengalaman_organisasi);
-                    $('input[name=pengalaman_kepanitiaan]').val(pengalaman_kepanitiaan);
-                    $('input[name=minat]').val(minat);
-                    $('input[name=hardskill]').val(hardskill);
-                    $('input[name=softskill]').val(softskill);
-                    $('input[name=riwayat_penyakit]').val(riwayat_penyakit);
-
-
-                    var url = "http://spkmagang.test:9000/admin/datacalon/" + (idObject);
-                    document.getElementById("edit_form").action = url;
+                    var datadata = {!! json_encode($detailCalonAnggota) !!};
+                    var dataCalon = {!! json_encode($calonAnggota) !!};
+										
+										var id_departemen = [];
+										
+										for(var i=0; i<datadata.length; i++){
+											if(datadata[i].id_calon_anggota == id){
+												console.log(datadata[i].id_departemen);
+												id_departemen.push(datadata[i].id_departemen);
+											}
+										}
+										
+										for(var j=0; j<dataCalon.length; j++){
+											if(dataCalon[j].id == id){
+												console.log(dataCalon[j]);
+												$('input[name=nama_calon_anggota]').val(dataCalon[j].nama_calon_anggota);
+												if(dataCalon[j].jenis_kelamin == 'perempuan'){
+													$("input[name=jenis_kelamin][value='P']").prop("checked",true);
+												}else{
+													$("input[name=jenis_kelamin][value='L']").prop("checked",true);
+												}
+												$('#departemen_satu').val(id_departemen[0]);
+												$('#departemen_dua').val(id_departemen[1]);
+												$('input[name=asal]').val(dataCalon[j].asal);
+												$('input[name=alamat_yogyakarta]').val(dataCalon[j].alamat_yogyakarta);
+												$('input[name=sumber_belajar_islam]').val(dataCalon[j].sumber_belajar_islam);
+												$('input[name=pengalaman_organisasi]').val(dataCalon[j].pengalaman_organisasi);
+												$('input[name=pengalaman_kepanitiaan]').val(dataCalon[j].pengalaman_kepanitiaan);
+												$('input[name=minat]').val(dataCalon[j].minat);
+												$('input[name=hardskill]').val(dataCalon[j].hardskill);
+												$('input[name=softskill]').val(dataCalon[j].softskill);
+												$('input[name=riwayat_penyakit]').val(dataCalon[j].riwayat_penyakit);
+											}
+										}
 
                     $('#m-edit-datacalon').modal('show');
                 }
