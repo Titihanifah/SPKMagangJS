@@ -162,6 +162,13 @@
                 url: 'http://spkmagang.test:9000/api/star/simpan',
                 success: function (response) { // on success..
                     console.log(response); // update the DIV
+                    swal({
+                        title : 'Sukses',
+                        text : 'Berhasil menjadi favorit !',
+                        type : 'success'
+                    },function(){
+                        location.reload() ;
+                    });
 
                 }
             });
