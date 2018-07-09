@@ -169,7 +169,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 		<div class="modal fade" id="m-edit-password" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-sm">
-				<form method="POST" class="form-horizontal" action="{{ url ('ubahpassworduser')}}">
+				<form method="POST" class="form-horizontal" action="{{ url ('ubahPasswordUser')}}">
 
 					{{--<input name="_method" type="hidden" value="PUT">--}}
 					{{ csrf_field() }}
@@ -188,29 +188,36 @@ License: You must have a valid license purchased only from themeforest(the above
 								{{--<label for="recipient-name" class="form-control-label">Email : </label>--}}
 								{{--<input type="text" class="form-control" id="email" name="email">--}}
 							{{--</div>--}}
-							{{--<div class="form-group">--}}
-								{{--<label for="recipient-name" class="form-control-label">Password Lama : </label>--}}
-								{{--<input type="text" class="form-control" id="password_lama" name="password_lama">--}}
-							{{--</div>--}}
-							{{--<div class="form-group">--}}
-								{{--<label for="message-text" class="form-control-label">Password Baru: </label>--}}
-								{{--<input type="text" class="form-control" id="password_baru" name="password_baru"></textarea>--}}
-							{{--</div>--}}
-							{{--<div class="form-group">--}}
-								{{--<label for="message-text" class="form-control-label">Konfirmasi Password Baru: </label>--}}
-								{{--<input type="text" class="form-control" id="konfirmasi" name="konfirmasi"></textarea>--}}
-							{{--</div>--}}
 							<div class="form-group">
-								<label for="message-text" class="form-control-label">Password: </label>
-								<input type="password" class="form-control" id="password" name="password"></input>
+								<label for="recipient-name" class="form-control-label">Password Lama : </label>
+								<input type="password" class="form-control" id="password_lama" name="password_lama">
 							</div>
+							<div class="form-group">
+								<label for="message-text" class="form-control-label">Password Baru: </label>
+								<input type="password" class="form-control" id="password_baru" name="password_baru"></textarea>
+							</div>
+							<div class="form-group">
+								<label for="message-text" class="form-control-label">Konfirmasi Password Baru: </label>
+								<input type="password" class="form-control" id="konfirmasi" name="konfirmasi"></textarea>
+							</div>
+							{{--<div class="form-group">--}}
+								{{--<label for="message-text" class="form-control-label">Password: </label>--}}
+								{{--<input type="password" class="form-control" id="password" name="password">--}}
+							{{--</div>--}}
 
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">
 								Batal
 							</button>
-							<button type="submit" class="btn btn-primary">Simpan</button>
+							<button type="submit" onclick="$().ready(function(e){
+								swal({
+									title : 'Sukses',
+									text : 'Berhasil mengubah password!',
+									type : 'success'
+									});
+								});"
+                                 class="btn btn-primary">Simpan</button>
 						</div>
 					</div>
 				</form>
