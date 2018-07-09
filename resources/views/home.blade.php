@@ -104,7 +104,7 @@
                                                 </div>
                                                 <div class="col m--align-right">
 												<span class="m-widget1__number m--font-brand">
-													57
+												{{$totalCalonAnggota}}
 												</span>
                                                 </div>
                                             </div>
@@ -121,7 +121,7 @@
                                                 </div>
                                                 <div class="col m--align-right">
 												<span class="m-widget1__number m--font-danger">
-													23
+													{{$totalCalonAnggotaL}}
 												</span>
                                                 </div>
                                             </div>
@@ -138,7 +138,7 @@
                                                 </div>
                                                 <div class="col m--align-right">
 												<span class="m-widget1__number m--font-success">
-													34
+													{{$totalCalonAnggotaP}}
 												</span>
                                                 </div>
                                             </div>
@@ -550,8 +550,6 @@
                 }],
                 yAxes: [{
                     id: "y-axis-density"
-                }, {
-                    id: "y-axis-gravity"
                 }]
             }
         };

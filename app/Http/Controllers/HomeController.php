@@ -29,7 +29,10 @@ class HomeController extends Controller
 			->rightJoin('departemens as d', 'd.id', '=', 'dc.id_departemen')
 			->groupBy('dc.id_departemen')
 			->get();
+			$totalCalonAnggota = CalonAnggota::all()->count();
+			$totalCalonAnggotaL = CalonAnggota::where('jenis_kelamin', 'laki-laki')->count();
+			$totalCalonAnggotaP = CalonAnggota::where('jenis_kelamin', 'perempuan')->count();
 			// dd($grafikGender);
-        return view('home', compact('grafikGender'));
+        return view('home', compact('grafikGender', 'totalCalonAnggota', 'totalCalonAnggotaL', 'totalCalonAnggotaP'));
     }
 }
