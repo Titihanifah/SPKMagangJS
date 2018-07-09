@@ -22,4 +22,5 @@ Route::post('kemampuan/simpan', 'PenilaianKemampuanController@simpan');
 Route::post('star/simpan', 'DetailCalonAnggotaController@simpan');
 Route::post('rekomendasi/simpan', 'RekapPenilaianController@simpan');
 Route::post('keterangan/simpan', 'RekapPenilaianController@ketSimpan');
+Route::post('user/reset', 'AdminAkunController@reset');
 Route::get('get/total/kehadiran/{id}', 'RekapPenilaianController@ketKehadiran');

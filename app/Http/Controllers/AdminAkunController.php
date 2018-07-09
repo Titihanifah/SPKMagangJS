@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Departemen;
 use App\User;
+use function bcrypt;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -22,6 +23,20 @@ class AdminAkunController extends Controller
         $departemen = Departemen::all();
 //        return response()->json($user);
         return view('bkk.akun.index',compact('user','departemen'));
+    }
+
+    public function reset(Request $request)
+    {
+        $p = null;
+        $user = User::where('id', $request->id_user)->get();
+        $p = User::find($user[0]->id);
+
+        $p->id = $request->id_user;
+        $p->password = bcrypt($request->password);
+        $p->save();
+
+        return response()->json('Success');
+
     }
 
     /**

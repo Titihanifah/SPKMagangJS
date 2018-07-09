@@ -574,6 +574,10 @@
             data: planetData,
             options: chartOptions
         });
+
+
+        //LINK JS
+//        http://www.proweb.co.id/articles/web_application/grafikbar_chartjs.html
     </script>
 
 @endsection

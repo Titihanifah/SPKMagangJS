@@ -27,6 +27,7 @@
 <link href="{{ url('assets/vendors/base/vendors.bundle.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ url('assets/demo/default/base/style.bundle.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ url('css/custom.css') }}" rel="stylesheet" type="text/css" />
+
 {{--<Link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css" type="text/css">--}}
 {{--ini--}}
 {{--<link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" type="text/css">--}}
@@ -46,3 +47,4 @@
 <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js" charset="utf8" type="text/javascript"></script>
 <script type="text/javascript" charset="utf8" src="/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" charset="utf8" src="/js/jquery.dataTables.js"></script>
+

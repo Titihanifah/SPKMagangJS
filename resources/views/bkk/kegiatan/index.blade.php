@@ -26,19 +26,15 @@
         <div class="m-content">
             {{--m-portlet m-portlet--success m-portlet--head-solid-bg--}}
             {{--<div class="m-portlet m-portlet--primary m-portlet--head-solid-bg m-portlet--head-sm">--}}
-            <div class="m-portlet m-portlet--creative m-portlet--first m-portlet--head-sm m-portlet--bordered-primary">
+            <div class="m-portlet m-portlet--primary m-portlet--head-solid-bg m-portlet--bordered m-portlet--head-sm">
                 {{--m-portlet m-portlet--accent m-portlet--head-solid-bg m-portlet--head-sm--}}
                 <div class="m-portlet__head">
                     <div class="m-portlet__head-caption">
-                        {{--<div class="m-portlet__head-title">--}}
-                            <h5 class="m-portlet__head-text"></h5>
-                            <h2 class="m-portlet__head-label m-portlet__head-label--primary">
-                                <span>
-                                    <i class="m-menu__link-icon flaticon-interface-1"></i> Data Kegiatan
-
-                                </span>
-                            </h2>
-                        {{--</div>--}}
+                        <div class="m-portlet__head-title">
+                            <h3 class="m-portlet__head-text">
+                                <i class="m-nav__link-icon flaticon-interface-1"></i> - Kegiatan
+                            </h3>
+                        </div>
                     </div>
                 </div>
                 <div class="m-portlet__body">
@@ -114,18 +110,6 @@
         $(document).ready( function () {
             $('.myTableDataTable').DataTable();
         } );
-
-//        $('.myTableDataTable').dataTable({
-//            bAutoWidth: false ,
-//            aoColumns : [
-//                { sWidth: '3%' },
-//                { sWidth: '20%' },
-//                { sWidth: '20%' },
-//                { sWidth: '15%' },
-//                { sWidth: '15%' },
-//                { sWidth: '15%' }
-//            ]
-//        });
 
     </script>
 

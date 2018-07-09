@@ -61,7 +61,6 @@ class DetailCalonAnggotaController extends Controller
         $p->favorit = $request->favorit;
         $p->save();
 
-
         return response()->json('Success');
     }
 

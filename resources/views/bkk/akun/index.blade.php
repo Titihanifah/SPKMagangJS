@@ -24,12 +24,12 @@
         </div>
         <!-- END: Subheader -->
         <div class="m-content">
-            <div class="m-portlet m-portlet--mobile">
+            <div class="m-portlet m-portlet--primary m-portlet--head-solid-bg m-portlet--bordered m-portlet--head-sm">
                 <div class="m-portlet__head">
                     <div class="m-portlet__head-caption">
                         <div class="m-portlet__head-title">
                             <h3 class="m-portlet__head-text">
-                                Data Akun
+                                <i class="m-menu__link-icon flaticon-user-settings"></i> - Akun
                             </h3>
                         </div>
                     </div>
@@ -53,19 +53,6 @@
                                 <div class="form-group m-form__group row align-items-center">
                                     <div class="col-md-4">
                                         <button class="btn m-btn--square  btn-outline-primary" data-toggle="modal" data-target="#m-tambah-akun"><i class="m-menu__link-icon flaticon-plus"></i> Tambah</button>
-                                    </div>
-                                    <div class="col-md-5">
-                                    </div>
-                                    <div class="col-md-3">
-                                        {{--<div class="m-input-icon m-input-icon--left">--}}
-                                            {{--<input type="text" class="form-control m-input" placeholder="Search..."--}}
-                                                   {{--id="generalSearch">--}}
-                                            {{--<span class="m-input-icon__icon m-input-icon__icon--left">--}}
-											{{--<span>--}}
-												{{--<i class="la la-search"></i>--}}
-											{{--</span>--}}
-										{{--</span>--}}
-                                        {{--</div>--}}
                                     </div>
                                 </div>
                             </div>
@@ -97,8 +84,39 @@
                                 <td>{{ $key->role_user }}</td>
                                 <td>{{ isset($key->departemen) ? $key->departemen->nama_departemen : "-" }}</td>
                                 <td>
+                                    <button onclick="reset(this)" id="[{{ json_encode($key) }}]"  class="btn btn-outline-primary m-btn m-btn--icon m-btn--icon-only" ><i class="m-menu__link-icon flaticon-refresh"></i></button>
                                     <button onclick="edit({{ $i }})" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only" ><i class="m-menu__link-icon flaticon-edit-1"></i></button>
-                                    <a href="{{url('/admin/akun/destroy')}}/{{ $key->id}}" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>
+                                    {{--<a href="{{url('/admin/akun/destroy')}}/{{ $key->id}}" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>--}}
+                                    <a href="#" onclick="
+                                    $().ready(function(e){
+                                        swal({
+                                            title : 'Hapus Data?',
+                                            text : 'Anda yakin ingin menghapus data?',
+                                            type : 'warning',
+                                            showCancelButton : true,
+                                            confirmButtonColor: '#DD6B55',
+                                            confirmButtonText: 'Hapus',
+                                            cancelButtonText: 'Batal',
+                                            closeOnConfirm: false,
+                                            closeOnCancel: false,
+                                            showLoaderOnConfirm : true
+                                        },
+                                        function(isConfirm){
+                                            if(isConfirm){
+                                                $.get('<?php echo url('/admin/akun/destroy').'/'.$key->id?>', function(){
+                                                swal({
+                                                title : 'Sukses',
+                                                text : 'Data akun berhasil dihapus!',
+                                                type : 'success'
+                                                },function(){
+                                                location.reload() ;
+                                                });
+                                                }) ;
+                                            }else{
+                                                swal('Batal dihapus', '', 'error');
+                                            }
+                                        })
+                                    }) ;" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>
 
                                 </td>
                             </tr>
@@ -228,6 +246,9 @@
 @section('js')
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+    <link rel="stylesheet" href="{{ url('css/sweetalert.css') }}" type="text/css">
+
+    <script type="text/javascript" src="{{ url('js/sweetalert.min.js') }}"></script>
     <script type="text/javascript">
 
         $(document).ready( function () {
@@ -254,6 +275,33 @@
             document.getElementById("edit_form").action = url;
 
             $('#m-edit-akun').modal('show');
+        }
+
+        function reset(theForm) {
+            var user = JSON.parse(theForm.id)[0];
+
+            $.ajax({
+                data: {
+                    id_user: user.id,
+                    password: '123456',
+                },
+                type: 'POST',
+                url: 'http://spkmagang.test:9000/api/user/reset',
+                success: function (response) { // on success..
+                    console.log(response); // update the DIV
+
+                        swal({
+                            title : 'Sukses',
+                            text : 'Password berhasil direset!',
+                            type : 'success'
+                        },function(){
+                            location.reload() ;
+                        });
+
+
+
+                }
+            });
         }
     </script>
 
