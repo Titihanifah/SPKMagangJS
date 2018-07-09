@@ -215,7 +215,7 @@
 
             $('#nama_kemampuan').val(nama_kemampuan);
             $('#departemen').val(departemen);
-            var url = "http://spkmagang.test:9000/admin/kemampuan/" + (idObject);
+            var url = "{{ url('/') }}/admin/kemampuan/" + (idObject);
             document.getElementById("edit_form").action = url;
 
             $('#m-edit-kemampuan').modal('show');

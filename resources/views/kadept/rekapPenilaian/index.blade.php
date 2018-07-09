@@ -150,7 +150,7 @@
 
 			},
 			type: 'POST',
-			url: 'http://spkmagang.test:9000/api/rekomendasi/simpan',
+			url: '{{ url('/') }}/api/rekomendasi/simpan',
             success: function (response) { // on success..
                 console.log(response); // update the DIV
 
@@ -173,7 +173,7 @@
 
             },
             type: 'POST',
-            url: 'http://spkmagang.test:9000/api/keterangan/simpan',
+            url: '{{ url('/') }}/api/keterangan/simpan',
             success: function (response) { // on success..
                 console.log(response); // update the DIV
 

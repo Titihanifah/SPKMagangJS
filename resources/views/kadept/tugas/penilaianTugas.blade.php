@@ -170,7 +170,7 @@
                 nilai_tugas: theForm.value,
 			}, // get the form data
             type: 'POST', // GET or POST
-            url: 'http://spkmagang.test:9000/api/penilaian/simpan', // the file to call
+            url: '{{ url('/') }}/api/penilaian/simpan', // the file to call
             success: function (response) { // on success..
                 console.log(response); // update the DIV
                 window.onload = function(){document.body.style.cursor='default';}
@@ -192,7 +192,7 @@
                 nilai_tugas: theForm.value,
             }, // get the form data
             type: 'POST', // GET or POST
-            url: 'http://spkmagang.test:9000/api/penilaian/simpan', // the file to call
+            url: '{{ url('/') }}/api/penilaian/simpan', // the file to call
             success: function (response) { // on success..
                 console.log(response); // update the DIV
                 window.onload = function(){document.body.style.cursor='default';}
@@ -203,7 +203,7 @@
     function getTugas(id) {
         $.ajax({
             type: 'GET',
-            url: 'http://spkmagang.test:9000/api/get/total/tugas/' + id,
+            url: '{{ url('/') }}/api/get/total/tugas/' + id,
             success: function (response) { // on success..
 //				TODO :
                 $(".badge-tugas-"+id).text(response * 100 + " %");
@@ -225,7 +225,7 @@
                 nilai_tugas: theForm.value,
             }, // get the form data
             type: 'POST', // GET or POST
-            url: 'http://spkmagang.test:9000/api/penilaian/simpan', // the file to call
+            url: '{{ url('/') }}/api/penilaian/simpan', // the file to call
             success: function (response) { // on success..
                 console.log(response); // update the DIV
                 window.onload = function(){document.body.style.cursor='default';}

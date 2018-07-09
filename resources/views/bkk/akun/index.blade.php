@@ -271,7 +271,7 @@
             $('#id_departemen').val(id_departemen);
             $('#password').val(password);
 
-            var url = "http://spkmagang.test:9000/admin/akun/" + (idObject);
+            var url = "{{ url('/') }}/admin/akun/" + (idObject);
             document.getElementById("edit_form").action = url;
 
             $('#m-edit-akun').modal('show');
@@ -286,7 +286,7 @@
                     password: '123456',
                 },
                 type: 'POST',
-                url: 'http://spkmagang.test:9000/api/user/reset',
+                url: '{{ url('/') }}/api/user/reset',
                 success: function (response) { // on success..
                     console.log(response); // update the DIV
 

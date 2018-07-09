@@ -230,7 +230,7 @@
 
             },
             type: 'POST',
-            url: 'http://spkmagang.test:9000/api/presensi/simpan',
+            url: '{{ url('/') }}/api/presensi/simpan',
             success: function (response) { // on success..
                 console.log(response); // update the DIV
 				getPresensi(detail_calon_anggota.id);
@@ -242,7 +242,7 @@
     function getPresensi(id) {
         $.ajax({
             type: 'GET',
-            url: 'http://spkmagang.test:9000/api/get/total/kehadiran/' + id,
+            url: '{{ url('/') }}/api/get/total/kehadiran/' + id,
             success: function (response) { // on success..
                 $(".badge-kehadiran-"+id).text(response * 100 + " %");
                 console.log(response * 100 + " %");
@@ -262,7 +262,7 @@
 				kehadiran: 1,
 			},
 			type: 'POST',
-			url: 'http://spkmagang.test:9000/api/presensi/simpan',
+			url: '{{ url('/') }}/api/presensi/simpan',
 			success: function (response) { // on success..
 				console.log(response); // update the DIV
 				getPresensi(detail_calon_anggota.id);

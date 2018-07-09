@@ -709,7 +709,7 @@
 											}
 										}
 										
-										var url = "http://spkmagang.test:9000/admin/datacalon/" + (idObject);
+										var url = "{{ url('/') }}/admin/datacalon/" + (idObject);
                     document.getElementById("edit_form").action = url;
 
                     $('#m-edit-datacalon').modal('show');

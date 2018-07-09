@@ -164,7 +164,7 @@
 
                 },
                 type: 'POST',
-                url: 'http://spkmagang.test:9000/api/star/simpan',
+                url: '{{ url('/') }}/api/star/simpan',
                 success: function (response) { // on success..
                     console.log(response); // update the DIV
                     swal({
@@ -194,7 +194,7 @@
 
             },
             type: 'POST',
-            url: 'http://spkmagang.test:9000/api/star/simpan',
+            url: '{{ url('/') }}/api/star/simpan',
             success: function (response) { // on success..
                 console.log(response); // update the DIV
 

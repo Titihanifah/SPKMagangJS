@@ -244,7 +244,7 @@ License: You must have a valid license purchased only from themeforest(the above
             {{--$('#email').val(email);--}}
             {{--$('#password').val(password);--}}
 
-            {{--var url = "http://spkmagang.test:9000/user/password" + (idObject);--}}
+            {{--var url = "{{ url('/') }}/user/password" + (idObject);--}}
             {{--document.getElementById("edit_form").action = url;--}}
 
             {{--$('#m-edit-password').modal('show');--}}

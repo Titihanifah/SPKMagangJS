@@ -277,7 +277,7 @@
 
 
 
-        var url = "http://spkmagang.test:9000/admin/periode/" + (idObject);
+        var url = "{{ url('/') }}/admin/periode/" + (idObject);
         document.getElementById("edit_form").action = url;
         $('#m-edit-periode').modal('show');
 

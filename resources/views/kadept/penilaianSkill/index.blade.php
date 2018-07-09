@@ -192,7 +192,7 @@
 					kepunyaan: 1,
 				},
 			type: 'POST',
-			url: 'http://spkmagang.test:9000/api/kemampuan/simpan',
+			url: '{{ url('/') }}/api/kemampuan/simpan',
 			success: function (response) { // on success..
 			console.log(response); // update the DIV
 

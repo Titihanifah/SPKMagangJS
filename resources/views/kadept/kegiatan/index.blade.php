@@ -257,7 +257,7 @@
 			$('#tanggal_kegiatan').val(tanggal_kegiatan);
 			$('#waktu').val(waktu);
 
-			var url = "http://spkmagang.test:9000/kegiatan/" + (idObject);
+			var url = "{{ url('/') }}/kegiatan/" + (idObject);
             document.getElementById("edit_form").action = url;
 
             $('#m-edit-kegiatan').modal('show');

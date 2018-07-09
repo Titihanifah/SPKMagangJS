@@ -215,7 +215,7 @@
 
 			$('#nama_kriteria').val(nama_kriteria);
 			$('#bobot').val(bobot);
-			var url = "http://spkmagang.test:9000/admin/kriteria/" + (idObject);
+			var url = "{{ url('/') }}/admin/kriteria/" + (idObject);
 			document.getElementById("edit_form").action = url;
 
 			$('#m-edit-kriteria').modal('show');

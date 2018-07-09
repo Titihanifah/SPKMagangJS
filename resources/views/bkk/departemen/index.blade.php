@@ -204,7 +204,7 @@
 
             $('#nama_departemen').val(nama_departemen);
 
-            var url = "http://spkmagang.test:9000/admin/departemen/" + (idObject);
+            var url = "{{ url('/') }}/admin/departemen/" + (idObject);
             document.getElementById("edit_form").action = url;
 
             $('#m-edit-departemen').modal('show');
