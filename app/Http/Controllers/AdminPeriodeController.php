@@ -99,12 +99,21 @@ class AdminPeriodeController extends Controller
             'status' => 'required',
 
         ]);
+
+
+//        if($request->status == 0) {
+//            Session::flash('message', 'Gagal mengubah data periode!');
+//            return redirect('admin/periode');
+//        }
         $periode= Periode::find($id);
         $periode->tahun = $request->tahun;
         $periode->periode = $request->periode;
         $periode->status = $request->status;
         $periode->save();
-        Session::flash('message', 'Success menambah data periode!');
+
+        if($request->status == 1) Periode::whereNotIn('id', [$periode->id])->update(['status' => 0]);
+
+        Session::flash('message', 'Success mengubah data periode!');
         return redirect('admin/periode'); // Set redirect ketika berhasil
     }
 
