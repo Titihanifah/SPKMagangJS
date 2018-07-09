@@ -6,7 +6,9 @@ use App\Departemen;
 use App\Kegiatan;
 use App\Periode;
 use App\Tugas;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
@@ -52,9 +54,29 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function dashboard(Request $request)
     {
         //
+        return view('bkk.dashboard');
+    }
+
+    public function ubahPasswordUser(Request $request)
+    {
+//        $ubahpassword=User::find(Auth::user()->id);
+//        if (Hash::check($ubahpassword->password,$request->password_lama )){
+//            if ($request->password_baru == $request->konfirmasi){
+//                $ubahpassword->password = bcrypt($request->konfirmasi);
+//                $ubahpassword->save();
+//                return back();
+//            }
+//        }
+
+        $ubahpassword=User::find(Auth::user()->id);
+        $ubahpassword->password = bcrypt($request->password);
+        $ubahpassword->save();
+        return back();
+
+
     }
 
     /**

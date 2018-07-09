@@ -109,12 +109,12 @@ License: You must have a valid license purchased only from themeforest(the above
 																	</span> -->
 																</li>
 																<li class="m-nav__item">
-																	<a href="{{ url('header/profile.html')}}" class="m-nav__link">
+																	<a href="" class="m-nav__link" data-toggle="modal" data-target="#m-edit-password">
 																		<i class="m-nav__link-icon flaticon-settings-1"></i>
 																		<span class="m-nav__link-title">
 																			<span class="m-nav__link-wrap">
 																				<span class="m-nav__link-text">
-																					Profil
+																					Ubah Password
 																				</span>
 																			</span>
 																		</span>
@@ -130,6 +130,7 @@ License: You must have a valid license purchased only from themeforest(the above
 																		</span>
 																	</a>
 																	<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+
 																		@csrf
 																	</form>
 																</li>
@@ -139,13 +140,6 @@ License: You must have a valid license purchased only from themeforest(the above
 												</div>
 											</div>
 										</li>
-										<!-- <li id="m_quick_sidebar_toggle" class="m-nav__item">
-											<a href="#" class="m-nav__link m-dropdown__toggle">
-												<span class="m-nav__link-icon">
-													<i class="flaticon-grid-menu"></i>
-												</span>
-											</a>
-										</li> -->
 									</ul>
 								</div>
 							</div>
@@ -172,14 +166,84 @@ License: You must have a valid license purchased only from themeforest(the above
 
 			</div>
 		</div>
+
+		<div class="modal fade" id="m-edit-password" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-sm">
+				<form method="POST" class="form-horizontal" action="{{ url ('ubahpassworduser')}}">
+
+					{{--<input name="_method" type="hidden" value="PUT">--}}
+					{{ csrf_field() }}
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" >
+								Ubah Password
+							</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+
+							{{--<div class="form-group">--}}
+								{{--<label for="recipient-name" class="form-control-label">Email : </label>--}}
+								{{--<input type="text" class="form-control" id="email" name="email">--}}
+							{{--</div>--}}
+							{{--<div class="form-group">--}}
+								{{--<label for="recipient-name" class="form-control-label">Password Lama : </label>--}}
+								{{--<input type="text" class="form-control" id="password_lama" name="password_lama">--}}
+							{{--</div>--}}
+							{{--<div class="form-group">--}}
+								{{--<label for="message-text" class="form-control-label">Password Baru: </label>--}}
+								{{--<input type="text" class="form-control" id="password_baru" name="password_baru"></textarea>--}}
+							{{--</div>--}}
+							{{--<div class="form-group">--}}
+								{{--<label for="message-text" class="form-control-label">Konfirmasi Password Baru: </label>--}}
+								{{--<input type="text" class="form-control" id="konfirmasi" name="konfirmasi"></textarea>--}}
+							{{--</div>--}}
+							<div class="form-group">
+								<label for="message-text" class="form-control-label">Password: </label>
+								<input type="password" class="form-control" id="password" name="password"></input>
+							</div>
+
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">
+								Batal
+							</button>
+							<button type="submit" class="btn btn-primary">Simpan</button>
+						</div>
+					</div>
+				</form>
+
+			</div>
+		</div>
 	</body>
 
 		<!-- </ul> -->
 		<!-- begin::Quick Nav -->
     @include('includes.foot')
-		@yield('js')
+	@yield('js')
+	{{--<script type="text/javascript">--}}
+        {{--function ubahPassword(id) {--}}
 
+            {{--var datadata = {!! json_encode($user) !!};--}}
+            {{--id = id-1;--}}
 
+            {{--console.log(datadata[id]);--}}
+            {{--var idObject = datadata[id].id;--}}
+            {{--var email = datadata[id].email;--}}
+            {{--var password = datadata[id].password;--}}
 
+            {{--$('#email').val(email);--}}
+            {{--$('#password').val(password);--}}
+
+            {{--var url = "http://spkmagang.test:9000/user/password" + (idObject);--}}
+            {{--document.getElementById("edit_form").action = url;--}}
+
+            {{--$('#m-edit-password').modal('show');--}}
+        {{--}--}}
+
+	{{--</script>--}}
 	<!-- end::Body -->
 </html>
+
