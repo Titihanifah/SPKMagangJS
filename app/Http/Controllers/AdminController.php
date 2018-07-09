@@ -55,10 +55,15 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function dashboard(Request $request)
+    public function dashboard()
     {
         //
         return view('bkk.dashboard');
+    }
+    public function panduan()
+    {
+        //
+        return view('bkk.panduan');
     }
 
     public function ubahPasswordUser(Request $request)

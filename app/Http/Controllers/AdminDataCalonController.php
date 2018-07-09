@@ -9,6 +9,7 @@ use App\Periode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Validation\ValidationException;
 use Maatwebsite\Excel\Facades\Excel;
 
 class AdminDataCalonController extends Controller
@@ -38,20 +39,23 @@ class AdminDataCalonController extends Controller
         foreach ($results as $key) {
             $errors = [];
             $errCount = 0;
+
             $departemenSatu = Departemen::where('nama_departemen', $key->departemen_satu)->get();
             $departemenDua = Departemen::where('nama_departemen', $key->departemen_dua)->get();
             $periodeAktif = Periode::where('status', 1)->get();
             if($departemenSatu->count() == 0) {
                 $errors[] = "Nama departemen ".$key->departemen_satu." tidak valid";
-                $errCount++;
             }
             if($departemenDua->count() == 0) {
                 $errors[] = "Nama departemen ".$key->departemen_dua." tidak valid";
-                $errCount++;
             }
             if($periodeAktif->count() == 0) {
                 $errors[] = "Tidak ada periode yang sedang aktif";
-                $errCount++;
+            }
+
+            if (!empty($errors)) {
+                array_unshift($errors, "Terdapat kesalahan pada baris data dengan nama ".$key->nama_calon_anggota);
+                throw ValidationException::withMessages($errors);
             }
             $calonAnggota                           = new CalonAnggota;
             $calonAnggota->nama_calon_anggota       = $key->nama_calon_anggota;
@@ -84,14 +88,17 @@ class AdminDataCalonController extends Controller
         return redirect('admin/datacalon');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function downloadExcel()
     {
-        //
+        Excel::create('TemplateDataSiswa', function($excel) {
+            $excel->sheet('Sheet1', function($sheet){
+                $sheet->row(1, array('nama_calon_anggota', 'jenis_kelamin', 'departemen_satu', 'departemen_dua','asal','alamat_yogyakarta','sumber_belajar_islam','pengalaman_organisasi','pengalaman_kepanitiaan','minat','hardskill','softskill','riwayat_penyakit'));
+                $sheet->row(2, array('Rhenita Hartanti','P','Kemuslimahan','BSO GMMQ','Kebumen','Terban','Kajian','Rohis','-','desain','editing video','public speaking','-'));
+                $sheet->row(3, array('Nugrageni','P','Jaringan','BSO GMMQ','Karanganyar','Pogung','Buku','OSO','-','-','desain kaos','public speaking','magh'));
+                $sheet->row(4, array('Prasetyo','L','BSO DOSHA','Jaringan','Bojonegoro','Sagan','-','OSIS','-','-','developing web','aktif','-'));
+
+            });
+        })->download('xlsx');
     }
 
     /**
@@ -135,10 +142,12 @@ class AdminDataCalonController extends Controller
         $detCalonAnggotaSatu->save();
 
         $detCalonAnggotaDua                    = new DetailCalonAnggota;
-        $detCalonAnggotaDua->id_departemen     = $request->departemen_satu;
+
+        $detCalonAnggotaDua->id_departemen     = $request->departemen_dua;
         $detCalonAnggotaDua->id_calon_anggota  = $calonAnggota->id;
         $detCalonAnggotaDua->prioritas         = 2;
         $detCalonAnggotaDua->save();
+
         //message success
         Session::flash('message', 'Success menambah data calon anggota!');
         return redirect('/admin/datacalon'); // Set redirect ketika berhasil

@@ -83,21 +83,18 @@
                                 <div class="col-md-12">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <img src="{{ url('assets/app/media/img/panduan_import.jpg') }}" alt=""/>
-                                        </div>
+                                            <img src="{{ url('img/panduan.png') }}" alt=""/>
+                                    </div>
                                         <div class="col-md-3"></div>
                                         <div class="col-md-3">
                                             <h5>Catatan :</h5>
                                             <hr>
-                                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                            Lorem Ipsum has been the industry's standard dummy text ever since the
-                                            1500s, when an unknown printer took a galley of type and scrambled it to
-                                            make a type specimen book.
+                                            Pastikan format penulisan sudah sesuai dengan contoh agar data dapat dibaca oleh sistem. Sistem hanya membaca file pada <b>Sheet1</b> dan format  file dapat berupa <b>(.xls)</b> atau <b>(.xlsx)</b>.
                                             <br>
                                             <hr>
-                                            <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-primary m-btn--gradient-to-primary">
+                                            <a href="{{ url('/downloadExcel') }}" class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-primary m-btn--gradient-to-primary">
                                                 <i class="m-menu__link-icon flaticon-download "></i> Download Contoh File
-                                            </button>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>

@@ -51,6 +51,8 @@ Route::get('/admin/akun/destroy/{id}','AdminAkunController@destroy');
 Route::get('/admin/kegiatan','AdminController@kegiatan');
 Route::get('/admin/tugas','AdminController@tugas');
 Route::get('/admin/kemampuan/destroy/{id}','AdminKemampuanTambahan@destroy');
+Route::get('/panduan','AdminController@panduan');
+Route::get('downloadExcel', 'AdminDataCalonController@downloadExcel');
 
 
 // Route::get('/dashboard','PresensiController@dashboard');
