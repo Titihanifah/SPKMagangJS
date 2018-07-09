@@ -70,7 +70,7 @@
 						<tr>
 							<td><?php echo $i ?></td>
 							<td>{{ $value->nama_kegiatan }}</td>
-							<td>{{ $value->tanggal_kegiatan }}</td>
+							<td>{{ (new Carbon\Carbon($value->tanggal_kegiatan))->format('l, d F Y') }}</td>
 							<td>{{ $value->waktu }}</td>
 							{{--TODO: diambil dari presensi--}}
 							{{--@if($value->jumlah == 0)--}}
@@ -156,13 +156,13 @@
 					<label for="">
 						Waktu Kegiatan
 					</label>
-					<input type="time" name="waktu" class="form-control m-input m-input--air" placeholder="Waktu Kegiatan" required>
+					<input type="text" id="m_timepicker_1" name="waktu" class="form-control m-input m-input--air" placeholder="Waktu Kegiatan" required>
 				</div>
 				<div class="form-group m-form__group">
 					<label for="">
 						Tanggal Kegiatan
 					</label>
-					<input type="date" name="tanggal_kegiatan" class="form-control m-input m-input--air" id="exampleInputEmail1"  placeholder="Tanggal Kegiatan" required>
+					<input type="text" id="m_datepicker_1" name="tanggal_kegiatan" class="form-control m-input m-input--air" placeholder="Tanggal Kegiatan" required>
 				</div>
 			</div>
 			<div class="modal-footer">
@@ -239,6 +239,22 @@
 
 	$(document).ready( function () {
 		$('.myTableDataTable').DataTable();
+        $("#m_datepicker_1").datepicker({
+            todayHighlight: !0,
+            orientation: "bottom left",
+            format: 'yyyy-mm-dd',
+            templates: {
+                leftArrow: '<i class="la la-angle-left"></i>',
+                rightArrow: '<i class="la la-angle-right"></i>'
+            }
+        });
+        $("#m_timepicker_1").timepicker({
+            minuteStep: 1,
+            defaultTime: "",
+            showSeconds: 0,
+            showMeridian: 0,
+            snapToStep: !0
+        });
 	} );
     $(".datetimepicker").timepicker();
 
