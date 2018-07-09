@@ -104,7 +104,7 @@
                             <tr>
 
                                 <td>{{ $i++ }}</td>
-                                <td>{{ $key->first()->calonAnggota->nama_calon_anggota }}</td>
+                                <td>{{ $key->first()->calonAnggota->nama_calon_anggota }} {{ $key->favorit ? "⭐" : "" }}</td>
                                 <td>{{ $key->first()->calonAnggota->jenis_kelamin }}</td>
                                 <td>{{ $key->first()->departemen->nama_departemen }}</td>
                                 <td>{{ $key->first()->nilai_kehadiran }}</td>

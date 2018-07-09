@@ -34,7 +34,7 @@ class DetailCalonAnggota extends Model
 
         $nilaiKehadiran = $this->nilai_kehadiran;
         $nilaiTugas = $this->nilai_tugas ;
-        $hasil = ($nilaiKehadiran+$nilaiTugas);
+        $hasil = ($nilaiKehadiran+$nilaiTugas)/2;
 
         return $hasil;
     }
@@ -52,7 +52,8 @@ class DetailCalonAnggota extends Model
             $totalPresensi = 0;
 
         }else {
-            $totalPresensi = ($sumPresensi / $this->departemen->kegiatans->count());
+            $totalPresensi = round(($sumPresensi / $this->departemen->kegiatans->count()),2);
+
         }
 
 
@@ -111,7 +112,7 @@ class DetailCalonAnggota extends Model
             $totalTugas = 0;
 
         }else {
-            $totalTugas = $sumTugas / (($this->departemen->tugas->count()) * 100);
+            $totalTugas = round($sumTugas / (($this->departemen->tugas->count()) * 100));
         }
 
 

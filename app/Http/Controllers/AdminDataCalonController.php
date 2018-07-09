@@ -37,11 +37,9 @@ class AdminDataCalonController extends Controller
         foreach ($results as $key) {
             $errors = [];
             $errCount = 0;
-
             $departemenSatu = Departemen::where('nama_departemen', $key->departemen_satu)->get();
             $departemenDua = Departemen::where('nama_departemen', $key->departemen_dua)->get();
             $periodeAktif = Periode::where('status', 1)->get();
-
             if($departemenSatu->count() == 0) {
                 $errors[] = "Nama departemen ".$key->departemen_satu." tidak valid";
                 $errCount++;
@@ -54,7 +52,6 @@ class AdminDataCalonController extends Controller
                 $errors[] = "Tidak ada periode yang sedang aktif";
                 $errCount++;
             }
-
             $calonAnggota                           = new CalonAnggota;
             $calonAnggota->nama_calon_anggota       = $key->nama_calon_anggota;
             $calonAnggota->jenis_kelamin            = ($key->jenis_kelamin == 'P' ? 'perempuan' : 'laki-laki');

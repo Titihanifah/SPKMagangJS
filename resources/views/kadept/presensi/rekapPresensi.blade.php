@@ -124,40 +124,31 @@
 							<td>{{ $calon->calonAnggota->nama_calon_anggota }}</td>
 							<td>{{ $calon->calonAnggota->jenis_kelamin }}</td>
 
-							@if( $calon->kehadiran_calon > 80 && $calon->kehadiran_calon >= 50)
-								<td >
+							{{--@if( $calon->kehadiran_calon > 80 && $calon->kehadiran_calon >= 50)--}}
+								{{--<td >--}}
 									{{--TODO: progress sesuai dengan jumlah kehadiran dan jika kurang dari setengah merah warnanya--}}
-									{{--<div class="progress">--}}
-									{{--<div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>--}}
-									{{--</div>--}}
-									{{--<div class="m--space-10"></div>--}}
-									<span class="m-badge m-badge--success m-badge--wide badge-kehadiran-{{ $calon->id }}">
+									{{----}}
+									{{--<span class="m-badge m-badge--success m-badge--wide badge-kehadiran-{{ $calon->id }}">--}}
 											{{--{{ $calon->kehadiran_calon }} %--}}
-										</span>
-								</td>
-								@elseif( $calon->kehadiran_calon < 80 && $calon->kehadiran_calon > 35 )
+										{{--</span>--}}
+								{{--</td>--}}
+								{{--@elseif( $calon->kehadiran_calon < 80 && $calon->kehadiran_calon > 35 )--}}
+									{{--<td >--}}
+										{{--TODO: progress sesuai dengan jumlah kehadiran dan jika kurang dari setengah merah warnanya--}}
+										{{----}}
+										{{--<span class="m-badge m-badge--warning m-badge--wide badge-kehadiran-{{ $calon->id }}">--}}
+											{{--{{ $calon->kehadiran_calon }} %--}}
+										{{--</span>--}}
+									{{--</td>--}}
+								{{--@else--}}
 									<td >
 										{{--TODO: progress sesuai dengan jumlah kehadiran dan jika kurang dari setengah merah warnanya--}}
-										{{--<div class="progress">--}}
-										{{--<div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>--}}
-										{{--</div>--}}
-										{{--<div class="m--space-10"></div>--}}
-										<span class="m-badge m-badge--warning m-badge--wide badge-kehadiran-{{ $calon->id }}">
+
+										<span class="m-badge m-badge--success m-badge--wide badge-kehadiran-{{ $calon->id }}">
 											{{--{{ $calon->kehadiran_calon }} %--}}
 										</span>
 									</td>
-								@else
-									<td >
-										{{--TODO: progress sesuai dengan jumlah kehadiran dan jika kurang dari setengah merah warnanya--}}
-										{{--<div class="progress">--}}
-										{{--<div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>--}}
-										{{--</div>--}}
-										{{--<div class="m--space-10"></div>--}}
-										<span class="m-badge m-badge--danger m-badge--wide badge-kehadiran-{{ $calon->id }}">
-											{{--{{ $calon->kehadiran_calon }} %--}}
-										</span>
-									</td>
-								@endif
+								{{--@endif--}}
                             <?php $j = 0; ?>
                         {{--@for( //$k=0; $k<count($datas); $k++)--}}
 
@@ -224,7 +215,6 @@
             scrollCollapse: true,
             fixedColumns:   {
                 leftColumns: 4,
-                rightColumns: 1,
             }
         } );
     } );

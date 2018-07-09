@@ -91,8 +91,8 @@
 					</thead>
 					<tbody>
                     @php $i = 1; @endphp
+
 					@foreach ($userCalon as $key)
-						{{--@php dd($key->calonAnggota) @endphp--}}
 						@if($key->first()->calonAnggota->id_periode == $activePeriode->id)
 
 						<tr>
@@ -112,7 +112,7 @@
 							{{--// TODO: join tabel detail (prioritas,dept pil duanya)--}}
 							<td>Infokes</td>
 							<td>
-								<button onclick="star(this)" id="[{{ json_encode($key) }}]" class="btn btn-outline-success m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-star"></i></button>
+								<button onclick="star(this)" id="[{{ json_encode($key->first()) }}]" class="btn btn-outline-success m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-star"></i></button>
 								{{--<a href="#" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only"><i class="fa fa-rotate-right"></i></a>--}}
 
 							</td>
@@ -156,7 +156,7 @@
 
     function star(theForm){
         var detail_calon_anggota = JSON.parse(theForm.id)[0];
-        console.log(theForm.id);
+        console.log(detail_calon_anggota.id_departemen);
 
         if(detail_calon_anggota.favorit == 1){
 

@@ -46,24 +46,10 @@ class DetailCalonAnggotaController extends Controller
 
     public function simpan(Request $request)
     {
-//        $p = null;
-//        $presensi = Presensi::where('id_detail_calon_anggota', $request->id_detail_calon_anggota)
-//            ->where('id_kegiatan', $request->id_kegiatan)
-//            ->get();
-//        if ($presensi->count() > 0) {
-//            $p = Presensi::find($presensi[0]->id);
-//        } else {
-//            $p = new Presensi;
-//        }
-
-//        $detailCalonAnggota= DetailCalonAnggota::find($request->id_detail_calon_anggota);
-//        $detailCalonAnggota->favorit = $request->favorit;
-//
-//        $detailCalonAnggota->save();
-//        Session::flash('message', 'Success add data employee!');
-
+//        dd($request);
         $p = null;
         $detailCalonAnggota = DetailCalonAnggota::where('id', $request->id_detail_calon_anggota)
+            ->where('id_departemen', $request->id_departemen)
             ->get();
         if ($detailCalonAnggota->count() > 0) {
             $p = DetailCalonAnggota::find($detailCalonAnggota[0]->id);
