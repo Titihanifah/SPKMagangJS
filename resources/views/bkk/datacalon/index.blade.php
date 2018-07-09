@@ -469,7 +469,7 @@
                         <div class="col-md-6">
                             <div class="form-group m-form__group">
                                 <label for="">Nama Calon Anggota</label>
-                                <input type="text" name="nama_calon_anggota" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Nama Calon Anggota">
+                                <input type="text" name="nama_calon_anggota" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Nama Calon Anggota" required>
                             </div>
                         </div>
                         <div class="col-md-6">
