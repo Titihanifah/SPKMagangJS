@@ -63,7 +63,7 @@ class AdminController extends Controller
     public function panduan()
     {
         //
-        return view('bkk.panduan');
+        return view('kadept.panduan');
     }
     public function adminPanduan()
     {

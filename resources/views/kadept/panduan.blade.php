@@ -73,7 +73,7 @@
                         <div class="col-md-12">
                             <p>Pilih menu <b>calon anggota</b></p>
                             <p>Jika ingin membuat menambahkan calon anggota ke dalam <b>favorit</b>, klik tombol favorit</p>
-                            <p>* Favorit artinya calon anggota memiliki kemampuan khusus yang dapat membuat <b>peringkat penilaian</b> menjadi <b>lebih tinggi</b></b></p>
+                            <p>* Favorit artinya calon anggota memiliki kemampuan khusus yang dapat membuat <b>peringkat penilaian</b> menjadi <b>lebih tinggi</b></p>
                             <div class="col-md-12">
                                 <img src="{{url('img/datacalon_favorit.png')}}" style="width: 100%; height: 100%;">
                             </div>
@@ -152,7 +152,7 @@
                         <div class="col-md-12">
                             <p>Pilih menu <b>Tugas</b> > <b>Penilaian Tugas</b></p>
                             <ul>
-                                <li><p>Isikan <b>nilai</b> sesuai dengan <b>nama tugas</b> dan <b>nama calon anggota</b>, kemudian tekan <b>enter</b> atau <b>tab</b> atau <b>pindahkan kursor</b> pada baris selanjutnya, data otomatis <b>tersimpan</b> ke dalam sistem</b></p>
+                                <li><p>Isikan <b>nilai</b> sesuai dengan <b>nama tugas</b> dan <b>nama calon anggota</b>, kemudian tekan <b>enter</b> atau <b>tab</b> atau <b>pindahkan kursor</b> pada baris selanjutnya, data otomatis <b>tersimpan</b> ke dalam sistem</p>
                                 <li><p>Penilaian tugas <b>hanya dapat dilakukan</b> jika <b>terdapat data tugas</b></p></li>
                                 <li><p>Range penilaian tugas <b>1 - 100</b></p></li>
                             </ul>
