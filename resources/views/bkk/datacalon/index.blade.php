@@ -218,7 +218,7 @@
                                     <td>{{ $key->riwayat_penyakit }}</td>
                                     <td>{{ $key->asal }}</td>
                                     <td>{{ $key->alamat_yogyakarta }}</td>
-                                    <td>Pilihan 1: {{ $key->detailCalonAnggota[0]->departemen->nama_departemen }}<br>Pilihan 2: {{ $key->detailCalonAnggota[1]->departemen->nama_departemen }}</td>
+                                    <td>Pilihan 1: {{ $key->detailCalonAnggota->where('prioritas', 1)->first()->departemen->nama_departemen }}<br>Pilihan 2: {{ $key->detailCalonAnggota->where('prioritas', 2)->first()->departemen->nama_departemen }}</td>
                                     <td>
                                         <!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-primary m-btn--gradient-to-primary"><i class="m-menu__link-icon flaticon-eye"></i></button> -->
                                         {{--<a href="#" onclick="view({{ $i }})" class="btn btn-outline-primary m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-eye"></i></a>--}}
@@ -675,13 +675,16 @@
                     var datadata = {!! json_encode($detailCalonAnggota) !!};
                     var dataCalon = {!! json_encode($calonAnggota) !!};
 										
-										var id_departemen = [];
+										var id_departemen_satu;
+										var id_departemen_dua;
 										var idObject;
-										
+
 										for(var i=0; i<datadata.length; i++){
 											if(datadata[i].id_calon_anggota == id){
-												console.log(datadata[i].id_departemen);
-												id_departemen.push(datadata[i].id_departemen);
+											    if(datadata[i].prioritas == 1)
+											        id_departemen_satu = (datadata[i].id_departemen);
+											    else if(datadata[i].prioritas == 2)
+                                                    id_departemen_dua = (datadata[i].id_departemen);
 											}
 										}
 										
@@ -695,8 +698,8 @@
 												}else{
 													$("input[name=jenis_kelamin][value='L']").prop("checked",true);
 												}
-												$('#departemen_satu').val(id_departemen[0]);
-												$('#departemen_dua').val(id_departemen[1]);
+												$('#departemen_satu').val(id_departemen_satu);
+												$('#departemen_dua').val(id_departemen_dua);
 												$('input[name=asal]').val(dataCalon[j].asal);
 												$('input[name=alamat_yogyakarta]').val(dataCalon[j].alamat_yogyakarta);
 												$('input[name=sumber_belajar_islam]').val(dataCalon[j].sumber_belajar_islam);

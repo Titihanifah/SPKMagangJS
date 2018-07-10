@@ -207,14 +207,14 @@ class AdminDataCalonController extends Controller
         $calonAnggota->id_periode               = $periodeAktif->first()->id;
         $calonAnggota->save();
 
-        $detCalonAnggotaSatu                    = new DetailCalonAnggota;
+        $detCalonAnggotaSatu                    = $calonAnggota->detailCalonAnggota->where('prioritas', 1)->first();
         $detCalonAnggotaSatu->id_departemen     = $request->departemen_satu;
         $detCalonAnggotaSatu->id_calon_anggota  = $calonAnggota->id;
         $detCalonAnggotaSatu->prioritas         = 1;
         $detCalonAnggotaSatu->save();
 
-        $detCalonAnggotaDua                    = new DetailCalonAnggota;
-        $detCalonAnggotaDua->id_departemen     = $request->departemen_satu;
+        $detCalonAnggotaDua                    = $calonAnggota->detailCalonAnggota->where('prioritas', 2)->first();
+        $detCalonAnggotaDua->id_departemen     = $request->departemen_dua;
         $detCalonAnggotaDua->id_calon_anggota  = $calonAnggota->id;
         $detCalonAnggotaDua->prioritas         = 2;
         $detCalonAnggotaDua->save();
