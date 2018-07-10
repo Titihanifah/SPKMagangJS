@@ -191,7 +191,7 @@
                                                 </div>
                                                 <div class="col m--align-right">
 												<span class="m-widget1__number m--font-brand">
-													57
+												{{$totalCalonAnggota}}
 												</span>
                                                 </div>
                                             </div>
@@ -208,7 +208,7 @@
                                                 </div>
                                                 <div class="col m--align-right">
 												<span class="m-widget1__number m--font-danger">
-													23
+													{{$totalCalonAnggotaL}}
 												</span>
                                                 </div>
                                             </div>
@@ -225,7 +225,7 @@
                                                 </div>
                                                 <div class="col m--align-right">
 												<span class="m-widget1__number m--font-success">
-													34
+													{{$totalCalonAnggotaP}}
 												</span>
                                                 </div>
                                             </div>
@@ -572,28 +572,7 @@
                             <!--End::Section-->
                             <!--Begin::Section-->
                         </div>
-                    <div class="col-md-6">
-                        <!--begin::Portlet-->
-                        <div class="m-portlet m-portlet--tab">
-                            <div class="m-portlet__head">
-                                <div class="m-portlet__head-caption">
-                                    <div class="m-portlet__head-title">
-								<span class="m-portlet__head-icon m--hide">
-									<i class="la la-gear"></i>
-								</span>
-                                        <h3 class="m-portlet__head-text">
-                                            Line Chart
-                                        </h3>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="m-portlet__body">
-                                <div id="m_morris_1" style="height:500px;"></div>
-                            </div>
-                        </div>
-                        <!--end::Portlet-->
-                    </div>
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <canvas id="densityChart" width="600" height="400"></canvas>
                     </div>
                 </div>
@@ -622,8 +601,12 @@
         Chart.defaults.global.defaultFontSize = 18;
 
         var densityData = {
-            label: 'Laki-laki',
-            data: [40, 30, 25, 33, 40, 45, 25, 44],
+            label: 'Jumlah Calon Anggota',
+            data: [
+							@foreach($grafikGender as $g)
+							{{ $g->jumlah }}, 
+							@endforeach
+							],
             backgroundColor: 'rgba(0, 99, 132, 0.6)',
             borderWidth: 1,
             yAxisID: "y-axis-density"
@@ -638,8 +621,12 @@
         };
 
         var planetData = {
-            labels: ["BSO GMMQ", "BSO Dosha", "Kemuslimahan", "Shar'E", "Jaringan", "Media Center", "Sosmas", "DPS"],
-            datasets: [densityData, gravityData]
+            labels: [
+							@foreach($grafikGender as $g) 
+							"{{ $g->nama_departemen }}", 
+							@endforeach
+							],
+            datasets: [densityData]
         };
 
         var chartOptions = {
@@ -650,8 +637,6 @@
                 }],
                 yAxes: [{
                     id: "y-axis-density"
-                }, {
-                    id: "y-axis-gravity"
                 }]
             }
         };

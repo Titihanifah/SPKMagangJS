@@ -104,7 +104,7 @@
 								<td>Infokes</td>
 								<td>
 
-									<button {{ $key->first()->favorit ? "disabled" : "" }} onclick="star(this)" id="[{{ json_encode($key->first()) }}]" class="btn btn-warning"><i class="m-menu__link-icon flaticon-star"></i> Favorit</button>
+									<button {{ $key->first()->favorit ? "disabled" : "" }} onclick="star(this)" id="[{{ json_encode($key->first()) }}]" class="btn btn-warning btn-favorit-{{ $key->first()->id }}"><i class="m-menu__link-icon flaticon-star"></i> Favorit</button>
 									<button {{ $key->first()->favorit ? "" : "disabled" }} onclick="clickBatal(this)" id="{{ json_encode($key) }}" class="btn btn-danger btn-batal-favorit-{{ $key->first()->id }}" >Batal</button>
 									{{--<a href="#" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only"><i class="fa fa-rotate-right"></i></a>--}}
 
@@ -150,7 +150,10 @@
     function star(theForm){
         var detail_calon_anggota = JSON.parse(theForm.id)[0];
         console.log(detail_calon_anggota.id_departemen);
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/dev-faldy
 
             $.ajax({
                 data: {
@@ -163,6 +166,8 @@
                 url: '{{ url('/') }}/api/star/simpan',
                 success: function (response) { // on success..
                     console.log(response); // update the DIV
+					$('.btn-favorit-'+detail_calon_anggota.id).prop('disabled', true);
+					$('.btn-batal-favorit-'+detail_calon_anggota.id).prop('disabled', false);
                     swal({
                         title : 'Sukses',
                         text : 'Berhasil menjadi favorit !',
@@ -192,7 +197,16 @@
             type: 'POST',
             url: '{{ url('/') }}/api/star/simpan',
             success: function (response) { // on success..
+                $('.btn-favorit-'+detail_calon_anggota.id).prop('disabled', false);
+                $('.btn-batal-favorit-'+detail_calon_anggota.id).prop('disabled', true);
                 console.log(response); // update the DIV
+                swal({
+                    title : 'Sukses',
+                    text : 'Berhasil membatalkan favorit !',
+                    type : 'success'
+                },function(){
+                    location.reload() ;
+                });
 
             }
         });

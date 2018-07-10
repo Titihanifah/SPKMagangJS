@@ -218,7 +218,7 @@
                                     <td>{{ $key->riwayat_penyakit }}</td>
                                     <td>{{ $key->asal }}</td>
                                     <td>{{ $key->alamat_yogyakarta }}</td>
-                                    <td>Pilihan 1: {{ $key->detailCalonAnggota[0]->departemen->nama_departemen }}<br>Pilihan 2: {{ $key->detailCalonAnggota[1]->departemen->nama_departemen }}</td>
+                                    <td>Pilihan 1: {{ $key->detailCalonAnggota->where('prioritas', 1)->first()->departemen->nama_departemen }}<br>Pilihan 2: {{ $key->detailCalonAnggota->where('prioritas', 2)->first()->departemen->nama_departemen }}</td>
                                     <td>
                                         <!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-primary m-btn--gradient-to-primary"><i class="m-menu__link-icon flaticon-eye"></i></button> -->
                                         {{--<a href="#" onclick="view({{ $i }})" class="btn btn-outline-primary m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-eye"></i></a>--}}
@@ -464,12 +464,12 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {{--{!! Form::open(array('route' => 'datacalon.store', 'enctype' => 'multipart/form-data')) !!}--}}
+                    {!! Form::open(array('route' => 'datacalon.store', 'enctype' => 'multipart/form-data')) !!}
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group m-form__group">
                                 <label for="">Nama Calon Anggota</label>
-                                <input type="text" name="nama_calon_anggota" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Nama Calon Anggota">
+                                <input type="text" name="nama_calon_anggota" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Nama Calon Anggota" required>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -575,7 +575,6 @@
                                 <input type="text" name="riwayat_penyakit" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Riwayat Penyakit">
                             </div>
                         </div>
-
                     </div>
                     <div class="modal-footer">
                         <button type="reset" class="btn btn-danger" data-dismiss="modal">Batal</button>
@@ -584,10 +583,10 @@
 
                     {!! Form::close() !!}
 
-
                 </div>
             </div>
         </div>
+    <
     </div>
 
 
@@ -674,42 +673,45 @@
                 function edit(id) {
                     var datadata = {!! json_encode($detailCalonAnggota) !!};
                     var dataCalon = {!! json_encode($calonAnggota) !!};
-										
-                    var id_departemen = [];
-                    var idObject;
 
-                    for(var i=0; i<datadata.length; i++){
-                        if(datadata[i].id_calon_anggota == id){
-                            console.log(datadata[i].id_departemen);
-                            id_departemen.push(datadata[i].id_departemen);
-                        }
-                    }
+                        var id_departemen_satu;
+                        var id_departemen_dua;
+                        var idObject;
 
-                    for(var j=0; j<dataCalon.length; j++){
-                        if(dataCalon[j].id == id){
-                            console.log(dataCalon[j]);
-                            idObject = dataCalon[j].id;
-                            $('input[name=nama_calon_anggota]').val(dataCalon[j].nama_calon_anggota);
-                            if(dataCalon[j].jenis_kelamin == 'perempuan'){
-                                $("input[name=jenis_kelamin][value='P']").prop("checked",true);
-                            }else{
-                                $("input[name=jenis_kelamin][value='L']").prop("checked",true);
+                        for(var i=0; i<datadata.length; i++){
+                            if(datadata[i].id_calon_anggota == id){
+                                if(datadata[i].prioritas == 1)
+                                    id_departemen_satu = (datadata[i].id_departemen);
+                                else if(datadata[i].prioritas == 2)
+                                    id_departemen_dua = (datadata[i].id_departemen);
                             }
-                            $('#departemen_satu').val(id_departemen[0]);
-                            $('#departemen_dua').val(id_departemen[1]);
-                            $('input[name=asal]').val(dataCalon[j].asal);
-                            $('input[name=alamat_yogyakarta]').val(dataCalon[j].alamat_yogyakarta);
-                            $('input[name=sumber_belajar_islam]').val(dataCalon[j].sumber_belajar_islam);
-                            $('input[name=pengalaman_organisasi]').val(dataCalon[j].pengalaman_organisasi);
-                            $('input[name=pengalaman_kepanitiaan]').val(dataCalon[j].pengalaman_kepanitiaan);
-                            $('input[name=minat]').val(dataCalon[j].minat);
-                            $('input[name=hardskill]').val(dataCalon[j].hardskill);
-                            $('input[name=softskill]').val(dataCalon[j].softskill);
-                            $('input[name=riwayat_penyakit]').val(dataCalon[j].riwayat_penyakit);
                         }
-                    }
 
-                    var url = "{{ url('/') }}/admin/datacalon/" + (idObject);
+                        for(var j=0; j<dataCalon.length; j++){
+                            if(dataCalon[j].id == id){
+                                console.log(dataCalon[j]);
+                                idObject = dataCalon[j].id;
+                                $('input[name=nama_calon_anggota]').val(dataCalon[j].nama_calon_anggota);
+                                if(dataCalon[j].jenis_kelamin == 'perempuan'){
+                                    $("input[name=jenis_kelamin][value='P']").prop("checked",true);
+                                }else{
+                                    $("input[name=jenis_kelamin][value='L']").prop("checked",true);
+                                }
+                                $('#departemen_satu').val(id_departemen_satu);
+                                $('#departemen_dua').val(id_departemen_dua);
+                                $('input[name=asal]').val(dataCalon[j].asal);
+                                $('input[name=alamat_yogyakarta]').val(dataCalon[j].alamat_yogyakarta);
+                                $('input[name=sumber_belajar_islam]').val(dataCalon[j].sumber_belajar_islam);
+                                $('input[name=pengalaman_organisasi]').val(dataCalon[j].pengalaman_organisasi);
+                                $('input[name=pengalaman_kepanitiaan]').val(dataCalon[j].pengalaman_kepanitiaan);
+                                $('input[name=minat]').val(dataCalon[j].minat);
+                                $('input[name=hardskill]').val(dataCalon[j].hardskill);
+                                $('input[name=softskill]').val(dataCalon[j].softskill);
+                                $('input[name=riwayat_penyakit]').val(dataCalon[j].riwayat_penyakit);
+                            }
+                        }
+
+                        var url = "{{ url('/') }}/admin/datacalon/" + (idObject);
                     document.getElementById("edit_form").action = url;
 
                     $('#m-edit-datacalon').modal('show');

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\CalonAnggota;
+use DB;
 
 class HomeController extends Controller
 {
@@ -27,9 +29,20 @@ class HomeController extends Controller
         if(Auth::user()->role == 0){
             return view('dashboard');
         }else{
-            return view('adminDashboard');
+            $grafikGender = CalonAnggota::select('d.nama_departemen', DB::raw('COUNT(dc.id) as jumlah'))->join('detail_calon_anggotas as dc', 'dc.id_calon_anggota', '=', 'calon_anggotas.id')
+                ->rightJoin('departemens as d', 'd.id', '=', 'dc.id_departemen')
+                ->groupBy('dc.id_departemen')
+                ->get();
+            $totalCalonAnggota = CalonAnggota::all()->count();
+            $totalCalonAnggotaL = CalonAnggota::where('jenis_kelamin', 'laki-laki')->count();
+            $totalCalonAnggotaP = CalonAnggota::where('jenis_kelamin', 'perempuan')->count();
+            // dd($grafikGender);
+            return view('adminDashboard', compact('grafikGender', 'totalCalonAnggota', 'totalCalonAnggotaL', 'totalCalonAnggotaP'));
+//            return view('adminDashboard');
         }
 
 //        return view('home');
+
+
     }
 }

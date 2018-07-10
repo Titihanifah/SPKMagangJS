@@ -45,7 +45,6 @@ class AdminPeriodeController extends Controller
         $this->validate($request, [
             'tahun' => 'required',
             'periode' => 'required',
-            'status' => 'required',
 
         ]);
 
@@ -53,7 +52,7 @@ class AdminPeriodeController extends Controller
         // fill the object
         $periode->tahun = $request->tahun;
         $periode->periode = $request->periode;
-        $periode->status = $request->status;
+        $periode->status = 0;
 
         //save object to database
         $periode->save();
@@ -96,16 +95,32 @@ class AdminPeriodeController extends Controller
         $this->validate($request, [
             'tahun' => 'required',
             'periode' => 'required',
-            'status' => 'required',
 
         ]);
+
+
+//        if($request->status == 0) {
+//            Session::flash('message', 'Gagal mengubah data periode!');
+//            return redirect('admin/periode');
+//        }
         $periode= Periode::find($id);
         $periode->tahun = $request->tahun;
         $periode->periode = $request->periode;
-        $periode->status = $request->status;
         $periode->save();
-        Session::flash('message', 'Success menambah data periode!');
+
+
+        Session::flash('message', 'Success mengubah data periode!');
         return redirect('admin/periode'); // Set redirect ketika berhasil
+    }
+
+    public function changeActive($id) {
+
+        $periode= Periode::find($id);
+        $periode->status = 1;
+        $periode->save();
+        Periode::whereNotIn('id', [$periode->id])->update(['status' => 0]);
+
+        return response()->json([], 204);
     }
 
     /**
