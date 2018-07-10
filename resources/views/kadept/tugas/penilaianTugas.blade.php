@@ -97,6 +97,7 @@
 
                                 @if($detailTugas->where('id_detail_calon_anggota', $value->id)->where('id_tugas', $key->id)->first() === null){
                                 <td><input min="0"  max="100" id="[{{ json_encode($key) }},{{ json_encode($value) }}]" class="form-control m-input" onchange="penilaian(this)" type="number" placeholder="nilai" ></td>
+									<span id="alert-nilai"></span>
                                 @else
                                 <td><input min="0"  max="100" id="[{{ json_encode($key) }},{{ json_encode($value) }}]" class="form-control m-input" onchange="penilaian(this)" type="number" value="{{ $detailTugas->where('id_detail_calon_anggota', $value->id)->where('id_tugas', $key->id)->first()->nilai_tugas }}" ></td>
 
@@ -161,21 +162,32 @@
 	    console.log(theForm.value);
 		var tugas = JSON.parse(theForm.id)[0];
 		var detail_calon_anggota = JSON.parse(theForm.id)[1];
-        document.body.style.cursor='wait';
-
-        $.ajax({ // create an AJAX call...
-            data: {
-                id_detail_calon_anggota: detail_calon_anggota.id,
-                id_tugas: tugas.id,
-                nilai_tugas: theForm.value,
-			}, // get the form data
-            type: 'POST', // GET or POST
-            url: '{{ url('/') }}/api/penilaian/simpan', // the file to call
-            success: function (response) { // on success..
-                console.log(response); // update the DIV
+//        document.body.style.cursor='wait';
+		if((theForm.value) < 0 || (theForm.value) > 100 ){
+//            $('#alert-nilai').attr('<span>', 'nilai yang dimasukkan salah')
+            swal({
+                title : 'Oops',
+                text : 'nilai yang Anda masukkan salah',
+                type : 'warning'
+            },function(){
+                location.reload() ;
+            });
+		}else{
+            $.ajax({ // create an AJAX call...
+                data: {
+                    id_detail_calon_anggota: detail_calon_anggota.id,
+                    id_tugas: tugas.id,
+                    nilai_tugas: theForm.value,
+                }, // get the form data
+                type: 'POST', // GET or POST
+                url: '{{ url('/') }}/api/penilaian/simpan', // the file to call
+                success: function (response) { // on success..
+                    console.log(response); // update the DIV
 //                window.onload = function(){document.body.style.cursor='default';}
-            }
-        });
+                }
+            });
+		}
+
     }
 
     function totalTugas(theForm) {

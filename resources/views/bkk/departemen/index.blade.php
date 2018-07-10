@@ -66,7 +66,8 @@
                     <?php $i = 1; ?>
 					@foreach ($departemen as $key)
 						<tr>
-							<td><?php echo $i?></td>
+                            <?php $i?>
+							<td>{{$key->id }}</td>
 							<td>{{ $key->nama_departemen }}</td>
 							<td>
 								<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-primary m-btn--gradient-to-primary"><i class="m-menu__link-icon flaticon-eye"></i></button> -->

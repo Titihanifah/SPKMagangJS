@@ -154,16 +154,17 @@
 				</div>
 				<div class="form-group m-form__group">
 					<label for="">
-						Waktu Kegiatan
-					</label>
-					<input type="text" id="m_timepicker_1" name="waktu" class="form-control m-input m-input--air" placeholder="Waktu Kegiatan" required>
-				</div>
-				<div class="form-group m-form__group">
-					<label for="">
 						Tanggal Kegiatan
 					</label>
 					<input type="text" id="m_datepicker_1" name="tanggal_kegiatan" class="form-control m-input m-input--air" placeholder="Tanggal Kegiatan" required>
 				</div>
+				<div class="form-group m-form__group">
+					<label for="">
+						Waktu Kegiatan
+					</label>
+					<input type="text" id="m_timepicker_1" name="waktu" class="form-control m-input m-input--air" placeholder="Waktu Kegiatan" required>
+				</div>
+
 			</div>
 			<div class="modal-footer">
 				<button type="reset" class="btn btn-danger" data-dismiss="modal">
@@ -200,11 +201,11 @@
 					</div>
 					<div class="form-group m-form__group">
 						<label for="">Tanggal Kegiatan</label>
-						<input type="date" id="tanggal_kegiatan" name="tanggal_kegiatan" class="form-control m-input m-input--air">
+						<input type="text" id="m_datepicker_2" name="tanggal_kegiatan" class="form-control m-input m-input--air">
 					</div>
 					<div class="form-group m-form__group">
 						<label for="">Waktu Kegiatan</label>
-						<input type="time" name="waktu" id="waktu" class="form-control m-input m-input--air">
+						<input type="text" id="m_timepicker_2" name="waktu" id="waktu" class="form-control m-input m-input--air">
 					</div>
 				</div>
 				<div class="modal-footer">
@@ -255,6 +256,22 @@
             showMeridian: 0,
             snapToStep: !0
         });
+        $("#m_datepicker_2").datepicker({
+            todayHighlight: !0,
+            orientation: "bottom left",
+            format: 'yyyy-mm-dd',
+            templates: {
+                leftArrow: '<i class="la la-angle-left"></i>',
+                rightArrow: '<i class="la la-angle-right"></i>'
+            }
+        });
+        $("#m_timepicker_2").timepicker({
+            minuteStep: 1,
+            defaultTime: "",
+            showSeconds: 0,
+            showMeridian: 0,
+            snapToStep: !0
+        });
 	} );
     $(".datetimepicker").timepicker();
 
@@ -270,8 +287,8 @@
             var waktu = datadata[id].waktu;
 
 			$('#nama_kegiatan').val(nama_kegiatan);
-			$('#tanggal_kegiatan').val(tanggal_kegiatan);
-			$('#waktu').val(waktu);
+			$('#m_datepicker_2').val(tanggal_kegiatan);
+			$('#m_timepicker_2').val(waktu);
 
 			var url = "{{ url('/') }}/kegiatan/" + (idObject);
             document.getElementById("edit_form").action = url;

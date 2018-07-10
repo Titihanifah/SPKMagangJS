@@ -35,7 +35,7 @@ class DetailCalonAnggota extends Model
 
         $nilaiKehadiran = $this->nilai_kehadiran;
         $nilaiTugas = $this->nilai_tugas ;
-        $hasil = ($nilaiKehadiran+$nilaiTugas)/2;
+        $hasil = round((($nilaiKehadiran+$nilaiTugas)/2),2);
 
         return $hasil;
     }

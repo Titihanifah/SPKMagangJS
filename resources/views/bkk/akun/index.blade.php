@@ -84,7 +84,7 @@
                                 <td>{{ $key->role_user }}</td>
                                 <td>{{ isset($key->departemen) ? $key->departemen->nama_departemen : "-" }}</td>
                                 <td>
-                                    <button onclick="reset(this)" id="[{{ json_encode($key) }}]"  class="btn btn-outline-primary m-btn m-btn--icon m-btn--icon-only" ><i class="m-menu__link-icon flaticon-refresh"></i></button>
+                                    <button onclick="reset(this)" id="[{{ json_encode($key) }}]"  class="btn btn-outline-primary m-btn m-btn--icon m-btn--icon-only" data-toggle="m-tooltip" title="Reset Password 123456"><i class="m-menu__link-icon flaticon-refresh"></i></button>
                                     <button onclick="edit({{ $i }})" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only" ><i class="m-menu__link-icon flaticon-edit-1"></i></button>
                                     {{--<a href="{{url('/admin/akun/destroy')}}/{{ $key->id}}" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>--}}
                                     <a href="#" onclick="

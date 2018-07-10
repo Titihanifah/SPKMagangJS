@@ -23,6 +23,12 @@ class HomeController extends Controller
      */
     public function index()
     {
+//        if(Auth::user()->role == 0){
+//            return view('homeKadept');
+//        }else{
+//            return view('home');
+//        }
+
         return view('home');
     }
 }

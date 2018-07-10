@@ -108,8 +108,8 @@
                                 <td>{{ $key->first()->nilai_kehadiran }}</td>
                                 <td>{{ $key->first()->nilai_tugas }}</td>
                                 <td>{{ $key->first()->total_nilai }}</td>
-                                <td>{{ $key->first()->rekomendasi }}</td>
-                                <td>{{ $key[1]->rekomendasi }}</td>
+                                <td data-toggle="m-tooltip" title="{{ $key->first()->keterangan }}" data-skin="dark">{{ $key->first()->rekomendasi }}</td>
+                                <td data-toggle="m-tooltip" title="{{ $key[1]->keterangan }}" data-skin="dark">{{ $key[1]->rekomendasi }}</td>
                                 <td>{{ $key[1]->departemen->nama_departemen }}</td>
                                 <td>{{ $key[1]->nilai_kehadiran }}</td>
                                 <td>{{ $key[1]->nilai_tugas }}</td>

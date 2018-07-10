@@ -32,7 +32,7 @@
             <a  href="{{ url('/datacalon')}}" class="m-menu__link m-menu__toggle">
                 <i class="m-menu__link-icon flaticon-users color-menu"></i>
                 <span class="m-menu__link-text color-menu color-menu">
-                    Data Calon
+                    Calon Anggota
                 </span>
             </a>
         </li>
@@ -125,7 +125,7 @@
             <a  href="{{ url('/rekap_nilai')}}" class="m-menu__link m-menu__toggle ">
                 <i class="m-menu__link-icon flaticon-list-3  color-menu"></i>
                 <span class="m-menu__link-text color-menu">
-                    Rekap Penilaian
+                    Hasil Akhir
                 </span>
             </a>
         </li>
@@ -143,7 +143,7 @@
             <a  href="{{ url('/admin/datacalon')}}" class="m-menu__link m-menu__toggle">
                 <i class="m-menu__link-icon flaticon-users color-menu"></i>
                 <span class="m-menu__link-text color-menu">
-                    Data Calon
+                    Calon Anggota
                 </span>
             </a>
         </li>

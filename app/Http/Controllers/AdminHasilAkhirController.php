@@ -21,7 +21,13 @@ class AdminHasilAkhirController extends Controller
         //
         $departemen = Departemen::all();
         $activePeriode = Periode::active()->first();
-        $detailCalonAnggotas = DetailCalonAnggota::all()->sortBy('prioritas')->groupBy('id_calon_anggota');
+//        $detailCalonAnggotas = DetailCalonAnggota::all()->sortBy('prioritas')->groupBy('id_calon_anggota');
+//        $detailCalonAnggotas = Auth::user()->departemen->detailCalonAnggota->sortByDesc(function($p) {
+//            return [$p->favorit, $p->total_nilai];
+//        });
+        $detailCalonAnggotas = DetailCalonAnggota::all()->sortByDesc(function($p) {
+            return [$p->favorit, $p->total_nilai];
+        })->groupBy('id_calon_anggota');
 
 //        dd($detailCalonAnggotas);
 //        return response()->json($detailCalonAnggotas);
