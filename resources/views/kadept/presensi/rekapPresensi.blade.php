@@ -100,7 +100,7 @@
 						<th>No</th>
 						<th>Nama Calon</th>
 						<th>Jenis Kelamin</th>
-						<th>Total</th>
+						{{--<th>Total</th>--}}
                         <?php $i=0; ?>
 						@foreach($userKegiatan->departemen->kegiatans->where('id_periode', $activePeriode->id) as $key)
                             <th>{{  $key->nama_kegiatan }}</th>
@@ -138,13 +138,13 @@
 										{{--</span>--}}
 									{{--</td>--}}
 								{{--@else--}}
-									<td >
+									{{--<td >--}}
 										{{--TODO: progress sesuai dengan jumlah kehadiran dan jika kurang dari setengah merah warnanya--}}
 
-										<span class="m-badge m-badge--success m-badge--wide badge-kehadiran-{{ $calon->id }}">
+										{{--<span class="m-badge m-badge--success m-badge--wide badge-kehadiran-{{ $calon->id }}">--}}
 											{{--{{ $calon->kehadiran_calon }} %--}}
-										</span>
-									</td>
+										{{--</span>--}}
+									{{--</td>--}}
 								{{--@endif--}}
                             <?php $j = 0; ?>
                         {{--@for( //$k=0; $k<count($datas); $k++)--}}

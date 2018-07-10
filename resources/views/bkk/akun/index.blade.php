@@ -279,6 +279,7 @@
 
         function reset(theForm) {
             var user = JSON.parse(theForm.id)[0];
+//            alert(b);
 
             $.ajax({
                 data: {
@@ -292,7 +293,7 @@
 
                         swal({
                             title : 'Sukses',
-                            text : 'Password berhasil direset!',
+                            text : 'Password berhasil direset menjadi 123456',
                             type : 'success'
                         },function(){
                             location.reload() ;

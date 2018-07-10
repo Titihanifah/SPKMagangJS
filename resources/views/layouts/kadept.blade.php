@@ -78,9 +78,9 @@ License: You must have a valid license purchased only from themeforest(the above
 												<span class="m-topbar__userpic">
 													<img src="{{ url('/assets/app/media/img/users/user4.png')}}" class="m--img-rounded m--marginless m--img-centered" alt=""/>
 												</span>
-												<span class="m-topbar__username m--hide">
-													Nick
-												</span>
+												{{--<span class="m-topbar__username m--hide">--}}
+													{{--Nick--}}
+												{{--</span>--}}
 											</a>
 											<div class="m-dropdown__wrapper">
 												<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
@@ -108,6 +108,7 @@ License: You must have a valid license purchased only from themeforest(the above
 																		Section
 																	</span> -->
 																</li>
+																@if(Auth::user()->role == 0)
 																<li class="m-nav__item">
 																	<a href="" class="m-nav__link" data-toggle="modal" data-target="#m-edit-password">
 																		<i class="m-nav__link-icon flaticon-settings-1"></i>
@@ -120,6 +121,7 @@ License: You must have a valid license purchased only from themeforest(the above
 																		</span>
 																	</a>
 																</li>
+																@endif
 																<li class="m-nav__item">
 																	<a class="m-nav__link" href="{{ route('logout') }}"
 																	   onclick="event.preventDefault();

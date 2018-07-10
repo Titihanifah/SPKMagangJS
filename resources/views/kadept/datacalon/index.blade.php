@@ -150,11 +150,7 @@
     function star(theForm){
         var detail_calon_anggota = JSON.parse(theForm.id)[0];
         console.log(detail_calon_anggota.id_departemen);
-<<<<<<< HEAD
 
-        if(detail_calon_anggota.favorit == 1){
-=======
->>>>>>> acbe5a270620b428436054d4913a40a4c586a5a8
 
             $.ajax({
                 data: {

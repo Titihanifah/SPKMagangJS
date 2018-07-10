@@ -114,7 +114,7 @@
 				<!--end: Datatable -->
 			</div>
 		</div>
-		<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-primary m-btn--gradient-to-primary"><i class="m-menu__link-icon fa fa-save "></i> Simpan</button>
+		{{--<button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-primary m-btn--gradient-to-primary"><i class="m-menu__link-icon fa fa-save "></i> Simpan</button>--}}
 	</div>
 </div>
 
@@ -173,7 +173,7 @@
             url: '{{ url('/') }}/api/penilaian/simpan', // the file to call
             success: function (response) { // on success..
                 console.log(response); // update the DIV
-                window.onload = function(){document.body.style.cursor='default';}
+//                window.onload = function(){document.body.style.cursor='default';}
             }
         });
     }
@@ -195,7 +195,7 @@
             url: '{{ url('/') }}/api/penilaian/simpan', // the file to call
             success: function (response) { // on success..
                 console.log(response); // update the DIV
-                window.onload = function(){document.body.style.cursor='default';}
+//                window.onload = function(){document.body.style.cursor='default';}
             }
         });
     }
@@ -228,7 +228,7 @@
             url: '{{ url('/') }}/api/penilaian/simpan', // the file to call
             success: function (response) { // on success..
                 console.log(response); // update the DIV
-                window.onload = function(){document.body.style.cursor='default';}
+//                window.onload = function(){document.body.style.cursor='default';}
             }
         });
 

@@ -27,6 +27,7 @@ class DetailCalonAnggota extends Model
         return $this->hasMany('App\Penilaian','id_detail_calon_anggota');
     }
 
+    // hasil akhir
     public function getTotalNilaiAttribute() {
 
 //        $bobotTugas =  Kriteria::find(1)->bobot;
@@ -38,6 +39,7 @@ class DetailCalonAnggota extends Model
 
         return $hasil;
     }
+
     public function getNilaiKehadiranAttribute() {
 
         $presensi = $this->presensis;
@@ -105,6 +107,7 @@ class DetailCalonAnggota extends Model
                 $sumTugas += $key->nilai_tugas;
             }
         }
+
 
         if($this->departemen->tugas->count() == 0){
             $totalTugas = 0;

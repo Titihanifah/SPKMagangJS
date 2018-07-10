@@ -52,6 +52,7 @@ Route::get('/admin/kegiatan','AdminController@kegiatan');
 Route::get('/admin/tugas','AdminController@tugas');
 Route::get('/admin/kemampuan/destroy/{id}','AdminKemampuanTambahan@destroy');
 Route::get('/panduan','AdminController@panduan');
+Route::get('/admin/panduan','AdminController@adminPanduan');
 Route::get('downloadExcel', 'AdminDataCalonController@downloadExcel');
 
 

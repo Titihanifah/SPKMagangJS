@@ -663,7 +663,7 @@
                     scrollCollapse: true,
                     fixedColumns:   {
                         leftColumns: 3,
-                        rightColumns: 1,
+                        rightColumns: 2,
                     },
                     "columnDefs": [
                         {"width": "2px", "targets": 1}
@@ -675,41 +675,41 @@
                     var datadata = {!! json_encode($detailCalonAnggota) !!};
                     var dataCalon = {!! json_encode($calonAnggota) !!};
 										
-										var id_departemen = [];
-										var idObject;
-										
-										for(var i=0; i<datadata.length; i++){
-											if(datadata[i].id_calon_anggota == id){
-												console.log(datadata[i].id_departemen);
-												id_departemen.push(datadata[i].id_departemen);
-											}
-										}
-										
-										for(var j=0; j<dataCalon.length; j++){
-											if(dataCalon[j].id == id){
-												console.log(dataCalon[j]);
-												idObject = dataCalon[j].id;
-												$('input[name=nama_calon_anggota]').val(dataCalon[j].nama_calon_anggota);
-												if(dataCalon[j].jenis_kelamin == 'perempuan'){
-													$("input[name=jenis_kelamin][value='P']").prop("checked",true);
-												}else{
-													$("input[name=jenis_kelamin][value='L']").prop("checked",true);
-												}
-												$('#departemen_satu').val(id_departemen[0]);
-												$('#departemen_dua').val(id_departemen[1]);
-												$('input[name=asal]').val(dataCalon[j].asal);
-												$('input[name=alamat_yogyakarta]').val(dataCalon[j].alamat_yogyakarta);
-												$('input[name=sumber_belajar_islam]').val(dataCalon[j].sumber_belajar_islam);
-												$('input[name=pengalaman_organisasi]').val(dataCalon[j].pengalaman_organisasi);
-												$('input[name=pengalaman_kepanitiaan]').val(dataCalon[j].pengalaman_kepanitiaan);
-												$('input[name=minat]').val(dataCalon[j].minat);
-												$('input[name=hardskill]').val(dataCalon[j].hardskill);
-												$('input[name=softskill]').val(dataCalon[j].softskill);
-												$('input[name=riwayat_penyakit]').val(dataCalon[j].riwayat_penyakit);
-											}
-										}
-										
-										var url = "{{ url('/') }}/admin/datacalon/" + (idObject);
+                    var id_departemen = [];
+                    var idObject;
+
+                    for(var i=0; i<datadata.length; i++){
+                        if(datadata[i].id_calon_anggota == id){
+                            console.log(datadata[i].id_departemen);
+                            id_departemen.push(datadata[i].id_departemen);
+                        }
+                    }
+
+                    for(var j=0; j<dataCalon.length; j++){
+                        if(dataCalon[j].id == id){
+                            console.log(dataCalon[j]);
+                            idObject = dataCalon[j].id;
+                            $('input[name=nama_calon_anggota]').val(dataCalon[j].nama_calon_anggota);
+                            if(dataCalon[j].jenis_kelamin == 'perempuan'){
+                                $("input[name=jenis_kelamin][value='P']").prop("checked",true);
+                            }else{
+                                $("input[name=jenis_kelamin][value='L']").prop("checked",true);
+                            }
+                            $('#departemen_satu').val(id_departemen[0]);
+                            $('#departemen_dua').val(id_departemen[1]);
+                            $('input[name=asal]').val(dataCalon[j].asal);
+                            $('input[name=alamat_yogyakarta]').val(dataCalon[j].alamat_yogyakarta);
+                            $('input[name=sumber_belajar_islam]').val(dataCalon[j].sumber_belajar_islam);
+                            $('input[name=pengalaman_organisasi]').val(dataCalon[j].pengalaman_organisasi);
+                            $('input[name=pengalaman_kepanitiaan]').val(dataCalon[j].pengalaman_kepanitiaan);
+                            $('input[name=minat]').val(dataCalon[j].minat);
+                            $('input[name=hardskill]').val(dataCalon[j].hardskill);
+                            $('input[name=softskill]').val(dataCalon[j].softskill);
+                            $('input[name=riwayat_penyakit]').val(dataCalon[j].riwayat_penyakit);
+                        }
+                    }
+
+                    var url = "{{ url('/') }}/admin/datacalon/" + (idObject);
                     document.getElementById("edit_form").action = url;
 
                     $('#m-edit-datacalon').modal('show');
