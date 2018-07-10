@@ -139,62 +139,62 @@
                         <div class="m-portlet__body  m-portlet__body--no-padding">
                             <div class="row m-row--no-padding m-row--col-separator-xl">
 
-                                <div class="col-xl-4">
-                                    <!--begin:: Widgets/Daily Sales-->
-                                    <div class="m-widget1">
-                                        <div class="m-widget1__item">
-                                            <div class="row m-row--no-padding align-items-center">
-                                                <div class="col">
-                                                    <h3 class="m-widget1__title">
-                                                        Total Calon Anggota
-                                                    </h3>
-                                                    <!-- <span class="m-widget1__desc">
-                                                        Awerage Weekly Profit
-                                                    </span> -->
-                                                </div>
-                                                <div class="col m--align-right">
-												<span class="m-widget1__number m--font-brand">
-													57
-												</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="m-widget1__item">
-                                            <div class="row m-row--no-padding align-items-center">
-                                                <div class="col">
-                                                    <h3 class="m-widget1__title">
-                                                        Laki-laki
-                                                    </h3>
-                                                    <!-- <span class="m-widget1__desc">
-                                                        Weekly Customer Orders
-                                                    </span> -->
-                                                </div>
-                                                <div class="col m--align-right">
-												<span class="m-widget1__number m--font-danger">
-													23
-												</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="m-widget1__item">
-                                            <div class="row m-row--no-padding align-items-center">
-                                                <div class="col">
-                                                    <h3 class="m-widget1__title">
-                                                        Perempuan
-                                                    </h3>
-                                                    <!-- <span class="m-widget1__desc">
-                                                        System bugs and issues
-                                                    </span> -->
-                                                </div>
-                                                <div class="col m--align-right">
-												<span class="m-widget1__number m--font-success">
-													34
-												</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                {{--<div class="col-xl-4">--}}
+                                    {{--<!--begin:: Widgets/Daily Sales-->--}}
+                                    {{--<div class="m-widget1">--}}
+                                        {{--<div class="m-widget1__item">--}}
+                                            {{--<div class="row m-row--no-padding align-items-center">--}}
+                                                {{--<div class="col">--}}
+                                                    {{--<h3 class="m-widget1__title">--}}
+                                                        {{--Total Calon Anggota--}}
+                                                    {{--</h3>--}}
+                                                    {{--<!-- <span class="m-widget1__desc">--}}
+                                                        {{--Awerage Weekly Profit--}}
+                                                    {{--</span> -->--}}
+                                                {{--</div>--}}
+                                                {{--<div class="col m--align-right">--}}
+												{{--<span class="m-widget1__number m--font-brand">--}}
+													{{--57--}}
+												{{--</span>--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
+                                        {{--<div class="m-widget1__item">--}}
+                                            {{--<div class="row m-row--no-padding align-items-center">--}}
+                                                {{--<div class="col">--}}
+                                                    {{--<h3 class="m-widget1__title">--}}
+                                                        {{--Laki-laki--}}
+                                                    {{--</h3>--}}
+                                                    {{--<!-- <span class="m-widget1__desc">--}}
+                                                        {{--Weekly Customer Orders--}}
+                                                    {{--</span> -->--}}
+                                                {{--</div>--}}
+                                                {{--<div class="col m--align-right">--}}
+												{{--<span class="m-widget1__number m--font-danger">--}}
+													{{--23--}}
+												{{--</span>--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
+                                        {{--<div class="m-widget1__item">--}}
+                                            {{--<div class="row m-row--no-padding align-items-center">--}}
+                                                {{--<div class="col">--}}
+                                                    {{--<h3 class="m-widget1__title">--}}
+                                                        {{--Perempuan--}}
+                                                    {{--</h3>--}}
+                                                    {{--<!-- <span class="m-widget1__desc">--}}
+                                                        {{--System bugs and issues--}}
+                                                    {{--</span> -->--}}
+                                                {{--</div>--}}
+                                                {{--<div class="col m--align-right">--}}
+												{{--<span class="m-widget1__number m--font-success">--}}
+													{{--34--}}
+												{{--</span>--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
                                 <div class="col-xl-4">
                                     <!--begin:: Widgets/Profit Share-->
                                     <div class="m-widget14">
@@ -241,6 +241,9 @@
                                         </div>
                                     </div>
                                     <!--end:: Widgets/Profit Share-->
+                                </div>
+                                <div class="col-xl-8">
+                                    <canvas id="densityChart" width="600" height="400"></canvas>
                                 </div>
                             </div>
                         </div>
@@ -376,13 +379,13 @@
 
 
                                         </div>
-                                        <div class="m-widget6__foot">
-                                            <div class="m-widget6__action m--align-right">
-                                                <button type="button" class="btn m-btn--pill btn-secondary m-btn m-btn--hover-brand m-btn--custom">
-                                                    Export
-                                                </button>
-                                            </div>
-                                        </div>
+                                        {{--<div class="m-widget6__foot">--}}
+                                            {{--<div class="m-widget6__action m--align-right">--}}
+                                                {{--<button type="button" class="btn m-btn--pill btn-secondary m-btn m-btn--hover-brand m-btn--custom">--}}
+                                                    {{--Export--}}
+                                                {{--</button>--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
                                     </div>
                                 </div>
                             </div>
@@ -566,7 +569,7 @@
 
         var densityData = {
             label: 'Laki-laki',
-            data: [40, 30, 25, 33, 40, 45, 25, 44],
+            data: [40, 30, 25, 27, 40, 38, 25, 23],
             backgroundColor: 'rgba(0, 99, 132, 0.6)',
             borderWidth: 1,
             yAxisID: "y-axis-density"
@@ -574,14 +577,14 @@
 
         var gravityData = {
             label: 'Perempuan',
-            data: [40, 30, 25, 33, 40, 45, 25, 44],
+            data: [40, 19, 25, 33, 40, 45, 28, 23],
             backgroundColor: 'rgba(99, 132, 0, 0.6)',
             borderWidth: 1,
             yAxisID: "y-axis-gravity"
         };
 
         var planetData = {
-            labels: ["BSO GMMQ", "BSO Dosha", "Kemuslimahan", "Shar'E", "Jaringan", "Media Center", "Sosmas", "DPS"],
+            labels: ["BSO GMMQ", "BSO Dosha", "Kastrat", "Shar'E", "Jaringan", "MC", "Sosmas", "DPS"],
             datasets: [densityData, gravityData]
         };
 
