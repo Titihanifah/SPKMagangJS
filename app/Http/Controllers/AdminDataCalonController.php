@@ -21,8 +21,7 @@ class AdminDataCalonController extends Controller
      */
     public function index()
     {
-        //TODO: join dengan tabel detail_calon_anggotas
-        //
+
         $calonAnggota = CalonAnggota::all();
         $detailCalonAnggota = DetailCalonAnggota::all();
         $departemen = Departemen::all();

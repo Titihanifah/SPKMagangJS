@@ -150,10 +150,7 @@
     function star(theForm){
         var detail_calon_anggota = JSON.parse(theForm.id)[0];
         console.log(detail_calon_anggota.id_departemen);
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/dev-faldy
 
             $.ajax({
                 data: {
