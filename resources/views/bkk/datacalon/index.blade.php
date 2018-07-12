@@ -420,7 +420,7 @@
                             <div class="col-md-6">
                                 <div class="form-group m-form__group">
                                     <label for="">Nama Calon Anggota</label>
-                                    <input type="text" name="nama_calon_anggota" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Nama Calon Anggota">
+                                    <input type="text" id="nama_calon_anggota" name="nama_calon_anggota" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Nama Calon Anggota">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -467,13 +467,13 @@
                             <div class="col-md-6">
                                 <div class="form-group m-form__group">
                                     <label for="">Asal</label>
-                                    <input type="text" name="asal" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Asal">
+                                    <input type="text" name="asal" id="asal" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Asal">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group m-form__group">
                                     <label for="">Alamat di Yogyakarta</label>
-                                    <input type="text" name="alamat_yogyakarta" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Alamat di Yogyakarta">
+                                    <input type="text" name="alamat_yogyakarta" id="alamat_yogyakarta" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Alamat di Yogyakarta">
                                 </div>
                             </div>
                         </div>
@@ -481,13 +481,13 @@
                             <div class="col-md-6">
                                 <div class="form-group m-form__group">
                                     <label for="">Sumber Belajar Islam</label>
-                                    <input type="text" name="sumber_belajar_islam" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Sumber Belajar Islam">
+                                    <input type="text" name="sumber_belajar_islam" id="sumber_belajar_islam" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Sumber Belajar Islam">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group m-form__group">
                                     <label for="">Pengalaman Organisasi</label>
-                                    <input type="text" name="pengalaman_organisasi" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Pengalaman Organisasi">
+                                    <input type="text" name="pengalaman_organisasi" id="pengalaman_organisasi" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Pengalaman Organisasi">
                                 </div>
                             </div>
                         </div>
@@ -495,13 +495,13 @@
                             <div class="col-md-6">
                                 <div class="form-group m-form__group">
                                     <label for="">Pengalaman Kepanitiaan</label>
-                                    <input type="text" name="pengalaman_kepanitiaan" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Pengalaman Kepanitiaan">
+                                    <input type="text" name="pengalaman_kepanitiaan" id="pengalaman_kepanitiaan" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Pengalaman Kepanitiaan">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group m-form__group">
                                     <label for="">Minat</label>
-                                    <input type="text" name="minat" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Minat">
+                                    <input type="text" name="minat" id="minat" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Minat">
                                 </div>
                             </div>
                         </div>
@@ -509,13 +509,13 @@
                             <div class="col-md-6">
                                 <div class="form-group m-form__group">
                                     <label for="">Hardskill</label>
-                                    <input type="text" name="hardskill" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Hardskill">
+                                    <input type="text" name="hardskill" id="hardskill" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Hardskill">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group m-form__group">
                                     <label for="">Softskill</label>
-                                    <input type="text" name="softskill" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Softskill">
+                                    <input type="text" name="softskill" id="softskill" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Softskill">
                                 </div>
                             </div>
                         </div>
@@ -523,7 +523,7 @@
                             <div class="col-md-6">
                                 <div class="form-group m-form__group">
                                     <label for="">Riwayat Penyakit</label>
-                                    <input type="text" name="riwayat_penyakit" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Riwayat Penyakit">
+                                    <input type="text" name="riwayat_penyakit" id="riwayat_penyakit" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Riwayat Penyakit">
                                 </div>
                             </div>
 
@@ -535,64 +535,12 @@
 
                         {!! Form::close() !!}
 
-
                     </div>
                 </div>
             </form>
         </div>
     </div>
 
-
-    {{--modal view detail--}}
-    <form class="modal fade" id="lihat-datacalon" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <form method="POST" id="edit_form" action="" accept-charset="UTF-8" enctype="multipart/form-data">
-                <input name="_method" type="hidden" value="PUT">
-                @csrf
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">
-                            Detail Anggota
-                        </h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                            </div>
-                            <div class="col-md-6">
-
-                            </div>
-
-                        </div>
-                        <div class="form-group">
-                            <label for="recipient-name" class="form-control-label">
-                                Recipient:
-                            </label>
-                            <input type="text" class="form-control" id="recipient-name">
-                        </div>
-                        <div class="form-group">
-                            <label for="message-text" class="form-control-label">
-                                Message:
-                            </label>
-                            <textarea class="form-control" id="message-text"></textarea>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                            Close
-                        </button>
-                        <button type="button" class="btn btn-primary">
-                            Send message
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </div>
-
-        {{--end modal view--}}
         @endsection
 
         @section('js')
@@ -673,15 +621,15 @@
                             }
                             $('#departemen_satu').val(id_departemen_satu);
                             $('#departemen_dua').val(id_departemen_dua);
-                            $('input[name=asal]').val(dataCalon[j].asal);
-                            $('input[name=alamat_yogyakarta]').val(dataCalon[j].alamat_yogyakarta);
-                            $('input[name=sumber_belajar_islam]').val(dataCalon[j].sumber_belajar_islam);
-                            $('input[name=pengalaman_organisasi]').val(dataCalon[j].pengalaman_organisasi);
-                            $('input[name=pengalaman_kepanitiaan]').val(dataCalon[j].pengalaman_kepanitiaan);
-                            $('input[name=minat]').val(dataCalon[j].minat);
-                            $('input[name=hardskill]').val(dataCalon[j].hardskill);
-                            $('input[name=softskill]').val(dataCalon[j].softskill);
-                            $('input[name=riwayat_penyakit]').val(dataCalon[j].riwayat_penyakit);
+                            $('#asal').val(dataCalon[j].asal);
+                            $('#alamat_yogyakarta').val(dataCalon[j].alamat_yogyakarta);
+                            $('#sumber_belajar_islam').val(dataCalon[j].sumber_belajar_islam);
+                            $('#pengalaman_organisasi').val(dataCalon[j].pengalaman_organisasi);
+                            $('#pengalaman_kepanitiaan').val(dataCalon[j].pengalaman_kepanitiaan);
+                            $('#minat').val(dataCalon[j].minat);
+                            $('#hardskill').val(dataCalon[j].hardskill);
+                            $('#softskill').val(dataCalon[j].softskill);
+                            $('#riwayat_penyakit').val(dataCalon[j].riwayat_penyakit);
                         }
                     }
 
