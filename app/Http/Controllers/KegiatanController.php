@@ -67,10 +67,8 @@ class KegiatanController extends Controller
         $kegiatan->tanggal_kegiatan = $request->tanggal_kegiatan;
         $kegiatan->waktu = $request->waktu;
         $kegiatan->id_departemen = Auth::user()->id_departemen;
-        //TODO : id periode sesuai yg aktif
-//        $periode = Periode::where('status','=','aktif')->first();
-//        $kegiatan->id_periode = $periode->id;
-        $kegiatan->id_periode = 1;
+        $activePeriode = Periode::active()->first();
+        $kegiatan->id_periode = $activePeriode->id;
 
         //save object to database
         $kegiatan->save();

@@ -663,7 +663,7 @@
                     scrollCollapse: true,
                     fixedColumns:   {
                         leftColumns: 3,
-                        rightColumns: 1,
+                        rightColumns: 2,
                     },
                     "columnDefs": [
                         {"width": "2px", "targets": 1}

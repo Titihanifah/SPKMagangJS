@@ -122,10 +122,8 @@ class TugasController extends Controller
         $tugas->deskripsi = $request->deskripsi;
         $tugas->deadline = $request->deadline;
         $tugas->id_departemen = Auth::user()->id_departemen;
-        //TODO : id periode sesuai yg aktif
-//        $periode = Periode::where('status','=','aktif')->first();
-//        $tugas->id_periode = $periode->id;
-        $tugas->id_periode = 1;
+        $activePeriode = Periode::active()->first();
+        $tugas->id_periode = $activePeriode->id;
 
         //save object to database
         $tugas->save();
