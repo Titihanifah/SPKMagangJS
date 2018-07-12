@@ -140,20 +140,7 @@
                 </div>
                 <div class="m-portlet__body">
                     <!--begin: Search Form -->
-                    @if (\Illuminate\Support\Facades\Session::has('message'))
-                    <div class="alert alert-success">
-                        {{ \Illuminate\Support\Facades\Session::get('message') }}
-                    </div>
-                    @endif
-                    @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    @endif
+
                     <div class="m-form m-form--label-align-right m--margin-top-20 m--margin-bottom-30">
                         <div class="row align-items-center">
                             <div class="col-xl-12 order-2 order-xl-1">
@@ -270,7 +257,7 @@
         </div>
     </div>
 
-   
+
     {{--MODAL TAMBAH--}}
     <div class="modal fade" id="m-tambah-datacalon" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
@@ -620,6 +607,31 @@
 
             <script type="text/javascript" src="{{ url('js/sweetalert.min.js') }}"></script>
             <script type="text/javascript">
+
+                $(document).ready( function () {
+                    @if (\Illuminate\Support\Facades\Session::has('message'))
+                    swal({
+                        title : 'Sukses',
+                        text : '{{ \Illuminate\Support\Facades\Session::get('message') }}',
+                        type : 'success'
+                    });
+                            @endif
+
+                            @if ($errors->any())
+                    var htmlText = '';
+
+                    @foreach ($errors->all() as $error)
+                        htmlText += '{{ $error }}\n';
+                    @endforeach
+
+                    swal({
+                        title : 'Gagal',
+                        text : htmlText,
+                        type : 'error'
+                    });
+                    @endif
+                });
+
                 $('#table_data_calon').dataTable({
                     paging:         true,
                     scrollY:        false,

@@ -76,7 +76,7 @@ class AdminAkunController extends Controller
 
         $user->email = $nameDep.'departemen@gmail.com';
         $user->save();
-        Session::flash('message', 'Sukses menambah akun');
+        Session::flash('message', 'Sukses menambah data akun');
 
         return redirect('/admin/akun');
     }
@@ -125,7 +125,7 @@ class AdminAkunController extends Controller
         $user->id_departemen = $request->id_departemen;
         $user->password = bcrypt($request->password);
         $user->save();
-        Session::flash('message', 'Success add data employee!');
+        Session::flash('message', 'Sukses mengubah data akun!');
         return redirect('/admin/akun'); // Set redirect ketika berhasil
     }
 

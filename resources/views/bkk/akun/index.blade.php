@@ -38,15 +38,7 @@
                     <!--begin: Search Form -->
 
 
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
+
                     <div class="m-form m-form--label-align-right m--margin-top-20 m--margin-bottom-30">
                         <div class="row align-items-center">
                             <div class="col-xl-12 order-2 order-xl-1">
@@ -211,10 +203,10 @@
                             <label for="">Username</label>
                             <input type="text" id="name" name="name" class="form-control m-input m-input--air">
                         </div>
-                        <div class="form-group m-form__group">
-                            <label for="">Password</label>
-                            <input type="password" id="password" name="password" class="form-control m-input m-input--air">
-                        </div>
+                        {{--<div class="form-group m-form__group">--}}
+                            {{--<label for="">Password</label>--}}
+                            {{--<input type="password" id="password" name="password" class="form-control m-input m-input--air">--}}
+                        {{--</div>--}}
                         <div class="form-group m-form__group">
                             <label for="">Role</label>
                             <select id="role" id="role" name="role" class="custom-select form-control col-md-12">
@@ -253,6 +245,28 @@
 
         $(document).ready( function () {
             $('.myTableDataTable').DataTable();
+
+            @if (\Illuminate\Support\Facades\Session::has('message'))
+            swal({
+                title : 'Sukses',
+                text : '{{ \Illuminate\Support\Facades\Session::get('message') }}',
+                type : 'success'
+            });
+                    @endif
+
+                    @if ($errors->any())
+            var htmlText = '';
+
+            @foreach ($errors->all() as $error)
+                htmlText += '{{ $error }}\n';
+            @endforeach
+
+            swal({
+                title : 'Gagal',
+                text : htmlText,
+                type : 'error'
+            });
+            @endif
         } );
 
         function edit(id) {

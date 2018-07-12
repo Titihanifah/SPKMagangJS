@@ -84,8 +84,8 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </div>
                                 <div class="row m-login__form-sub">
                                     <div class="col m--align-left">
-                                        {{--<label class="m-checkbox m-checkbox--focus">--}}
-                                            {{--<input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> {{ __('Remember Me') }}--}}
+                                        <label class="m-checkbox m-checkbox--focus">
+                                            <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> {{ __('Remember Me') }}
                                             <span></span>
                                         </label>
                                     </div>

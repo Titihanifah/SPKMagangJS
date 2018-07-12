@@ -170,7 +170,7 @@ class TugasController extends Controller
         $tugas->deskripsi = $request->deskripsi;
         $tugas->deadline = $request->deadline;
         $tugas->save();
-        Session::flash('message', 'Success add data employee!');
+        Session::flash('message', 'Sukses mengubah data tugas!');
         return redirect('/tugas'); // Set redirect ketika berhasil
     }
 

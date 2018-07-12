@@ -17,6 +17,7 @@ class CreateCalonAnggotasTable extends Migration
             $table->increments('id');
             $table->string('nama_calon_anggota');
             $table->enum('jenis_kelamin',['laki-laki','perempuan']);
+//            $table->string('telepon','13')->unique();
             $table->string('asal')->nullable();
             $table->string('alamat_yogyakarta')->nullable();
             $table->string('sumber_belajar_islam')->nullable();

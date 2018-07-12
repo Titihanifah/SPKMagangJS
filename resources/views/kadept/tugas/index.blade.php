@@ -255,6 +255,28 @@
 
     $(document).ready( function () {
         $('.myTableDataTable').DataTable();
+
+		@if (\Illuminate\Support\Facades\Session::has('message'))
+        swal({
+            title : 'Sukses',
+            text : '{{ \Illuminate\Support\Facades\Session::get('message') }}',
+            type : 'success'
+        });
+				@endif
+
+				@if ($errors->any())
+        var htmlText = '';
+
+		@foreach ($errors->all() as $error)
+            htmlText += '{{ $error }}\n';
+		@endforeach
+
+        swal({
+            title : 'Gagal',
+            text : htmlText,
+            type : 'error'
+        });
+		@endif
     } );
 
     function edit(id) {

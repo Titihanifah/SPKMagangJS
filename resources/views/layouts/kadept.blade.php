@@ -108,7 +108,6 @@ License: You must have a valid license purchased only from themeforest(the above
 																		Section
 																	</span> -->
 																</li>
-																@if(Auth::user()->role == 0)
 																<li class="m-nav__item">
 																	<a href="" class="m-nav__link" data-toggle="modal" data-target="#m-edit-password">
 																		<i class="m-nav__link-icon flaticon-settings-1"></i>
@@ -121,7 +120,6 @@ License: You must have a valid license purchased only from themeforest(the above
 																		</span>
 																	</a>
 																</li>
-																@endif
 																<li class="m-nav__item">
 																	<a class="m-nav__link" href="{{ route('logout') }}"
 																	   onclick="event.preventDefault();

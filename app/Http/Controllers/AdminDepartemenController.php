@@ -53,7 +53,7 @@ class AdminDepartemenController extends Controller
         //save object to database
         $departemen->save();
         //message success
-        Session::flash('message', 'Success add data data calon anggota!');
+        Session::flash('message', 'Sukses menambah data calon anggota!');
         return redirect('/admin/departemen'); // Set redirect ketika berhasil
     }
 
@@ -115,8 +115,6 @@ class AdminDepartemenController extends Controller
     {
         //
         Departemen::destroy($id);
-        // Beri message kalau berhasil
-        Session::flash('message', 'Berhasil menghapus data!');
         return redirect('admin/departemen');
     }
 }

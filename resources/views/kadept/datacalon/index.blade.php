@@ -76,7 +76,7 @@
 								<th>Riwayat Penyakit</th>
 								<th>Asal</th>
 								<th>Alamat Jogja</th>
-								<th>Departemen Pilihan</th>
+								{{--<th>Departemen Pilihan</th>--}}
 								<th>Aksi</th>
 							</tr>
 						</thead>
@@ -90,7 +90,7 @@
 								<td>{{ $i++ }}</td>
 								<td>{{ $key->first()->calonAnggota->nama_calon_anggota }}</td>
 								<td>{{ $key->first()->calonAnggota->jenis_kelamin }}</td>
-								<td>1</td>
+								<td>{{ $key->first()->prioritas }}</td>
 								<td>{{ $key->first()->calonAnggota->hardskill }}</td>
 								<td>{{ $key->first()->calonAnggota->softskill }}</td>
 								<td>{{ $key->first()->calonAnggota->pengalaman_organisasi }}</td>
@@ -101,7 +101,7 @@
 								<td>{{ $key->first()->calonAnggota->asal }}</td>
 								<td>{{ $key->first()->calonAnggota->alamat_jogja }}</td>
 								{{--// TODO: join tabel detail (prioritas,dept pil duanya)--}}
-								<td>Infokes</td>
+{{--								<td>{{ $key->where('id_calon_anggota', $key->first()->calonAnggota->id)->departemen->nama_departemen }}</td>--}}
 								<td>
 
 									<button {{ $key->first()->favorit ? "disabled" : "" }} onclick="star(this)" id="[{{ json_encode($key->first()) }}]" class="btn btn-warning btn-favorit-{{ $key->first()->id }}"><i class="m-menu__link-icon flaticon-star"></i> Favorit</button>

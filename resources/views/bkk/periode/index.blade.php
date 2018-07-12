@@ -81,6 +81,7 @@
 							<td>{{ $key->periode }}</td>
 							<td>{{ $key->status }}</td>
 							<td>
+								{{--<input onclick="setActive({{ $key->id }})" {{ (($key->status == 'Aktif') ? 'checked':'' }} type="radio">Aktif--}}
                                 <button onclick="setActive({{ $key->id }})" class="btn {{ (($key->status == 'Aktif') ? "btn-outline-success" : "btn-outline-danger") }} m-btn m-btn--icon m-btn--icon-only" ><i class="fa {{ (($key->status == 'Aktif') ? "fa-check" : "fa-times") }}"></i></button>
                                 <button onclick="edit({{ $i }})" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only" ><i class="m-menu__link-icon flaticon-edit-1"></i></button>
 {{--                                <a href="{{url('/admin/periode/destroy')}}/{{ $key->id}}" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>--}}
@@ -246,6 +247,28 @@
 
     $(document).ready(function () {
         $('.myTableDataTable').DataTable();
+
+		@if (\Illuminate\Support\Facades\Session::has('message'))
+        swal({
+            title : 'Sukses',
+            text : '{{ \Illuminate\Support\Facades\Session::get('message') }}',
+            type : 'success'
+        });
+				@endif
+
+				@if ($errors->any())
+        var htmlText = '';
+
+		@foreach ($errors->all() as $error)
+            htmlText += '{{ $error }}\n';
+		@endforeach
+
+        swal({
+            title : 'Gagal',
+            text : htmlText,
+            type : 'error'
+        });
+		@endif
     });
 
     function edit(id) {

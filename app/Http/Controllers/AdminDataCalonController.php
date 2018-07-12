@@ -148,7 +148,7 @@ class AdminDataCalonController extends Controller
         $detCalonAnggotaDua->save();
 
         //message success
-        Session::flash('message', 'Success menambah data calon anggota!');
+        Session::flash('message', 'Sukses menambah data calon anggota!');
         return redirect('/admin/datacalon'); // Set redirect ketika berhasil
     }
 

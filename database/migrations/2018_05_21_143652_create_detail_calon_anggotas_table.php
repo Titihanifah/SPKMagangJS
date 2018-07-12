@@ -21,7 +21,6 @@ class CreateDetailCalonAnggotasTable extends Migration
             $table->string('rekomendasi')->nullable(); //rekomendasi dr kadept
             $table->boolean('favorit')->nullable();
             $table->text('keterangan')->nullable();
-            $table->integer('total_nilai')->nullable();
             $table->foreign('id_departemen')
                 ->references('id')->on('departemens')
                 ->onDelete('cascade');

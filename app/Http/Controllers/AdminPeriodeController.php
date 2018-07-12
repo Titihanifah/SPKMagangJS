@@ -57,7 +57,7 @@ class AdminPeriodeController extends Controller
         //save object to database
         $periode->save();
         //message success
-        Session::flash('message', 'Success add data employee!');
+        Session::flash('message', 'Sukses menambah data Periode!');
         return redirect('/admin/periode'); // Set redirect ketika berhasil
     }
 
@@ -109,7 +109,7 @@ class AdminPeriodeController extends Controller
         $periode->save();
 
 
-        Session::flash('message', 'Success mengubah data periode!');
+        Session::flash('message', 'Sukses mengubah data periode!');
         return redirect('admin/periode'); // Set redirect ketika berhasil
     }
 

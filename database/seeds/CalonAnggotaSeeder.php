@@ -17,7 +17,7 @@ class CalonAnggotaSeeder extends Seeder
             'hardskill' => 'Desain Kaos',
             'softskill' => 'Jujur',
             'jenis_kelamin' =>'perempuan',
-            'id_periode' => 1
+            'id_periode' => 1,
         ]);
         DB::table('calon_anggotas')->insert([
             'nama_calon_anggota' => "Tania",
