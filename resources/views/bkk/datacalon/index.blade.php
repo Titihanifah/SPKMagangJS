@@ -222,7 +222,7 @@
                             <td>
                                 <!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-primary m-btn--gradient-to-primary"><i class="m-menu__link-icon flaticon-eye"></i></button> -->
 
-                                <a href="#lihat-datacalon" data-toggle="modal" class="btn btn-outline-primary m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-eye"></i></a>
+
                                 <!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-warning m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-edit-1"></i></button> -->
                                 <a href="#" onclick="edit({{ $i }})" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-edit-1"></i></a>
                                 <!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-danger m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-delete-1"></i></button> -->
@@ -270,43 +270,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="m_modal_1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">
-                        Ubah Data
-                    </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">
-						&times;
-					</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                        been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                        galley of type and scrambled it to make a type specimen book. It has survived not only five
-                        centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-                        It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
-                        passages, and more recently with desktop publishing software like Aldus PageMaker including
-                        versions of Lorem Ipsum.
-                    </p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                        Close
-                    </button>
-                    <button type="button" class="btn btn-primary">
-                        Save changes
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
+   
     {{--MODAL TAMBAH--}}
     <div class="modal fade" id="m-tambah-datacalon" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
