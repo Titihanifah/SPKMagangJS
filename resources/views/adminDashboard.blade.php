@@ -5,7 +5,7 @@
         <!-- BEGIN: Subheader -->
         <div class="m-subheader ">
             <div class="alert alert-success" role="alert">
-                Selamat datang <strong> {{  Auth::user()->name }}</strong>
+                Selamat datang <strong> {{  Auth::user()->name }}</strong>. Untuk alur dan detail penggunaan sistem dapat dilihat pada halaman <a class="m-link m-link--state m-link--primary" href="{{ url('/admin/panduan') }}">Panduan</a>
             </div>
             <p>Mohon maaf untuk sementara data ini bersifat statis :)</p>
 
