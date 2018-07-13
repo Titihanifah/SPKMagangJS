@@ -30,7 +30,18 @@ class HomeController extends Controller
     public function index()
     {
         if(Auth::user()->role == 0){
-            return view('dashboard');
+            $grafikGender = CalonAnggota::select('d.nama_departemen', DB::raw('COUNT(dc.id) as jumlah'))->join('detail_calon_anggotas as dc', 'dc.id_calon_anggota', '=', 'calon_anggotas.id')
+                ->rightJoin('departemens as d', 'd.id', '=', 'dc.id_departemen')
+                ->groupBy('dc.id_departemen')
+                ->get();
+            $activePeriode = Periode::active()->first();
+            $totalKegiatan = Kegiatan::where('id_periode', $activePeriode->id)->count();
+            $totalTugas = Tugas::where('id_periode', $activePeriode->id)->count();
+            $totalCalonAnggota = CalonAnggota::where('id_periode', $activePeriode->id)->count();
+            $totalCalonAnggotaL = CalonAnggota::where('jenis_kelamin', 'laki-laki')->count();
+            $totalCalonAnggotaP = CalonAnggota::where('jenis_kelamin', 'perempuan')->count();
+
+            return view('dashboard', compact('grafikGender', 'totalCalonAnggota', 'totalCalonAnggotaL', 'totalCalonAnggotaP','totalKegiatan','totalTugas'));
         }else{
             $grafikGender = CalonAnggota::select('d.nama_departemen', DB::raw('COUNT(dc.id) as jumlah'))->join('detail_calon_anggotas as dc', 'dc.id_calon_anggota', '=', 'calon_anggotas.id')
                 ->rightJoin('departemens as d', 'd.id', '=', 'dc.id_departemen')
