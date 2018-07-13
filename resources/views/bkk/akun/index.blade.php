@@ -56,9 +56,7 @@
                         <thead>
                         <tr>
                             <th>No</th>
-                            <th>Username</th>
-                            {{--TODO: password apakah ditampilkan dalam tabel--}}
-
+                            <th>Email</th>
                             <th>Role</th>
                             <th>Departemen</th>
                             <th>Aksi</th>
@@ -70,7 +68,7 @@
 
                             <tr>
                                 <td><?php echo $i; ?></td>
-                                <td>{{ $key->name }}</td>
+                                <td>{{ $key->email }}</td>
                                 {{--TODO: kalo tambahin role nya BKK ada emailnya--}}
 
                                 <td>{{ $key->role_user }}</td>
@@ -139,8 +137,8 @@
 
                     {!! Form::open(array('route' => 'akun.store', 'enctype' => 'multipart/form-data')) !!}
                     <div class="form-group m-form__group">
-                        <label for="">Username</label>
-                        <input type="text" name="username" class="form-control m-input m-input--air"  placeholder="Username">
+                        <label for="">Email</label>  <font color="red">*</font>
+                        <input type="text" name="email" class="form-control m-input m-input--air"  placeholder="Username">
                     </div>
                     <div class="form-group m-form__group">
                         <label for="">Password</label>
@@ -201,7 +199,7 @@
                     <div class="modal-body">
                         <div class="form-group m-form__group">
                             <label for="">Username</label>
-                            <input type="text" id="name" name="name" class="form-control m-input m-input--air">
+                            <input type="text" id="email" name="email" class="form-control m-input m-input--air">
                         </div>
                         {{--<div class="form-group m-form__group">--}}
                             {{--<label for="">Password</label>--}}
@@ -275,12 +273,12 @@
 
             console.log(datadata[id]);
             var idObject = datadata[id].id;
-            var name = datadata[id].name;
+            var email = datadata[id].email;
             var role = datadata[id].role;
             var id_departemen = datadata[id].id_departemen;
             var password = datadata[id].password;
 
-            $('#name').val(name);
+            $('#email').val(email);
             $('#role').val(role);
             $('#id_departemen').val(id_departemen);
             $('#password').val(password);

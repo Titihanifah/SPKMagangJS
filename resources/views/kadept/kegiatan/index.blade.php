@@ -147,24 +147,25 @@
 
 				{!! Form::open(array('route' => 'kegiatan.store', 'enctype' => 'multipart/form-data')) !!}
 				<div class="form-group m-form__group">
+
 					<label for="">
-						Nama Kegiatan
+						Nama Kegiatan <font color="red">*</font>
 					</label>
 					<input type="text" name="nama_kegiatan" class="form-control m-input m-input--air" id="exampleInputEmail1" placeholder="Nama Kegiatan" required>
 				</div>
 				<div class="form-group m-form__group">
 					<label for="">
-						Tanggal Kegiatan
+						Tanggal Kegiatan <font color="red">*</font>
 					</label>
 					<input type="text" id="m_datepicker_1" name="tanggal_kegiatan" class="form-control m-input m-input--air" placeholder="Tanggal Kegiatan" required>
 				</div>
 				<div class="form-group m-form__group">
 					<label for="">
-						Waktu Kegiatan
+						Waktu Kegiatan <font color="red">*</font>
 					</label>
 					<input type="text" id="m_timepicker_1" name="waktu" class="form-control m-input m-input--air" placeholder="Waktu Kegiatan" required>
 				</div>
-
+				<p><font color="red">*</font> Wajib diisi</p>
 			</div>
 			<div class="modal-footer">
 				<button type="reset" class="btn btn-danger" data-dismiss="modal">
@@ -196,17 +197,18 @@
 				</div>
 				<div class="modal-body">
 					<div class="form-group m-form__group">
-						<label for="">Nama Kegiatan</label>
+						<label for="">Nama Kegiatan <font color="red">*</font></label>
 						<input type="text" id="nama_kegiatan" name="nama_kegiatan" class="form-control m-input m-input--air">
 					</div>
 					<div class="form-group m-form__group">
-						<label for="">Tanggal Kegiatan</label>
+						<label for="">Tanggal Kegiatan <font color="red">*</font></label>
 						<input type="text" id="m_datepicker_2" name="tanggal_kegiatan" class="form-control m-input m-input--air">
 					</div>
 					<div class="form-group m-form__group">
-						<label for="">Waktu Kegiatan</label>
+						<label for="">Waktu Kegiatan <font color="red">*</font></label>
 						<input type="text" id="m_timepicker_2" name="waktu" id="waktu" class="form-control m-input m-input--air">
 					</div>
+					<p><font color="red">*</font> Wajib diisi</p>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>

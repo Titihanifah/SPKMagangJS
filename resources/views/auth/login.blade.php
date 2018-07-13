@@ -191,12 +191,10 @@ License: You must have a valid license purchased only from themeforest(the above
         </div>
         <div class="m-grid__item m-grid__item--fluid m-grid m-grid--center m-grid--hor m-grid__item--order-tablet-and-mobile-1	m-login__content" style="background-image: url(../../../assets/app/media/img//bg/bg-4.jpg)">
             <div class="m-grid__item m-grid__item--middle">
-                <h3 class="m-login__welcome">
-                    Jamaah Shalahuddin
-                </h3>
-                <p class="m-login__msg">
-                    Ukm kerohanian Islam dan lembaga dakwah kampus UGM
-                </p>
+                <h5 class="m-login__msg"><center>Sistem Presensi dan Penilaian Magang </center></h5>
+                <h5 class="m-login__msg"><center>Calon Anggota Baru</center></h5>
+                <hr>
+                <h4 class="m-login__welcome"><center>Jamaah Shalahuddin</center></h4>
             </div>
         </div>
     </div>

@@ -138,9 +138,10 @@
 			<div class="modal-body">
 				{!! Form::open(array('route' => 'departemen.store', 'enctype' => 'multipart/form-data')) !!}
 				<div class="form-group m-form__group">
-					<label for="">Nama Departemen</label>
+					<label for="">Nama Departemen <font color="red">*</font></label>
 					<input type="text" name="nama_departemen" class="form-control m-input m-input--air" id="" aria-describedby="emailHelp" placeholder="Kemuslimahan">
 				</div>
+				<font color="red">* Wajib diisi</font>
 				<div class="modal-footer">
 					<button type="reset" class="btn btn-danger" data-dismiss="modal">Batal</button>
 					<button type="submit" class="btn btn-primary">Simpan</button>
@@ -169,9 +170,10 @@
 				</div>
 				<div class="modal-body">
 					<div class="form-group m-form__group">
-						<label for="">Nama Departemen</label>
+						<label for="">Nama Departemen <font color="red">*</font></label>
 						<input type="text" id="nama_departemen" name="nama_departemen" class="form-control m-input m-input--air">
 					</div>
+					<font color="red">*</font> Wajib diisi
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>

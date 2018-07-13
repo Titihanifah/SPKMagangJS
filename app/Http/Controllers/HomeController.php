@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Kegiatan;
+use App\Periode;
+use App\Tugas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\CalonAnggota;
@@ -33,11 +36,14 @@ class HomeController extends Controller
                 ->rightJoin('departemens as d', 'd.id', '=', 'dc.id_departemen')
                 ->groupBy('dc.id_departemen')
                 ->get();
-            $totalCalonAnggota = CalonAnggota::all()->count();
+            $activePeriode = Periode::active()->first();
+            $totalKegiatan = Kegiatan::where('id_periode', $activePeriode->id)->count();
+            $totalTugas = Tugas::where('id_periode', $activePeriode->id)->count();
+            $totalCalonAnggota = CalonAnggota::where('id_periode', $activePeriode->id)->count();
             $totalCalonAnggotaL = CalonAnggota::where('jenis_kelamin', 'laki-laki')->count();
             $totalCalonAnggotaP = CalonAnggota::where('jenis_kelamin', 'perempuan')->count();
             // dd($grafikGender);
-            return view('adminDashboard', compact('grafikGender', 'totalCalonAnggota', 'totalCalonAnggotaL', 'totalCalonAnggotaP'));
+            return view('adminDashboard', compact('grafikGender', 'totalCalonAnggota', 'totalCalonAnggotaL', 'totalCalonAnggotaP','totalKegiatan','totalTugas'));
 //            return view('adminDashboard');
         }
 

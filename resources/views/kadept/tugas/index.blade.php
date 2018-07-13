@@ -170,24 +170,18 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group m-form__group">
-                        <label>Nama Tugas</label>
-                        <input type="text" name="nama_tugas" id="nama_tugas" class="form-control m-input m-input--air">
+                        <label>Nama Tugas <font color="red">*</font></label>
+                        <input type="text" name="nama_tugas" id="nama_tugas" class="form-control m-input m-input--air" required>
                     </div>
                     <div class="form-group m-form__group">
                         <label>Deskripsi</label>
                         <textarea type="text" name="deskripsi" id="deskripsi" class="form-control m-input m-input--air"></textarea>
                     </div>
                     <div class="form-group m-form__group">
-                        <label>Deadline</label>
-                        <input type="date" name="deadline" id="deadline" class="form-control m-input m-input--air">
+                        <label>Deadline <font color="red">*</font></label>
+                        <input type="date" name="deadline" id="deadline" class="form-control m-input m-input--air" required>
                     </div>
-                    {{--TODO : harusnya periode default--}}
-                    {{--<div class="form-group m-form__group">--}}
-                    {{--<label for="">--}}
-                    {{--Periode--}}
-                    {{--</label>--}}
-                    {{--<input type="email" class="form-control m-input m-input--air" placeholder="Periode">					--}}
-                    {{--</div>--}}
+					<font color="red">*</font> Wajib diisi
                 </div>
                 <div class="modal-footer">
                     <button type="reset" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -212,23 +206,18 @@
 			<div class="modal-body">
                 {!! Form::open(array('route' => 'tugas.store', 'enctype' => 'multipart/form-data')) !!}
 				<div class="form-group m-form__group">
-					<label for="">Nama Tugas</label>
-					<input type="text" name="nama_tugas" class="form-control m-input m-input--air" placeholder="Nama Tugas">
+					<label for="">Nama Tugas <font color="red">*</font></label>
+					<input type="text" name="nama_tugas" class="form-control m-input m-input--air" placeholder="Nama Tugas" required>
 				</div>
 				<div class="form-group m-form__group">
-					<label for="">Deskripsi</label>
+					<label for="">Deskripsi </label>
                     <textarea type="text" name="deskripsi" class="form-control m-input m-input--air" placeholder="Deskripsi"></textarea>
 				</div>
 				<div class="form-group m-form__group">
-					<label for="">Deadline</label>
-					<input type="date" name="deadline" class="form-control m-input m-input--air" placeholder="Deadline">
+					<label for="">Deadline <font color="red">*</font></label>
+					<input type="date" name="deadline" class="form-control m-input m-input--air" placeholder="Deadline" required>
 				</div>
-				{{--<div class="form-group m-form__group">--}}
-					{{--<label for="">--}}
-						{{--Periode--}}
-					{{--</label>--}}
-					{{--<input type="text" class="form-control m-input m-input--air" placeholder="Periode">--}}
-				{{--</div>--}}
+				<font color="red">*</font> Wajib diisi
 
 			</div>
 			<div class="modal-footer">

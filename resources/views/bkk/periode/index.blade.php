@@ -145,11 +145,11 @@
 			{!! Form::open(array('route' => 'periode.store', 'enctype' => 'multipart/form-data')) !!}
 			<div class="modal-body">
 				<div class="form-group m-form__group">
-					<label for="">Tahun</label>
+					<label for="">Tahun <font color="red">*</font></label>
 					<input type="year" name="tahun" class="form-control m-input m-input--air" id="" aria-describedby="emailHelp" placeholder="2017">
 				</div>
 				<div class="form-group m-form__group">
-					<label for="">Periode</label>
+					<label for="">Periode <font color="red">*</font></label>
 					<input type="text" name="periode" class="form-control m-input m-input--air" id="" aria-describedby="emailHelp" placeholder="1439H">
 				</div>
 				{{--<div class="m-form__group form-group">--}}
@@ -165,6 +165,7 @@
 						{{--</label>--}}
 					{{--</div>--}}
 			    {{--</div>--}}
+				<font color="red">*</font> Wajib diisi
 			<div class="modal-footer">
 				<button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
 				<button type="submit" class="btn btn-primary">Simpan</button>
@@ -194,11 +195,11 @@
 					</div>
 					<div class="modal-body">
 						<div class="form-group m-form__group">
-							<label for="">Tahun </label>
+							<label for="">Tahun <font color="red">*</font></label>
 							<input type="year" id="tahun" name="tahun" class="form-control m-input m-input--air">
 						</div>
 						<div class="form-group m-form__group">
-							<label for="">Tahun Periode</label>
+							<label for="">Tahun Periode <font color="red">*</font></label>
 							<input type="text" id="periode" name="periode" class="form-control m-input m-input--air">
 						</div>
 						{{--<div class="form-group m-form__group">--}}
@@ -218,6 +219,7 @@
 								{{--</label>--}}
 							{{--</div>--}}
 						{{--</div>--}}
+						<font color="red">*</font> Wajib diisi
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>

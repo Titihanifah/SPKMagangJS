@@ -106,14 +106,10 @@ class TugasController extends Controller
     public function store(Request $request)
     {
 
-        // create new object Employee
-        // TODO: use validator?
+        // validator
         $this->validate($request, [
             'nama_tugas' => 'required',
             'deadline' => 'required',
-            //TODO: kan ada id departemen cara nyambunginnya gimana? apakah perlu ditulis disini juga
-
-
         ]);
 
         $tugas = new Tugas;
@@ -164,6 +160,11 @@ class TugasController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'nama_tugas' => 'required',
+            'deadline' => 'required',
+        ]);
+
         $tugas= Tugas::find($id);
 
         $tugas->nama_tugas = $request->nama_tugas;

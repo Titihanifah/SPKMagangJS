@@ -83,7 +83,7 @@ class AdminDataCalonController extends Controller
             $detCalonAnggotaDua->prioritas         = 2;
             $detCalonAnggotaDua->save();
         }
-        Session::flash('message', 'Berhasil mengimpor!');
+        Session::flash('message', 'Berhasil mengimpor data calon anggota!');
         return redirect('admin/datacalon');
     }
 
@@ -114,6 +114,15 @@ class AdminDataCalonController extends Controller
         $this->validate($request, [
             'nama_calon_anggota' => 'required',
             'jenis_kelamin' => 'required',
+            'departemen_satu' => 'required',
+            'departemen_dua' => 'required',
+            'asal' => 'required',
+            'sumber_belajar_islam' => 'required',
+            'hardskill' => 'required',
+            'softskill' => 'required',
+            'riwayat_penyakit' => 'required',
+            'minat' => 'required'
+
         ]);
 
         $calonAnggota = new CalonAnggota;
@@ -186,6 +195,15 @@ class AdminDataCalonController extends Controller
         $this->validate($request, [
             'nama_calon_anggota' => 'required',
             'jenis_kelamin' => 'required',
+            'departemen_satu' => 'required',
+            'departemen_dua' => 'required',
+            'asal' => 'required',
+            'sumber_belajar_islam' => 'required',
+            'hardskill' => 'required',
+            'softskill' => 'required',
+            'riwayat_penyakit' => 'required',
+            'minat' => 'required',
+
         ]);
 
         $calonAnggota = CalonAnggota::find($id);

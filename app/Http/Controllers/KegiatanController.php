@@ -110,6 +110,7 @@ class KegiatanController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // validator
         $this->validate($request, [
             'nama_kegiatan' => 'required',
             'waktu' => 'required',

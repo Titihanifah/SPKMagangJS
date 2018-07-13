@@ -58,23 +58,18 @@ class AdminAkunController extends Controller
     public function store(Request $request)
     {
         //
-
-
         $this->validate($request, [
-            'username' => 'required',
+            'email' => 'required',
             'role' => 'required',
             'password' => 'required',
         ]);
 
         $user = new User;
 
-        $user->name = $request->username;
         $user->role = $request->role;
         $user->id_departemen = $request->id_departemen;
-        $nameDep = $request->name;
         $user->password = bcrypt($request->password);
-
-        $user->email = $nameDep.'departemen@gmail.com';
+        $user->email = $request->email;
         $user->save();
         Session::flash('message', 'Sukses menambah data akun');
 
@@ -114,7 +109,7 @@ class AdminAkunController extends Controller
     {
         //
         $this->validate($request, [
-            'name' => 'required',
+            'email' => 'required',
             'role' => 'required',
         ]);
 

@@ -73,6 +73,7 @@
                             <th rowspan="2">No</th>
                             <th rowspan="2">Nama</th>
                             <th rowspan="2">Jenis Kelamin</th>
+                            <th rowspan="2">Departemen</th>
                             <th rowspan="2">Pilihan 1</th>
                             <th colspan="3"><center>Nilai 1</center></th>
                             <th rowspan="2">Rekomendasi 1</th>
@@ -104,6 +105,7 @@
                                 <td>{{ $i++ }}</td>
                                 <td>{{ $key->first()->calonAnggota->nama_calon_anggota }} {{ $key->first()->favorit ? "⭐" : "" }}</td>
                                 <td>{{ $key->first()->calonAnggota->jenis_kelamin }}</td>
+                                <td>1: {{ $key->where('prioritas', 1)->first()->departemen->nama_departemen }}<br>2: {{ $key->where('prioritas', 2)->first()->departemen->nama_departemen }}</td>
                                 <td>{{ $key->first()->departemen->nama_departemen }}</td>
                                 <td>{{ $key->first()->nilai_kehadiran }}</td>
                                 <td>{{ $key->first()->nilai_tugas }}</td>

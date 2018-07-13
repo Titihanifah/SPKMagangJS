@@ -5,7 +5,7 @@
         <!-- BEGIN: Subheader -->
         <div class="m-subheader ">
             <div class="alert alert-success" role="alert">
-                Selamat datang <strong> {{  Auth::user()->name }}</strong>
+                Selamat datang <strong> {{  Auth::user()->name }}</strong>. Untuk alur dan detail penggunaan sistem dapat dilihat pada halaman <a class="m-link m-link--state m-link--primary" href="{{ url('/panduan') }}">Panduan</a>
             </div>
             <p>Mohon maaf untuk sementara data ini bersifat statis :)</p>
 
@@ -63,7 +63,7 @@
                                     <br>
                                     <span class="m-widget24__desc"></span>
                                     <span></span>
-                                    <span class="m-widget24__stats m--font-brand"><h1>30</h1></span>
+                                    <span class="m-widget24__stats m--font-brand"><h1>{{ $totalKegiatan }}</h1></span>
                                     <div class="m--space-10"></div>
                                     <div class="progress m-progress--sm">
                                         <div class="progress-bar m--bg-brand" role="progressbar" style="width: 100%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
@@ -81,7 +81,7 @@
                                     <h3 class="m-widget24__title">Total Tugas</h3>
                                     <br>
                                     <span class="m-widget24__desc"></span>
-                                    <span class="m-widget24__stats m--font-info"><h1>18</h1></span>
+                                    <span class="m-widget24__stats m--font-info"><h1>{{ $totalTugas }}</h1></span>
                                     <div class="m--space-10"></div>
                                     <div class="progress m-progress--sm">
                                         <div class="progress-bar m--bg-info" role="progressbar" style="width: 100%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
@@ -117,7 +117,7 @@
                                     <h4 class="m-widget24__title">Total Anggota</h4>
                                     <br>
                                     <span class="m-widget24__desc"></span>
-                                    <span class="m-widget24__stats m--font-success">276</span>
+                                    <span class="m-widget24__stats m--font-success">{{ $totalCalonAnggota }}</span>
                                     <div class="m--space-10"></div>
                                     <div class="progress m-progress--sm">
                                         <div class="progress-bar m--bg-success" role="progressbar" style="width: 100%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>

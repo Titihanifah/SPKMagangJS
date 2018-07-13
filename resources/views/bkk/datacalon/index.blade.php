@@ -107,18 +107,14 @@
                     <div class="row">
                         <div class="col-md-7">
                             <div class="custom-file">
-                                <input name="file_excel" type="file" class="custom-file-input" id="customFile">
+                                <input name="file_excel" type="file" class="custom-file-input" id="customFile" required>
                                 <label class="custom-file-label" for="customFile">
                                     Pilih Berkas
                                 </label>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-sm btn-primary" style="margin-right: 10px">
+                        <button type="submit" class="btn btn-sm btn-primary" style="margin-right: 10px" required>
                             Import
-                        </button>
-                        <span></span>
-                        <button type="reset" class="btn btn-sm btn-danger">
-                            Batal
                         </button>
                     </div>
 
@@ -187,6 +183,7 @@
                             <th>Alamat Jogja</th>
                             <th>Departemen Pilihan</th>
                             <th>Aksi</th>
+
                         </tr>
                         </thead>
                         <tbody>
@@ -264,7 +261,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">
-                        Tambah Data Calon
+                        Tambah Data Calon Anggota
                     </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">
@@ -277,16 +274,16 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group m-form__group">
-                                <label for="">Nama Calon Anggota</label>
+                                <label for="">Nama Calon Anggota <font color="red">*</font> </label>
                                 <input type="text" name="nama_calon_anggota" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Nama Calon Anggota">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="m-form__group form-group">
-                                <label for="">Jenis Kelamin</label>
+                                <label for="">Jenis Kelamin <font color="red">*</font></label>
                                 <div class="m-radio-inline">
                                     <label class="m-radio">
-                                        <input type="radio" name="jenis_kelamin" value="L">Laki-Laki
+                                        <input type="radio" name="jenis_kelamin" value="L" selected>Laki-Laki
                                         <span></span>
                                     </label>
                                     <label class="m-radio">
@@ -300,7 +297,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group m-form__group">
-                                <label for="">Departemen Pilihan 1</label>
+                                <label for="">Departemen Pilihan 1 <font color="red">*</font></label>
                                 <select name="departemen_satu" class="custom-select form-control col-md-12" required>
                                     <option value="">Pilih Departemen</option>
                                     @foreach($departemen as $key)
@@ -311,7 +308,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group m-form__group">
-                                <label for="">Departemen Pilihan 2</label>
+                                <label for="">Departemen Pilihan 2 <font color="red">*</font></label>
                                 <select name="departemen_dua" class="custom-select form-control col-md-12" required>
                                     <option value="">Pilih Departemen</option>
                                     @foreach($departemen as $key)
@@ -324,8 +321,8 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group m-form__group">
-                                <label for="">Asal</label>
-                                <input type="text" name="asal" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Asal">
+                                <label for="">Asal <font color="red">*</font></label>
+                                <input type="text" required name="asal" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Asal">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -338,8 +335,8 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group m-form__group">
-                                <label for="">Sumber Belajar Islam</label>
-                                <input type="text" name="sumber_belajar_islam" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Sumber Belajar Islam">
+                                <label for="">Sumber Belajar Islam <font color="red">*</font></label>
+                                <input type="text" required name="sumber_belajar_islam" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Al-Quran, Hadits, Mentoring, Kajian,dll">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -358,34 +355,35 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group m-form__group">
-                                <label for="">Minat</label>
-                                <input type="text" name="minat" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Minat">
+                                <label for="">Minat <font color="red">*</font></label>
+                                <input type="text" required name="minat" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Minat">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group m-form__group">
-                                <label for="">Hardskill</label>
-                                <input type="text" name="hardskill" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Hardskill">
+                                <label for="">Hardskill <font color="red">*</font></label>
+                                <input type="text" required name="hardskill" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Hardskill">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group m-form__group">
-                                <label for="">Softskill</label>
-                                <input type="text" name="softskill" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Softskill">
+                                <label for="">Softskill <font color="red">*</font></label>
+                                <input type="text" required name="softskill" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Softskill">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group m-form__group">
-                                <label for="">Riwayat Penyakit</label>
-                                <input type="text" name="riwayat_penyakit" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Riwayat Penyakit">
+                                <label for="">Riwayat Penyakit <font color="red">*</font></label>
+                                <input type="text" required name="riwayat_penyakit" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Riwayat Penyakit">
                             </div>
                         </div>
 
                     </div>
+                    <font color="red">*</font> Wajib diisi
                     <div class="modal-footer">
                         <button type="reset" class="btn btn-danger" data-dismiss="modal">Batal</button>
                         <button type="submit" class="btn btn-primary">Simpan</button>
@@ -406,7 +404,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">
-                            Edit Data Calon
+                            Edit Data Calon Anggota
                         </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">
@@ -419,8 +417,8 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group m-form__group">
-                                    <label for="">Nama Calon Anggota</label>
-                                    <input type="text" id="nama_calon_anggota" name="nama_calon_anggota" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Nama Calon Anggota">
+                                    <label for="">Nama Calon Anggota <font color="red">*</font></label>
+                                    <input type="text" id="nama_calon_anggota" name="nama_calon_anggota" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Nama Calon Anggota" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -466,8 +464,8 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group m-form__group">
-                                    <label for="">Asal</label>
-                                    <input type="text" name="asal" id="asal" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Asal">
+                                    <label for="">Asal <font color="red">*</font></label>
+                                    <input type="text" name="asal" id="asal" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Asal" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -480,13 +478,13 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group m-form__group">
-                                    <label for="">Sumber Belajar Islam</label>
-                                    <input type="text" name="sumber_belajar_islam" id="sumber_belajar_islam" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Sumber Belajar Islam">
+                                    <label for="">Sumber Belajar Islam <font color="red">*</font></label>
+                                    <input type="text" name="sumber_belajar_islam" id="sumber_belajar_islam" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Sumber Belajar Islam" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group m-form__group">
-                                    <label for="">Pengalaman Organisasi</label>
+                                    <label for="">Pengalaman Organisasi </label>
                                     <input type="text" name="pengalaman_organisasi" id="pengalaman_organisasi" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Pengalaman Organisasi">
                                 </div>
                             </div>
@@ -500,30 +498,30 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group m-form__group">
-                                    <label for="">Minat</label>
-                                    <input type="text" name="minat" id="minat" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Minat">
+                                    <label for="">Minat <font color="red">*</font></label>
+                                    <input type="text" name="minat" id="minat" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Minat" required>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group m-form__group">
-                                    <label for="">Hardskill</label>
-                                    <input type="text" name="hardskill" id="hardskill" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Hardskill">
+                                    <label for="">Hardskill <font color="red">*</font></label>
+                                    <input type="text" name="hardskill" id="hardskill" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Hardskill" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group m-form__group">
-                                    <label for="">Softskill</label>
-                                    <input type="text" name="softskill" id="softskill" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Softskill">
+                                    <label for="">Softskill <font color="red">*</font></label>
+                                    <input type="text" name="softskill" id="softskill" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Softskill" required>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group m-form__group">
-                                    <label for="">Riwayat Penyakit</label>
-                                    <input type="text" name="riwayat_penyakit" id="riwayat_penyakit" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Riwayat Penyakit">
+                                    <label for="">Riwayat Penyakit <font color="red">*</font></label>
+                                    <input type="text" name="riwayat_penyakit" id="riwayat_penyakit" class="form-control m-input m-input--air" aria-describedby="emailHelp" placeholder="Riwayat Penyakit" required>
                                 </div>
                             </div>
 
