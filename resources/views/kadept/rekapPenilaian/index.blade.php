@@ -45,7 +45,7 @@
 							<th rowspan="2" width="10%">No</th>
 							<th rowspan="2">Nama Calon Anggota</th>
 							<th rowspan="2">Jenis Kelamin</th>
-							<th rowspan="2">Departemen</th>
+							{{--<th rowspan="2">Departemen</th>--}}
 							<th colspan="2"><center>Total Nilai</center></th>
 							<th rowspan="2">Hasil Akhir</th>
 							<th rowspan="2">Aksi</th>
@@ -62,7 +62,7 @@
 							<td width="10%">{{ $loop->iteration }}</td>
 							<td>{{ $key->calonAnggota->nama_calon_anggota }} {{ $key->favorit ? "⭐" : "" }} </td>
 							<td>{{ $key->calonAnggota->jenis_kelamin }}</td>
-							<td>1: {{ $key->where('prioritas', 1)->first() }}<br>2: {{ $key->where('prioritas', 2)->first()->departemen->nama_departemen }}</td>
+{{--							<td>1: {{ $key->where('prioritas', 1)->first() }}<br>2: {{ $key->where('prioritas', 2)->first()->departemen->nama_departemen }}</td>--}}
 							<td><center>{{ $key->nilai_kehadiran }}</center></td>
 
 							<td><center>{{ $key->nilai_tugas }}</center></td>
