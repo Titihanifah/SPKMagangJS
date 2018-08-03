@@ -7,10 +7,12 @@ use App\Kegiatan;
 use App\Periode;
 use App\Tugas;
 use App\User;
+use function compact;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use function response;
 
 class AdminController extends Controller
 {
@@ -27,15 +29,25 @@ class AdminController extends Controller
     public function kegiatan()
     {
         $activePeriode = Periode::active()->first();
+        $departemen = Departemen::all();
         $kegiatan = Kegiatan::all()->where('id_periode', $activePeriode->id);
-//        return response()->json($kegiatan);
+
+        return view('bkk.kegiatan.index',compact('kegiatan','departemen'));
+    }
+
+    public function filterDepartemen(Request $request)
+    {
+        $activePeriode = Periode::active()->first();
+        $kegiatan = Kegiatan::where('id_departemen',$request->id_departemen)->get();
+//        dd("apa");
         return view('bkk.kegiatan.index',compact('kegiatan'));
     }
 
     public function tugas()
     {
         $activePeriode = Periode::active()->first();
-        $tugas = Tugas::with('departemen')->get()->where('id_periode', $activePeriode->id);
+        $tugas = Tugas::with('departemen')->get()
+            ->where('id_periode', $activePeriode->id);
         return view('bkk.tugas.index', compact('tugas'));
     }
 

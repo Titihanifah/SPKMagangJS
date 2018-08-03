@@ -50,20 +50,17 @@ class PresensiController extends Controller
      */
     public function rekap()
     {
-        //
-//        $detailCalonAnggota   = DetailCalonAnggotaController::where('id', Auth::user()->id_departemen)->with('departemen');
+        // menampilkan nama calon anggota berdasarkan user departemen
         $detailCalonAnggota =  Auth::user()->departemen->detailCalonAnggota;
-        $activePeriode = Periode::active()->first();
+        $activePeriode = Periode::active()->first(); // variabel periode aktif
         $kegiatan   = Auth::user()->departemen->kegiatans->where('id_periode', $activePeriode->id);
-//        dd($kegiatan);
-
-
-//        dd(User::where('id', Auth::user()->id)->with('departemen.detailCalonAnggota')->first());
+//      // lakukan penambahan data otomatis ketika halaman pertama kali dibuka
         foreach ($detailCalonAnggota as $value) {
 
             foreach ($kegiatan as $key){
 
-                if(Presensi::where('id_detail_calon_anggota', $value->id)->where('id_kegiatan', $key->id)->count() == 0) {
+                if(Presensi::where('id_detail_calon_anggota', $value->id)
+                        ->where('id_kegiatan', $key->id)->count() == 0) {
                     $presensi = new Presensi;
                     $presensi->id_detail_calon_anggota = $value->id;
                     $presensi->id_kegiatan = $key->id;
@@ -73,13 +70,11 @@ class PresensiController extends Controller
             }
         }
         $presensi   = Presensi::all();
-//        $anggotaP = Presensi::where(groupBy('id_calon_anggota'));
-//        $departemen = Departemen::all();
-
         $userKegiatan = User::where('id', Auth::user()->id)->with('departemen.kegiatans.presensi')->first();
 //        return response()->json($userKegiatan);
 
-        return view('kadept.presensi.rekapPresensi',compact('kegiatan','detailCalonAnggota','userKegiatan','presensi','activePeriode'));
+        return view('kadept.presensi.rekapPresensi',
+            compact('kegiatan','detailCalonAnggota','userKegiatan','presensi','activePeriode'));
     }
     /**
     * numpang controller ya :D

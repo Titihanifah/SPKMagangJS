@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DetailCalonAnggota;
 use App\Kegiatan;
 use App\Periode;
 use App\Tugas;
@@ -30,32 +31,48 @@ class HomeController extends Controller
     public function index()
     {
         if(Auth::user()->role == 0){
+            // join untuk menampilkan jumlah calon anggota sesuai dengan departemen
             $grafikGender = CalonAnggota::select('d.nama_departemen', DB::raw('COUNT(dc.id) as jumlah'))->join('detail_calon_anggotas as dc', 'dc.id_calon_anggota', '=', 'calon_anggotas.id')
                 ->rightJoin('departemens as d', 'd.id', '=', 'dc.id_departemen')
                 ->groupBy('dc.id_departemen')
                 ->get();
             $activePeriode = Periode::active()->first();
-            $totalKegiatan = Kegiatan::where('id_periode', $activePeriode->id)->count();
-            $totalTugas = Tugas::where('id_periode', $activePeriode->id)->count();
-            $totalCalonAnggota = CalonAnggota::where('id_periode', $activePeriode->id)->count();
-            $totalCalonAnggotaL = CalonAnggota::where('jenis_kelamin', 'laki-laki')->count();
-            $totalCalonAnggotaP = CalonAnggota::where('jenis_kelamin', 'perempuan')->count();
+            $totalKegiatan = Auth::user()->departemen->kegiatans->where('id_periode', $activePeriode->id)->count();
+            $totalTugas = Auth::user()->departemen->tugas->where('id_periode', $activePeriode->id)->count();
+            $favorit = Auth::user()->departemen->detailCalonAnggota->where('favorit','=',1)->where('id_periode', $activePeriode->id)->count();
+            $totalCalonAnggota = Auth::user()->departemen->detailCalonAnggota->where('id_periode', $activePeriode->id)->count();
+            $totalCalonAnggotaL = Auth::user()->departemen->detailCalonAnggota->where('jenis_kelamin', 'laki-laki')->count();
+            $totalCalonAnggotaP = Auth::user()->departemen->detailCalonAnggota->where('jenis_kelamin', 'perempuan')->count();
 
-            return view('dashboard', compact('grafikGender', 'totalCalonAnggota', 'totalCalonAnggotaL', 'totalCalonAnggotaP','totalKegiatan','totalTugas'));
+            return view('dashboard',
+                compact('grafikGender', 'totalCalonAnggota', 'totalCalonAnggotaL', 'totalCalonAnggotaP','totalKegiatan','totalTugas','favorit'));
         }else{
+
             $grafikGender = CalonAnggota::select('d.nama_departemen', DB::raw('COUNT(dc.id) as jumlah'))->join('detail_calon_anggotas as dc', 'dc.id_calon_anggota', '=', 'calon_anggotas.id')
                 ->rightJoin('departemens as d', 'd.id', '=', 'dc.id_departemen')
                 ->groupBy('dc.id_departemen')
                 ->get();
-            $activePeriode = Periode::active()->first();
+
+            $favoritAll = DetailCalonAnggota::where('favorit','=',1);
+
+            $activePeriode = Periode::active()->first(); // variabel set periode yg aktif
+            // jumlah total seluruh kegiatan pd semua departemen
             $totalKegiatan = Kegiatan::where('id_periode', $activePeriode->id)->count();
+            // jumlah total seluruh tugas pd semua departemen
             $totalTugas = Tugas::where('id_periode', $activePeriode->id)->count();
+            // jumlah total seluruh anggota
             $totalCalonAnggota = CalonAnggota::where('id_periode', $activePeriode->id)->count();
-            $totalCalonAnggotaL = CalonAnggota::where('jenis_kelamin', 'laki-laki')->count();
-            $totalCalonAnggotaP = CalonAnggota::where('jenis_kelamin', 'perempuan')->count();
-            // dd($grafikGender);
-            return view('adminDashboard', compact('grafikGender', 'totalCalonAnggota', 'totalCalonAnggotaL', 'totalCalonAnggotaP','totalKegiatan','totalTugas'));
-//            return view('adminDashboard');
+            // jumlah calon anggota laki-laki
+            $totalCalonAnggotaL = CalonAnggota::where('jenis_kelamin', 'laki-laki')
+                                ->where('id_periode', $activePeriode->id)->count();
+            // jumlah calon anggota perempuan
+            $totalCalonAnggotaP = CalonAnggota::where('jenis_kelamin', 'perempuan')
+                                ->where('id_periode', $activePeriode->id)->count();
+            // jumlah calon anggota yang dikategorikan favorit
+            $favorit= DetailCalonAnggota::where('favorit','=', 1)->count();
+            return view('adminDashboard', compact( 'totalCalonAnggota','favoritAll',
+                        'totalCalonAnggotaL', 'totalCalonAnggotaP','totalKegiatan','totalTugas','favorit','grafikGender'));
+
         }
 
 //        return view('home');

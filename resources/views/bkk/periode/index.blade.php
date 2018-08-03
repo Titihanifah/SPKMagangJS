@@ -146,11 +146,11 @@
 			<div class="modal-body">
 				<div class="form-group m-form__group">
 					<label for="">Tahun <font color="red">*</font></label>
-					<input type="year" name="tahun" class="form-control m-input m-input--air" id="" aria-describedby="emailHelp" placeholder="2017">
+					<input required type="year" name="tahun" class="form-control m-input m-input--air" id="" aria-describedby="emailHelp" placeholder="2017">
 				</div>
 				<div class="form-group m-form__group">
 					<label for="">Periode <font color="red">*</font></label>
-					<input type="text" name="periode" class="form-control m-input m-input--air" id="" aria-describedby="emailHelp" placeholder="1439H">
+					<input required type="text" name="periode" class="form-control m-input m-input--air" id="" aria-describedby="emailHelp" placeholder="1439H">
 				</div>
 				{{--<div class="m-form__group form-group">--}}
 					{{--<label for="">Status</label>--}}
@@ -196,11 +196,11 @@
 					<div class="modal-body">
 						<div class="form-group m-form__group">
 							<label for="">Tahun <font color="red">*</font></label>
-							<input type="year" id="tahun" name="tahun" class="form-control m-input m-input--air">
+							<input required type="year" id="tahun" name="tahun" class="form-control m-input m-input--air">
 						</div>
 						<div class="form-group m-form__group">
 							<label for="">Tahun Periode <font color="red">*</font></label>
-							<input type="text" id="periode" name="periode" class="form-control m-input m-input--air">
+							<input required type="text" id="periode" name="periode" class="form-control m-input m-input--air">
 						</div>
 						{{--<div class="form-group m-form__group">--}}
 							{{--<label for="">Status</label>--}}

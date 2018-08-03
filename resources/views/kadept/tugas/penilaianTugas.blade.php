@@ -62,6 +62,7 @@
 							<div class="col-xl-12 order-2 order-xl-1">
 								<div class="form-group m-form__group row align-items-center">
 									<div class="col-md-4">
+										<h5>Range penilaian tugas <b><font color="red">1 - 100</font></b></h5>
 									</div>
 									<div class="col-md-5">
 									</div>

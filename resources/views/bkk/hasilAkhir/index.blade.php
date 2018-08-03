@@ -74,11 +74,11 @@
                             <th rowspan="2">Nama</th>
                             <th rowspan="2">Jenis Kelamin</th>
                             <th rowspan="2">Departemen</th>
-                            <th rowspan="2">Pilihan 1</th>
+                            {{--<th rowspan="2">Pilihan 1</th>--}}
                             <th colspan="3"><center>Nilai 1</center></th>
                             <th rowspan="2">Rekomendasi 1</th>
                             <th rowspan="2">Rekomendasi 2</th>
-                            <th rowspan="2">Pilihan 2</th>
+                            {{--<th rowspan="2">Pilihan 2</th>--}}
                             <th colspan="3"><center>Nilai 2</center></th>
 
                             {{--<th rowspan="2">Aksi</th>--}}
@@ -98,30 +98,25 @@
                         </thead>
                         <tbody>
                         @php $i=1 @endphp
+                        {{--@php dd($detailCalonAnggotas) @endphp--}}
                         @foreach ($detailCalonAnggotas as $key)
                             @if($key->first()->calonAnggota->id_periode == $activePeriode->id)
                             <tr>
 
                                 <td>{{ $i++ }}</td>
-                                <td>{{ $key->first()->calonAnggota->nama_calon_anggota }} {{ $key->first()->favorit ? "⭐" : "" }}</td>
-                                <td>{{ $key->first()->calonAnggota->jenis_kelamin }}</td>
+                                <td>{{ $key->where('prioritas',1)->first()->calonAnggota->nama_calon_anggota }} {{ $key->first()->favorit ? "⭐" : "" }}</td>
+                                <td>{{ $key->where('prioritas',1)->first()->calonAnggota->jenis_kelamin }}</td>
                                 <td>1: {{ $key->where('prioritas', 1)->first()->departemen->nama_departemen }}<br>2: {{ $key->where('prioritas', 2)->first()->departemen->nama_departemen }}</td>
-                                <td>{{ $key->first()->departemen->nama_departemen }}</td>
-                                <td>{{ $key->first()->nilai_kehadiran }}</td>
-                                <td>{{ $key->first()->nilai_tugas }}</td>
-                                <td>{{ $key->first()->total_nilai }}</td>
-                                <td data-toggle="m-tooltip" title="{{ $key->first()->keterangan }}" data-skin="dark">{{ $key->first()->rekomendasi }}</td>
-                                <td data-toggle="m-tooltip" title="{{ $key[1]->keterangan }}" data-skin="dark">{{ $key[1]->rekomendasi }}</td>
-                                <td>{{ $key[1]->departemen->nama_departemen }}</td>
-                                <td>{{ $key[1]->nilai_kehadiran }}</td>
-                                <td>{{ $key[1]->nilai_tugas }}</td>
-                                <td>{{ $key[1]->total_nilai }}</td>
-
-                                {{--<td>--}}
-                                    {{--<a href="#" class="btn btn-success">Terima</a>--}}
-                                    {{--<a href="#" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only"><i class="fa fa-rotate-right"></i></a>--}}
-
-                                {{--</td>--}}
+                                {{--<td>{{ $key->first()->departemen->nama_departemen }}</td>--}}
+                                <td>{{ $key->where('prioritas',1)->first()->nilai_kehadiran }}</td>
+                                <td>{{ $key->where('prioritas',1)->first()->nilai_tugas }}</td>
+                                <td>{{ $key->where('prioritas',1)->first()->total_nilai }}</td>
+                                <td data-toggle="m-tooltip" title="{{ $key->where('prioritas',1)->first()->keterangan }}" data-skin="dark">{{ $key->first()->rekomendasi }}</td>
+                                <td data-toggle="m-tooltip" title="{{ $key->where('prioritas',1)->first()->keterangan }}" data-skin="dark">{{ $key[1]->rekomendasi }}</td>
+                                {{--<td>{{ $key[1]->departemen->nama_departemen }}</td>--}}
+                                <td>{{ $key->where('prioritas',2)->first()->nilai_tugas }}</td>
+                                <td>{{ $key->where('prioritas',2)->first()->nilai_kehadiran }}</td>
+                                <td>{{ $key->where('prioritas',2)->first()->total_nilai }}</td>
                                 <td>
                                     <select class="custom-select form-control col-md-12">
                                         {{--TODO: selected--}}
@@ -129,7 +124,7 @@
                                             Pilih Departemen
                                         </option>
                                         @foreach($departemen as $key)
-                                            <option value="{{ $key->id }}">{{ $key->nama_departemen }}</option>
+                                            <option id="{{  }}" value="{{ $key->id }}">{{ $key->nama_departemen }}</option>
                                         @endforeach
                                     </select>
                                 </td>
@@ -169,11 +164,31 @@
                 scrollX:        true,
                 scrollCollapse: true,
                 fixedColumns:   {
-                    leftColumns: 3,
+                    leftColumns: 4,
                     rightColumns: 1,
                 }
             } );
         } );
+
+
+        function setDepartemen(theForm) {
+            var departemen = JSON.parse(theForm.id)[0];
+            var calon_anggota = JSON.parse(theForm.id)[1];
+//            $(".hadir-"+kegiatan.id+"-"+detail_calon_anggota.id).hide();
+//            $(".tidakhadir-"+kegiatan.id+"-"+detail_calon_anggota.id).show();
+            $.ajax({
+                data : {
+                    nama_departemen: departemen.nama_departemen,
+                    id_calon: calon_anggota.id,
+                },
+                type: 'POST',
+                url: '{{ url('/') }}/api/hasilakhir/simpan',
+                success: function (response) { // on success..
+                    console.log(response); // update the DIV
+//                window.onload = function(){document.body.style.cursor='default';}
+                }
+            });
+        }
     </script>
     <style type="text/css">
 

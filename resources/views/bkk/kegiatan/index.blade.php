@@ -43,6 +43,20 @@
                         <div class="row align-items-center">
                             <div class="col-xl-12 order-2 order-xl-1">
                                 <div class="form-group m-form__group row align-items-center">
+                                    <div class="col-md-2">
+                                        <h6 class="pull-right">Departemen:</h6>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <select id="filterDept" class="custom-select form-control col-md-12" onchange="pilihDepartemen()">
+                                            @foreach($departemen as $key)
+                                                <option value="{{ $key->id }}">{{ $key->nama_departemen }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                    </div>
+                                    <div class="col-md-3">
+                                    </div>
                                     {{--<button class="btn m-btn--square  btn-outline-primary" data-toggle="modal" data-target="#m-tambah-kegiatan"><i class="m-menu__link-icon flaticon-plus"></i> Tambah</button>--}}
                                 </div>
                             </div>
@@ -132,6 +146,55 @@
             });
             @endif
         } );
+
+        // request pilih departemen
+        {{--function pilihDepartemen() {--}}
+            {{--var departemen = $('#filterDept').val();--}}
+            {{--console.log(departemen);--}}
+
+            {{--$.ajax({--}}
+                {{--data:{--}}
+                    {{--id_departemen : departemen,--}}
+                {{--},--}}
+                {{--type:'GET',--}}
+                {{--url:'{{ url('/') }}/api/kegiatan/departemen',--}}
+                {{--success: function (response) {--}}
+                    {{--console.log(response);--}}
+                {{--}--}}
+
+            {{--});--}}
+
+
+        {{--}--}}
+
+
+        function pilihDepartemen() {
+
+            var table = $('.').DataTable({
+                "destroy": true,
+                "ajax":"{{ url('/') }}/api/kegiatan/departemen",
+                "columns": [
+                    {"":}
+                ]
+            })
+
+            var departemen = $('#filterDept').val();
+            console.log(departemen);
+
+            $.ajax({
+                data:{
+                    id_departemen : departemen,
+                },
+                type:'GET',
+                url:'{{ url('/') }}/api/kegiatan/departemen',
+                success: function (response) {
+                    console.log(response);
+                }
+
+            });
+
+
+        }
 
     </script>
 

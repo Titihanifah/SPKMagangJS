@@ -138,11 +138,15 @@
                     {!! Form::open(array('route' => 'akun.store', 'enctype' => 'multipart/form-data')) !!}
                     <div class="form-group m-form__group">
                         <label for="">Email</label>  <font color="red">*</font>
-                        <input type="text" name="email" class="form-control m-input m-input--air"  placeholder="Username">
+                        <input type="text" name="email" class="form-control m-input m-input--air"  placeholder="example@gmail.com">
+                    </div>
+                    <div class="form-group m-form__group">
+                        <label for="">Username</label>  <font color="red">*</font>
+                        <input type="text" name="name" class="form-control m-input m-input--air"  placeholder="Username">
                     </div>
                     <div class="form-group m-form__group">
                         <label for="">Password</label>
-                        <input type="password" name="password"  class="form-control m-input m-input--air" id="exampleInputEmail1" placeholder="Password">
+                        <input type="password" name="password"  class="form-control m-input m-input--air" placeholder="Password">
                     </div>
                     {{--<div class="form-group m-form__group">--}}
                         {{--<label for="">--}}
@@ -198,13 +202,13 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group m-form__group">
-                            <label for="">Username</label>
+                            <label for="">Email</label>
                             <input type="text" id="email" name="email" class="form-control m-input m-input--air">
                         </div>
-                        {{--<div class="form-group m-form__group">--}}
-                            {{--<label for="">Password</label>--}}
-                            {{--<input type="password" id="password" name="password" class="form-control m-input m-input--air">--}}
-                        {{--</div>--}}
+                        <div class="form-group m-form__group">
+                            <label for="">Username</label>
+                            <input type="text" id="name" name="name" class="form-control m-input m-input--air">
+                        </div>
                         <div class="form-group m-form__group">
                             <label for="">Role</label>
                             <select id="role" id="role" name="role" class="custom-select form-control col-md-12">

@@ -46,11 +46,11 @@ class DetailCalonAnggotaController extends Controller
 
     public function simpan(Request $request)
     {
-//        dd($request);
         $p = null;
         $detailCalonAnggota = DetailCalonAnggota::where('id', $request->id_detail_calon_anggota)
             ->where('id_departemen', $request->id_departemen)
             ->get();
+        // jika sudah terdapat data, lakukan pencarian dengan id
         if ($detailCalonAnggota->count() > 0) {
             $p = DetailCalonAnggota::find($detailCalonAnggota[0]->id);
         } else {

@@ -21,15 +21,19 @@ class AdminDataCalonController extends Controller
      */
     public function index()
     {
-
-        $calonAnggota = CalonAnggota::all();
+        $activePeriode = Periode::active()->first(); // variabel periode aktif
+        // data calon anggota berdasarkan periode yang aktif
+        $calonAnggota = CalonAnggota::all()->where('id_periode', $activePeriode->id);
         $detailCalonAnggota = DetailCalonAnggota::all();
         $departemen = Departemen::all();
-        return view('bkk.datacalon.index', compact('calonAnggota', 'detailCalonAnggota', 'departemen'));
+        // redirect halaman view dengan variabel calon anggota, detail calon, departemen
+        return view('bkk.datacalon.index',
+            compact('calonAnggota', 'detailCalonAnggota', 'departemen','activePeriode'));
     }
 
     public function importExcel(Request $request)
     {
+        // validasi file xls
         $this->validate($request, [
             'file_excel' => 'required|file' // xls file
         ]);
@@ -38,24 +42,27 @@ class AdminDataCalonController extends Controller
         foreach ($results as $key) {
             $errors = [];
             $errCount = 0;
-
             $departemenSatu = Departemen::where('nama_departemen', $key->departemen_satu)->get();
             $departemenDua = Departemen::where('nama_departemen', $key->departemen_dua)->get();
             $periodeAktif = Periode::where('status', 1)->get();
+            // pengecekan jika departemen 1 tidak valid
             if($departemenSatu->count() == 0) {
                 $errors[] = "Nama departemen ".$key->departemen_satu." tidak valid";
             }
+            // pengecekan jika departemen 2 tidak valid
             if($departemenDua->count() == 0) {
                 $errors[] = "Nama departemen ".$key->departemen_dua." tidak valid";
             }
+            // pengecekan data periode
             if($periodeAktif->count() == 0) {
                 $errors[] = "Tidak ada periode yang sedang aktif";
             }
-
+            // jika terdapat kesalahan import pada baris tertentu
             if (!empty($errors)) {
                 array_unshift($errors, "Terdapat kesalahan pada baris data dengan nama ".$key->nama_calon_anggota);
                 throw ValidationException::withMessages($errors);
             }
+            // membuat objek baru calon anggota dan disimpan ke DB
             $calonAnggota                           = new CalonAnggota;
             $calonAnggota->nama_calon_anggota       = $key->nama_calon_anggota;
             $calonAnggota->jenis_kelamin            = ($key->jenis_kelamin == 'P' ? 'perempuan' : 'laki-laki');
@@ -89,12 +96,12 @@ class AdminDataCalonController extends Controller
 
     public function downloadExcel()
     {
-        Excel::create('TemplateDataSiswa', function($excel) {
+        Excel::create('TemplateDataCalon', function($excel) {
             $excel->sheet('Sheet1', function($sheet){
                 $sheet->row(1, array('nama_calon_anggota', 'jenis_kelamin', 'departemen_satu', 'departemen_dua','asal','alamat_yogyakarta','sumber_belajar_islam','pengalaman_organisasi','pengalaman_kepanitiaan','minat','hardskill','softskill','riwayat_penyakit'));
-                $sheet->row(2, array('Rhenita Hartanti','P','Kemuslimahan','BSO GMMQ','Kebumen','Terban','Kajian','Rohis','-','desain','editing video','public speaking','-'));
-                $sheet->row(3, array('Nugrageni','P','Jaringan','BSO GMMQ','Karanganyar','Pogung','Buku','OSO','-','-','desain kaos','public speaking','magh'));
-                $sheet->row(4, array('Prasetyo','L','BSO DOSHA','Jaringan','Bojonegoro','Sagan','-','OSIS','-','-','developing web','aktif','-'));
+                $sheet->row(2, array('Risa Pramita','P','Kemuslimahan','BSO GMMQ','Kebumen','Terban','Kajian','Rohis','-','desain','editing video','public speaking','-'));
+                $sheet->row(3, array('Fitria Insani','P','Jaringan','BSO GMMQ','Karanganyar','Pogung','Buku','OSO','-','-','desain kaos','public speaking','magh'));
+                $sheet->row(4, array('Yoga Pratama','L','BSO DOSHA','Jaringan','Bojonegoro','Sagan','-','OSIS','-','-','developing web','aktif','-'));
 
             });
         })->download('xlsx');
@@ -109,8 +116,6 @@ class AdminDataCalonController extends Controller
     public function store(Request $request)
     {
         $errors = [];
-//         create new object DataCalon
-//        TODO: fieldnya harusnya lengkap
         $this->validate($request, [
             'nama_calon_anggota' => 'required',
             'jenis_kelamin' => 'required',
@@ -125,6 +130,7 @@ class AdminDataCalonController extends Controller
 
         ]);
 
+        // create new object DataCalon
         $calonAnggota = new CalonAnggota;
         // fill the object
         $periodeAktif = Periode::where('status', 1)->get();
@@ -248,9 +254,8 @@ class AdminDataCalonController extends Controller
      */
     public function destroy($id)
     {
-        //TODO: apakah data calon anggota benar-benar dihapus?
+        // hapus data
         CalonAnggota::destroy($id);
-
         Session::flash('message', 'Berhasil menghapus data!');
         return redirect('admin/datacalon');
     }

@@ -7,7 +7,7 @@
             <div class="d-flex align-items-center">
                 <div class="mr-auto">
                     <h3 class="m-subheader__title m-subheader__title--separator">
-                        Data Calon
+                        Calon Anggota
                     </h3>
                     <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
                         <li class="m-nav__item m-nav__item--home">
@@ -21,7 +21,7 @@
                         <li class="m-nav__item">
                             <a href="" class="m-nav__link">
 							<span class="m-nav__link-text">
-								Data Calon
+								Calon Anggota
 							</span>
                             </a>
                         </li>
@@ -129,7 +129,7 @@
                     <div class="m-portlet__head-caption">
                         <div class="m-portlet__head-title">
                             <h3 class="m-portlet__head-text">
-                                <i class="m-menu__link-icon flaticon-users"></i> Data Calon
+                                <i class="m-menu__link-icon flaticon-users"></i> Calon Anggota
                             </h3>
                         </div>
                     </div>
@@ -142,22 +142,13 @@
                             <div class="col-xl-12 order-2 order-xl-1">
                                 <div class="form-group m-form__group row align-items-center">
                                     <div class="col-md-4">
-                                        {{--<a href="#" data-toggle="modal" data-target="#m-tambah-kriteria" class="btn m-btn--square  btn-outline-primary"><i class="m-menu__link-icon flaticon-plus"></i> Tambah</a>--}}
+
                                         <button class="btn m-btn--square  btn-outline-primary" data-toggle="modal" data-target="#m-tambah-datacalon"><i class="m-menu__link-icon flaticon-plus"></i> Tambah</button>
                                     </div>
                                     <div class="col-md-5">
 
                                     </div>
                                     <div class="col-md-3">
-                                        {{--<div class="m-input-icon m-input-icon--left">--}}
-                                            {{--<input type="text" class="form-control m-input" placeholder="Search..."--}}
-                                                       {{--id="generalSearch">--}}
-                                            {{--<span class="m-input-icon__icon m-input-icon__icon--left">--}}
-											{{--<span>--}}
-												{{--<i class="la la-search"></i>--}}
-											{{--</span>--}}
-										{{--</span>--}}
-                                            {{--</div>--}}
                                     </div>
                                 </div>
                             </div>
@@ -263,6 +254,7 @@
                     <h5 class="modal-title" id="exampleModalLabel">
                         Tambah Data Calon Anggota
                     </h5>
+
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">
 						&times;
@@ -270,6 +262,10 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    <div class="m-badge m-badge--info m-badge--wide pull-right">
+                        <h6>Periode Aktif : {{ $activePeriode->tahun }}/{{ $activePeriode->periode }}</h6>
+                    </div>
+                    <hr>
                     {!! Form::open(array('route' => 'datacalon.store', 'enctype' => 'multipart/form-data')) !!}
                     <div class="row">
                         <div class="col-md-6">
@@ -414,6 +410,10 @@
                     </div>
                     <div class="modal-body">
                         {{--{!! Form::open(array('route' => 'datacalon.store', 'enctype' => 'multipart/form-data')) !!}--}}
+                        <div class="m-badge m-badge--info m-badge--wide pull-right">
+                            <h6>Periode Aktif : {{ $activePeriode->tahun }}/{{ $activePeriode->periode }}</h6>
+                        </div>
+                        <hr>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group m-form__group">

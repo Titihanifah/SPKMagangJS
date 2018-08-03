@@ -7,7 +7,7 @@
             <div class="alert alert-success" role="alert">
                 Selamat datang <strong> {{  Auth::user()->name }}</strong>. Untuk alur dan detail penggunaan sistem dapat dilihat pada halaman <a class="m-link m-link--state m-link--primary" href="{{ url('/panduan') }}">Panduan</a>
             </div>
-            <p>Mohon maaf untuk sementara data ini bersifat statis :)</p>
+            {{--<p>Mohon maaf untuk sementara data ini bersifat statis :)</p>--}}
 
             <div class="d-flex align-items-center">
                 <div class="mr-auto">
@@ -96,10 +96,10 @@
                             <!--begin::New Orders-->
                             <div class="m-widget24">
                                 <div class="m-widget24__item">
-                                    <h4 class="m-widget24__title">Tanpa Rekomendasi</h4>
+                                    <h4 class="m-widget24__title">Favorit</h4>
                                     <br>
                                     <span class="m-widget24__desc"></span>
-                                    <span class="m-widget24__stats m--font-danger"><h1>10</h1></span>
+                                    <span class="m-widget24__stats m--font-danger">{{ $favorit }}</span>
                                     <div class="m--space-10"></div>
                                     <div class="progress m-progress--sm">
                                         <div class="progress-bar m--bg-danger" role="progressbar" style="width: 100%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
@@ -195,56 +195,10 @@
                                 {{--</div>--}}
                                 {{--</div>--}}
                                 {{--</div>--}}
-                                <div class="col-xl-4">
-                                    <!--begin:: Widgets/Profit Share-->
-                                    <div class="m-widget14">
-                                        <div class="m-widget1__item">
-                                            <div class="row m-row--no-padding align-items-center">
-                                                <div class="col">
-                                                    <h5 class="m-widget1__title">
-                                                        Total Calon Anggota
-                                                    </h5>
 
-                                                    </span>
-                                                </div>
-                                                <div class="col m--align-right">
-												<span class="m-widget1__number m--font-brand">
-													57
-												</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row  align-items-center">
-                                            <div class="col">
-                                                <div id="m_chart_profit_share" class="m-widget14__chart" style="height: 160px">
-                                                    <div class="m-widget14__stat">
-                                                        P/L
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="m-widget14__legends">
-                                                    <div class="m-widget14__legend">
-                                                        <span class="m-widget14__legend-bullet m--bg-accent"></span>
-                                                        <span class="m-widget14__legend-text">
-														Laki-laki
-													</span>
-                                                    </div>
-                                                    <div class="m-widget14__legend">
-                                                        <span class="m-widget14__legend-bullet m--bg-warning"></span>
-                                                        <span class="m-widget14__legend-text">
-														Perempuan
-													</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--end:: Widgets/Profit Share-->
-                                </div>
-                                <div class="col-xl-8">
-                                    <canvas id="densityChart" width="600" height="400"></canvas>
-                                </div>
+                                {{--<div class="col-xl-10">--}}
+                                    {{--<canvas id="densityChart" width="600" height="400"></canvas>--}}
+                                {{--</div>--}}
                             </div>
                         </div>
                     </div>
@@ -539,9 +493,7 @@
                     <!--Begin::Section-->
                 </div>
 
-                <div class="col-md-12">
-                    <canvas id="densityChart" width="600" height="400"></canvas>
-                </div>
+
             </div>
         </div>
     </div>
@@ -568,8 +520,12 @@
         Chart.defaults.global.defaultFontSize = 18;
 
         var densityData = {
-            label: 'Laki-laki',
-            data: [40, 30, 25, 27, 40, 38, 25, 23],
+            label: 'Jumlah Calon Anggota',
+            data: [
+                @foreach($grafikGender as $g)
+                {{ $g->jumlah }},
+                @endforeach
+            ],
             backgroundColor: 'rgba(0, 99, 132, 0.6)',
             borderWidth: 1,
             yAxisID: "y-axis-density"
@@ -577,15 +533,19 @@
 
         var gravityData = {
             label: 'Perempuan',
-            data: [40, 19, 25, 33, 40, 45, 28, 23],
+            data: [40, 30, 25, 33, 40, 45, 25, 44],
             backgroundColor: 'rgba(99, 132, 0, 0.6)',
             borderWidth: 1,
             yAxisID: "y-axis-gravity"
         };
 
         var planetData = {
-            labels: ["BSO GMMQ", "BSO Dosha", "Kastrat", "Shar'E", "Jaringan", "MC", "Sosmas", "DPS"],
-            datasets: [densityData, gravityData]
+            labels: [
+                @foreach($grafikGender as $g)
+                    "{{ $g->nama_departemen }}",
+                @endforeach
+            ],
+            datasets: [densityData]
         };
 
         var chartOptions = {
@@ -596,8 +556,6 @@
                 }],
                 yAxes: [{
                     id: "y-axis-density"
-                }, {
-                    id: "y-axis-gravity"
                 }]
             }
         };

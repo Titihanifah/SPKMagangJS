@@ -16,14 +16,14 @@ class RekapPenilaianController extends Controller
      */
     public function index()
     {
-        //
+        // menampilkan rekap penilaian
         $departemen = Departemen::all();
         $detailCalonAnggotas = Auth::user()->departemen->detailCalonAnggota->sortByDesc(function($p) {
             return [$p->favorit, $p->total_nilai];
         });
-//        dd($departemen);
 
-        return view('kadept.rekapPenilaian.index',compact('detailCalonAnggotas', 'departemen'));
+        return view('kadept.rekapPenilaian.index',
+            compact('detailCalonAnggotas', 'departemen'));
     }
 
     /**
@@ -49,8 +49,6 @@ class RekapPenilaianController extends Controller
 
     public function simpan(Request $request)
     {
-//        dd($request);
-
         $p = null;
         $detCalonAnggota = DetailCalonAnggota::where('id', $request->id_detail_calon_anggota)
             ->where('id_departemen', $request->id_departemen)
@@ -65,9 +63,9 @@ class RekapPenilaianController extends Controller
         $p->rekomendasi = $request->rekomendasi;
         $p->save();
 
-
         return response()->json('Success');
     }
+
     public function ketSimpan(Request $request)
     {
         $p = null;

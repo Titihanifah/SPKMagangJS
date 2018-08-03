@@ -86,37 +86,7 @@
 								<button onclick="edit({{ $i }})" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only" ><i class="m-menu__link-icon flaticon-edit-1"></i></button>
 								<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-danger m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-delete-1"></i></button> -->
 								{{--<a href="{{url('/kegiatan/destroy')}}/{{ $value->id}}" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>--}}
-								<a href="#" onclick="
-								$().ready(function(e){
-									swal({
-										title : 'Hapus Data?',
-										text : 'Anda yakin ingin menghapus data?',
-										type : 'warning',
-										showCancelButton : true,
-										confirmButtonColor: '#DD6B55',
-										confirmButtonText: 'Hapus',
-										cancelButtonText: 'Batal',
-										closeOnConfirm: false,
-										closeOnCancel: false,
-										showLoaderOnConfirm : true
-									},
-									function(isConfirm){
-										if(isConfirm){
-											$.get('<?php echo url('/kegiatan/destroy').'/'.$value->id?>', function(){
-											swal({
-											title : 'Sukses',
-											text : 'Data kegiatan berhasil dihapus!',
-											type : 'success'
-											},function(){
-											location.reload() ;
-											});
-											}) ;
-										}else{
-										swal('Batal dihapus', '', 'error');
-										}
-									})
-								}) ;" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>
-									
+
 							</td>
 						</tr>
                     	<?php $i++ ?>
@@ -148,7 +118,8 @@
 				{!! Form::open(array('route' => 'kegiatan.store', 'enctype' => 'multipart/form-data')) !!}
 				<div class="form-group m-form__group">
 
-					<label for="">
+					<la
+                            bel for="">
 						Nama Kegiatan <font color="red">*</font>
 					</label>
 					<input type="text" name="nama_kegiatan" class="form-control m-input m-input--air" id="exampleInputEmail1" placeholder="Nama Kegiatan" required>

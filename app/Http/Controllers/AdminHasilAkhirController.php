@@ -18,20 +18,16 @@ class AdminHasilAkhirController extends Controller
      */
     public function index()
     {
-        //
+        // get semua data departemen
         $departemen = Departemen::all();
         $activePeriode = Periode::active()->first();
-//        $detailCalonAnggotas = DetailCalonAnggota::all()->sortBy('prioritas')->groupBy('id_calon_anggota');
-//        $detailCalonAnggotas = Auth::user()->departemen->detailCalonAnggota->sortByDesc(function($p) {
-//            return [$p->favorit, $p->total_nilai];
-//        });
-        $detailCalonAnggotas = DetailCalonAnggota::all()->sortByDesc(function($p) {
-            return [$p->favorit, $p->total_nilai];
-        })->groupBy('id_calon_anggota');
+        // menampilkan data detail calon anggota, yg diurutkan dengan urutan favorit,
+        // kemudian berdasarkan total nilai tertinggi dikelompokkan sesuai calon anggota
+        $detailCalonAnggotas = DetailCalonAnggota::all()->sortByDesc(function($p) {return [$p->favorit, $p->total_nilai];})->groupBy('id_calon_anggota');
 
-//        dd($detailCalonAnggotas);
-//        return response()->json($detailCalonAnggotas);
-        return view('bkk.hasilAkhir.index',compact('departemen','detailCalonAnggotas','activePeriode'));
+//        dd($detailCalonAnggotas, $activePeriode, $departemen);
+        return view('bkk.hasilAkhir.index',
+            compact('departemen','detailCalonAnggotas','activePeriode'));
     }
 
     /**
@@ -42,6 +38,15 @@ class AdminHasilAkhirController extends Controller
     public function create()
     {
         //
+    }
+
+    public function simpan(Request $request)
+    {
+        $calonAnggota = CalonAnggota::find($request->id_calon);
+        $calonAnggota->departemen_akhir = $request->nama_departemen;
+        $calonAnggota->save();
+
+        return response()->json('Success');
     }
 
     /**

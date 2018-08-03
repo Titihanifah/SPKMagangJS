@@ -16,12 +16,11 @@ class DataCalonController extends Controller
      */
     public function index()
     {
-//        TODO: filter berdasarkan departemen ya... :)
         $activePeriode = Periode::active()->first();
+//        menampilkan data calon anggota sesuai dengan departemen
         $userCalon = Auth::user()->departemen->detailCalonAnggota->groupBy('id_calon_anggota');
-//        dd($userCalon);
-//        $calonAnggota = CalonAnggota::all()->where('id_periode', $activePeriode->id);
-        return view('kadept.datacalon.index', compact('userCalon','calonAnggota','activePeriode'));
+        return view('kadept.datacalon.index',
+            compact('userCalon','activePeriode'));
     }
     
 

@@ -57,7 +57,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 
-    Route::resource('/datacalon', 'DataCalonController');
+    Route::resource('/datacalonkadept', 'DataCalonController');
     Route::resource('/kegiatan', 'KegiatanController');
     Route::resource('/tugas', 'TugasController');
     Route::post('/ubahPasswordUser', 'AdminController@ubahPasswordUser');

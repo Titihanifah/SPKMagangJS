@@ -28,8 +28,8 @@
 
         <!-- start -->
         @if(Auth::user()->role == 0)
-        <li class="@if(request()->is('*datacalon*')) active @endif m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
-            <a  href="{{ url('/datacalon')}}" class="m-menu__link m-menu__toggle">
+        <li class="@if(request()->is('*datacalonkadept*')) active @endif m-menu__item  m-menu__item--submenu nav-sidebar-menu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
+            <a  href="{{ url('/datacalonkadept')}}" class="m-menu__link m-menu__toggle">
                 <i class="m-menu__link-icon flaticon-users color-menu"></i>
                 <span class="m-menu__link-text color-menu color-menu">
                     Calon Anggota
