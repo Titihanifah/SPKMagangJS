@@ -47,7 +47,8 @@
                                         <h6 class="pull-right">Departemen:</h6>
                                     </div>
                                     <div class="col-md-3">
-                                        <select id="filterDept" class="custom-select form-control col-md-12" onchange="pilihDepartemen()">
+                                        <select id="filterDept" class="custom-select form-control col-md-12" onchange="pilihDepartemen(this)">
+                                            <option value="0">Semua Departemen</option>
                                             @foreach($departemen as $key)
                                                 <option value="{{ $key->id }}">{{ $key->nama_departemen }}</option>
                                             @endforeach
@@ -76,31 +77,6 @@
                             {{--<th>Aksi</th>--}}
                         </tr>
                         </thead>
-                        <tbody>
-                        <?php $i = 1; ?>
-                        @foreach($kegiatan  as $value)
-                            <tr>
-                                <td><?php echo $i ?></td>
-                                <td>{{ $value->nama_kegiatan }}</td>
-                                <td>{{ $value->tanggal_kegiatan }}</td>
-                                <td>{{ $value->waktu }}</td>
-                                <td>{{ $value->departemen->nama_departemen }}</td>
-                                {{--TODO: diambil dari presensi--}}
-                                <td>{{ $value->jumlah_hadir }}</td>
-                                {{--<td>--}}
-                                    {{--<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-primary m-btn--gradient-to-primary"><i class="m-menu__link-icon flaticon-eye"></i></button> -->--}}
-                                {{--<a href="#" class="btn btn-outline-primary m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-eye"></i></a>--}}
-                                {{--<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-warning m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-edit-1"></i></button> -->--}}
-                                    {{--<a href="#" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only" data-toggle="modal" data-target="#m_edit_kegiatan"><i class="m-menu__link-icon flaticon-edit-1"></i></a>--}}
-                                    {{--<button onclick="edit({{ $i }})" data-nama_kegiatan="{{ $value->nama_kegiatan }}" data-tanggal_kegiatan="{{ $value->tanggal_kegiatan }}" data-waktu="{{ $value->waktu }}" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only" ><i class="m-menu__link-icon flaticon-edit-1"></i></button>--}}
-                                    {{--<!-- <button class="btn m-btn--pill m-btn--air m-btn m-btn--gradient-from-danger m-btn--gradient-to-danger"><i class="m-menu__link-icon flaticon-delete-1"></i></button> -->--}}
-                                    {{--<a href="{{url('/kegiatan/destroy')}}/{{ $value->id}}" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>--}}
-
-                                {{--</td>--}}
-                            </tr>
-                            <?php $i++ ?>
-                        @endforeach
-                        </tbody>
                     </table>
                     <!--end: Datatable -->
                 </div>
@@ -122,7 +98,7 @@
     <script type="text/javascript">
 
         $(document).ready( function () {
-            $('.myTableDataTable').DataTable();
+            pilihDepartemen($('#filterDept'));
 
             @if (\Illuminate\Support\Facades\Session::has('message'))
             swal({
@@ -147,50 +123,24 @@
             @endif
         } );
 
-        // request pilih departemen
-        {{--function pilihDepartemen() {--}}
-            {{--var departemen = $('#filterDept').val();--}}
-            {{--console.log(departemen);--}}
+        function pilihDepartemen(selectObject) {
 
-            {{--$.ajax({--}}
-                {{--data:{--}}
-                    {{--id_departemen : departemen,--}}
-                {{--},--}}
-                {{--type:'GET',--}}
-                {{--url:'{{ url('/') }}/api/kegiatan/departemen',--}}
-                {{--success: function (response) {--}}
-                    {{--console.log(response);--}}
-                {{--}--}}
-
-            {{--});--}}
-
-
-        {{--}--}}
-
-
-        function pilihDepartemen() {
-
-            var table = $('.').DataTable({
-                "destroy": true,
-                "ajax":"{{ url('/') }}/api/kegiatan/departemen",
-                "columns": [
-                    {"":}
+            var table = $('.myTableDataTable').DataTable({
+                destroy: true,
+                ajax:"{{ url('api/kegiatan/departemen') }}/" + selectObject.value,
+                columns: [
+                    {
+                        "data": "id",
+                        render: function (data, type, row, meta) {
+                            return meta.row + meta.settings._iDisplayStart + 1;
+                        }
+                    }, // for automatic numerization
+                    { data: 'nama_kegiatan', name: 'nama_kegiatan' },
+                    { data: 'tanggal_kegiatan', name: 'tanggal_kegiatan' },
+                    { data: 'waktu', name: 'waktu' },
+                    { data: 'departemen', name: 'departemen' },
+                    { data: 'jumlah_hadir', name: 'jumlah_hadir' },
                 ]
-            })
-
-            var departemen = $('#filterDept').val();
-            console.log(departemen);
-
-            $.ajax({
-                data:{
-                    id_departemen : departemen,
-                },
-                type:'GET',
-                url:'{{ url('/') }}/api/kegiatan/departemen',
-                success: function (response) {
-                    console.log(response);
-                }
-
             });
 
 

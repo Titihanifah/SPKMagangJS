@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Departemen;
+use App\Http\Resources\KegiatanResource;
 use App\Kegiatan;
 use App\Periode;
 use App\Tugas;
@@ -12,7 +13,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use function response;
 
 class AdminController extends Controller
 {
@@ -35,12 +35,16 @@ class AdminController extends Controller
         return view('bkk.kegiatan.index',compact('kegiatan','departemen'));
     }
 
-    public function filterDepartemen(Request $request)
+    public function filterDepartemen($id)
     {
         $activePeriode = Periode::active()->first();
-        $kegiatan = Kegiatan::where('id_departemen',$request->id_departemen)->get();
-//        dd("apa");
-        return view('bkk.kegiatan.index',compact('kegiatan'));
+        if($id == 0) $kegiatan = Kegiatan::all();
+        else $kegiatan = Kegiatan::where('id_departemen', $id)->where('id_periode', $activePeriode->id)->get();
+        try {
+            return datatables()->of(KegiatanResource::collection($kegiatan))->toJson();
+        } catch (\Exception $e) {
+            return $e;
+        }
     }
 
     public function tugas()
