@@ -26,4 +26,5 @@ Route::post('keterangan/simpan', 'RekapPenilaianController@ketSimpan');
 Route::post('user/reset', 'AdminAkunController@reset');
 Route::get('get/total/kehadiran/{id}', 'RekapPenilaianController@ketKehadiran');
 Route::get('periode/setactive/{id}', 'AdminPeriodeController@changeActive');
-Route::get('periode/kegiatan/departemen/{id}', 'AdminController@filterDepartemen');
+
+Route::get('kegiatan/departemen/{id}', 'AdminController@filterDepartemen')->name('ajax.kegiatan.departemen');
