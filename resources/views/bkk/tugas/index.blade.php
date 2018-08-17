@@ -67,20 +67,25 @@
                         <div class="row align-items-center">
                             <div class="col-xl-12 order-2 order-xl-1">
                                 <div class="form-group m-form__group row align-items-center">
-                                    <div class="col-md-4">
-                                        {{--<button class="btn m-btn--square  btn-outline-primary" data-toggle="modal" data-target="#m-tambah-tugas"><i class="m-menu__link-icon flaticon-plus"></i> Tambah </button>--}}
-                                    </div>
-                                    <div class="col-md-5">
+
+                                    <div class="col-md-2">
+                                        <h6 class="pull-right">Departemen:</h6>
                                     </div>
                                     <div class="col-md-3">
-                                        {{--<div class="m-input-icon m-input-icon--left">--}}
-                                            {{--<input type="text" class="form-control m-input" placeholder="Search..." id="generalSearch">--}}
-                                            {{--<span class="m-input-icon__icon m-input-icon__icon--left">--}}
-											{{--<span>--}}
-												{{--<i class="la la-search"></i>--}}
-											{{--</span>--}}
-										{{--</span>--}}
-                                        {{--</div>--}}
+                                        <select id="filterDept" class="custom-select form-control col-md-12" onchange="pilihDepartemen(this)">
+                                            <option value="0">Semua Departemen</option>
+                                            @foreach($departemen as $key)
+                                                <option value="{{ $key->id }}">{{ $key->nama_departemen }}</option>
+                                            @endforeach
+                                        </select>
+
+                                    </div>
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-2">
+                                        <h6 class="pull-right">Deadline:</h6>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input type="text" name="deadlineTugas" id="m_datepicker_1" onchange="pilihDeadline(this)" class="form-control m-input m-input--air">
                                     </div>
                                 </div>
                             </div>
@@ -98,24 +103,6 @@
                             <th>Departemen</th>
                         </tr>
                         </thead>
-                        <tbody>
-                        <?php $i = 1; ?>
-                        @foreach($tugas  as $key)
-                            <tr>
-                                <td><?php echo $i ?></td>
-                                <td>{{ $key->nama_tugas }}</td>
-                                <td>{{ $key->deskripsi }}</td>
-                                <td>{{ $key->deadline }}</td>
-                                <td>{{ $key->departemen->nama_departemen }}</td>
-                                {{--<td>--}}
-                                    {{--<a href="#" class="btn btn-outline-primary m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-eye"></i></a>--}}
-                                    {{--<button onclick="edit({{ $i }})" data-nama_tugas="{{ $key->nama_tugas }}" data-deskripsi="{{ $key->deskripsi }}" data-deadline=""{{ $key->deadline }} class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only" data-toggle="modal" data-target="#m_edit_tugas"><i class="m-menu__link-icon flaticon-edit-1"></i></button>--}}
-                                    {{--<a href="{{url('/tugas/destroy')}}/{{ $key->id}}" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>--}}
-                                {{--</td>--}}
-                            </tr>
-                            <?php $i++ ?>
-                        @endforeach
-                        </tbody>
                     </table>
                     <!--end: Datatable -->
                 </div>
@@ -137,8 +124,84 @@
     <script type="text/javascript">
 
         $(document).ready( function () {
-            $('.myTableDataTable').DataTable();
+            pilihDepartemen($('#filterDept'));
+
+            $("#m_datepicker_1").datepicker({
+                todayHighlight: !0,
+                orientation: "bottom left",
+                format: 'yyyy-mm-dd',
+                templates: {
+                    leftArrow: '<i class="la la-angle-left"></i>',
+                    rightArrow: '<i class="la la-angle-right"></i>'
+                }
+            });
+            pilihDeadline($('input[name="deadlineTugas"]'));
+
+
+            @if (\Illuminate\Support\Facades\Session::has('message'))
+            swal({
+                title : 'Sukses',
+                text : '{{ \Illuminate\Support\Facades\Session::get('message') }}',
+                type : 'success'
+            });
+                    @endif
+
+                    @if ($errors->any())
+            var htmlText = '';
+
+            @foreach ($errors->all() as $error)
+                htmlText += '{{ $error }}\n';
+            @endforeach
+
+            swal({
+                title : 'Gagal',
+                text : htmlText,
+                type : 'error'
+            });
+            @endif
         } );
+
+        function pilihDepartemen(selectObject) {
+
+            var table = $('.myTableDataTable').DataTable({
+                destroy: true,
+                ajax:"{{ url('api/tugas/departemen') }}/" + selectObject.value,
+                columns: [
+                    {
+                        "data": "id",
+                        render: function (data, type, row, meta) {
+                            return meta.row + meta.settings._iDisplayStart + 1;
+                        }
+                    }, // for automatic numerization
+                    { data: 'nama_tugas', name: 'nama_ktugas' },
+                    { data: 'deskripsi', name: 'deskripsi' },
+                    { data: 'deadline', name: 'deadline' },
+                    { data: 'departemen', name: 'departemen' },
+                ]
+            });
+
+
+        }
+
+        function pilihDeadline(selectObject) {
+
+            var table = $('.myTableDataTable').DataTable({
+                destroy: true,
+                ajax:"{{ url('api/tugas/deadline') }}/" + selectObject.value,
+                columns: [
+                    {
+                        "data": "id",
+                        render: function (data, type, row, meta) {
+                            return meta.row + meta.settings._iDisplayStart + 1;
+                        }
+                    }, // for automatic numerization
+                    { data: 'nama_tugas', name: 'nama_tugas' },
+                    { data: 'deskripsi', name: 'deskripsi' },
+                    { data: 'deadline', name: 'deadline' },
+                    { data: 'departemen', name: 'departemen' },
+                ]
+            });
+        }
 
     </script>
 

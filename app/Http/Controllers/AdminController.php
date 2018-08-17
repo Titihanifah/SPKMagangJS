@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Departemen;
 use App\Http\Resources\KegiatanResource;
+use App\Http\Resources\TugasResource;
 use App\Kegiatan;
 use App\Periode;
 use App\Tugas;
@@ -47,12 +48,37 @@ class AdminController extends Controller
         }
     }
 
+    public function tugasDepartemen($id)
+    {
+        $activePeriode = Periode::active()->first();
+        if($id == 0) $tugas = Tugas::all();
+        else $tugas = Tugas::where('id_departemen', $id)->where('id_periode', $activePeriode->id)->get();
+        try {
+            return datatables()->of(TugasResource::collection($tugas))->toJson();
+        } catch (\Exception $e) {
+            return $e;
+        }
+    }
+
+    public function tugasDeadline($id)
+    {
+        $activePeriode = Periode::active()->first();
+        if($id == 0) $tugas = Tugas::all();
+        else $tugas = Tugas::where('deadline', $id)->where('id_periode', $activePeriode->id)->get();
+        try {
+            return datatables()->of(TugasResource::collection($tugas))->toJson();
+        } catch (\Exception $e) {
+            return $e;
+        }
+    }
+
     public function tugas()
     {
+        $departemen = Departemen::all();
         $activePeriode = Periode::active()->first();
         $tugas = Tugas::with('departemen')->get()
             ->where('id_periode', $activePeriode->id);
-        return view('bkk.tugas.index', compact('tugas'));
+        return view('bkk.tugas.index', compact('tugas','departemen'));
     }
 
     /**
