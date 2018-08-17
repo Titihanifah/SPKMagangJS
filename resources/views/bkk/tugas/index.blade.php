@@ -85,7 +85,7 @@
                                         <h6 class="pull-right">Deadline:</h6>
                                     </div>
                                     <div class="col-md-3">
-                                        <input readonly type="text" name="deadlineTugas" id="m_datepicker_1" onchange="pilihDeadline(this)" class="form-control m-input m-input--air">
+                                        <input type="text" name="deadlineTugas" id="m_datepicker_1" onchange="pilihDeadline(this)" class="form-control m-input m-input--air">
                                     </div>
                                 </div>
                             </div>
