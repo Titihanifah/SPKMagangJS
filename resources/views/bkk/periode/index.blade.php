@@ -82,7 +82,7 @@
 							<td>{{ $key->status }}</td>
 							<td>
 								{{--<input onclick="setActive({{ $key->id }})" {{ (($key->status == 'Aktif') ? 'checked':'' }} type="radio">Aktif--}}
-                                <button onclick="setActive({{ $key->id }})" class="btn {{ (($key->status == 'Aktif') ? "btn-outline-success" : "btn-outline-danger") }} m-btn m-btn--icon m-btn--icon-only" ><i class="fa {{ (($key->status == 'Aktif') ? "fa-check" : "fa-times") }}"></i></button>
+                                <button onclick="setActive({{ $key->id }})" class="btn {{ (($key->status == 'Aktif') ? "btn-outline-danger" : "btn-outline-success") }} m-btn m-btn--icon m-btn--icon-only" ><i class="fa {{ (($key->status == 'Aktif') ? "fa-times" : "fa-check") }}"></i></button>
                                 <button onclick="edit({{ $i }})" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only" ><i class="m-menu__link-icon flaticon-edit-1"></i></button>
 {{--                                <a href="{{url('/admin/periode/destroy')}}/{{ $key->id}}" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>--}}
 								<a href="#" onclick="

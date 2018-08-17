@@ -123,9 +123,9 @@
                                         <option selected>
                                             Pilih Departemen
                                         </option>
-                                        @foreach($departemen as $key)
-                                            <option id="{{  }}" value="{{ $key->id }}">{{ $key->nama_departemen }}</option>
-                                        @endforeach
+                                        {{--@foreach($departemen as $key)--}}
+                                            {{--<option  value="{{ $key->id }}">{{ $key->nama_departemen }}</option>--}}
+                                        {{--@endforeach--}}
                                     </select>
                                 </td>
 
