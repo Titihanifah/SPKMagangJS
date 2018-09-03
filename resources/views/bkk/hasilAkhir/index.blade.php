@@ -89,7 +89,6 @@
                             <th>Tugas</th>
                             <th>Hasil</th>
 
-
                             <th>Kehadiran</th>
                             <th>Tugas</th>
                             <th>Hasil</th>
@@ -102,7 +101,6 @@
                         @foreach ($detailCalonAnggotas as $key)
                             @if($key->first()->calonAnggota->id_periode == $activePeriode->id)
                             <tr>
-
                                 <td>{{ $i++ }}</td>
                                 <td>{{ $key->where('prioritas',1)->first()->calonAnggota->nama_calon_anggota }} {{ $key->first()->favorit ? "⭐" : "" }}</td>
                                 <td>{{ $key->where('prioritas',1)->first()->calonAnggota->jenis_kelamin }}</td>
@@ -123,15 +121,14 @@
                                         <option selected>
                                             Pilih Departemen
                                         </option>
-                                        {{--@foreach($departemen as $key)--}}
-                                            {{--<option  value="{{ $key->id }}">{{ $key->nama_departemen }}</option>--}}
-                                        {{--@endforeach--}}
+                                        @foreach($departemen as $key)
+                                            <option  value="{{ $key->id }}">{{ $key->nama_departemen }}</option>
+                                        @endforeach
                                     </select>
                                 </td>
 
                             </tr>
                             @endif
-
                         @endforeach
                         </tbody>
                     </table>

@@ -75,7 +75,7 @@
 										{{--TODO: selected--}}
 										<option >Pilih Departemen</option>
 										@foreach($departemen as $value)
-											<option {{ ($key->rekomendasi == $value->nama_departemen) ? "selected" : "" }} value="{{ $value->nama_departemen }}" >{{ $value->nama_departemen }}</option>
+											<option {{ ($key->rekomendasi == $value->id) ? "selected" : "" }} value="{{ $value->id }}" >{{ $value->nama_departemen }}</option>
 										@endforeach
 									</select>
 
@@ -87,7 +87,7 @@
 											{{--TODO: selected--}}
 											<option selected>Pilih Departemen</option>
 											@foreach($departemen as $value)
-												<option value="{{ $value->nama_departemen }}">{{ $value->nama_departemen }}</option>
+												<option value="{{ $value->id }}">{{ $value->nama_departemen }}</option>
 											@endforeach
 										</select>
 								@endif

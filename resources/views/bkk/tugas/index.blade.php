@@ -80,13 +80,27 @@
                                         </select>
 
                                     </div>
-                                    <div class="col-md-1"></div>
-                                    <div class="col-md-2">
-                                        <h6 class="pull-right">Deadline:</h6>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <input type="text" name="deadlineTugas" id="m_datepicker_1" onchange="pilihDeadline(this)" class="form-control m-input m-input--air">
-                                    </div>
+                                    {{--<div class="col-md-1"></div>--}}
+                                    {{--<div class="col-md-2">--}}
+                                        {{--<h6 class="pull-right">Deadline:</h6>--}}
+                                    {{--</div>--}}
+                                    {{--<div class="col-md-3">--}}
+                                        {{--<input type="text" name="deadlineTugas" id="m_datepicker_1" onchange="pilihDeadline(this)" class="form-control m-input m-input--air">--}}
+                                    {{--</div>--}}
+                                        <label class="col-form-label col-lg-3 col-sm-12">
+                                            Deadline
+                                        </label>
+                                        <div class="col-lg-4 col-md-9 col-sm-12">
+                                            <div class="input-daterange input-group" id="m_datepicker_5">
+                                                <input type="text" class="form-control m-input" name="start" />
+                                                <div class="input-group-append">
+													<span class="input-group-text">
+														<i class="la la-ellipsis-h"></i>
+													</span>
+                                                </div>
+                                                <input type="text" class="form-control" name="end" />
+                                            </div>
+                                        </div>
                                 </div>
                             </div>
                         </div>
@@ -120,21 +134,29 @@
 
     <script src="{{ url('assets/demo/default/custom/components/datatables/base/html-table.js')}}" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+    <script src="{{ url('assets/demo/default/custom/components/forms/widgets/bootstrap-datepicker.js') }}" type="text/javascript"></script>
 
     <script type="text/javascript">
 
         $(document).ready( function () {
+
+            $('input[name="daterange"]').daterangepicker({
+                opens: 'left'
+            }, function(start, end, label) {
+                console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+            });
+
             pilihDepartemen($('#filterDept'));
 
-            $("#m_datepicker_1").datepicker({
-                todayHighlight: !0,
-                orientation: "bottom left",
-                format: 'yyyy-mm-dd',
-                templates: {
-                    leftArrow: '<i class="la la-angle-left"></i>',
-                    rightArrow: '<i class="la la-angle-right"></i>'
-                }
-            });
+//            $("#m_datepicker_1").datepicker({
+//                todayHighlight: !0,
+//                orientation: "bottom left",
+//                format: 'yyyy-mm-dd',
+//                templates: {
+//                    leftArrow: '<i class="la la-angle-left"></i>',
+//                    rightArrow: '<i class="la la-angle-right"></i>'
+//                }
+//            });
             pilihDeadline($('input[name="deadlineTugas"]'));
 
 

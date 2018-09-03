@@ -265,7 +265,6 @@
                     <div class="m-badge m-badge--info m-badge--wide pull-right">
                         <h6>Periode Aktif : {{ $activePeriode->tahun }}/{{ $activePeriode->periode }}</h6>
                     </div>
-                    <hr>
                     {!! Form::open(array('route' => 'datacalon.store', 'enctype' => 'multipart/form-data')) !!}
                     <div class="row">
                         <div class="col-md-6">
