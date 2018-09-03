@@ -30,6 +30,25 @@ class AdminHasilAkhirController extends Controller
             compact('departemen','detailCalonAnggotas','activePeriode'));
     }
 
+    public function simpan(Request $request)
+    {
+        $p = null;
+        $detCalonAnggota = DetailCalonAnggota::where('id', $request->id_detail_calon_anggota)
+            ->where('id_departemen', $request->id_departemen)
+            ->get();
+        if ($detCalonAnggota->count() > 0) {
+            $p = DetailCalonAnggota::find($detCalonAnggota[0]->id);
+        } else {
+            $p = new DetailCalonAnggota;
+        }
+        $p->id = $request->id_detail_calon_anggota;
+        $p->id_departemen = $request->id_departemen;
+        $p->rekomendasi = $request->rekomendasi;
+        $p->save();
+
+        return response()->json('Success');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
