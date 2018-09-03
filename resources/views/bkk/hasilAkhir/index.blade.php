@@ -116,7 +116,7 @@
                                 <td>{{ $key->where('prioritas',2)->first()->nilai_kehadiran }}</td>
                                 <td>{{ $key->where('prioritas',2)->first()->total_nilai }}</td>
                                 <td>
-                                    <select onchange="setDepartemen(this)" id="[{{ json_encode($key) }}]" class="custom-select form-control col-md-12">
+                                    <select class="custom-select form-control col-md-12">
                                         {{--TODO: selected--}}
                                         <option selected>
                                             Pilih Departemen
@@ -167,27 +167,22 @@
             } );
         } );
 
-        function setDepartemen(theForm){
-            var detail_calon_anggota = JSON.parse(theForm.id)[0];
-            console.log(JSON.parse(theForm.id));
-            var rekomendasi= $(".departemen-"+detail_calon_anggota.id).val();
-            console.log("rekomendasi"+rekomendasi);
 
-            // show keterangan
-
+        function setDepartemen(theForm) {
+            var departemen = JSON.parse(theForm.id)[0];
+            var calon_anggota = JSON.parse(theForm.id)[1];
+//            $(".hadir-"+kegiatan.id+"-"+detail_calon_anggota.id).hide();
+//            $(".tidakhadir-"+kegiatan.id+"-"+detail_calon_anggota.id).show();
             $.ajax({
-                data:{
-                    id_detail_calon_anggota : detail_calon_anggota.id,
-                    id_departemen : detail_calon_anggota.id_departemen,
-                    rekomendasi : rekomendasi,
-
+                data : {
+                    nama_departemen: departemen.nama_departemen,
+                    id_calon: calon_anggota.id,
                 },
                 type: 'POST',
-                url: '{{ url('/') }}/api/rekomendasi/simpan',
+                url: '{{ url('/') }}/api/hasilakhir/simpan',
                 success: function (response) { // on success..
                     console.log(response); // update the DIV
-
-                    $("#keterangan").show();
+//                window.onload = function(){document.body.style.cursor='default';}
                 }
             });
         }
