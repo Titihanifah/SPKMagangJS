@@ -39,10 +39,10 @@ class HomeController extends Controller
             $activePeriode = Periode::active()->first();
             $totalKegiatan = Auth::user()->departemen->kegiatans->where('id_periode', $activePeriode->id)->count();
             $totalTugas = Auth::user()->departemen->tugas->where('id_periode', $activePeriode->id)->count();
-            $favorit = Auth::user()->departemen->detailCalonAnggota->where('favorit','=',1)->where('id_periode', $activePeriode->id)->count();
-            $totalCalonAnggota = Auth::user()->departemen->detailCalonAnggota->where('id_periode', $activePeriode->id)->count();
-            $totalCalonAnggotaL = Auth::user()->departemen->detailCalonAnggota->where('jenis_kelamin', 'laki-laki')->count();
-            $totalCalonAnggotaP = Auth::user()->departemen->detailCalonAnggota->where('jenis_kelamin', 'perempuan')->count();
+            $favorit = Auth::user()->departemen->detailCalonAnggota->where('favorit',1)->count();
+            $totalCalonAnggota = Auth::user()->departemen->detailCalonAnggota->count();
+//            $totalCalonAnggotaL = Auth::user()->departemen->detailCalonAnggota->where('jenis_kelamin', 'laki-laki')->count();
+//            $totalCalonAnggotaP = Auth::user()->departemen->detailCalonAnggota->where('jenis_kelamin', 'perempuan')->count();
 
             return view('dashboard',
                 compact('grafikGender', 'totalCalonAnggota', 'totalCalonAnggotaL', 'totalCalonAnggotaP','totalKegiatan','totalTugas','favorit'));

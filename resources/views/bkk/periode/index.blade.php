@@ -115,7 +115,7 @@
 										}
 									})
 								}) ;" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only"><i class="m-menu__link-icon flaticon-delete-1"></i></a>
-								<button onclick="setActive({{ $key->id }})" class="btn {{ (($key->status == 'Aktif') ? "" : "btn-success") }} m-btn" ><i class="fa {{ (($key->status == 'Aktif') ? "" : "fa-check") }}"></i>{{ (($key->status == 'Aktif') ? "" : " Aktifkan") }}</button>
+								<button onclick="setActive({{ $key->id }})" class="btn {{ (($key->status == 'Aktif') ? "" : "btn-success") }} m-btn" {{ (($key->status == 'Aktif') ? "disabled" : "") }}><i class="fa {{ (($key->status == 'Aktif') ? "" : "fa-check") }}"></i>{{ (($key->status == 'Aktif') ? "" : " Aktifkan") }}</button>
 
 							</td>
 						</tr>
