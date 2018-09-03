@@ -27,10 +27,13 @@ class CreateCalonAnggotasTable extends Migration
             $table->string('hardskill')->nullable();
             $table->string('softskill')->nullable();
             $table->string('riwayat_penyakit')->nullable();
-            $table->string('departemen_akhir')->nullable();
+            $table->integer('departemen_akhir')->nullable()->unsigned();
             $table->integer('id_periode')->unsigned();
             $table->foreign('id_periode')
                 ->references('id')->on('periodes')
+                ->onDelete('cascade');
+            $table->foreign('departemen_akhir')
+                ->references('id')->on('departemens')
                 ->onDelete('cascade');
             $table->timestamps();
         });
