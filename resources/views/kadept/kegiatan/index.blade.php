@@ -118,8 +118,7 @@
 				{!! Form::open(array('route' => 'kegiatan.store', 'enctype' => 'multipart/form-data')) !!}
 				<div class="form-group m-form__group">
 
-					<la
-                            bel for="">
+					<label for="">
 						Nama Kegiatan <font color="red">*</font>
 					</label>
 					<input type="text" name="nama_kegiatan" class="form-control m-input m-input--air" id="exampleInputEmail1" placeholder="Nama Kegiatan" required>

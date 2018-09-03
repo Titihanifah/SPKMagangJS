@@ -141,8 +141,8 @@
                         <input type="text" name="email" class="form-control m-input m-input--air"  placeholder="example@gmail.com">
                     </div>
                     <div class="form-group m-form__group">
-                        <label for="">Username</label>  <font color="red">*</font>
-                        <input type="text" name="name" class="form-control m-input m-input--air"  placeholder="Username">
+                        <label for="">Nama</label>  <font color="red">*</font>
+                        <input type="text" name="name" class="form-control m-input m-input--air"  placeholder="Nama">
                     </div>
                     <div class="form-group m-form__group">
                         <label for="">Password</label>
@@ -206,7 +206,7 @@
                             <input type="text" id="email" name="email" class="form-control m-input m-input--air">
                         </div>
                         <div class="form-group m-form__group">
-                            <label for="">Username</label>
+                            <label for="">Nama</label>
                             <input type="text" id="name" name="name" class="form-control m-input m-input--air">
                         </div>
                         <div class="form-group m-form__group">
@@ -279,6 +279,7 @@
             var idObject = datadata[id].id;
             var email = datadata[id].email;
             var role = datadata[id].role;
+            var name = datadata[id].name;
             var id_departemen = datadata[id].id_departemen;
             var password = datadata[id].password;
 
@@ -286,6 +287,7 @@
             $('#role').val(role);
             $('#id_departemen').val(id_departemen);
             $('#password').val(password);
+            $('#name').val(name);
 
             var url = "{{ url('/') }}/admin/akun/" + (idObject);
             document.getElementById("edit_form").action = url;

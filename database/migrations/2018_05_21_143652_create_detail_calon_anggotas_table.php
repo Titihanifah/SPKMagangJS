@@ -18,7 +18,7 @@ class CreateDetailCalonAnggotasTable extends Migration
             $table->integer('id_departemen')->unsigned()->nullable();
             $table->integer('id_calon_anggota')->unsigned();
             $table->integer('prioritas');
-            $table->string('rekomendasi')->nullable(); //rekomendasi dr kadept
+            $table->integer('rekomendasi')->nullable()->unsigned(); //rekomendasi dr kadept
             $table->boolean('favorit')->nullable();
             $table->text('keterangan')->nullable();
             $table->foreign('id_departemen')
@@ -26,6 +26,9 @@ class CreateDetailCalonAnggotasTable extends Migration
                 ->onDelete('cascade');
             $table->foreign('id_calon_anggota')
                 ->references('id')->on('calon_anggotas')
+                ->onDelete('cascade');
+            $table->foreign('rekomendasi')
+                ->references('id')->on('departemens')
                 ->onDelete('cascade');
             $table->timestamps();
         });

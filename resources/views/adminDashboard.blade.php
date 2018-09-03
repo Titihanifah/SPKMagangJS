@@ -253,26 +253,26 @@
                         </div>
                     </div>
                     <!--Begin::Section-->
-                    <div class="row">
-                        <div class="col-xl-6">
-                            <!--begin:: Widgets/Sales States-->
-                            <div class="m-portlet m-portlet--full-height ">
-                                <div class="m-portlet__head">
-                                    <div class="m-portlet__head-caption">
-                                        <div class="m-portlet__head-title">
-                                            <h3 class="m-portlet__head-text">
-                                                Nilai Teratas
-                                            </h3>
-                                        </div>
-                                    </div>
-                                    <div class="m-portlet__head-tools">
-                                        <ul class="m-portlet__nav">
-                                            <li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover" aria-expanded="true">
-                                                <a href="#" class="m-portlet__nav-link m-portlet__nav-link--icon m-portlet__nav-link--icon-xl">
-                                                    <i class="fa fa-genderless m--font-brand"></i>
-                                                </a>
-                                                <div class="m-dropdown__wrapper">
-                                                    <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust" style="left: auto; right: 17px;"></span>
+                    {{--<div class="row">--}}
+                        {{--<div class="col-xl-6">--}}
+                            {{--<!--begin:: Widgets/Sales States-->--}}
+                            {{--<div class="m-portlet m-portlet--full-height ">--}}
+                                {{--<div class="m-portlet__head">--}}
+                                    {{--<div class="m-portlet__head-caption">--}}
+                                        {{--<div class="m-portlet__head-title">--}}
+                                            {{--<h3 class="m-portlet__head-text">--}}
+                                                {{--Nilai Teratas--}}
+                                            {{--</h3>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                    {{--<div class="m-portlet__head-tools">--}}
+                                        {{--<ul class="m-portlet__nav">--}}
+                                            {{--<li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover" aria-expanded="true">--}}
+                                                {{--<a href="#" class="m-portlet__nav-link m-portlet__nav-link--icon m-portlet__nav-link--icon-xl">--}}
+                                                    {{--<i class="fa fa-genderless m--font-brand"></i>--}}
+                                                {{--</a>--}}
+                                                {{--<div class="m-dropdown__wrapper">--}}
+                                                    {{--<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust" style="left: auto; right: 17px;"></span>--}}
                                                     {{--<div class="m-dropdown__inner">--}}
                                                     {{--<div class="m-dropdown__body">--}}
                                                     {{--<div class="m-dropdown__content">--}}
@@ -313,76 +313,76 @@
                                                     {{--</div>--}}
                                                     {{--</div>--}}
                                                     {{--</div>--}}
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="m-portlet__body">
-                                    <div class="m-widget6">
-                                        <div class="m-widget6__head">
-                                            <div class="m-widget6__item">
-													<span class="m-widget6__caption">
-														Nama
-													</span>
-                                                <span class="m-widget6__caption">
+                                                {{--</div>--}}
+                                            {{--</li>--}}
+                                        {{--</ul>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                                {{--<div class="m-portlet__body">--}}
+                                    {{--<div class="m-widget6">--}}
+                                        {{--<div class="m-widget6__head">--}}
+                                            {{--<div class="m-widget6__item">--}}
+													{{--<span class="m-widget6__caption">--}}
+														{{--Nama--}}
+													{{--</span>--}}
+                                                {{--<span class="m-widget6__caption">--}}
 
-													</span>
-                                                <span class="m-widget6__caption m--align-right">
-														Nilai
-													</span>
-                                            </div>
-                                        </div>
-                                        <div class="m-widget6__body">
-                                            <div class="m-widget6__item">
-													<span class="m-widget6__text">
-														Denis
-													</span>
+													{{--</span>--}}
+                                                {{--<span class="m-widget6__caption m--align-right">--}}
+														{{--Nilai--}}
+													{{--</span>--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
+                                        {{--<div class="m-widget6__body">--}}
+                                            {{--<div class="m-widget6__item">--}}
+													{{--<span class="m-widget6__text">--}}
+														{{--Denis--}}
+													{{--</span>--}}
 
-                                                <span class="m-widget6__text m--align-right m--font-boldest m--font-brand">
-														0.74
-													</span>
-                                            </div>
-                                            <div class="m-widget6__item">
-													<span class="m-widget6__text">
-														Tono
-													</span>
+                                                {{--<span class="m-widget6__text m--align-right m--font-boldest m--font-brand">--}}
+														{{--0.74--}}
+													{{--</span>--}}
+                                            {{--</div>--}}
+                                            {{--<div class="m-widget6__item">--}}
+													{{--<span class="m-widget6__text">--}}
+														{{--Tono--}}
+													{{--</span>--}}
 
-                                                <span class="m-widget6__text m--align-right m--font-boldest m--font-brand">
-														0.72
-													</span>
-                                            </div>
-                                            <div class="m-widget6__item">
-													<span class="m-widget6__text">
-														Santoso
-													</span>
+                                                {{--<span class="m-widget6__text m--align-right m--font-boldest m--font-brand">--}}
+														{{--0.72--}}
+													{{--</span>--}}
+                                            {{--</div>--}}
+                                            {{--<div class="m-widget6__item">--}}
+													{{--<span class="m-widget6__text">--}}
+														{{--Santoso--}}
+													{{--</span>--}}
 
-                                                <span class="m-widget6__text m--align-right m--font-boldest m--font-brand">
-														0.66
-													</span>
-                                            </div>
-                                            <div class="m-widget6__item">
-													<span class="m-widget6__text">
-														Rani
-													</span>
+                                                {{--<span class="m-widget6__text m--align-right m--font-boldest m--font-brand">--}}
+														{{--0.66--}}
+													{{--</span>--}}
+                                            {{--</div>--}}
+                                            {{--<div class="m-widget6__item">--}}
+													{{--<span class="m-widget6__text">--}}
+														{{--Rani--}}
+													{{--</span>--}}
 
-                                                </span>
-                                                <span class="m-widget6__text m--align-right m--font-boldest m--font-brand">
-														0.65
-													</span>
-                                            </div>
-                                            <div class="m-widget6__item">
-													<span class="m-widget6__text">
-														Amir
-													</span>
+                                                {{--</span>--}}
+                                                {{--<span class="m-widget6__text m--align-right m--font-boldest m--font-brand">--}}
+														{{--0.65--}}
+													{{--</span>--}}
+                                            {{--</div>--}}
+                                            {{--<div class="m-widget6__item">--}}
+													{{--<span class="m-widget6__text">--}}
+														{{--Amir--}}
+													{{--</span>--}}
 
-                                                <span class="m-widget6__text m--align-right m--font-boldest m--font-brand">
-														0.62
-													</span>
-                                            </div>
+                                                {{--<span class="m-widget6__text m--align-right m--font-boldest m--font-brand">--}}
+														{{--0.62--}}
+													{{--</span>--}}
+                                            {{--</div>--}}
 
 
-                                        </div>
+                                        {{--</div>--}}
                                         {{--<div class="m-widget6__foot">--}}
                                             {{--<div class="m-widget6__action m--align-right">--}}
                                                 {{--<button type="button" class="btn m-btn--pill btn-secondary m-btn m-btn--hover-brand m-btn--custom">--}}
@@ -390,31 +390,31 @@
                                                 {{--</button>--}}
                                             {{--</div>--}}
                                         {{--</div>--}}
-                                    </div>
-                                </div>
-                            </div>
-                            <!--end:: Widgets/Sales States-->
-                        </div>
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<!--end:: Widgets/Sales States-->--}}
+                        {{--</div>--}}
 
-                        <div class="col-xl-6">
-                            <!--begin:: Widgets/Sales States-->
-                            <div class="m-portlet m-portlet--full-height ">
-                                <div class="m-portlet__head">
-                                    <div class="m-portlet__head-caption">
-                                        <div class="m-portlet__head-title">
-                                            <h3 class="m-portlet__head-text">
-                                                Favorit
-                                            </h3>
-                                        </div>
-                                    </div>
-                                    <div class="m-portlet__head-tools">
-                                        <ul class="m-portlet__nav">
-                                            <li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover" aria-expanded="true">
-                                                <a href="#" class="m-portlet__nav-link m-portlet__nav-link--icon m-portlet__nav-link--icon-xl">
-                                                    <i class="fa fa-genderless m--font-brand"></i>
-                                                </a>
-                                                <div class="m-dropdown__wrapper">
-                                                    <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust" style="left: auto; right: 17px;"></span>
+                        {{--<div class="col-xl-6">--}}
+                            {{--<!--begin:: Widgets/Sales States-->--}}
+                            {{--<div class="m-portlet m-portlet--full-height ">--}}
+                                {{--<div class="m-portlet__head">--}}
+                                    {{--<div class="m-portlet__head-caption">--}}
+                                        {{--<div class="m-portlet__head-title">--}}
+                                            {{--<h3 class="m-portlet__head-text">--}}
+                                                {{--Favorit--}}
+                                            {{--</h3>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                    {{--<div class="m-portlet__head-tools">--}}
+                                        {{--<ul class="m-portlet__nav">--}}
+                                            {{--<li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover" aria-expanded="true">--}}
+                                                {{--<a href="#" class="m-portlet__nav-link m-portlet__nav-link--icon m-portlet__nav-link--icon-xl">--}}
+                                                    {{--<i class="fa fa-genderless m--font-brand"></i>--}}
+                                                {{--</a>--}}
+                                                {{--<div class="m-dropdown__wrapper">--}}
+                                                    {{--<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust" style="left: auto; right: 17px;"></span>--}}
                                                     {{--<div class="m-dropdown__inner">--}}
                                                     {{--<div class="m-dropdown__body">--}}
                                                     {{--<div class="m-dropdown__content">--}}
@@ -455,26 +455,26 @@
                                                     {{--</div>--}}
                                                     {{--</div>--}}
                                                     {{--</div>--}}
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="m-portlet__body">
-                                    <div class="m-widget6">
-                                        <div class="m-widget6__head">
-                                            <div class="m-widget6__item">
-													<span class="m-widget6__caption">
-														Nama
-													</span>
-                                                <span class="m-widget6__caption">
+                                                {{--</div>--}}
+                                            {{--</li>--}}
+                                        {{--</ul>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                                {{--<div class="m-portlet__body">--}}
+                                    {{--<div class="m-widget6">--}}
+                                        {{--<div class="m-widget6__head">--}}
+                                            {{--<div class="m-widget6__item">--}}
+													{{--<span class="m-widget6__caption">--}}
+														{{--Nama--}}
+													{{--</span>--}}
+                                                {{--<span class="m-widget6__caption">--}}
 
-													</span>
-                                                <span class="m-widget6__caption m--align-right">
-														Keterangan
-													</span>
-                                            </div>
-                                        </div>
+													{{--</span>--}}
+                                                {{--<span class="m-widget6__caption m--align-right">--}}
+														{{--Keterangan--}}
+													{{--</span>--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
                                         {{--<div class="m-widget6__body">--}}
                                         {{--@php dd($favoritAll) @endphp--}}
                                             {{--@foreach($favoritAll as $key)--}}
@@ -499,13 +499,13 @@
                                                 {{--</button>--}}
                                             {{--</div>--}}
                                         {{--</div>--}}
-                                    </div>
-                                </div>
-                            </div>
-                            <!--end:: Widgets/Sales States-->
-                        </div>
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<!--end:: Widgets/Sales States-->--}}
+                        {{--</div>--}}
 
-                    </div>
+                    {{--</div>--}}
                     <!--End::Section-->
                     <!--Begin::Section-->
                 </div>

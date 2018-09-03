@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Database\Eloquent;
 use App\User;
+use function response;
 
 class KegiatanController extends Controller
 {
@@ -73,6 +74,7 @@ class KegiatanController extends Controller
         //save object to database
         $kegiatan->save();
         //message success
+
         Session::flash('message', 'Sukses menambah data kegiatan!');
         //TODO: routingnya belum
 
