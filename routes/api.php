@@ -30,3 +30,4 @@ Route::get('periode/setactive/{id}', 'AdminPeriodeController@changeActive');
 Route::get('kegiatan/departemen/{id}', 'AdminController@filterDepartemen')->name('ajax.kegiatan.departemen');
 Route::get('tugas/departemen/{id}', 'AdminController@tugasDepartemen')->name('ajax.tugas.departemen');
 Route::get('tugas/deadline/{id}', 'AdminController@tugasDeadline');
+Route::get('tugas/refresh', 'AdminController@tugasRefresh');

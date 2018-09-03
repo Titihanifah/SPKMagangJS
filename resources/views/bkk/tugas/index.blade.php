@@ -92,13 +92,13 @@
                                         </label>
                                         <div class="col-lg-4 col-md-9 col-sm-12">
                                             <div class="input-daterange input-group" id="m_datepicker_5">
-                                                <input type="text" class="form-control m-input" name="start" />
+                                                <input onchange="pilihDeadlineAwal(this)" type="text" class="form-control m-input" name="start" />
                                                 <div class="input-group-append">
 													<span class="input-group-text">
 														<i class="la la-ellipsis-h"></i>
 													</span>
                                                 </div>
-                                                <input type="text" class="form-control" name="end" />
+                                                <input onchange="pilihDeadlineAkhir(this)" type="text" class="form-control" name="end" />
                                             </div>
                                         </div>
                                 </div>
@@ -138,6 +138,10 @@
 
     <script type="text/javascript">
 
+        var deadlineAwal = null;
+        var deadlineAkhir = null;
+        var selectedDepartemen = 0;
+
         $(document).ready( function () {
 
             $('input[name="daterange"]').daterangepicker({
@@ -146,19 +150,7 @@
                 console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
             });
 
-            pilihDepartemen($('#filterDept'));
-
-//            $("#m_datepicker_1").datepicker({
-//                todayHighlight: !0,
-//                orientation: "bottom left",
-//                format: 'yyyy-mm-dd',
-//                templates: {
-//                    leftArrow: '<i class="la la-angle-left"></i>',
-//                    rightArrow: '<i class="la la-angle-right"></i>'
-//                }
-//            });
-            pilihDeadline($('input[name="deadlineTugas"]'));
-
+            refreshTable();
 
             @if (\Illuminate\Support\Facades\Session::has('message'))
             swal({
@@ -183,33 +175,77 @@
             @endif
         } );
 
-        function pilihDepartemen(selectObject) {
+        {{--function pilihDepartemen(selectObject) {--}}
 
-            var table = $('.myTableDataTable').DataTable({
-                destroy: true,
-                ajax:"{{ url('api/tugas/departemen') }}/" + selectObject.value,
-                columns: [
-                    {
-                        "data": "id",
-                        render: function (data, type, row, meta) {
-                            return meta.row + meta.settings._iDisplayStart + 1;
-                        }
-                    }, // for automatic numerization
-                    { data: 'nama_tugas', name: 'nama_ktugas' },
-                    { data: 'deskripsi', name: 'deskripsi' },
-                    { data: 'deadline', name: 'deadline' },
-                    { data: 'departemen', name: 'departemen' },
-                ]
-            });
+            {{--var table = $('.myTableDataTable').DataTable({--}}
+                {{--destroy: true,--}}
+                {{--ajax:"{{ url('api/tugas/departemen') }}/" + selectObject.value,--}}
+                {{--columns: [--}}
+                    {{--{--}}
+                        {{--"data": "id",--}}
+                        {{--render: function (data, type, row, meta) {--}}
+                            {{--return meta.row + meta.settings._iDisplayStart + 1;--}}
+                        {{--}--}}
+                    {{--}, // for automatic numerization--}}
+                    {{--{ data: 'nama_tugas', name: 'nama_ktugas' },--}}
+                    {{--{ data: 'deskripsi', name: 'deskripsi' },--}}
+                    {{--{ data: 'deadline', name: 'deadline' },--}}
+                    {{--{ data: 'departemen', name: 'departemen' },--}}
+                {{--]--}}
+            {{--});--}}
 
 
+        {{--}--}}
+
+        function pilihDepartemen(obj) {
+            selectedDepartemen = obj.value;
+            console.log("Departemen= "+selectedDepartemen);
+            refreshTable();
         }
 
-        function pilihDeadline(selectObject) {
+        function pilihDeadlineAwal(obj) {
+            deadlineAwal = obj.value;
+            console.log("DeadlineAwal= "+deadlineAwal);
+            refreshTable();
+        }
 
+        function pilihDeadlineAkhir(obj) {
+            deadlineAkhir = obj.value;
+            console.log("DeadlineAkhir= "+deadlineAkhir);
+            refreshTable();
+        }
+
+        {{--function pilihDeadline(selectObject) {--}}
+
+            {{--var table = $('.myTableDataTable').DataTable({--}}
+                {{--destroy: true,--}}
+                {{--ajax:"{{ url('api/tugas/deadline') }}/" + selectObject.value,--}}
+                {{--columns: [--}}
+                    {{--{--}}
+                        {{--"data": "id",--}}
+                        {{--render: function (data, type, row, meta) {--}}
+                            {{--return meta.row + meta.settings._iDisplayStart + 1;--}}
+                        {{--}--}}
+                    {{--}, // for automatic numerization--}}
+                    {{--{ data: 'nama_tugas', name: 'nama_tugas' },--}}
+                    {{--{ data: 'deskripsi', name: 'deskripsi' },--}}
+                    {{--{ data: 'deadline', name: 'deadline' },--}}
+                    {{--{ data: 'departemen', name: 'departemen' },--}}
+                {{--]--}}
+            {{--});--}}
+        {{--}--}}
+
+        function refreshTable() {
             var table = $('.myTableDataTable').DataTable({
                 destroy: true,
-                ajax:"{{ url('api/tugas/deadline') }}/" + selectObject.value,
+                ajax: {
+                    "url": "{{ url('api/tugas/refresh') }}",
+                    "data": {
+                        "id_departemen": selectedDepartemen,
+                        "deadline_start": deadlineAwal,
+                        "deadline_end": deadlineAkhir
+                    },
+                },
                 columns: [
                     {
                         "data": "id",
