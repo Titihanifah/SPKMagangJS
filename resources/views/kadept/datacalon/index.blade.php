@@ -66,7 +66,7 @@
 								<th>No</th>
 								<th>Nama</th>
 								<th>Jenis Kelamin</th>
-								<th>Prioritas</th>
+								{{--<th>Prioritas</th>--}}
 								<th>Hardskill</th>
 								<th>Softskill</th>
 								<th>Organisasi</th>
@@ -90,7 +90,7 @@
 								<td>{{ $i++ }}</td>
 								<td>{{ $key->first()->calonAnggota->nama_calon_anggota }}</td>
 								<td>{{ $key->first()->calonAnggota->jenis_kelamin }}</td>
-								<td>{{ $key->first()->prioritas }}</td>
+{{--								<td>{{ $key->first()->prioritas }}</td>--}}
 								<td>{{ $key->first()->calonAnggota->hardskill }}</td>
 								<td>{{ $key->first()->calonAnggota->softskill }}</td>
 								<td>{{ $key->first()->calonAnggota->pengalaman_organisasi }}</td>
