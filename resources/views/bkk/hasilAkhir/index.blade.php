@@ -116,13 +116,13 @@
                                 <td>{{ $key->where('prioritas',2)->first()->nilai_kehadiran }}</td>
                                 <td>{{ $key->where('prioritas',2)->first()->total_nilai }}</td>
                                 <td>
-                                    <select class="custom-select form-control col-md-12">
+                                    <select onchange="setDepartemen(this,{{ $key->where('prioritas',1)->first()->calonAnggota->id }})" class="custom-select form-control col-md-12">
                                         {{--TODO: selected--}}
-                                        <option selected>
+                                        <option value="0" {{ (($key->where('prioritas',1)->first()->calonAnggota->departemen_akhir == 0) ? 'selected' : '') }}>
                                             Pilih Departemen
                                         </option>
-                                        @foreach($departemen as $key)
-                                            <option  value="{{ $key->id }}">{{ $key->nama_departemen }}</option>
+                                        @foreach($departemen as $key2)
+                                            <option value="{{ $key2->id }}" {{ (($key->where('prioritas',1)->first()->calonAnggota->departemen_akhir == $key2->id) ? 'selected' : '') }}>{{ $key2->nama_departemen }}</option>
                                         @endforeach
                                     </select>
                                 </td>
@@ -162,21 +162,19 @@
                 scrollCollapse: true,
                 fixedColumns:   {
                     leftColumns: 4,
-                    rightColumns: 1,
+                    rightColumns: 1
                 }
             } );
         } );
 
 
-        function setDepartemen(theForm) {
-            var departemen = JSON.parse(theForm.id)[0];
-            var calon_anggota = JSON.parse(theForm.id)[1];
-//            $(".hadir-"+kegiatan.id+"-"+detail_calon_anggota.id).hide();
-//            $(".tidakhadir-"+kegiatan.id+"-"+detail_calon_anggota.id).show();
+        function setDepartemen(theForm, idCalonAnggota) {
+            var idDepartemen = theForm.value;
+
             $.ajax({
                 data : {
-                    nama_departemen: departemen.nama_departemen,
-                    id_calon: calon_anggota.id,
+                    id_departemen: idDepartemen,
+                    id_calon: idCalonAnggota
                 },
                 type: 'POST',
                 url: '{{ url('/') }}/api/hasilakhir/simpan',

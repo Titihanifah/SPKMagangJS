@@ -9,6 +9,7 @@ use App\Kegiatan;
 use App\Periode;
 use App\Tugas;
 use App\User;
+use Carbon\Carbon;
 use function compact;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -65,6 +66,26 @@ class AdminController extends Controller
         $activePeriode = Periode::active()->first();
         if($id == 0) $tugas = Tugas::all();
         else $tugas = Tugas::where('deadline', $id)->where('id_periode', $activePeriode->id)->get();
+        try {
+            return datatables()->of(TugasResource::collection($tugas))->toJson();
+        } catch (\Exception $e) {
+            return $e;
+        }
+    }
+
+    public function tugasRefresh(Request $request)
+    {
+        $activePeriode = Periode::active()->first();
+        $query = Tugas::where('id_periode', $activePeriode->id);
+
+        if(isset($request->deadline_start) && isset($request->deadline_end)) {
+            $query->whereBetween('deadline', [Carbon::createFromFormat('m/d/Y', $request->deadline_start), Carbon::createFromFormat('m/d/Y', $request->deadline_end)]);
+        }
+        if(isset($request->id_departemen)) {
+            if($request->id_departemen != 0) $query->where('id_departemen', $request->id_departemen);
+        }
+        $tugas = $query->get();
+
         try {
             return datatables()->of(TugasResource::collection($tugas))->toJson();
         } catch (\Exception $e) {
