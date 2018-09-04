@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\CalonAnggota;
 use App\Departemen;
 use App\DetailCalonAnggota;
 use App\Periode;
@@ -43,7 +44,9 @@ class AdminHasilAkhirController extends Controller
     public function simpan(Request $request)
     {
         $calonAnggota = CalonAnggota::find($request->id_calon);
-        $calonAnggota->departemen_akhir = $request->nama_departemen;
+
+        if($request->id_departemen == 0) $calonAnggota->departemen_akhir = null;
+        else $calonAnggota->departemen_akhir = $request->id_departemen;
         $calonAnggota->save();
 
         return response()->json('Success');
