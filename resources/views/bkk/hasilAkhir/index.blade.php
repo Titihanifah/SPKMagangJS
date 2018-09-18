@@ -97,9 +97,10 @@
                         </thead>
                         <tbody>
                         @php $i=1 @endphp
-                        {{--@php dd($detailCalonAnggotas) @endphp--}}
+                        
                         @foreach ($detailCalonAnggotas as $key)
                             @if($key->first()->calonAnggota->id_periode == $activePeriode->id)
+
                             <tr>
                                 <td>{{ $i++ }}</td>
                                 <td>{{ $key->where('prioritas',1)->first()->calonAnggota->nama_calon_anggota }} {{ $key->first()->favorit ? "⭐" : "" }}</td>
@@ -109,8 +110,20 @@
                                 <td>{{ $key->where('prioritas',1)->first()->nilai_kehadiran }}</td>
                                 <td>{{ $key->where('prioritas',1)->first()->nilai_tugas }}</td>
                                 <td>{{ $key->where('prioritas',1)->first()->total_nilai }}</td>
-                                <td data-toggle="m-tooltip" title="{{ $key->where('prioritas',1)->first()->keterangan }}" data-skin="dark">{{ $key->first()->rekomendasi }}</td>
-                                <td data-toggle="m-tooltip" title="{{ $key->where('prioritas',1)->first()->keterangan }}" data-skin="dark">{{ $key[1]->rekomendasi }}</td>
+                                <td data-toggle="m-tooltip" title="{{ $key->where('prioritas',1)->first()->keterangan }}" data-skin="dark">
+                                    @if( $key->where('prioritas',1)->first()->rekomendasi != null)
+                                        {{ $key->where('prioritas',1)->first()->rekomendasiDept->nama_departemen }}
+                                    @else
+                                        -
+                                    @endif
+                                </td>
+                                <td data-toggle="m-tooltip" title="{{ $key->where('prioritas',2)->first()->keterangan }}" data-skin="dark">
+                                    @if( $key->where('prioritas',2)->first()->rekomendasi != null)
+                                        {{ $key->where('prioritas',2)->first()->rekomendasiDept->nama_departemen }}
+                                    @else
+                                        -
+                                    @endif
+                                </td>
                                 {{--<td>{{ $key[1]->departemen->nama_departemen }}</td>--}}
                                 <td>{{ $key->where('prioritas',2)->first()->nilai_tugas }}</td>
                                 <td>{{ $key->where('prioritas',2)->first()->nilai_kehadiran }}</td>

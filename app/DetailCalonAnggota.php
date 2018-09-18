@@ -26,6 +26,10 @@ class DetailCalonAnggota extends Model
     {
         return $this->hasMany('App\Penilaian','id_detail_calon_anggota');
     }
+    public function rekomendasiDept()
+    {
+        return $this->belongsTo('App\Departemen','rekomendasi');
+    }
 
     // hasil akhir
     public function getTotalNilaiAttribute() {
