@@ -34,6 +34,7 @@
 {{--end ini--}}
 <link rel="stylesheet" type="text/css" href="/css/jquery.dataTables.min.css">
 <link rel="stylesheet" type="text/css" href="/css/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="{{ url('css/fixedColumns.dataTables.min.css') }}">
 {{--<link href="/css/jquery.dataTables.css" type="text/css">--}}
 
 

@@ -19,6 +19,10 @@ class Departemen extends Model
     {
         return $this->hasMany('App\DetailCalonAnggota','rekomendasi');
     }
+    public function detailCalonAnggota()
+    {
+        return $this->hasMany('App\DetailCalonAnggota','id_departemen');
+    }
     public function user()
     {
         return $this->hasMany('App\User','id_departemen');

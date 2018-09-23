@@ -18,9 +18,10 @@ class DataCalonController extends Controller
     {
         $activePeriode = Periode::active()->first();
 //        menampilkan data calon anggota sesuai dengan departemen
-        $userCalon = Auth::user()->departemen->detailCalonAnggota->groupBy('id_calon_anggota');
+        $userCalon1 = Auth::user()->departemen->detailCalonAnggota->where('prioritas',1)->groupBy('id_calon_anggota');
+        $userCalon2 = Auth::user()->departemen->detailCalonAnggota->where('prioritas',2)->groupBy('id_calon_anggota');
         return view('kadept.datacalon.index',
-            compact('userCalon','activePeriode'));
+            compact('userCalon2','userCalon1','activePeriode'));
     }
     
 
