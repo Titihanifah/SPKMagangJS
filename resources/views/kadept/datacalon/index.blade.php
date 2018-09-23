@@ -59,8 +59,8 @@
 			
 			<div class="m-portlet__body">
 				<ul class="nav nav-tabs" role="tablist">
-	              <li class="nav-item"><a class="nav-link " data-toggle="tab" href="#div-pil-1">Pilihan 1</a></li>
-	              <li class="nav-item"><a class="nav-link " data-toggle="tab" href="#div-pil-2">Pilihan 2</a></li>                  
+	              <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#div-pil-1">Pilihan 1</a></li>
+	              <li class="nav-item"><a class="nav-link " data-toggle="tab" href="#div-pil-2">Pilihan 2</a></li>
 	            </ul>	
 					<!--begin: Datatable -->
 				<div class="tab-content">
@@ -193,12 +193,12 @@
 <!-- <script src="https://cdn.datatables.net/fixedcolumns/3.2.4/js/dataTables.fixedColumns.min.js" type="text/javascript"></script> -->
 <script type="text/javascript" src="{{ url('/js/dataTables.fixedColumns.min.js') }}"></script>
 <script type="text/javascript">
-    $(document).ready( function () {
-        $('.myTableDataTable').DataTable();
-
-        
-
-    } );
+    // $(document).ready( function () {
+    //     $('.myTableDataTable').DataTable();
+    //
+    //
+    //
+    // } );
     $(document).ready(function() {
         var table = $('#data-calon-1').DataTable( {
             paging:         true,
@@ -210,10 +210,8 @@
                 rightColumns: 1,
             }
         } );
-    } );
 
-    $(document).ready(function() {
-        var table = $('#data-calon-2').DataTable( {
+        var table2 = $('#data-calon-2').DataTable( {
             paging:         true,
             scrollY:        "300px",
             scrollX:        true,
@@ -223,6 +221,22 @@
                 rightColumns: 1,
             }
         } );
+
+
+        // Tab trigger
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+            var currentTab = $(e.target).text(); // get current tab
+			console.log(currentTab);
+            switch (currentTab) {
+                case 'Pilihan 1' :   //do nothing
+					break ;
+                case 'Pilihan 2' :
+                    table2.columns.adjust().draw();
+                    break ;
+                default: //do nothing
+					break ;
+            }
+        }) ;
     } );
 
     function star(theForm){
