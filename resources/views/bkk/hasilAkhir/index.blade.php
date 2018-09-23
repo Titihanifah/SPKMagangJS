@@ -64,7 +64,7 @@
                 <div class="m-portlet__body">
 
                     <!--begin: Search Form -->
-
+               
                     <!--end: Search Form -->
                     <!--begin: Datatable -->
                     <table id="hasil_akhir" class="dt-responsive nowrap table table-striped bordered-table" style="width:100%">
